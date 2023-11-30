@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sage on Axect&#39;s Blog</title>
+    <link>https://axect.github.io/blog/tags/sage/</link>
+    <description>Recent content in sage on Axect&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 03 Oct 2020 03:36:49 +0900</lastBuildDate>
+    <atom:link href="https://axect.github.io/blog/tags/sage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🖊️ Rust와 미분하기 02: 기호 미분</title>
+      <link>https://axect.github.io/blog/posts/002_ad_2/</link>
+      <pubDate>Sat, 03 Oct 2020 03:36:49 +0900</pubDate>
+      <guid>https://axect.github.io/blog/posts/002_ad_2/</guid>
+      <description>🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
+# Python def differentiation(f, x, h=1e-06): return (f(x + h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다.</description>
+    </item>
+  </channel>
+</rss>

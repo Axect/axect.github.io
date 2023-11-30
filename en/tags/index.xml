@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Axect&#39;s Blog</title>
+    <link>https://axect.github.io/blog/en/tags/</link>
+    <description>Recent content in Tags on Axect&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
+    <atom:link href="https://axect.github.io/blog/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>piecewise rejection sampling</title>
+      <link>https://axect.github.io/blog/en/tags/piecewise-rejection-sampling/</link>
+      <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/piecewise-rejection-sampling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>statistics</title>
+      <link>https://axect.github.io/blog/en/tags/statistics/</link>
+      <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/statistics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>decorrelation</title>
+      <link>https://axect.github.io/blog/en/tags/decorrelation/</link>
+      <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/decorrelation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>machine-learning</title>
+      <link>https://axect.github.io/blog/en/tags/machine-learning/</link>
+      <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>paper-review</title>
+      <link>https://axect.github.io/blog/en/tags/paper-review/</link>
+      <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/paper-review/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pytorch</title>
+      <link>https://axect.github.io/blog/en/tags/pytorch/</link>
+      <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/tags/pytorch/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

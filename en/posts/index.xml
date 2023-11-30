@@ -1,0 +1,536 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Axect&#39;s Blog</title>
+        <link>https://axect.github.io/blog/en/posts/</link>
+        <description>Recent content in Posts on Axect&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
+        <atom:link href="https://axect.github.io/blog/en/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>📊 Piecewise Rejection Sampling</title>
+            <link>https://axect.github.io/blog/en/posts/006_prs/</link>
+            <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
+            
+            <guid>https://axect.github.io/blog/en/posts/006_prs/</guid>
+            <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
+Here are the two most commonly used methods to sample data from an arbitrary probability density function:
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.</description>
+            <content type="html"><![CDATA[<figure>
+    <img src="/posts/images/006_01_test_dist.png"
+         alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
+            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="#footnotes">${}^{[1]}$</a></p>
+        </figcaption>
+</figure>
+<p>Suppose you&rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?</p>
+<p>Here are the two most commonly used methods to sample data from an arbitrary probability density function:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">Inverse Transform Sampling</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rejection_sampling">Rejection Sampling</a></li>
+</ol>
+<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
+<hr>
+<h2 id="1-rejection-sampling">1. Rejection Sampling</h2>
+<p>  <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Rejection sampling</b>
+</span>, a.k.a. the acceptance-rejection method, employs a straightforward algorithm. To describe it, let&rsquo;s represent the target probability density function as $f(x)$. When direct sampling from $f(x)$ is not feasible, we introduce an auxiliary function $g(x)$, which is easy to sample from. For a chosen positive constant $M$, it&rsquo;s required that $f(x) \leq M \cdot g(x)$ across the domain of $x$. This relationship is depicted in the figure below:</p>
+<figure>
+    <img src="/posts/images/006_02_rejection.svg"
+         alt="A graph commonly seen in particle physics" width="80%" class="center"/> <figcaption style="text-align:center">
+            <p>A graph commonly seen in particle physics</p>
+        </figcaption>
+</figure>
+<p>Typically, the uniform distribution is the simplest to sample from, so we define $g(x)$ as $\text{Unif}(x|0,10)$. Given that the peak value of $f(x)$ is 1, we select $M=10$ to ensure that $M \times g(x)$ consistently surpasses or meets $f(x)$. The sampling process using this graph is as follows:</p>
+<ol>
+<li>
+<p>Draw a sample $y$ from $g(x)$, which in our case would be a value from $\text{Unif}(x|0,10)$.</p>
+</li>
+<li>
+<p>For the chosen $y$, draw a sample $u$ from $\text{Unif}(u|0,M \cdot g(y))$. This step always utilizes a uniform distribution, regardless of $g(x)$&rsquo;s configuration.</p>
+</li>
+<li>
+<p>If $u$ is less than or equal to $f(y)$, then $y$ is accepted as a sampled value from the desired distribution $f(x)$. If not, the process is repeated from step 1.</p>
+</li>
+</ol>
+<p>This method is named &lsquo;rejection sampling&rsquo; because samples where $u &gt; f(y)$ are discarded. By following this algorithm, we can simulate sampling from the desired probability distribution $f(x)$. To implement this, we will explore the cumulative probability distribution function (CDF).</p>
+<blockquote>
+<p>If we denote the random variable $X$ obtained by Rejection sampling, we can establish the following relationship for two other random variables $Y \sim g(y)$, $U \sim \text{Unif}(u|0, M\cdot g(y))$:
+$$
+P(X \leq x) = P\left(Y \leq x \,|\, U &lt; f(Y)\right)
+$$
+The conditional probability on the right-hand side represents the probability that $Y$ is less than $x$ when $U$ is not rejected, which is like step 3 in the algorithm above.
+Using the definition of conditional probability, we can transform this into:
+$$
+P(X \leq x) = \frac{P (Y \leq x,~U &lt; f(Y))}{P(U &lt; f(Y))}
+$$
+First, let&rsquo;s expand the numerator using the probability density function:
+$$
+\begin{aligned}
+P(Y \leq x,U &lt; f(Y)) &amp;= \int P(Y \leq x,U &lt; f(Y) | Y = y) \cdot g(y) \,dy \\
+&amp;= \int P(y \leq x,~U &lt; f(y)) \cdot g(y) \,dy \\
+&amp;= \int 𝟙_{y \leq x} \cdot P(U &lt; f(y))\cdot  g(y) \, dy \\
+&amp;= \int_{-\infty}^x P(U &lt; f(y)) \cdot g(y) \, dy
+\end{aligned}
+$$
+When moving from the second to the third equation, we use the condition that $y \leq x$ and $U &lt; f(y)$ are independent. Now, since $U \sim \text{Unif}(u|0,,M\cdot g(y))$, by substituting $\displaystyle P(U &lt; f(y)) = \frac{1}{M\cdot g(y)} \times (f(y) - 0)$ we get:
+$$
+\begin{aligned}
+P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g(y) \, dy \\
+&amp;= \frac{1}{M} \int_{-\infty}^x f(y) \, dy
+\end{aligned}
+$$
+<!-- raw HTML omitted -->
+Now let&rsquo;s find the denominator:
+$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \int P(U &lt; f(y)) \cdot g(y) \, dy \\
+&amp;= \int \frac{f(y)}{M\cdot g(y)} \cdot g(y) \, dy \\
+&amp;= \frac{1}{M} \int f(y) \, dy \\
+&amp;= \frac{1}{M}
+\end{aligned}
+$$
+Finally, by dividing the numerator by the denominator, we get:
+$$
+P(X \leq x) = \int_{-\infty}^x f(y) \, dy
+$$
+This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p>
+</blockquote>
+<p>Now that the mathematical proof is complete, let&rsquo;s write some code to see if this actually works well in practice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> M: <span style="color:#66d9ef">f64</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> N: <span style="color:#66d9ef">usize</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100_000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Create g(x)=Unif(x|0,10) &amp; h(y)=Unif(y|0,M)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> g <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">10.0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> h.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> y <span style="color:#f92672">&lt;=</span> f(x) {      <span style="color:#75715e">// Accept
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            x_vec[i] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>            i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {            <span style="color:#75715e">// Reject
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Test function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">f</span>(x: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> (x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>).sqrt() <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>(x<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#66d9ef">f64</span>).powi(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.2</span>).exp()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The algorithm itself is simple, so the code is very straightforward. However, despite that, the results are impressive.</p>
+<figure>
+    <img src="/posts/images/006_03_hist.png"
+         alt="Result of rejection sampling" width="80%" class="center"/> <figcaption style="text-align:center">
+            <p>Result of rejection sampling</p>
+        </figcaption>
+</figure>
+<p>Rejection sampling is not limited by the form of the probability density function and is easy to implement, but it has a critical downside: computational inefficiency. To secure a sample in Rejection sampling, it must survive the rejection condition. This means that the higher the $P(U &lt; f(Y))$, the faster samples can be obtained, and conversely, the lower it is, the longer it takes to secure a sufficient number of samples. This is known as the <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Acceptance rate</b>
+</span>, which we already calculated in the proof above.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>Acceptance rate</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            The Acceptance rate of Rejection is defined as follows:
+$$
+P(U &lt; f(Y)) = \int P(U &lt; f(y)) \cdot g(y) \, dy
+$$
+        </span>
+    </figure>
+</div>
+<p>In the algorithm we used, this is equivalent to $1/M$, which is like dividing the area occupied by $f(x)$ by the total area occupied by $M \cdot g(x)$. Therefore, the larger the difference between the distributions, the lower the Acceptance rate, and the longer it takes to secure samples.
+Our example exhibits a minor discrepancy between $g(x)$ and $f(x)$, which is manageable. However if the probability distribution has a significant number of zeroes, as we gave at the beginning, and we use a uniform distribution for $g(x)$, the majority of samples will be rejected. This not only increases the time required for sampling but may also render it virtually impossible to sample effectively from areas where the probability density is close to zero, such as the distribution&rsquo;s tails. To circumvent this issue, we must seek more efficient methods that can improve the acceptance rate for distributions with extensive zero-value regions.</p>
+<hr>
+<h2 id="2-piecewise-rejection-sampling">2. Piecewise Rejection Sampling</h2>
+<p>  Indeed, the scientific community has developed several techniques to improve upon the basic rejection sampling method. Among these, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Adaptive Rejection Sampling (ARS)</b>
+</span> stands out for its efficiency, though it operates under the assumption that the target function is log-concave. On the other hand, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Adaptive Rejection Metropolis Sampling (ARMS)</b>
+</span> addresses the limitations of ARS by not requiring the log-concavity condition, making it more generalizable, but at the cost of being more complex to implement. While there are comprehensive <a href="https://cran.r-project.org/web/packages/armspp/vignettes/arms.html">R packages</a> available that facilitate the use of these methods, there is a simpler alternative that I would like to present: <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Piecewise Rejection Sampling (PRS)</b>
+</span>.</p>
+<p>PRS was developed as a direct response to a challenge I faced during my physics research. It retains the core principles of rejection sampling but proposes a more tailored approach for the auxiliary function $g(x)$. Rather than employing a simple uniform distribution, PRS uses a <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Weighted uniform distribution</b>
+</span> that is specifically optimized for $f(x)$. Let&rsquo;s delve into this method step by step.</p>
+<h3 id="21-max-pooling">2.1. Max-Pooling</h3>
+<p>  If you have an interest in deep learning, you might already be acquainted with the term <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Max Pooling</b>
+</span>. Max Pooling is a common operation in Convolutional Neural Networks (CNNs), and it is conceptually straightforward. Let&rsquo;s proceed to the mathematical definition of Max Pooling to understand how it works.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>Max pooling</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>Let $f\,:\,[a,b]\to \mathbb{R}$ be a continuous function and consider the equidistant partition of the interval $[a,b]$
+$$
+a = x_0 &lt; x_1 &lt; \cdots &lt; x_{n-1} &lt; x_n = b
+$$
+The partitions size, $(b-a)/n$ is called <em>stride</em>. Denote by $\displaystyle M_i = \max_{[x_{i-1},x_i]}f(x)$ and consider
+the simple function</p>
+<p>$$
+S_n(x) = \sum_{i=1}^n M_i 𝟙_{[x_{i-1},x_i)}(x).
+$$</p>
+<p>The process of approximating the function $f(x)$ by the simple function $S_n(x)$ is called <em>max-pooling</em>.</p>
+
+        </span>
+    </figure>
+</div>
+<p>A simple function, in the context of measure theory, is one that assumes a finite number of constant values, each within a specific interval. For an in-depth explanation, you can refer to Definition 10 and Property 1 in the resource <a href="https://axect.github.io/ML_with_Rust/measuretheory.html">Precise Machine Learning with Rust</a>.</p>
+<p>In essence, Max Pooling is a process that yields a simple function from measure theory, which is defined by distinct constant values on various intervals. Specifically, when applied to a function $f(x)$, Max Pooling divides the domain into $n$ bins and within each bin, it identifies the maximum value of $f(x)$. These maximum values are then used as the constant, representative values for their respective intervals, thereby transforming $f(x)$ into a simple function with a finite number of plateaus corresponding to the local maxima within each bin.
+When we apply this concept to our initial distribution, we can observe the following:</p>
+<figure>
+    <img src="/posts/images/006_04_prs.svg"
+         alt="Max-pooling for Test Distribution" width="90%" class="center"/> <figcaption style="text-align:center">
+            <p>Max-pooling for Test Distribution</p>
+        </figcaption>
+</figure>
+<p>The solid red line depicted in the figure represents the function $f(x)$, and the dashed blue line illustrates the outcome of applying Max Pooling to $f(x)$. Astute observers might have realized by now that this blue line will serve as $M\cdot g(x)$ in our rejection sampling process. To implement this, we will establish a probability distribution that resembles a uniform distribution within each interval but differs in terms of the representative values. This forms the basis for the <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Weighted uniform distribution</b>
+</span>—the optimized $g(x)$ that we&rsquo;ve referenced earlier—which adapts the uniformity concept to accommodate varying weights across different intervals.</p>
+<h3 id="22-weighted-uniform-distribution">2.2. Weighted Uniform Distribution</h3>
+<div class="notepaper">
+    <br/>
+    <span><b>Weighted uniform distribution</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            Let $(S, \mathcal{F}, \mu)$ be a measure space. For a disjoint family $\mathcal{A} = \left\{A_i\right\}_{i=1}^n \in \mathcal{F}$ of measurable sets with non-zero measure and a family $\mathbf{M} = \{M_i\}_{i=1}^n$ of non-negative real numbers (but $\sum_i M_i &gt; 0$), define the weighted uniform distribution on $S$ by
+$$
+\text{WUnif}(x|\mathbf{M}, \mathcal{A}) = \frac{1}{\sum_{j}M_j \cdot \mu(A_j)}\sum_i M_i 𝟙_{A_i}(x)
+$$
+        </span>
+    </figure>
+</div>
+<p>The definition sounds complicated, but when you define it for a one-dimensional interval, you realize that it&rsquo;s really quite simple.</p>
+<ul>
+<li>$S = [a,b]$</li>
+<li>$\mathcal{A} = \left\{[x_{i-1},x_i)\right\}_{i=1}^n$ and $\Delta x_i \equiv x_i - x_{i-1}$</li>
+<li>$\displaystyle \text{WUnif}(x|\mathbf{M}, \mathcal{A}) = \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i 𝟙_{A_i}(x)$</li>
+</ul>
+<p>Moving forward with our one-dimensional context, we&rsquo;ll utilize this straightforward definition for our calculations. To begin, we can swiftly demonstrate that this function qualifies as a probability density function.</p>
+<blockquote>
+<p>$$
+\begin{aligned}
+\int_a^b \text{WUnif}(x|\mathbf{M}, \mathcal{A}) dx &amp;= \int_a^b \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i 𝟙_{A_i}(x) dx \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \int_{a}^{b} 𝟙_{A_i}(x) dx \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \cdot \Delta x_i \\
+&amp;= 1
+\end{aligned}
+$$</p>
+</blockquote>
+<p>Sampling from a weighted uniform distribution is indeed straightforward, and the process is as follows:</p>
+<ol>
+<li>
+<p>Choose one of the $n$ bins, where the probability of selecting a particular bin is proportional to its area, calculated as $\displaystyle \frac{M_i \cdot \Delta x_i}{\sum_{j}M_j \cdot \Delta x_j}$.</p>
+</li>
+<li>
+<p>Once a bin is selected, generate a sample from the uniform distribution within that bin.</p>
+</li>
+</ol>
+<p>When Max Pooling is applied to determine the weights $\mathbf{M}$ and the set $\mathcal{A}$ (which includes the bins), and if the bin lengths are equal, the term $\Delta x_i$ cancels out. This simplifies the probability of choosing any bin to $M_i / \sum_{j}M_j$. This simplicity is a significant advantage when implementing the sampling algorithm, making the process computationally efficient.</p>
+<h3 id="23-piecewise-rejection-sampling">2.3. Piecewise Rejection Sampling</h3>
+<p>  The weighted uniform distribution, which we can readily sample from, is a viable choice for $g(x)$ in rejection sampling. But instead of selecting random weights and bin lengths, we will use Max Pooling to derive $\mathbf{M}$ and $\mathcal{A}$, ensuring that our $g(x)$ always remains above $f(x)$. This procedure is outlined in the following steps:</p>
+<ol>
+<li>
+<p>Determine the number of bins to segment the entire range into, denoted as $n$. Define $\mathcal{A}$ by splitting the interval into $n$ equal-length sections.</p>
+</li>
+<li>
+<p>Perform Max Pooling on $f(x)$ across the established bins to ascertain $\mathbf{M}$, the set of maximum values within each bin.</p>
+</li>
+<li>
+<p>Utilize $\mathbf{M}$ and $\mathcal{A}$ to construct a weighted uniform distribution.</p>
+</li>
+<li>
+<p>Implement rejection sampling using this specifically defined weighted uniform distribution as $g(x)$.</p>
+</li>
+</ol>
+<p>This approach is aptly named <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Piecewise Rejection Sampling</b>
+</span> because it involves sampling within discrete bins. When you compute the acceptance rate for this method, it becomes clear that it can substantially improve the acceptance rate over using a simple uniform distribution for rejection sampling.</p>
+<blockquote>
+<p>$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \int_a^b P(U &lt; f(Y) | Y = y) \cdot g(y) \, dy \\
+&amp;= \int_a^b P(U &lt; f(y)) \cdot \text{WUnif}(y|\mathbf{M}, \mathcal{A}) \, dy \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i M_i \int_{A_i} P(U &lt; f(y)) dy
+\end{aligned}
+$$
+Since $U \sim \text{Unif}(u|0, M_i)$ and $P(U &lt; f(y)) = f(y)/{M_i}$, it can be simplified to:
+$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \geq \frac{1}{M_\max \cdot \sum_{j} \Delta x_j}  = \frac{1}{M}
+\end{aligned}
+$$</p>
+</blockquote>
+<p>The final part of the inequality references that the greatest value among the $M_i$ when multiplied by the total interval length is equal to $M$, aligning with the area under the curve of the original uniform distribution. This fact confirms that the acceptance rate for piecewise rejection sampling will always exceed that of a simple uniform distribution.</p>
+<p>To tackle the initial problem we introduced, we&rsquo;ll employ piecewise rejection sampling. The algorithm for this has been integrated into the Rust numerical library <a href="https://github.com/Axect/Peroxide">Peroxide</a>, which we will utilize for our solution. Using this library streamlines the process, allowing us to efficiently apply the piecewise rejection sampling method we&rsquo;ve outlined.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// `cargo add peroxide --features parquet`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[allow(non_snake_case)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Read parquet data file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> DataFrame::read_parquet(<span style="color:#e6db74">&#34;data/test.parquet&#34;</span>).unwrap();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> E: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;E&#34;</span>].to_vec();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> dNdE: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;dNdE&#34;</span>].to_vec();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cubic hermite spline -&gt; Make continuous f(x)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> cs <span style="color:#f92672">=</span> cubic_hermite_spline(<span style="color:#f92672">&amp;</span>E, <span style="color:#f92672">&amp;</span>dNdE, Quadratic);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> <span style="color:#f92672">|</span>x: <span style="color:#66d9ef">f64</span><span style="color:#f92672">|</span> cs.eval(x);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Piecewise rejection sampling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # samples = 10000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # bins = 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * tolerance = 1e-6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
+</span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
+</span></span><span style="display:flex;"><span>    df.write_parquet(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
+</span></span><span style="display:flex;"><span>        CompressionOptions::Uncompressed
+</span></span><span style="display:flex;"><span>    ).unwrap();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you plot the data in a histogram, it looks like this:</p>
+<figure>
+    <img src="/posts/images/006_05_hist.png"
+         alt="Finally, we get samples!"/> <figcaption style="text-align:center">
+            <p>Finally, we get samples!</p>
+        </figcaption>
+</figure>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><strong>Yen-Chi Chen</strong>, <em>Lecture 4: Importance Sampling and Rejection Sampling</em>, STAT/Q SCI 403: Introduction to Resampling Methods (2017)</p>
+</li>
+<li>
+<p><strong>Ovidiu Calin</strong>, <em>Deep Learning Architectures: A Mathematical Approach</em>, Springer (2020)</p>
+</li>
+<li>
+<p><strong>Tae-Geun Kim (<a href="https://github.com/Axect">Axect</a>)</strong>, <a href="https://axect.github.io/ML_with_Rust"><em>Precise Machine Learning with Rust</em></a> (2019)</p>
+</li>
+</ul>
+<hr>
+<h2 id="footnotes">A. Footnotes</h2>
+<p>[1]: The figure used here depicts the spectrum of Axion Like Particles (ALPs) emitted at a specific time from a Primordial Black Hole (PBH). You can find more details about this in <a href="https://arxiv.org/abs/2212.11977">this paper</a>.</p>
+<p>[2]: In this scenario, one could approximate the distribution&rsquo;s nodes using cubic spline interpolation, calculate the cumulative distribution function via numerical or polynomial integration, and then obtain the inverse function through further interpolation. However, this method may yield inaccurate and inefficient results, which is why it&rsquo;s not the recommended approach.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>💔 Decorrelation &#43; Deep learning = Generalization</title>
+            <link>https://axect.github.io/blog/en/posts/005_decov/</link>
+            <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+            
+            <guid>https://axect.github.io/blog/en/posts/005_decov/</guid>
+            <description>arXiv: 1511.06068
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
+            <content type="html"><![CDATA[<figure>
+    <img src="/posts/images/005_01_paper.png"
+         alt="arXiv: 1511.06068"/> <figcaption style="text-align:center">
+            <p><a href="https://arxiv.org/abs/1511.06068">arXiv: 1511.06068</a></p>
+        </figcaption>
+</figure>
+<p>  The most pervasive challenge in deep learning is <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Overfitting</b>
+</span>. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.</p>
+<figure>
+    <img src="/posts/images/005_02_overfitting.png"
+         alt="Bejani, M.M., Ghatee, M. A systematic review on overfitting control in shallow and deep neural networks. Artif Intell Rev 54, 6391-6438 (2021)"/> <figcaption style="text-align:center">
+            <p>Bejani, M.M., Ghatee, M. <em>A systematic review on overfitting control in shallow and deep neural networks.</em> Artif Intell Rev 54, 6391-6438 (2021)</p>
+        </figcaption>
+</figure>
+<p>Among these, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Dropout</b>
+</span> is perhaps the most well-known, which involves omitting certain neurons in a neural network to prevent their co-adaptation. Practically, this has proven to be an exceedingly effective measure to mitigate overfitting, becoming a standard inclusion in neural network architectures. However, dropout is not universally applicable: with limited training data or few neurons, the random removal of neurons might impede the network&rsquo;s capacity to model complex relationships. Additionally, despite its practicality, dropout&rsquo;s straightforward architecture and the principle may seem less theoretically satisfying. In this context, I wish to present an intriguing paper that offers both theoretical enrichment and practical effectiveness.</p>
+<hr>
+<h2 id="1-why-do-we-need-decorrelation">1. Why do we need decorrelation?</h2>
+<h3 id="11-covariance--correlation">1.1. Covariance &amp; Correlation</h3>
+<p>  The paper under review, <em>Reducing Overfitting in Deep Networks by Decorrelating Representations</em> from 2015, introduces a method termed <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Decorrelation</b>
+</span>. The authors demonstrate how this technique can bolster the performance of Dropout in reducing overfitting. Despite its potential, Decorrelation did not surge in popularity, likely due to its novelty and relative complexity. Nevertheless, it remains a valuable and consistently cited work in the field.</p>
+<p>To grasp the concept of decorrelation, we must first understand what correlation entails. Correlation denotes the relationship between two sets of data, with covariance being a common measure of this relationship. Covariance is defined as the linear association between two random variables, expressed by the formula:</p>
+<p>$$
+\text{Cov}(X,\,Y) \equiv \mathbb{E}\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right]
+$$</p>
+<p>It is generally understood that a positive covariance indicates a direct proportional relationship between variables, a negative value suggests an inverse relationship, and a value near zero implies no apparent relationship. A more precise metric for this relationship is the Pearson correlation coefficient, defined as:</p>
+<p>$$
+\text{Corr}(X,\,Y) \equiv \frac{\text{Cov}(X,\,Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}}
+$$</p>
+<p>This coefficient is constrained within a range from -1 to 1. A value closer to 1 indicates a strong direct relationship, closer to -1 indicates a strong inverse relationship, and a value near 0 suggests no correlation. Consider the following data as an illustration.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>])
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>])
+</span></span></code></pre></div><p>For these two variables, the covariance can be calculated using the following function in Python:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cov</span>(x, y):
+</span></span><span style="display:flex;"><span>    N <span style="color:#f92672">=</span> len(x)
+</span></span><span style="display:flex;"><span>    m_x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>    m_y <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>dot((x <span style="color:#f92672">-</span> m_x), (y <span style="color:#f92672">-</span> m_y)) <span style="color:#f92672">/</span> (N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>Using this function to compute the covariance for <code>x</code> and <code>y</code> above yields a value of <code>1.6666666666666667</code>. This indicates a positive correlation, but interpreting this raw number can be challenging. To facilitate a clearer interpretation, we employ the Pearson correlation coefficient, as previously mentioned, defined in Python as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pearson_corr</span>(x, y):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ddof=1 for sample variance</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cov(x, y) <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>sqrt(x<span style="color:#f92672">.</span>var(ddof<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> y<span style="color:#f92672">.</span>var(ddof<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div><p>Applying this to the given data reveals a Pearson correlation coefficient of exactly 1, signifying that the two variables have a perfect linear relationship.</p>
+<p>When dealing with multiple features, it is possible to construct a matrix that represents the covariance among them all at once. This is known as the covariance matrix, and is denoted as follows:</p>
+<p>$$
+C_{ij} = \text{Cov}(x_i,\,x_j)
+$$</p>
+<p>Therefore, the covariance matrix is a square matrix with dimensions equal to the number of features, representing the covariance between each pair of features.</p>
+<p> </p>
+<h3 id="12-overfitting--decorrelation">1.2. Overfitting &amp; Decorrelation</h3>
+<p>  The discussion of correlation in the realm of deep learning arises from the issue that significant correlation among variables, or features, can be detrimental to a model&rsquo;s performance. Deep neural networks refine their learning by adjusting weights assigned to each feature; however, when two features yield identical information (high correlation), it creates redundancy. This redundancy can cause a form of degeneracy where altering the weights of either feature doesn&rsquo;t uniquely contribute to the learning process, which in turn can impede accurate learning and introduce bias into the neural network. The aforementioned paper posits that this redundancy is a contributing factor to overfitting.</p>
+<p>In fact, the study demonstrates that by defining the extent of overfitting as the discrepancy between training and validation accuracy and quantifying the level of decorrelation with a metric termed <code>DeCov</code>, a notable pattern emerges:</p>
+<figure>
+    <img src="/posts/images/005_03_decov.png"
+         alt="Correlation between Overfitting and Covariance"/> <figcaption style="text-align:center">
+            <p>Correlation between Overfitting and Covariance</p>
+        </figcaption>
+</figure>
+<p>The graph above illustrates that with an increase in the number of training samples, the degree of overfitting diminishes, concurrently with a decrease in Cross-Covariance. This correlation suggests that by reducing covariance, or in other words, promoting decorrelation, one can potentially reduce the tendency of a model to overfit.</p>
+<hr>
+<h2 id="2-how-to-decorrelate">2. How to decorrelate?</h2>
+<p>  Within the paper, the authors propose that to combat overfitting, one should aim to decorrelate the activation outputs of the hidden layers. This approach is grounded in the logic that these activations are the actual values being multiplied by subsequent weights in the network. Let&rsquo;s consider the activation values of one hidden layer as $h^n \in \mathbb{R}^d$, where $n$ is the batch index. We can then define the covariance matrix of these activations as:</p>
+<p>$$
+C_{ij} = \frac{1}{N} \sum_n (h_i^n - \mu_i)(h_j^n - \mu_j)
+$$</p>
+<p>By reducing the covariance of these activation values, we aim to achieve our objective of decorrelation. However, to integrate this concept into our Loss function, which requires a scalar value, the covariance matrix must be represented in a scalar form. The paper introduces the following Loss function for this purpose:</p>
+<p>$$
+\mathcal{L}_{\text{DeCov}} = \frac{1}{2}(\lVert C \rVert_F^2 - \lVert\text{diag}(C) \rVert_2^2)
+$$</p>
+<p>Here, $\lVert \cdot \rVert_F$ denotes the Frobenius norm of the matrix, and $\lVert \cdot \rVert_2$ denotes the $l^2$ norm. The subtraction of the diagonal components is deliberate since these represent the variance of individual features, which does not contribute to inter-feature correlation. By incorporating this DeCov Loss function into the overall loss, much like a regularization term, we can enforce decorrelation in the learning process.</p>
+<p>Implementing this decorrelation strategy in practical deep learning applications may initially appear daunting, given the complexity of gradient calculations for the covariance matrix and its norms. However, PyTorch simplifies the process considerably with its built-in automatic differentiation capabilities, which can handle gradients for the covariance matrix and norms with ease. Consequently, this DeCov loss function can be integrated into your model with just a few lines of Python code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decov</span>(h):
+</span></span><span style="display:flex;"><span>    C <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cov(h)
+</span></span><span style="display:flex;"><span>    C_diag <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>diag(C, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> (torch<span style="color:#f92672">.</span>norm(C, <span style="color:#e6db74">&#39;fro&#39;</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> torch<span style="color:#f92672">.</span>norm(C_diag, <span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><p>By defining a function <code>decov</code>, we calculate the covariance matrix <code>C</code> of the activations <code>h</code>. The function then computes the DeCov loss by taking the Frobenius norm of the entire covariance matrix, squaring it, and subtracting the squared $l^2$ norm of the diagonal elements, which represent the variance of each feature. This DeCov loss can then be added to the primary loss function, thereby enabling the model to learn decorrelated features effectively.</p>
+<hr>
+<h2 id="3-apply-to-regression">3. Apply to Regression</h2>
+<p>  In the original study, the authors applied their decorrelation technique to various sets of image data. However, to more clearly demonstrate its effectiveness, we&rsquo;ll apply it to a simple regression problem. Below is the dataset that will be used to train the neural network:</p>
+<figure>
+    <img src="/posts/images/005_04_data.png"
+         alt="Nonlinear data [Note: Peroxide_Gallery]"/> <figcaption style="text-align:center">
+            <p>Nonlinear data [Note: <a href="https://github.com/Axect/Peroxide_Gallery/tree/master/Machine_Learning/linear_reg_ridge">Peroxide_Gallery</a>]</p>
+        </figcaption>
+</figure>
+<p>To illustrate the impact of the <code>DeCov</code> loss function, we will compare the performance of a standard neural network to one that implements the <code>DeCov</code> function. The architecture of the neural network utilizing <code>DeCov</code> is detailed below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pytorch_lightning <span style="color:#66d9ef">as</span> pl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn.functional <span style="color:#66d9ef">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeCovMLP</span>(pl<span style="color:#f92672">.</span>LightningModule):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_init <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1</span>, self<span style="color:#f92672">.</span>hidden_nodes),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_mid <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(self<span style="color:#f92672">.</span>hidden_nodes, self<span style="color:#f92672">.</span>hidden_nodes),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(self<span style="color:#f92672">.</span>hidden_nodes, self<span style="color:#f92672">.</span>hidden_nodes),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(self<span style="color:#f92672">.</span>hidden_nodes, self<span style="color:#f92672">.</span>hidden_nodes),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_final <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(self<span style="color:#f92672">.</span>hidden_nodes, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc_init(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc_mid(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>fc_final(x)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">training_step</span>(self, batch, batch_idx):
+</span></span><span style="display:flex;"><span>        x, y <span style="color:#f92672">=</span> batch
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        h0 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc_init(x)
+</span></span><span style="display:flex;"><span>        loss_0 <span style="color:#f92672">=</span> decov(h0)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        h1 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc_mid(h0)
+</span></span><span style="display:flex;"><span>        loss_1 <span style="color:#f92672">=</span> decov(h1)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        y_hat <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc_final(h1)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>mse_loss(y,y_hat) <span style="color:#f92672">+</span> loss_0 <span style="color:#f92672">+</span> loss_1
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> loss
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span></code></pre></div><p>Upon closer examination, we observe that <code>loss_0</code> is defined as the loss after the initial layer <code>fc_init</code>, and <code>loss_1</code> as the loss after the subsequent three layers <code>fc_mid</code>. These losses are then integrated into the mean squared error (MSE) loss as regularization terms. Before delving into the outcomes, it&rsquo;s insightful to examine the training dynamics of <code>SimpleMLP</code> and <code>DeCovMLP</code>.</p>
+<figure>
+    <img src="/posts/images/005_07_SimpleMLP.png"
+         alt="SimpleMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
+            <p>SimpleMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/2dx8i9b7?workspace=user-axect">wandb.ai</a>)</p>
+        </figcaption>
+</figure>
+<figure>
+    <img src="/posts/images/005_08_DeCovMLP.png"
+         alt="DeCovMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
+            <p>DeCovMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/22ggcfkd?workspace=user-axect">wandb.ai</a>)</p>
+        </figcaption>
+</figure>
+<p>In the <code>SimpleMLP</code> model, <code>decov_1</code> initially increases during training iterations and then plateaus, indicating no further decrease. Contrastingly, within the <code>DeCovMLP</code> model, <code>decov_1</code> consistently decreases, aligning with the paper&rsquo;s hypothesis: as overfitting intensifies, so does the correlation between features. Now, let&rsquo;s consider the results.</p>
+<figure>
+    <img src="/posts/images/005_05_total.png"
+         alt="Results!"/> <figcaption style="text-align:center">
+            <p>Results!</p>
+        </figcaption>
+</figure>
+<p>The red line represents the <code>SimpleMLP</code> outcome, while the blue line depicts <code>DeCovMLP</code>. Noticeably, the red line exhibits overfitting with erratic fluctuations, whereas the blue line maintains closer alignment with the <code>true</code> data and exhibits less jitter. This demonstrates a remarkable improvement, and further extrapolation yields even more compelling insights.</p>
+<figure>
+    <img src="/posts/images/005_06_extrapolate.png"
+         alt="Extrapolate!"/> <figcaption style="text-align:center">
+            <p>Extrapolate!</p>
+        </figcaption>
+</figure>
+<p>When extrapolated, the red line — indicative of overfitting — diverges significantly from the expected trend even with minor deviations, leading to inaccurate predictions. Meanwhile, the blue line remains stable, displaying minimal deviation. This clearly demonstrates the superior generalization capability of the <code>DeCovMLP</code>.</p>
+<hr>
+<h2 id="4-further-more">4. Further more..</h2>
+<p>  The paper, &ldquo;<em>Reducing Overfitting in Deep Networks by Decorrelating Representations,</em>&rdquo; was published in 2015—a notable period ago, especially when considered within the fast-paced advancements of the field up to 2022. Since its publication, there has been a continuous outpouring of research on decorrelation techniques, with studies like <a href="https://arxiv.org/abs/1804.08450">Decorrelated Batch Normalization</a> emerging more recently. Decorrelation, having been extensively explored in the field of statistics, offers a robust theoretical foundation that can render the results of neural networks more intuitive and analytically solid for researchers and practitioners alike.</p>
+<p>For those interested in delving deeper, the regression code discussed earlier can be accessed at the provided link.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left"><a href="https://github.com/Axect/DeCov">Axect/DeCov</a></p>
+    </blockquote>
+</div>
+</center>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

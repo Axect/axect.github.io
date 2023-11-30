@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="Ferris the crab
+Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.
+업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다." />
+<meta name="keywords" content=", rust, programming, update" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/blog/posts/004_rust_1.62.0/" />
+
+
+    <title>
+        
+            🦀 Rust 1.62.0 업데이트의 신기능 3가지 :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://axect.github.io/blog/main.26e01a9369479a9ce62d7cc0d0562f902225fc18f202a79432a727827be745fb.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/blog/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/blog/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/blog/favicon-16x16.png">
+    <link rel="manifest" href="https://axect.github.io/blog/site.webmanifest">
+    <link rel="mask-icon" href="https://axect.github.io/blog/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="https://axect.github.io/blog/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="🦀 Rust 1.62.0 업데이트의 신기능 3가지">
+<meta itemprop="description" content="Ferris the crab
+Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.
+업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다."><meta itemprop="datePublished" content="2022-07-01T11:56:41+09:00" />
+<meta itemprop="dateModified" content="2022-07-01T11:56:41+09:00" />
+<meta itemprop="wordCount" content="727"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="keywords" content="rust,programming,update," />
+
+
+
+
+    <meta property="article:published_time" content="2022-07-01 11:56:41 &#43;0900 KST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://axect.github.io/blog/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://axect.github.io/blog/about">About</a></li><li><a href="https://axect.github.io/blog/posts">Blog</a></li><li><a href="https://axect.github.io/blog/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-167590700-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        4 분
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://axect.github.io/blog/posts/004_rust_1.62.0/">🦀 Rust 1.62.0 업데이트의 신기능 3가지</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">목차</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-cargo-add">1. <strong><code>cargo add</code></strong></a></li>
+    <li><a href="#2-default-enum">2. <strong><code>[default]</code> enum</strong></a></li>
+    <li><a href="#3-total-order-for-floating-point-numbers">3. Total Order for Floating point numbers</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+
+      
+
+      <div class="post-content">
+        <figure>
+    <img src="https://axect.github.io/blog/posts/images/rustacean.svg"
+         alt="Ferris the crab" width="2000"/> <figcaption style="text-align:center">
+            <p><a href="https://rustacean.net/">Ferris the crab</a></p>
+        </figcaption>
+</figure>
+<p>  Rust 언어는 2015년 1.0 버전이 출시된 이래로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Stable, Beta, Nightly</b>
+</span> 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.</p>
+<p>업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다. 어떤 업데이트는 넓고 잔잔한 호수에 작은 돌멩이 하나를 던진 것과 같은 작은 파문과 같다면, 어떤 업데이트는 사람들이 오랫동안 기다리던 커다란 댐의 수문 개방과 같은 시원함을 주기도 합니다. 그리고 이번 2022년 6월 30일에 발표된 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>1.62.0</b>
+</span> 업데이트는 명백히 후자였습니다.</p>
+<hr>
+<h2 id="1-cargo-add">1. <strong><code>cargo add</code></strong></h2>
+<p>  Rust 1.62.0 업데이트에서 가장 주목받은 기능은 단연코 <code><span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>cargo add</b>
+</span></code> 였습니다. 원래는 <code>Cargo.toml</code>에서 항상 직접 crate들을 손으로 추가해줬어야 하지만, 이제 Terminal에서 <code>cargo add CRATE_NAME</code>을 입력하면 crate들이 자동으로 추가가 됩니다. 이를 직접 해보기 위하여 다음과 같이 프로젝트를 하나 만들어봅시다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_01_terminal.png"
+         alt="crate 만들기"/> <figcaption style="text-align:center">
+            <p>crate 만들기</p>
+        </figcaption>
+</figure>
+<p>이렇게 하면 <code>rust_1_62_0</code>이라는 폴더가 생성되고 그 안에 <code>src/main.rs</code> 파일과 <code>Cargo.toml</code>이 생성됩니다. 이제 폴더에 들어가서 <code>Cargo.toml</code> 파일을 열어봅시다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_02_cargo.png"
+         alt="Cargo.toml"/> <figcaption style="text-align:center">
+            <p>Cargo.toml</p>
+        </figcaption>
+</figure>
+<p>아직 <code>[dependencies]</code>에 아무것도 추가가 되지 않은 상태인 것을 볼 수 있습니다. 원래는 다른 crate를 쓰기 위하여 여기에 직접 추가해줘야 했지만, 이제 <code>cargo add</code> 명령어로 간단히 추가할 수 있습니다. 여기서는 Rust 수치계산 라이브러리인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>를 추가해보겠습니다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_03_cargo_add.png"
+         alt="cargo add peroxide"/> <figcaption style="text-align:center">
+            <p>cargo add peroxide</p>
+        </figcaption>
+</figure>
+<p>이제 <code>Cargo.toml</code>을 다시 살펴보면 다음과 같이 추가되어 있는 것을 볼 수 있습니다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_04_cargo_after_add.png"
+         alt="Revisit Cargo.toml"/> <figcaption style="text-align:center">
+            <p>Revisit Cargo.toml</p>
+        </figcaption>
+</figure>
+<p>이 뿐만 아니라 <code>cargo add</code>는 crate를 불러올 때, 특정 <code>features</code>를 선택하여 불러올 수 있습니다. Peroxide를 추가하되, netcdf 형식 파일들의 I/O를 사용하게 해주는 <code>nc</code> feature를 선택하여 추가해봅시다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_05_cargo_add_features.png"
+         alt="cargo add peroxide &amp;ndash;features nc"/> <figcaption style="text-align:center">
+            <p>cargo add peroxide &ndash;features nc</p>
+        </figcaption>
+</figure>
+<p>이제 다시 <code>Cargo.toml</code>를 보면 다음과 같이 바뀐 것을 볼 수 있습니다.</p>
+<figure>
+    <img src="https://axect.github.io/blog/posts/images/004_06_cargo_after_add_features.png"
+         alt="Revisit Cargo.toml again"/> <figcaption style="text-align:center">
+            <p>Revisit Cargo.toml again</p>
+        </figcaption>
+</figure>
+<hr>
+<h2 id="2-default-enum">2. <strong><code>[default]</code> enum</strong></h2>
+<p>  Rust에서 <code>#[derive(...)]</code> 구문은 <code>struct</code>에 <code>trait</code>을 코드없이 구현하게 해주는 아주 편리한 구문입니다. 예를 들어 이차원 벡터 구조체를 만든다면 다음과 같이 구현할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Clone, Copy, Default)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vec2D</span> {
+</span></span><span style="display:flex;"><span>    x: <span style="color:#66d9ef">f64</span>,
+</span></span><span style="display:flex;"><span>    y: <span style="color:#66d9ef">f64</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>이렇게 구현하면 <code>Vec2D</code> 구조체는 <code>.clone()</code>과 <code>::default()</code> method를 갖게 되고, 소유권 전달 없이 복사가 가능해집니다. 이것이 가능한 이유는 <code>x</code>와 <code>y</code> 둘 모두 이미 <code>Clone, Copy, Default</code>가 구현되어 있는 <code>f64</code>타입이기 때문입니다. 이제 다음 코드를 실행해보면 실제로 <code>default</code> method의 결과를 확인해볼 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> p <span style="color:#f92672">=</span> Vec2D::default();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{:?}</span><span style="color:#e6db74">&#34;</span>, p);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: Vec2D { x: 0.0, y: 0.0 }
+</span></span></span></code></pre></div><p>그런데 그동안 Rust에서는 <code>Enum</code> 만큼은 <code>#[derive(Default)]</code>를 사용할 수 없었습니다. 따라서 <code>Enum</code>에서 <code>Default</code>를 구현할때에는 항상 다음과 같이 명시적으로 구현해주어야 했습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Physicist</span> {
+</span></span><span style="display:flex;"><span>    Newton,
+</span></span><span style="display:flex;"><span>    Einstein,
+</span></span><span style="display:flex;"><span>    Heisenberg,
+</span></span><span style="display:flex;"><span>    Feynman,
+</span></span><span style="display:flex;"><span>    Weinberg
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Default <span style="color:#66d9ef">for</span> Physicist {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">default</span>() -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Physicist::Newton
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>고작 5줄 정도 추가에 지나지않지만 매번 이를 손으로 해주는 것이 귀찮은 일임은 분명했습니다. 사람들은 2020년부터 꾸준히 이 기능의 추가를 염원했고, 결국 1.62.0에 와서야 구현이 되었습니다. 이제 1.62.0 버전부터는 아까의 코드를 다음과 같이 줄일 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Default)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Physicist</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#[default]</span>
+</span></span><span style="display:flex;"><span>    Newton,
+</span></span><span style="display:flex;"><span>    Einstein,
+</span></span><span style="display:flex;"><span>    Heisenberg,
+</span></span><span style="display:flex;"><span>    Feynman,
+</span></span><span style="display:flex;"><span>    Weinberg
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="3-total-order-for-floating-point-numbers">3. Total Order for Floating point numbers</h2>
+<p>  수학에서 Order 개념은 크게 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Partial order</b>
+</span> 와 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Total order</b>
+</span> (Linear order) 두 가지로 나누어집니다. 후자를 따르는 집합은 모든 원소들에 순서가 존재해야 하지만, 전자를 따르는 집합은 어떤 원소들은 순서를 매기지 못하더라도 괜찮습니다. Rust에서 Order 개념은 <code>PartialOrd</code> trait과 <code>Ord</code> trait으로 구현되어 있습니다. <code>Ord</code> trait이 구현되어 있는 타입들은 <code>cmp</code> method를 사용하여 비교할 수 있지만, <code>PartialOrd</code> trait이 구현되어 있는 타입들은 <code>partial_cmp</code>로 비교해야 합니다. 여기까지는 수학적 개념과 Rust에서의 구현이 동등한 것 같지만, 가장 큰 차이가 하나 있습니다. 수학에서는 실수집합이 Total ordered 집합이지만, Rust에서는 부동소수점으로 대표되는 실수들은 Partial ordered 집합이라는 것입니다.</p>
+<p>이는 비단 Rust만의 문제는 아닙니다. 부동소수점을 표현하는 기준인 IEEE 754에서 정의한 문제이기 때문입니다. 수학에서 실수는 아무 숫자 2개를 잡으면 무조건 비교가능하지만, 컴퓨터에서 부동소수점 타입에는 단순 비교 불가능한 숫자가 존재합니다. 바로 <code>NaN</code> 입니다. 이러한 점 덕분에 정수에서는 작동하는 코드가 부동소수점에서는 컴파일 에러가 발생하는 상황이 많이 발생하였습니다. 다행히 IEEE 754는 2008년 Revision을 통해 <code>NaN</code>을 포함하여 순서를 매기는 Total order 방법을 제시하였고 그것이 Rust 1.62.0에 포함되게 되었습니다. 이제 Floating point를 비교할 때, <code>total_cmp</code>를 사용하면 <code>NaN</code>까지 포함하여 전부 순서를 매길 수 있습니다. 순서는 다음과 같습니다.</p>
+<ul>
+<li>negative quiet NaN</li>
+<li>negative signaling NaN</li>
+<li>negative infinity</li>
+<li>negative numbers</li>
+<li>negative subnormal numbers</li>
+<li>negative zero</li>
+<li>positive zero</li>
+<li>positive subnormal numbers</li>
+<li>positive numbers</li>
+<li>positive infinity</li>
+<li>positive signaling NaN</li>
+<li>positive quiet NaN.</li>
+</ul>
+<p>이를 확인하기 위하여 다음과 같은 코드를 실행해봅시다. (peroxide는 print를 위하여 사용하였습니다.)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, <span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#f92672">-</span><span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">INFINITY</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NEG_INFINITY</span>];
+</span></span><span style="display:flex;"><span>    x.sort_by(<span style="color:#f92672">|</span>a, b<span style="color:#f92672">|</span> a.total_cmp(b));
+</span></span><span style="display:flex;"><span>    x.print();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: [NaN, -inf, -0, 0, 1, inf, NaN]
+</span></span></span></code></pre></div><hr>
+<p>이외에도 여러 업데이트들이 있었지만 위 3가지가 가장 인상깊어서 정리해보았습니다. 다른 업데이트들도 궁금하시다면 다음 링크를 참고하세요.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left"><a href="https://blog.rust-lang.org/2022/06/30/Rust-1.62.0.html">Announcing Rust 1.62.0</a></p>
+    </blockquote>
+</div>
+</center>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://axect.github.io/blog/tags/rust/">rust</a></span>
+        <span class="tag"><a href="https://axect.github.io/blog/tags/programming/">programming</a></span>
+        <span class="tag"><a href="https://axect.github.io/blog/tags/update/">update</a></span>
+        
+    </p>
+
+
+      
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        727 단어
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2022-07-01 11:56 &#43;0900
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        <style>
+  .resp-sharing-button__link {
+    display: inline-block;  
+    margin-right: 10px;  
+  }
+   
+  .resp-sharing-button__link:last-child {
+    margin-right: 0;
+  }
+</style>
+
+
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;caption=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;body=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f&amp;title=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;summary=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;source=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f&amp;resubmit=true&amp;title=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80%20https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f&amp;t=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%a6%80%20Rust%201.62.0%20%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ec%9d%98%20%ec%8b%a0%ea%b8%b0%eb%8a%a5%203%ea%b0%80%ec%a7%80&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f004_rust_1.62.0%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">다른 글 읽기</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://axect.github.io/blog/posts/005_decov/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">💔 Decorrelation &#43; Deep learning = Generalization</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://axect.github.io/blog/posts/003_highschool_linreg/">
+                    <span class="button__text">🏫 고등학교 수학으로 이해하는 선형회귀</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/blog">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/blog/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://axect.github.io/blog/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-167590700-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+    </body>
+</html>

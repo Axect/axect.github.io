@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Axect&#39;s Blog</title>
+    <link>https://axect.github.io/blog/en/</link>
+    <description>Recent content on Axect&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
+    <atom:link href="https://axect.github.io/blog/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://axect.github.io/blog/en/about/</link>
+      <pubDate>Mon, 06 Nov 2023 19:03:00 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/about/</guid>
+      <description>About Tae Geun Kim (Axect)
+I am Graduate student &amp;amp; Rustacean
+Education Ph.D: Department of Physics, Yonsei University (2020 ~ ) M.S.: Department of Physics, Yonsei University (2017 ~ 2019) B.S.: Department of Astronomy, Yonsei University (2012 ~ 2017) Research Area Particle Physics (Phenomenology) Scientific Computation Machine Learning Numerical Relativity Skills Mathematics Functional Analysis Numerical Analysis Finite Difference Method Finite Element Method Differential Geometry Topology Physics General Relativity Quantum Field Theory Mathematical Physics Machine Learning Statistical Machine Learning Linear Regression (LASSO, Ridge) Logistic Regression Linear Discrimination Kernel Based Methods Kernel Smoothing Kernel Density Estimation Neural Network MLP, CNN, RNN (LSTM, GRU), Transformer Spiking Neural Network Graph Neural Network Programming Main language: Rust, Julia, Python Sub languages: C/C++, Haskell Frameworks or Libraries Numerical: peroxide, BLAS, LAPACK, numpy, scipy Visualization: matplotlib, vegas, ggplot2, plotly Web: Django, Vue, Firebase, Surge, Hugo Machine Learning: PyTorch, PyTorch Lightning, Wandb, Flux, Tensorflow, Norse Project Peroxide: Numerical library for Rust (Maintainer)</description>
+    </item>
+    <item>
+      <title>📊 Piecewise Rejection Sampling</title>
+      <link>https://axect.github.io/blog/en/posts/006_prs/</link>
+      <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/posts/006_prs/</guid>
+      <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
+Here are the two most commonly used methods to sample data from an arbitrary probability density function:
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.</description>
+    </item>
+    <item>
+      <title>💔 Decorrelation &#43; Deep learning = Generalization</title>
+      <link>https://axect.github.io/blog/en/posts/005_decov/</link>
+      <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
+      <guid>https://axect.github.io/blog/en/posts/005_decov/</guid>
+      <description>arXiv: 1511.06068
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
+    </item>
+  </channel>
+</rss>
