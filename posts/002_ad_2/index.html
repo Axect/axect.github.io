@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
 <meta name="description" content="🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x &#43; h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다." />
 <meta name="keywords" content=", numerical, symbolic, rust, sage" />
 <meta name="robots" content="noodp" />
@@ -43,10 +43,10 @@
 
 <meta itemprop="name" content="🖊️ Rust와 미분하기 02: 기호 미분">
 <meta itemprop="description" content="🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x &#43; h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다."><meta itemprop="datePublished" content="2020-10-03T03:36:49+09:00" />
 <meta itemprop="dateModified" content="2020-10-03T03:36:49+09:00" />
-<meta itemprop="wordCount" content="1066"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="wordCount" content="1069"><meta itemprop="image" content="https://axect.github.io/blog"/>
 <meta itemprop="keywords" content="numerical,symbolic,rust,sage," />
 
 
@@ -216,8 +216,9 @@ if (!doNotTrack) {
         <blockquote>
 <p><strong>🔖 Automatic Differentiation Series</strong></p>
 <ol>
-<li><a href="../02_ad_1">💻 Numerical Differentiation</a></li>
-<li><a href="../02_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
 </ol>
 </blockquote>
 <h2 id="-수치적-미분의-한계">📉 수치적 미분의 한계</h2>
@@ -451,7 +452,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1066 단어
+        1069 단어
       </p>
 
       <p>

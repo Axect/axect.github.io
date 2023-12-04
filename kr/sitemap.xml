@@ -2,6 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://axect.github.io/blog/tags/automatic-differentiation/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+  </url><url>
+    <loc>https://axect.github.io/blog/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/blog/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/blog/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/blog/tags/forward-mode/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+  </url><url>
+    <loc>https://axect.github.io/blog/posts/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/blog/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/blog/posts/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/blog/tags/rust/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+  </url><url>
+    <loc>https://axect.github.io/blog/tags/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/blog/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/blog/tags/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/blog/posts/007_ad_3/</loc>
+    <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+  </url><url>
     <loc>https://axect.github.io/blog/about/</loc>
     <lastmod>2023-11-06T19:03:00+09:00</lastmod>
     <xhtml:link
@@ -28,19 +79,6 @@
                 href="https://axect.github.io/blog/posts/006_prs/"
                 />
   </url><url>
-    <loc>https://axect.github.io/blog/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/"
-                />
-  </url><url>
     <loc>https://axect.github.io/blog/tags/piecewise-rejection-sampling/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
@@ -54,19 +92,6 @@
                 href="https://axect.github.io/blog/tags/piecewise-rejection-sampling/"
                 />
   </url><url>
-    <loc>https://axect.github.io/blog/posts/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/posts/"
-                />
-  </url><url>
     <loc>https://axect.github.io/blog/tags/statistics/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
@@ -78,19 +103,6 @@
                 rel="alternate"
                 hreflang="kr"
                 href="https://axect.github.io/blog/tags/statistics/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/tags/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/"
                 />
   </url><url>
     <loc>https://axect.github.io/blog/posts/005_decov/</loc>
@@ -159,9 +171,6 @@
                 />
   </url><url>
     <loc>https://axect.github.io/blog/tags/programming/</loc>
-    <lastmod>2022-07-01T11:56:41+09:00</lastmod>
-  </url><url>
-    <loc>https://axect.github.io/blog/tags/rust/</loc>
     <lastmod>2022-07-01T11:56:41+09:00</lastmod>
   </url><url>
     <loc>https://axect.github.io/blog/tags/update/</loc>

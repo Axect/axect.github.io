@@ -7,8 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>kr</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 04 Dec 2023 15:38:04 +0900</lastBuildDate>
     <atom:link href="https://axect.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Rust와 미분하기 03: 정방향 자동 미분</title>
+      <link>https://axect.github.io/blog/posts/007_ad_3/</link>
+      <pubDate>Mon, 04 Dec 2023 15:38:04 +0900</pubDate>
+      <guid>https://axect.github.io/blog/posts/007_ad_3/</guid>
+      <description>🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.</description>
+    </item>
     <item>
       <title>About</title>
       <link>https://axect.github.io/blog/about/</link>
@@ -65,7 +74,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
       <pubDate>Sat, 03 Oct 2020 03:36:49 +0900</pubDate>
       <guid>https://axect.github.io/blog/posts/002_ad_2/</guid>
       <description>🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x + h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다.</description>
     </item>
     <item>
@@ -73,8 +82,8 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
       <link>https://axect.github.io/blog/posts/002_ad_1/</link>
       <pubDate>Sun, 24 May 2020 02:44:11 +0900</pubDate>
       <guid>https://axect.github.io/blog/posts/002_ad_1/</guid>
-      <description>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.
-당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다.</description>
+      <description>🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</description>
     </item>
     <item>
       <title>🐪 가우시안 정복하기 01: 단일변수</title>

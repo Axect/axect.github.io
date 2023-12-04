@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
-<meta name="description" content="미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.
-당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다." />
+<meta name="description" content="🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다." />
 <meta name="keywords" content=", rust, numerical" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -41,10 +41,10 @@
 
 
 <meta itemprop="name" content="🧙 Rust와 미분하기 01: 수치적 미분">
-<meta itemprop="description" content="미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.
-당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다."><meta itemprop="datePublished" content="2020-05-24T02:44:11+09:00" />
+<meta itemprop="description" content="🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다."><meta itemprop="datePublished" content="2020-05-24T02:44:11+09:00" />
 <meta itemprop="dateModified" content="2020-05-24T02:44:11+09:00" />
-<meta itemprop="wordCount" content="985"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="wordCount" content="998"><meta itemprop="image" content="https://axect.github.io/blog"/>
 <meta itemprop="keywords" content="rust,numerical," />
 
 
@@ -205,7 +205,15 @@ if (!doNotTrack) {
       
 
       <div class="post-content">
-        <p>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다.
+        <blockquote>
+<p><strong>🔖 Automatic Differentiation Series</strong></p>
+<ol>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
+</ol>
+</blockquote>
+<p>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다.
 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</p>
 <p>당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다. 일단 미적분학에서 간단하게 배우는 도함수의 정의는 다음과 같습니다.</p>
 <p>$$
@@ -368,7 +376,7 @@ Rust의 Generic에는 크게 두 가지 방식이 존재합니다. 첫 번째는
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        985 단어
+        998 단어
       </p>
 
       <p>

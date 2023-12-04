@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss." />
+<meta name="keywords" content=", automatic-differentiation, forward-mode, rust" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/blog/posts/007_ad_3/" />
+
+
+    <title>
+        
+            🤖 Rust와 미분하기 03: 정방향 자동 미분 :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://axect.github.io/blog/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/blog/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/blog/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/blog/favicon-16x16.png">
+    <link rel="manifest" href="https://axect.github.io/blog/site.webmanifest">
+    <link rel="mask-icon" href="https://axect.github.io/blog/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="https://axect.github.io/blog/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="🤖 Rust와 미분하기 03: 정방향 자동 미분">
+<meta itemprop="description" content="🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss."><meta itemprop="datePublished" content="2023-12-04T15:38:04+09:00" />
+<meta itemprop="dateModified" content="2023-12-04T15:38:04+09:00" />
+<meta itemprop="wordCount" content="1863"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="keywords" content="automatic-differentiation,forward-mode,rust," />
+
+
+
+
+    <meta property="article:published_time" content="2023-12-04 15:38:04 &#43;0900 KST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://axect.github.io/blog/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://axect.github.io/blog/about">About</a></li><li><a href="https://axect.github.io/blog/posts">Blog</a></li><li><a href="https://axect.github.io/blog/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-167590700-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        9 분
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://axect.github.io/blog/posts/007_ad_3/">🤖 Rust와 미분하기 03: 정방향 자동 미분</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">목차</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-truncated-taylor-series">1. Truncated Taylor Series</a>
+      <ul>
+        <li><a href="#11-예시-sin-함수-자동미분">1.1. 예시: Sin 함수 자동미분</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-정방향-자동미분-구현">2. 정방향 자동미분 구현</a>
+      <ul>
+        <li><a href="#21-사칙연산">2.1. 사칙연산</a></li>
+        <li><a href="#22-지수-로그-다항-함수">2.2. 지수, 로그, 다항 함수</a></li>
+        <li><a href="#23-시그모이드-함수">2.3. 시그모이드 함수</a></li>
+      </ul>
+    </li>
+    <li><a href="#마치며">마치며</a></li>
+    <li><a href="#참고문헌">참고문헌</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+
+      
+
+      <div class="post-content">
+        <blockquote>
+<p><strong>🔖 Automatic Differentiation Series</strong></p>
+<ol>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
+</ol>
+</blockquote>
+<p>딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요?
+물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다.
+이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Sigmoid()
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x = ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># y = ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># criterion = ...</span>
+</span></span><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> optim<span style="color:#f92672">.</span>SGD(net<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>loss <span style="color:#f92672">=</span> criterion(net(x), y)
+</span></span><span style="display:flex;"><span>loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>opt<span style="color:#f92672">.</span>step()
+</span></span></code></pre></div><p>이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다.
+일단 엄밀하게 같은 구현은 아니지만 <code>Linear</code>와 <code>Sigmoid</code> 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 <code>net(x)</code>를 만드는 것은 어렵지 않습니다.
+다음으로 여기선 <code>criterion</code>이 무엇인지 명시하지는 않았지만 가장 기본적인 <code>MSE</code>를 사용한다면 이 역시 간단합니다.
+문제는 <code>opt</code>부터 시작됩니다.
+<code>SGD</code>를 구현하려면, 어떤 <code>criterion</code>이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.</p>
+<p>이를 위해 앞에서 배운 수치미분을 사용할 수 있을 것입니다.
+위 경우에는 신경망이 단일 계층으로 되어있고 입력, 출력 차원도 작으므로 크게 문제되진 않겠지만 보통 딥러닝 모델들은 다층으로 되어있으며 입출력 차원도 큰데다
+성공적인 훈련을 위해서는 수천, 수만 번 이상 훈련을 해야할 수 있습니다.
+그럴 경우, 수치미분으로 인한 사소한 오차가 훈련을 거듭하며 눈덩이처럼 불어날 수 있습니다.</p>
+<p>그렇다면 앞에서 배운 기호미분은 어떨까요?
+기호미분은 정확한 도함수의 형태를 얻을 수 있기에 부동소수점 오차외에는 별도의 오차가 누적되지 않습니다.
+하지만 앞선 글에서도 지적했다시피 기호미분은 한 번 계산할때마다 큰 계산 비용을 요구합니다.
+이러한 계산 비용은 수천번 이상의 훈련을 거치면서 기하급수적으로 증가하며, 이는 원하는 시간 내에, 혹은 제한된 메모리 상황에서 훈련을 어렵게 만들 수 있습니다.</p>
+<p>앞서 배운 두 가지 미분방법 모두 부적합하다면 대체 어떻게 구현해야할까요?
+다행히 과학자들은 딥러닝이 나오기 이전에 이미 이를 위한 도구를 발명해놓았습니다. 바로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>자동미분 (Automatic Differentiation)</b>
+</span> 입니다. 자동미분은 계산방법에 따라 크게 두 가지로 나눌 수 있는데, 입력 변수의 변화에 따라 각 함수에 전파되는 도함수를 계산하는 방식을 정방향 자동미분이라 부르며, 반대로 출력 변수의 변화에 따라 도함수를 계산하는 방식을 역방향 자동미분이라 부릅니다.
+각 방식은 서로 다른 장단점을 갖고 있어 경우에 따라 선택해서 사용할 수 있는데, 이번 글에서는 특히 정방향 자동미분에 집중하도록 하겠습니다.</p>
+<hr>
+<h2 id="1-truncated-taylor-series">1. Truncated Taylor Series</h2>
+<p>자동미분이라는 거창한 이름이 붙었지만, 정방향 자동미분의 개념은 대학교 미적분학시간에 배우는 테일러 급수에서 유래합니다.
+미분가능한 함수 $f$의 특정 지점 $x_0$에서의 테일러 급수는 다음과 같이 전개됩니다.</p>
+<p>$$
+f(x) = f(x_0) + f&rsquo;(x_0)(x - x_0) + \frac{f&rsquo;&rsquo;(x_0)}{2!}(x - x_0)^2 + \cdots
+$$</p>
+<p>이때 $x$ 대신 $x$에 충분히 작은 (infinitesimal) 변량 $\epsilon$을 가하고 이를 $x$에 대해서 테일러 급수를 전개하면 다음과 같습니다.</p>
+<p>$$
+f(x+ \epsilon) = f(x) + f&rsquo;(x)\epsilon + \mathcal{O}(\epsilon^2)
+$$</p>
+<p>$\epsilon$이 충분히 작다고 가정했으므로 ($|\epsilon| \ll 1$), $\epsilon^2$ 이상의 항들은 무시할 수 있습니다.</p>
+<p>$$
+f(x + \epsilon) = f(x) + f&rsquo;(x)\epsilon
+$$</p>
+<p>이렇게 특정 차수까지만 작성하는 테일러 급수를 Truncated Taylor Series라 부릅니다.
+꼭 일차항까지만 남겨놓을 필요는 없지만, 대부분의 딥러닝 문제는 도함수까지의 정보만 요구하므로 여기서는 일차항까지만 작성하겠습니다.</p>
+<p>이제 $\epsilon$에 계수가 곱해져있는 형태를 생각해봅시다.</p>
+<p>$$
+f(x + \overline{x} \epsilon) = f(x) + f&rsquo;(x)\overline{x}\epsilon
+$$</p>
+<p>위 식을 보면 $\epsilon$이 마치 일종의 기저처럼 작용한다는 것을 볼 수 있습니다.
+$x + \overline{x} \epsilon = x \mathbb{1} + \overline{x} \epsilon$ 으로 보면 $\mathbb{1}$과 $\epsilon$이 기저인 공간에서 수를 나타낸 것처럼 보입니다.
+따라서 이를 하나의 수로 취급하고 다음과 같이 간단히 표현해봅시다.</p>
+<p>$$
+x \mathrel{\rhd} \overline{x} \equiv x + \overline{x}\epsilon
+$$</p>
+<p>이러한 수를 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>이원수 (Dual number)</b>
+</span>라 부르며 무려 1873년에 William Clifford에 의해 창안되었습니다.
+이원수는 처음 목적이 자동미분은 아니었지만 최근에 와서는 자동미분을 나타내는 대표적인 수체계로 자리잡았습니다.
+이제 이 수를 이용하여 다시 일차항까지의 테일러 급수를 작성해봅시다.</p>
+<p>$$
+f(x \mathrel{\rhd} \overline{x}) = f(x) \mathrel{\rhd} f&rsquo;(x)\overline{x}
+$$</p>
+<p>이제 좀 더 간단해졌지만 하나의 문제가 남아있습니다. 함수 $f$의 정의가 명확하지 않다는 것입니다.
+$x$를 1차원 실수로 가정하고 $x \mathrel{\rhd} \overline{x}$를 일차원 이원수($\mathbb{D}\mathbb{R}$)라 가정하면 좌변에서의 함수 $f$는
+$\mathbb{DR} \rightarrow \mathbb{DR}$ 함수이지만 우변에서의 함수 $f$는 $\mathbb{R} \rightarrow \mathbb{R}$ 이므로 정의가 되지 않습니다.
+이는 다행히 새로운 연산자인 $\vec{\mathcal{J}}$을 도입하면 쉽게 해결할 수 있습니다.</p>
+<p>$$
+\vec{\mathcal{J}}f(x \mathrel{\rhd}\overline{x}) = f(x) \mathrel{\rhd} f&rsquo;(x)\overline{x}
+$$</p>
+<p>이때 연산자 $\vec{\mathcal{J}}$는 다양한 관점에서 해석될 수 있는데, 몇 가지만 아래에 기술하겠습니다.</p>
+<ul>
+<li>
+<p>$f$라는 실수공간에 펼쳐진 장(field)을 이원수 공간의 장으로 변환한 연산자이므로 미분기하학에서의 Push-forward 개념으로 받아들일 수 있습니다.</p>
+</li>
+<li>
+<p>원래 실수 타입을 받아서 실수 타입을 반환하는 함수 $f$에 작용해서 새로운 함수를 만들어냈으므로 함수형 프로그래밍에서의 lifting 개념으로 받아들일 수 있습니다.</p>
+</li>
+<li>
+<p>실수 함수로 작성된 함수 $f$에 작용하여 새로운 함수 형태를 작성하므로 Source code transformation, Operator overloading 혹은 Multiple dispatch 형태로 이해할 수 있습니다.</p>
+</li>
+</ul>
+<p>이처럼 다양한 방식으로 해석할 수 있지만 위 식의 의미는 하나로 귀결되는데, 바로 &ldquo;정방향 자동미분&quot;을 표현한 식이라는 것입니다. 단순히 일차항까지 표현한 테일러 급수가 어떻게 미분을 표현하는지 의아하실테니 하나의 예시를 들어봅시다. 예시로는 아주 간단한 함수인 $v = \sin u$를 사용하겠습니다.</p>
+<h3 id="11-예시-sin-함수-자동미분">1.1. 예시: Sin 함수 자동미분</h3>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+v \mathrel{\rhd} \overline{v} &amp;= \vec{\mathcal{J}}\sin (u \mathrel{\rhd} \overline{u}) \\
+&amp;= \sin u \mathrel{\rhd} (\cos u) \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;v = \sin u,\quad \overline{v} = (\cos u) \overline{u}
+\end{aligned}
+$$</p>
+<p>이로써 $v = \sin u$의 도함수는 $\overline{v} = (\cos u) \overline{u}$이라는 결과를 얻었습니다.
+이는 우리가 흔히 사용하는 연쇄 법칙(Chain rule)과 일맥상통하므로 올바른 계산임을 알 수 있습니다.
+하지만, 언뜻 보면 $\sin u$의 도함수를 $\cos u$로 알려 준 다음 계산을 한 셈이니 기호미분과 무엇이 다른지 의아할 수 있습니다.
+이는 직접 코드를 작성해보면 이해할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Copy, Clone)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Dual</span> {
+</span></span><span style="display:flex;"><span>    x: <span style="color:#66d9ef">f64</span>,
+</span></span><span style="display:flex;"><span>    dx: <span style="color:#66d9ef">f64</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sin {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sin <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">f64</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        self.sin()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sin <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Dual {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.sin(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">*</span> self.x.cos(),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> u.sin_();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(1) = 0.8414..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// sin&#39;(x) = cos(x) = cos(1) = 0.5403..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> v.sin_();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(sin(1)) = 0.7456..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// (sin(sin(x)))&#39; = cos(sin(1)) * cos(1) = 0.3600..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Rust를 이용하여 간단히 이원수 구조체를 구현하고 실수와 이원수 모두에 적용되는 <code>Sin</code>이라는 <code>trait</code>를 작성하여 Method overloading을 이용하여 자동미분을 구현해보았습니다.
+<code>main</code>함수의 첫번째 예시를 보면 $u = 1 \mathrel{\rhd} 1$로 정의된 것을 볼 수 있는데, 이는 값이 1이고 도함수가 1이라는 의미이므로 $x$를 표현한 것으로 볼 수 있습니다.
+이원수의 <code>sin_</code>함수 자체에 도함수 계산이 포함되어있으므로 <code>let v = u.sin_();</code>라는 식 만으로 이미 함숫값과 도함숫값이 계산되고 이는 <code>v.x</code>와 <code>v.dx</code>로 저장됩니다.
+이렇게 계산된 도함수에는 부동소수점 오차를 제외한 다른 오차는 존재하지 않으며 계산 비용도 단순히 곱하기 한 번과 코사인 한번을 계산한게 전부입니다.</p>
+<p>두 번째 예시를 보면 자동미분의 엄청난 성능을 가늠할 수 있는데, 앞서 계산한 <code>v</code>에 한번 더 <code>sin_</code>을 취하여 <code>w</code>를 정의하였습니다.
+즉, $w = \sin(\sin(u))$인데, 함수가 복잡해진것과 관계없이 계산 코드는 동일한 것을 볼 수 있습니다.
+그렇게 계산된 결과는 놀랍게도 합성함수의 값과 도함수를 정확히 계산해내는 것을 볼 수 있습니다.
+따라서 정방향 자동미분을 이용하면 아주 간단한 도함수 전파 규칙을 명시해놓는 것만으로 복잡하게 합성된 함수를 매우 적은 비용으로 계산할 수 있다는 것을 볼 수 있습니다.</p>
+<hr>
+<h2 id="2-정방향-자동미분-구현">2. 정방향 자동미분 구현</h2>
+<p>위처럼 자동미분은 함수의 형태와 상관없이 작동했던 수치미분과는 다르게 각 함수의 형태마다 도함수의 전파 규칙을 명시해줘야합니다.
+따라서 이번에는 사칙연산을 포함하여 대표적인 함수 몇 가지에 대해 자동미분을 구현해보도록 하겠습니다.</p>
+<h3 id="21-사칙연산">2.1. 사칙연산</h3>
+<p>$w = u \pm v$로 정의된 $w$에 대해서 아까와 마찬가지로 자동미분을 수행해봅시다.</p>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= u \mathrel{\rhd} \overline{u} + v \mathrel{\rhd} \overline{v} \\
+&amp;= (u + v) \mathrel{\rhd} (\overline{u} + \overline{v})
+\end{aligned} \\
+\therefore ~ &amp;w = u + v,\quad \overline{w} = \overline{u} + \overline{v}
+\end{aligned}
+$$</p>
+<p>마찬가지로 이번엔 $w = u \times v$에 자동미분을 적용해봅시다.</p>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= (u \mathrel{\rhd} \overline{u}) \times (v \mathrel{\rhd} \overline{v}) \\
+&amp;= (u + \overline{u}\epsilon) \times (v + \overline{v}\epsilon) \\
+&amp;= uv + (u \overline{v} + \overline{u}v)\epsilon \\
+&amp;= (u \times v) \mathrel{\rhd} (u\overline{v} + \overline{u}v)
+\end{aligned} \\
+\therefore ~ &amp;w = u \times v,\quad \overline{w} = u\overline{v} + \overline{u}v
+\end{aligned}
+$$</p>
+<p>위 두 결과는 각각 우리가 익히 알고있는 미분의 선형성과 라이프니츠 규칙과 정확히 들어맞습니다.
+이를 위에서 정의한 <code>Dual</code> 구조체에 적용해봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::ops::{Add, Sub, Mul};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Add <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">add</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">+</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">+</span> rhs.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sub <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sub</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">-</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">-</span> rhs.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Mul <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">mul</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> rhs.dx <span style="color:#f92672">+</span> self.dx <span style="color:#f92672">*</span> rhs.x,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// 2x^2 at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">+</span> v;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w: 3, dw: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">*</span> v;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w = 2x^3 at x=1 = 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// dw = 6x^2 at x=1 = 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p> </p>
+<h3 id="22-지수-로그-다항-함수">2.2. 지수, 로그, 다항 함수</h3>
+<p>다음으로는 지수 로그 함수의 대표적인 함수들인 $y=e^x,\,y=\ln x$와 다항함수인 $y=x^n$에 대해서 자동미분을 수행해봅시다.</p>
+<ol>
+<li>
+<p>지수함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+v \mathrel{\rhd} \overline{v} &amp;= \exp(u \mathrel{\rhd} \overline{u}) \\
+&amp;= e^u \mathrel{\rhd} e^{u} \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;v = e^u,\quad \overline{v} = e^{u} \overline{u}
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>로그함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= \ln(u \mathrel{\rhd} \overline{u}) \\
+&amp;= \ln u \mathrel{\rhd} \frac{\overline{u}}{u}
+\end{aligned} \\
+\therefore ~ &amp;w = \ln u,\quad \overline{w} = \frac{\overline{u}}{u}
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>다항함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= (u \mathrel{\rhd} \overline{u})^n \\
+&amp;= u^n \mathrel{\rhd} n u^{n-1} \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;w = u^n,\quad \overline{w} = n u^{n-1} \overline{u}
+\end{aligned}
+$$</p>
+</li>
+</ol>
+<p>앞서 구현한 <code>sin</code>함수와 같이 다른 삼각함수들도 모두 구현하여 하나의 <code>trait</code>을 선언하면 다음과 같습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Ops {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">exp</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">ln</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">cos</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">tan</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">powi</span>(self, n: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Ops <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">exp</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.exp(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> self.dx.exp(),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">ln</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.ln(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">/</span> self.x,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.sin(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x.cos() <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">cos</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.cos(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#f92672">-</span>self.x.sin() <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">tan</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> tan <span style="color:#f92672">=</span> self.x.tan();
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">tan</span>,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">*</span> (tan <span style="color:#f92672">*</span> tan <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.0</span>),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">powi</span>(self, n: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.powi(n),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">f64</span> <span style="color:#f92672">*</span> self.x.powi(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p> </p>
+<h3 id="23-시그모이드-함수">2.3. 시그모이드 함수</h3>
+<p>위에 있는 함수들에 몇 가지 연산 구현을 더하면 별도로 시그모이드 함수를 구현하지 않더라도 시그모이드 함수에 대한 자동미분을 계산할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sigmoid: Sized 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Ops
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Neg<span style="color:#f92672">&lt;</span>Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Add<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span>, Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">f64</span>: <span style="color:#a6e22e">Div</span><span style="color:#f92672">&lt;</span>Self, Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sigmoid</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> ((<span style="color:#f92672">-</span>self).exp() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sigmoid <span style="color:#66d9ef">for</span> Dual {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> u.sigmoid();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;z: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dz: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, z.x, z.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sigmoid(1), sigmoid&#39;(x) = sigmoid(1) * (1 - sigmoid(1))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><blockquote>
+<p><em>주의: 위에 상기한 코드외에도 <code>f64</code>와의 연산이 추가적으로 정의되어야 작동하는 코드입니다. 실제로 이 코드를 실행하고 싶다면 다음 링크를 참고하세요.</em></p>
+<p><a href="https://github.com/Axect/dual">github.com/Axect/dual</a></p>
+</blockquote>
+<hr>
+<h2 id="마치며">마치며</h2>
+<p>지금까지 이원수를 이용한 정방향 자동미분에 대해서 알아보았습니다.
+쉽게 설명하기 위해서 굉장히 간단한 경우에 대해서만 다뤘는데, 실제로 잘 작동되는 자동미분 라이브러리를 만들기 위해서는 다음과 같은 사항들을 고려해야합니다.</p>
+<ul>
+<li>
+<p>고계 도함수에 대한 자동미분</p>
+</li>
+<li>
+<p>다변수 함수에 대한 자동미분</p>
+</li>
+<li>
+<p>행렬과 벡터 변수를 포함한 함수의 자동미분</p>
+</li>
+</ul>
+<p>이 중 첫 2가지 사항에 대해서는 Rust 수치계산 라이브러리인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>에 잘 구현되어 있으므로 참고하시면 됩니다.
+마지막 사항에 대해서는 역방향 자동미분과 함께 다음 글에서 다루도록 하겠습니다.</p>
+<hr>
+<h2 id="참고문헌">참고문헌</h2>
+<ul>
+<li>
+<p>Axect, <a href="https://github.com/Axect/Peroxide"><em>Peroxide</em></a>, Github</p>
+</li>
+<li>
+<p>Barak A. Pearlmutter, <a href="https://autodiff-workshop.github.io/slides/BarakPearlmutter.pdf"><em>Automatic Differentiation: History and Headroom</em></a></p>
+</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://axect.github.io/blog/tags/automatic-differentiation/">automatic-differentiation</a></span>
+        <span class="tag"><a href="https://axect.github.io/blog/tags/forward-mode/">forward-mode</a></span>
+        <span class="tag"><a href="https://axect.github.io/blog/tags/rust/">rust</a></span>
+        
+    </p>
+
+
+      
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1863 단어
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2023-12-04 15:38 &#43;0900
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        <style>
+  .resp-sharing-button__link {
+    display: inline-block;  
+    margin-right: 10px;  
+  }
+   
+  .resp-sharing-button__link:last-child {
+    margin-right: 0;
+  }
+</style>
+
+
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;caption=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;body=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f&amp;title=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;summary=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;source=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f&amp;resubmit=true&amp;title=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84%20https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f&amp;t=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%a4%96%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2003%3a%20%ec%a0%95%eb%b0%a9%ed%96%a5%20%ec%9e%90%eb%8f%99%20%eb%af%b8%eb%b6%84&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f007_ad_3%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">다른 글 읽기</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://axect.github.io/blog/posts/006_prs/">
+                    <span class="button__text">📊 Piecewise Rejection Sampling</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/blog">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/blog/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://axect.github.io/blog/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-167590700-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+    </body>
+</html>

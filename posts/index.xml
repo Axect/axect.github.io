@@ -6,8 +6,403 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>kr</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
+        <lastBuildDate>Mon, 04 Dec 2023 15:38:04 +0900</lastBuildDate>
         <atom:link href="https://axect.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>🤖 Rust와 미분하기 03: 정방향 자동 미분</title>
+            <link>https://axect.github.io/blog/posts/007_ad_3/</link>
+            <pubDate>Mon, 04 Dec 2023 15:38:04 +0900</pubDate>
+            
+            <guid>https://axect.github.io/blog/posts/007_ad_3/</guid>
+            <description>🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.</description>
+            <content type="html"><![CDATA[<blockquote>
+<p><strong>🔖 Automatic Differentiation Series</strong></p>
+<ol>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
+</ol>
+</blockquote>
+<p>딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요?
+물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다.
+이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Sigmoid()
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x = ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># y = ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># criterion = ...</span>
+</span></span><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> optim<span style="color:#f92672">.</span>SGD(net<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>loss <span style="color:#f92672">=</span> criterion(net(x), y)
+</span></span><span style="display:flex;"><span>loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>opt<span style="color:#f92672">.</span>step()
+</span></span></code></pre></div><p>이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다.
+일단 엄밀하게 같은 구현은 아니지만 <code>Linear</code>와 <code>Sigmoid</code> 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 <code>net(x)</code>를 만드는 것은 어렵지 않습니다.
+다음으로 여기선 <code>criterion</code>이 무엇인지 명시하지는 않았지만 가장 기본적인 <code>MSE</code>를 사용한다면 이 역시 간단합니다.
+문제는 <code>opt</code>부터 시작됩니다.
+<code>SGD</code>를 구현하려면, 어떤 <code>criterion</code>이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.</p>
+<p>이를 위해 앞에서 배운 수치미분을 사용할 수 있을 것입니다.
+위 경우에는 신경망이 단일 계층으로 되어있고 입력, 출력 차원도 작으므로 크게 문제되진 않겠지만 보통 딥러닝 모델들은 다층으로 되어있으며 입출력 차원도 큰데다
+성공적인 훈련을 위해서는 수천, 수만 번 이상 훈련을 해야할 수 있습니다.
+그럴 경우, 수치미분으로 인한 사소한 오차가 훈련을 거듭하며 눈덩이처럼 불어날 수 있습니다.</p>
+<p>그렇다면 앞에서 배운 기호미분은 어떨까요?
+기호미분은 정확한 도함수의 형태를 얻을 수 있기에 부동소수점 오차외에는 별도의 오차가 누적되지 않습니다.
+하지만 앞선 글에서도 지적했다시피 기호미분은 한 번 계산할때마다 큰 계산 비용을 요구합니다.
+이러한 계산 비용은 수천번 이상의 훈련을 거치면서 기하급수적으로 증가하며, 이는 원하는 시간 내에, 혹은 제한된 메모리 상황에서 훈련을 어렵게 만들 수 있습니다.</p>
+<p>앞서 배운 두 가지 미분방법 모두 부적합하다면 대체 어떻게 구현해야할까요?
+다행히 과학자들은 딥러닝이 나오기 이전에 이미 이를 위한 도구를 발명해놓았습니다. 바로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>자동미분 (Automatic Differentiation)</b>
+</span> 입니다. 자동미분은 계산방법에 따라 크게 두 가지로 나눌 수 있는데, 입력 변수의 변화에 따라 각 함수에 전파되는 도함수를 계산하는 방식을 정방향 자동미분이라 부르며, 반대로 출력 변수의 변화에 따라 도함수를 계산하는 방식을 역방향 자동미분이라 부릅니다.
+각 방식은 서로 다른 장단점을 갖고 있어 경우에 따라 선택해서 사용할 수 있는데, 이번 글에서는 특히 정방향 자동미분에 집중하도록 하겠습니다.</p>
+<hr>
+<h2 id="1-truncated-taylor-series">1. Truncated Taylor Series</h2>
+<p>자동미분이라는 거창한 이름이 붙었지만, 정방향 자동미분의 개념은 대학교 미적분학시간에 배우는 테일러 급수에서 유래합니다.
+미분가능한 함수 $f$의 특정 지점 $x_0$에서의 테일러 급수는 다음과 같이 전개됩니다.</p>
+<p>$$
+f(x) = f(x_0) + f&rsquo;(x_0)(x - x_0) + \frac{f&rsquo;&rsquo;(x_0)}{2!}(x - x_0)^2 + \cdots
+$$</p>
+<p>이때 $x$ 대신 $x$에 충분히 작은 (infinitesimal) 변량 $\epsilon$을 가하고 이를 $x$에 대해서 테일러 급수를 전개하면 다음과 같습니다.</p>
+<p>$$
+f(x+ \epsilon) = f(x) + f&rsquo;(x)\epsilon + \mathcal{O}(\epsilon^2)
+$$</p>
+<p>$\epsilon$이 충분히 작다고 가정했으므로 ($|\epsilon| \ll 1$), $\epsilon^2$ 이상의 항들은 무시할 수 있습니다.</p>
+<p>$$
+f(x + \epsilon) = f(x) + f&rsquo;(x)\epsilon
+$$</p>
+<p>이렇게 특정 차수까지만 작성하는 테일러 급수를 Truncated Taylor Series라 부릅니다.
+꼭 일차항까지만 남겨놓을 필요는 없지만, 대부분의 딥러닝 문제는 도함수까지의 정보만 요구하므로 여기서는 일차항까지만 작성하겠습니다.</p>
+<p>이제 $\epsilon$에 계수가 곱해져있는 형태를 생각해봅시다.</p>
+<p>$$
+f(x + \overline{x} \epsilon) = f(x) + f&rsquo;(x)\overline{x}\epsilon
+$$</p>
+<p>위 식을 보면 $\epsilon$이 마치 일종의 기저처럼 작용한다는 것을 볼 수 있습니다.
+$x + \overline{x} \epsilon = x \mathbb{1} + \overline{x} \epsilon$ 으로 보면 $\mathbb{1}$과 $\epsilon$이 기저인 공간에서 수를 나타낸 것처럼 보입니다.
+따라서 이를 하나의 수로 취급하고 다음과 같이 간단히 표현해봅시다.</p>
+<p>$$
+x \mathrel{\rhd} \overline{x} \equiv x + \overline{x}\epsilon
+$$</p>
+<p>이러한 수를 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>이원수 (Dual number)</b>
+</span>라 부르며 무려 1873년에 William Clifford에 의해 창안되었습니다.
+이원수는 처음 목적이 자동미분은 아니었지만 최근에 와서는 자동미분을 나타내는 대표적인 수체계로 자리잡았습니다.
+이제 이 수를 이용하여 다시 일차항까지의 테일러 급수를 작성해봅시다.</p>
+<p>$$
+f(x \mathrel{\rhd} \overline{x}) = f(x) \mathrel{\rhd} f&rsquo;(x)\overline{x}
+$$</p>
+<p>이제 좀 더 간단해졌지만 하나의 문제가 남아있습니다. 함수 $f$의 정의가 명확하지 않다는 것입니다.
+$x$를 1차원 실수로 가정하고 $x \mathrel{\rhd} \overline{x}$를 일차원 이원수($\mathbb{D}\mathbb{R}$)라 가정하면 좌변에서의 함수 $f$는
+$\mathbb{DR} \rightarrow \mathbb{DR}$ 함수이지만 우변에서의 함수 $f$는 $\mathbb{R} \rightarrow \mathbb{R}$ 이므로 정의가 되지 않습니다.
+이는 다행히 새로운 연산자인 $\vec{\mathcal{J}}$을 도입하면 쉽게 해결할 수 있습니다.</p>
+<p>$$
+\vec{\mathcal{J}}f(x \mathrel{\rhd}\overline{x}) = f(x) \mathrel{\rhd} f&rsquo;(x)\overline{x}
+$$</p>
+<p>이때 연산자 $\vec{\mathcal{J}}$는 다양한 관점에서 해석될 수 있는데, 몇 가지만 아래에 기술하겠습니다.</p>
+<ul>
+<li>
+<p>$f$라는 실수공간에 펼쳐진 장(field)을 이원수 공간의 장으로 변환한 연산자이므로 미분기하학에서의 Push-forward 개념으로 받아들일 수 있습니다.</p>
+</li>
+<li>
+<p>원래 실수 타입을 받아서 실수 타입을 반환하는 함수 $f$에 작용해서 새로운 함수를 만들어냈으므로 함수형 프로그래밍에서의 lifting 개념으로 받아들일 수 있습니다.</p>
+</li>
+<li>
+<p>실수 함수로 작성된 함수 $f$에 작용하여 새로운 함수 형태를 작성하므로 Source code transformation, Operator overloading 혹은 Multiple dispatch 형태로 이해할 수 있습니다.</p>
+</li>
+</ul>
+<p>이처럼 다양한 방식으로 해석할 수 있지만 위 식의 의미는 하나로 귀결되는데, 바로 &ldquo;정방향 자동미분&quot;을 표현한 식이라는 것입니다. 단순히 일차항까지 표현한 테일러 급수가 어떻게 미분을 표현하는지 의아하실테니 하나의 예시를 들어봅시다. 예시로는 아주 간단한 함수인 $v = \sin u$를 사용하겠습니다.</p>
+<h3 id="11-예시-sin-함수-자동미분">1.1. 예시: Sin 함수 자동미분</h3>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+v \mathrel{\rhd} \overline{v} &amp;= \vec{\mathcal{J}}\sin (u \mathrel{\rhd} \overline{u}) \\
+&amp;= \sin u \mathrel{\rhd} (\cos u) \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;v = \sin u,\quad \overline{v} = (\cos u) \overline{u}
+\end{aligned}
+$$</p>
+<p>이로써 $v = \sin u$의 도함수는 $\overline{v} = (\cos u) \overline{u}$이라는 결과를 얻었습니다.
+이는 우리가 흔히 사용하는 연쇄 법칙(Chain rule)과 일맥상통하므로 올바른 계산임을 알 수 있습니다.
+하지만, 언뜻 보면 $\sin u$의 도함수를 $\cos u$로 알려 준 다음 계산을 한 셈이니 기호미분과 무엇이 다른지 의아할 수 있습니다.
+이는 직접 코드를 작성해보면 이해할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Copy, Clone)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Dual</span> {
+</span></span><span style="display:flex;"><span>    x: <span style="color:#66d9ef">f64</span>,
+</span></span><span style="display:flex;"><span>    dx: <span style="color:#66d9ef">f64</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sin {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sin <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">f64</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        self.sin()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sin <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin_</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Dual {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.sin(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">*</span> self.x.cos(),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> u.sin_();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(1) = 0.8414..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// sin&#39;(x) = cos(x) = cos(1) = 0.5403..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> v.sin_();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(sin(1)) = 0.7456..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// (sin(sin(x)))&#39; = cos(sin(1)) * cos(1) = 0.3600..
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Rust를 이용하여 간단히 이원수 구조체를 구현하고 실수와 이원수 모두에 적용되는 <code>Sin</code>이라는 <code>trait</code>를 작성하여 Method overloading을 이용하여 자동미분을 구현해보았습니다.
+<code>main</code>함수의 첫번째 예시를 보면 $u = 1 \mathrel{\rhd} 1$로 정의된 것을 볼 수 있는데, 이는 값이 1이고 도함수가 1이라는 의미이므로 $x$를 표현한 것으로 볼 수 있습니다.
+이원수의 <code>sin_</code>함수 자체에 도함수 계산이 포함되어있으므로 <code>let v = u.sin_();</code>라는 식 만으로 이미 함숫값과 도함숫값이 계산되고 이는 <code>v.x</code>와 <code>v.dx</code>로 저장됩니다.
+이렇게 계산된 도함수에는 부동소수점 오차를 제외한 다른 오차는 존재하지 않으며 계산 비용도 단순히 곱하기 한 번과 코사인 한번을 계산한게 전부입니다.</p>
+<p>두 번째 예시를 보면 자동미분의 엄청난 성능을 가늠할 수 있는데, 앞서 계산한 <code>v</code>에 한번 더 <code>sin_</code>을 취하여 <code>w</code>를 정의하였습니다.
+즉, $w = \sin(\sin(u))$인데, 함수가 복잡해진것과 관계없이 계산 코드는 동일한 것을 볼 수 있습니다.
+그렇게 계산된 결과는 놀랍게도 합성함수의 값과 도함수를 정확히 계산해내는 것을 볼 수 있습니다.
+따라서 정방향 자동미분을 이용하면 아주 간단한 도함수 전파 규칙을 명시해놓는 것만으로 복잡하게 합성된 함수를 매우 적은 비용으로 계산할 수 있다는 것을 볼 수 있습니다.</p>
+<hr>
+<h2 id="2-정방향-자동미분-구현">2. 정방향 자동미분 구현</h2>
+<p>위처럼 자동미분은 함수의 형태와 상관없이 작동했던 수치미분과는 다르게 각 함수의 형태마다 도함수의 전파 규칙을 명시해줘야합니다.
+따라서 이번에는 사칙연산을 포함하여 대표적인 함수 몇 가지에 대해 자동미분을 구현해보도록 하겠습니다.</p>
+<h3 id="21-사칙연산">2.1. 사칙연산</h3>
+<p>$w = u \pm v$로 정의된 $w$에 대해서 아까와 마찬가지로 자동미분을 수행해봅시다.</p>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= u \mathrel{\rhd} \overline{u} + v \mathrel{\rhd} \overline{v} \\
+&amp;= (u + v) \mathrel{\rhd} (\overline{u} + \overline{v})
+\end{aligned} \\
+\therefore ~ &amp;w = u + v,\quad \overline{w} = \overline{u} + \overline{v}
+\end{aligned}
+$$</p>
+<p>마찬가지로 이번엔 $w = u \times v$에 자동미분을 적용해봅시다.</p>
+<p>$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= (u \mathrel{\rhd} \overline{u}) \times (v \mathrel{\rhd} \overline{v}) \\
+&amp;= (u + \overline{u}\epsilon) \times (v + \overline{v}\epsilon) \\
+&amp;= uv + (u \overline{v} + \overline{u}v)\epsilon \\
+&amp;= (u \times v) \mathrel{\rhd} (u\overline{v} + \overline{u}v)
+\end{aligned} \\
+\therefore ~ &amp;w = u \times v,\quad \overline{w} = u\overline{v} + \overline{u}v
+\end{aligned}
+$$</p>
+<p>위 두 결과는 각각 우리가 익히 알고있는 미분의 선형성과 라이프니츠 규칙과 정확히 들어맞습니다.
+이를 위에서 정의한 <code>Dual</code> 구조체에 적용해봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::ops::{Add, Sub, Mul};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Add <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">add</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">+</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">+</span> rhs.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sub <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sub</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">-</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">-</span> rhs.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Mul <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">mul</span>(self, rhs: <span style="color:#a6e22e">Self</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> rhs.x,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> rhs.dx <span style="color:#f92672">+</span> self.dx <span style="color:#f92672">*</span> rhs.x,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// 2x^2 at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">+</span> v;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w: 3, dw: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">*</span> v;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w = 2x^3 at x=1 = 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// dw = 6x^2 at x=1 = 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p> </p>
+<h3 id="22-지수-로그-다항-함수">2.2. 지수, 로그, 다항 함수</h3>
+<p>다음으로는 지수 로그 함수의 대표적인 함수들인 $y=e^x,\,y=\ln x$와 다항함수인 $y=x^n$에 대해서 자동미분을 수행해봅시다.</p>
+<ol>
+<li>
+<p>지수함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+v \mathrel{\rhd} \overline{v} &amp;= \exp(u \mathrel{\rhd} \overline{u}) \\
+&amp;= e^u \mathrel{\rhd} e^{u} \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;v = e^u,\quad \overline{v} = e^{u} \overline{u}
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>로그함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= \ln(u \mathrel{\rhd} \overline{u}) \\
+&amp;= \ln u \mathrel{\rhd} \frac{\overline{u}}{u}
+\end{aligned} \\
+\therefore ~ &amp;w = \ln u,\quad \overline{w} = \frac{\overline{u}}{u}
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>다항함수
+$$
+\begin{aligned}
+&amp;\begin{aligned}
+w \mathrel{\rhd} \overline{w} &amp;= (u \mathrel{\rhd} \overline{u})^n \\
+&amp;= u^n \mathrel{\rhd} n u^{n-1} \overline{u}
+\end{aligned} \\
+\therefore ~ &amp;w = u^n,\quad \overline{w} = n u^{n-1} \overline{u}
+\end{aligned}
+$$</p>
+</li>
+</ol>
+<p>앞서 구현한 <code>sin</code>함수와 같이 다른 삼각함수들도 모두 구현하여 하나의 <code>trait</code>을 선언하면 다음과 같습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Ops {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">exp</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">ln</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">cos</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">tan</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">powi</span>(self, n: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#a6e22e">Self</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Ops <span style="color:#66d9ef">for</span> Dual {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">exp</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.exp(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x <span style="color:#f92672">*</span> self.dx.exp(),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">ln</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.ln(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">/</span> self.x,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sin</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.sin(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.x.cos() <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">cos</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.cos(),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#f92672">-</span>self.x.sin() <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">tan</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> tan <span style="color:#f92672">=</span> self.x.tan();
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">tan</span>,
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">self</span>.dx <span style="color:#f92672">*</span> (tan <span style="color:#f92672">*</span> tan <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.0</span>),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">powi</span>(self, n: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        Self {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#a6e22e">self</span>.x.powi(n),
+</span></span><span style="display:flex;"><span>            dx: <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">f64</span> <span style="color:#f92672">*</span> self.x.powi(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> self.dx,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p> </p>
+<h3 id="23-시그모이드-함수">2.3. 시그모이드 함수</h3>
+<p>위에 있는 함수들에 몇 가지 연산 구현을 더하면 별도로 시그모이드 함수를 구현하지 않더라도 시그모이드 함수에 대한 자동미분을 계산할 수 있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sigmoid: Sized 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Ops
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Neg<span style="color:#f92672">&lt;</span>Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Add<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span>, Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">f64</span>: <span style="color:#a6e22e">Div</span><span style="color:#f92672">&lt;</span>Self, Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sigmoid</span>(self) -&gt; <span style="color:#a6e22e">Self</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> ((<span style="color:#f92672">-</span>self).exp() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Sigmoid <span style="color:#66d9ef">for</span> Dual {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> u.sigmoid();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;z: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dz: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, z.x, z.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sigmoid(1), sigmoid&#39;(x) = sigmoid(1) * (1 - sigmoid(1))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><blockquote>
+<p><em>주의: 위에 상기한 코드외에도 <code>f64</code>와의 연산이 추가적으로 정의되어야 작동하는 코드입니다. 실제로 이 코드를 실행하고 싶다면 다음 링크를 참고하세요.</em></p>
+<p><a href="https://github.com/Axect/dual">github.com/Axect/dual</a></p>
+</blockquote>
+<hr>
+<h2 id="마치며">마치며</h2>
+<p>지금까지 이원수를 이용한 정방향 자동미분에 대해서 알아보았습니다.
+쉽게 설명하기 위해서 굉장히 간단한 경우에 대해서만 다뤘는데, 실제로 잘 작동되는 자동미분 라이브러리를 만들기 위해서는 다음과 같은 사항들을 고려해야합니다.</p>
+<ul>
+<li>
+<p>고계 도함수에 대한 자동미분</p>
+</li>
+<li>
+<p>다변수 함수에 대한 자동미분</p>
+</li>
+<li>
+<p>행렬과 벡터 변수를 포함한 함수의 자동미분</p>
+</li>
+</ul>
+<p>이 중 첫 2가지 사항에 대해서는 Rust 수치계산 라이브러리인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>에 잘 구현되어 있으므로 참고하시면 됩니다.
+마지막 사항에 대해서는 역방향 자동미분과 함께 다음 글에서 다루도록 하겠습니다.</p>
+<hr>
+<h2 id="참고문헌">참고문헌</h2>
+<ul>
+<li>
+<p>Axect, <a href="https://github.com/Axect/Peroxide"><em>Peroxide</em></a>, Github</p>
+</li>
+<li>
+<p>Barak A. Pearlmutter, <a href="https://autodiff-workshop.github.io/slides/BarakPearlmutter.pdf"><em>Automatic Differentiation: History and Headroom</em></a></p>
+</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>📊 Piecewise Rejection Sampling</title>
@@ -1395,13 +1790,14 @@ $$</p>
             
             <guid>https://axect.github.io/blog/posts/002_ad_2/</guid>
             <description>🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x + h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다.</description>
             <content type="html"><![CDATA[<blockquote>
 <p><strong>🔖 Automatic Differentiation Series</strong></p>
 <ol>
-<li><a href="../02_ad_1">💻 Numerical Differentiation</a></li>
-<li><a href="../02_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
 </ol>
 </blockquote>
 <h2 id="-수치적-미분의-한계">📉 수치적 미분의 한계</h2>
@@ -1614,9 +2010,17 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
             <pubDate>Sun, 24 May 2020 02:44:11 +0900</pubDate>
             
             <guid>https://axect.github.io/blog/posts/002_ad_1/</guid>
-            <description>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.
-당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다.</description>
-            <content type="html"><![CDATA[<p>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다.
+            <description>🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</description>
+            <content type="html"><![CDATA[<blockquote>
+<p><strong>🔖 Automatic Differentiation Series</strong></p>
+<ol>
+<li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
+<li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
+<li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
+</ol>
+</blockquote>
+<p>미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다.
 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</p>
 <p>당연하게도 수치 계산 분야에서도 미분은 항상 등장합니다. 다만, 인간이 미분을 이해하는 방식과 컴퓨터가 이해하는 방식은 차이가 있기에 미분을 받아들이는 방법 역시 조금 다릅니다. 일단 미적분학에서 간단하게 배우는 도함수의 정의는 다음과 같습니다.</p>
 <p>$$
