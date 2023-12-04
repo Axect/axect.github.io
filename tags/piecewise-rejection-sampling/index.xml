@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>piecewise rejection sampling on Axect&#39;s Blog</title>
-    <link>https://axect.github.io/blog/tags/piecewise-rejection-sampling/</link>
+    <link>https://axect.github.io/tags/piecewise-rejection-sampling/</link>
     <description>Recent content in piecewise rejection sampling on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
-    <atom:link href="https://axect.github.io/blog/tags/piecewise-rejection-sampling/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://axect.github.io/tags/piecewise-rejection-sampling/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📊 Piecewise Rejection Sampling</title>
-      <link>https://axect.github.io/blog/posts/006_prs/</link>
+      <link>https://axect.github.io/posts/006_prs/</link>
       <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
-      <guid>https://axect.github.io/blog/posts/006_prs/</guid>
+      <guid>https://axect.github.io/posts/006_prs/</guid>
       <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
 일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.

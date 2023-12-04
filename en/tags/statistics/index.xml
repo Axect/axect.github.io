@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>statistics on Axect&#39;s Blog</title>
-    <link>https://axect.github.io/blog/en/tags/statistics/</link>
+    <link>https://axect.github.io/en/tags/statistics/</link>
     <description>Recent content in statistics on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
-    <atom:link href="https://axect.github.io/blog/en/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://axect.github.io/en/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📊 Piecewise Rejection Sampling</title>
-      <link>https://axect.github.io/blog/en/posts/006_prs/</link>
+      <link>https://axect.github.io/en/posts/006_prs/</link>
       <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
-      <guid>https://axect.github.io/blog/en/posts/006_prs/</guid>
+      <guid>https://axect.github.io/en/posts/006_prs/</guid>
       <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
 Here are the two most commonly used methods to sample data from an arbitrary probability density function:

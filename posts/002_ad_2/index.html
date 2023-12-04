@@ -11,7 +11,7 @@
 <meta name="keywords" content=", numerical, symbolic, rust, sage" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://axect.github.io/blog/posts/002_ad_2/" />
+<link rel="canonical" href="https://axect.github.io/posts/002_ad_2/" />
 
 
     <title>
@@ -25,17 +25,17 @@
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/blog/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/blog/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/blog/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/blog/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/blog/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/blog/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/blog/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -46,7 +46,7 @@
 💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x &#43; h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다."><meta itemprop="datePublished" content="2020-10-03T03:36:49+09:00" />
 <meta itemprop="dateModified" content="2020-10-03T03:36:49+09:00" />
-<meta itemprop="wordCount" content="1069"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="wordCount" content="1069"><meta itemprop="image" content="https://axect.github.io"/>
 <meta itemprop="keywords" content="numerical,symbolic,rust,sage," />
 
 
@@ -68,7 +68,7 @@
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/blog/" style="text-decoration: none;">
+        <a href="https://axect.github.io/" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -87,7 +87,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/blog/about">About</a></li><li><a href="https://axect.github.io/blog/posts">Blog</a></li><li><a href="https://axect.github.io/blog/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="https://axect.github.io/about">About</a></li><li><a href="https://axect.github.io/posts">Blog</a></li><li><a href="https://axect.github.io/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
@@ -183,7 +183,7 @@ if (!doNotTrack) {
 
     <article>
       <h1 class="post-title">
-        <a href="https://axect.github.io/blog/posts/002_ad_2/">🖊️ Rust와 미분하기 02: 기호 미분</a>
+        <a href="https://axect.github.io/posts/002_ad_2/">🖊️ Rust와 미분하기 02: 기호 미분</a>
       </h1>
 
       
@@ -230,7 +230,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (f(x <span style="color:#f92672">+</span> h) <span style="color:#f92672">-</span> f(x)) <span style="color:#f92672">/</span> h
 </span></span></code></pre></div><p>나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다. 이렇게 수치적 미분 방법은 굉장히 간단한 구현과 엄청 빠른 계산속도를 가져서 누구나 쉽게 미분을 할 수 있게 해주었습니다만, 오차가 필연적으로 발생하게 되는 단점이 있었습니다. 따라서 오차에 크게 민감하지 않은 문제나, Step 수가 적어서 오차가 크게 쌓이지 않는 미분방정식을 푸는 경우엔 충분하지만, 오차에 민감하거나 Step 수가 많아서 오차가 쌓여 유의미한 차이를 보여주는 미분방정식의 경우엔 큰 문제를 야기할 수 있습니다. 대표적인 예시로 &ldquo;로렌즈의 나비&quot;가 있습니다.</p>
 <h3 id="-로렌즈의-나비">🦋 로렌즈의 나비</h3>
-<p><img src="https://axect.github.io/blog/posts/images/euler.png" alt="Lorenz Butterfly"></p>
+<p><img src="https://axect.github.io/posts/images/euler.png" alt="Lorenz Butterfly"></p>
 <p>에드워드 로렌즈는 걸출한 수학자로, 특히 카오스 이론의 선구자로 유명하신 분입니다. 그는 1963년에 대기 대류의 간단한 수학적 모형을 만들었는데, 이 모델은 다음의 3개의 상미분방정식으로 이루어져 있습니다.</p>
 <p>$$
 \begin{align}
@@ -240,7 +240,7 @@ if (!doNotTrack) {
 \end{align}
 $$</p>
 <p>분명 아주 간단한 미분방정식인데, 놀랍게도 아주 복잡한 형태의 해가 도출됩니다. 이때의 대표적인 해의 형태가 위에서 첨부한 그림입니다. 이 시스템은 굉장히 예민한데, 매개변수의 값을 조금 바꾸거나 혹은 Step size를 조금만 바꿔도 해의 형태는 예측할 수 없는 형태로, 그것도 굉장히 파격적으로 변형됩니다. 예를 들어 위의 그림은 <strong>오일러</strong>(Euler) 방법이라는 수치적 미분방정식 해법 중 하나로 풀었는데, 위와 모든 조건을 동일하게 놓고 방법만 <strong>룽게-쿠타</strong>(Runge-Kutta 4th order) 방법으로 바꾸면 다음의 그림이 나옵니다.</p>
-<p><img src="https://axect.github.io/blog/posts/images/rk4.png" alt="Lorenz Butterfly (RK4)"></p>
+<p><img src="https://axect.github.io/posts/images/rk4.png" alt="Lorenz Butterfly (RK4)"></p>
 <p>오로지 방법만 바꾸었을 뿐인데 결과가 상당히 많이 다른 것을 볼 수 있습니다. 물론 이 경우에는 전체적인 형태는 바뀌지 않지만, 특정 매개변수 주변에서는 아예 형태 전체가 급격하게 변형되는 경우도 발생합니다. 이러한 경우에는 오차가 필연적으로 발생하는 수치적 미분 방법이 적합하지 않습니다. 그렇다면 이런 경우에는 어떻게 풀어야 할까요?</p>
 <hr>
 <h2 id="-기호적-미분-symbolic-differentiation">🇬🇷 기호적 미분 (Symbolic Differentiation)</h2>
@@ -271,7 +271,7 @@ $$</p>
 <p>여기에 1을 대입하면 정확히 2가 나옵니다. 위에서 수치적 미분의 결과와 달리 오차는 포함되지 않았습니다.
 미분을 배운 사람일 경우, 위 풀이는 전혀 어려운 풀이가 아닙니다. 규칙만 잘 지킨다면 다른 함수들을 미분할 때에도 큰 어려움은 없을 겁니다.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/diff_table.gif"
+    <img src="https://axect.github.io/posts/images/diff_table.gif"
          alt="물론 규칙이 조금 많긴 합니다 ㅎㅎ.."/> <figcaption style="text-align:center">
             <p>물론 규칙이 조금 많긴 합니다 ㅎㅎ..</p>
         </figcaption>
@@ -281,7 +281,7 @@ $$</p>
 <p>대표적인 CAS로는 Mathematica, Matlab, Maple 등의 상업용 프로그램들과 Python으로 구현된 Sympy, Sagemath 등의 무료 프로그램 혹은 라이브러리가 있습니다.
 CAS는 실제로 인간이 하는 것처럼 미분, 적분, 대수 뿐 아니라 심지어 미분기하 등의 고급 수학 문제까지도 풀어낼 수 있습니다.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/sage_manifolds.png"
+    <img src="https://axect.github.io/posts/images/sage_manifolds.png"
          alt="무려 이름도 SageManifolds 입니다."/> <figcaption style="text-align:center">
             <p>무려 이름도 SageManifolds 입니다.</p>
         </figcaption>
@@ -294,20 +294,20 @@ CAS는 실제로 인간이 하는 것처럼 미분, 적분, 대수 뿐 아니라
 </span></span></code></pre></div><p>정확할 뿐만 아니라 간단하기까지 하니 더 이상 수치적 미분을 고집할 이유는 없어보입니다. 하지만 이렇게 엄청난 CAS에도 치명적인 단점이 존재합니다. 바로 속도입니다.
 기호적 미분 자체는 계산 속도가 빠를 수 있지만 그것에 수치 값들을 대입할 때 현저하게 속도 저하가 일어납니다. 아래는 간단한 미분 계산에 크기가 큰 배열 값을 대입하여 성능을 측정한 결과입니다. Peroxide는 Rust의 수치계산 라이브러리 이름이며 후에 다룰 자동미분 알고리즘을 적용하여 계산을 수행하였고, numpy는 Python의 유명한 수치계산 라이브러리로 수치적 미분으로 계산하였습니다. 마지막으로 Sagemath는 기호적 미분으로 계산 후 수치 값을 대입하여 결과를 구했습니다.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/plot.png"
+    <img src="https://axect.github.io/posts/images/plot.png"
          alt="Linear scale 그래프입니다."/> <figcaption style="text-align:center">
             <p>Linear scale 그래프입니다.</p>
         </figcaption>
 </figure>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/logplot.png"
+    <img src="https://axect.github.io/posts/images/logplot.png"
          alt="Log scale 그래프입니다."/> <figcaption style="text-align:center">
             <p>Log scale 그래프입니다.</p>
         </figcaption>
 </figure>
 <p>물론 어떤 알고리즘을 사용했는지에 따라 실제 수치 계산에서의 결과는 조금 다를 수 있습니다. 다음은 Julia 언어 팀에서 실시한 Benchmark 결과입니다.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/benchmarks.svg"
+    <img src="https://axect.github.io/posts/images/benchmarks.svg"
          alt="Log scale임을 참고하여 보시기 바랍니다. (출처: https://julialang.org/benchmarks/)"/> <figcaption style="text-align:center">
             <p>Log scale임을 참고하여 보시기 바랍니다. (출처: <a href="https://julialang.org/benchmarks/">https://julialang.org/benchmarks/</a>)</p>
         </figcaption>
@@ -433,10 +433,10 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
     <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
 
-        <span class="tag"><a href="https://axect.github.io/blog/tags/numerical/">numerical</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/tags/symbolic/">symbolic</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/tags/rust/">rust</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/tags/sage/">sage</a></span>
+        <span class="tag"><a href="https://axect.github.io/tags/numerical/">numerical</a></span>
+        <span class="tag"><a href="https://axect.github.io/tags/symbolic/">symbolic</a></span>
+        <span class="tag"><a href="https://axect.github.io/tags/rust/">rust</a></span>
+        <span class="tag"><a href="https://axect.github.io/tags/sage/">sage</a></span>
         
     </p>
 
@@ -485,7 +485,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </style>
 
 
-<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
     </div>
@@ -493,7 +493,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
   <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
@@ -502,7 +502,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;caption=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;caption=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
   <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
     <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
@@ -511,7 +511,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;body=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;body=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
   <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
     </div>
@@ -519,7 +519,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;summary=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;source=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;summary=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;source=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
   <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
     </div>
@@ -527,7 +527,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f&amp;resubmit=true&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f&amp;resubmit=true&amp;title=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
   <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
     </div>
@@ -535,7 +535,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84%20https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84%20https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
   <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </div>
@@ -543,7 +543,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f&amp;t=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f&amp;t=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
   <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
     </div>
@@ -551,7 +551,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%96%8a%ef%b8%8f%20Rust%ec%99%80%20%eb%af%b8%eb%b6%84%ed%95%98%ea%b8%b0%2002%3a%20%ea%b8%b0%ed%98%b8%20%eb%af%b8%eb%b6%84&amp;url=https%3a%2f%2faxect.github.io%2fposts%2f002_ad_2%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
   <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
     </div>
@@ -572,7 +572,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
         <div class="pagination__buttons">
             
             <span class="button previous">
-                <a href="https://axect.github.io/blog/posts/003_highschool_linreg/">
+                <a href="https://axect.github.io/posts/003_highschool_linreg/">
                     <span class="button__icon">←</span>
                     <span class="button__text">🏫 고등학교 수학으로 이해하는 선형회귀</span>
                 </a>
@@ -581,7 +581,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 
             
             <span class="button next">
-                <a href="https://axect.github.io/blog/posts/002_ad_1/">
+                <a href="https://axect.github.io/posts/002_ad_1/">
                     <span class="button__text">🧙 Rust와 미분하기 01: 수치적 미분</span>
                     <span class="button__icon">→</span>
                 </a>
@@ -606,9 +606,9 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2023</span>
-            <span><a href="https://axect.github.io/blog">Axect</a></span>
+            <span><a href="https://axect.github.io">Axect</a></span>
             <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            <span><a href="https://axect.github.io/blog/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            <span><a href="https://axect.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
             
         </div>
     </div>
@@ -630,7 +630,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 
 
 
-<script type="text/javascript" src="https://axect.github.io/blog/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
+<script type="text/javascript" src="https://axect.github.io/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
     
 <script type="application/javascript">
 var doNotTrack = false;

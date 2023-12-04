@@ -2,34 +2,163 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://axect.github.io/blog/en/about/</loc>
+    <loc>https://axect.github.io/en/about/</loc>
     <lastmod>2023-11-06T19:03:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://axect.github.io/blog/about/"
+                href="https://axect.github.io/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/blog/en/about/"
+                href="https://axect.github.io/en/about/"
                 />
   </url><url>
-    <loc>https://axect.github.io/blog/en/posts/006_prs/</loc>
+    <loc>https://axect.github.io/en/posts/006_prs/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://axect.github.io/blog/posts/006_prs/"
+                href="https://axect.github.io/posts/006_prs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/blog/en/posts/006_prs/"
+                href="https://axect.github.io/en/posts/006_prs/"
                 />
   </url><url>
-    <loc>https://axect.github.io/blog/en/</loc>
+    <loc>https://axect.github.io/en/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/piecewise-rejection-sampling/</loc>
+    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/piecewise-rejection-sampling/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/piecewise-rejection-sampling/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/posts/</loc>
+    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/posts/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/statistics/</loc>
+    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/statistics/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/statistics/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/</loc>
+    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/posts/005_decov/</loc>
+    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/posts/005_decov/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/posts/005_decov/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/decorrelation/</loc>
+    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/decorrelation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/decorrelation/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/machine-learning/</loc>
+    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/machine-learning/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/machine-learning/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/paper-review/</loc>
+    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/paper-review/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/paper-review/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/tags/pytorch/</loc>
+    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/tags/pytorch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/en/tags/pytorch/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/en/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
@@ -38,148 +167,19 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/blog/en/"
+                href="https://axect.github.io/en/blog/"
                 />
   </url><url>
-    <loc>https://axect.github.io/blog/en/tags/piecewise-rejection-sampling/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <loc>https://axect.github.io/en/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://axect.github.io/blog/tags/piecewise-rejection-sampling/"
+                href="https://axect.github.io/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/blog/en/tags/piecewise-rejection-sampling/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/posts/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/posts/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/statistics/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/statistics/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/statistics/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/</loc>
-    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/posts/005_decov/</loc>
-    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/posts/005_decov/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/posts/005_decov/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/decorrelation/</loc>
-    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/decorrelation/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/decorrelation/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/machine-learning/</loc>
-    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/machine-learning/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/machine-learning/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/paper-review/</loc>
-    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/paper-review/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/paper-review/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/tags/pytorch/</loc>
-    <lastmod>2022-10-29T17:39:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/tags/pytorch/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/tags/pytorch/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/blog/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/blog/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/blog/en/series/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/blog/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/blog/en/series/"
+                href="https://axect.github.io/en/series/"
                 />
   </url>
 </urlset>

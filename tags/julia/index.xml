@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>julia on Axect&#39;s Blog</title>
-    <link>https://axect.github.io/blog/tags/julia/</link>
+    <link>https://axect.github.io/tags/julia/</link>
     <description>Recent content in julia on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 09 Mar 2021 22:01:39 +0900</lastBuildDate>
-    <atom:link href="https://axect.github.io/blog/tags/julia/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://axect.github.io/tags/julia/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🏫 고등학교 수학으로 이해하는 선형회귀</title>
-      <link>https://axect.github.io/blog/posts/003_highschool_linreg/</link>
+      <link>https://axect.github.io/posts/003_highschool_linreg/</link>
       <pubDate>Tue, 09 Mar 2021 22:01:39 +0900</pubDate>
-      <guid>https://axect.github.io/blog/posts/003_highschool_linreg/</guid>
+      <guid>https://axect.github.io/posts/003_highschool_linreg/</guid>
       <description>2016 Breakthrough of the year
 세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
 1. 중력파 발견

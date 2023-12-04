@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gaussian on Axect&#39;s Blog</title>
-    <link>https://axect.github.io/blog/tags/gaussian/</link>
+    <link>https://axect.github.io/tags/gaussian/</link>
     <description>Recent content in gaussian on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 22 May 2020 17:00:31 +0900</lastBuildDate>
-    <atom:link href="https://axect.github.io/blog/tags/gaussian/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://axect.github.io/tags/gaussian/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🐪 가우시안 정복하기 01: 단일변수</title>
-      <link>https://axect.github.io/blog/posts/001_gaussian/</link>
+      <link>https://axect.github.io/posts/001_gaussian/</link>
       <pubDate>Fri, 22 May 2020 17:00:31 +0900</pubDate>
-      <guid>https://axect.github.io/blog/posts/001_gaussian/</guid>
+      <guid>https://axect.github.io/posts/001_gaussian/</guid>
       <description>물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 가우스 적분(Gaussian Integral)입니다.
 $$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$
 이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.

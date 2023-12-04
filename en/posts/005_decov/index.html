@@ -10,7 +10,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
 <meta name="keywords" content=", machine-learning, decorrelation, pytorch, paper-review" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://axect.github.io/blog/en/posts/005_decov/" />
+<link rel="canonical" href="https://axect.github.io/en/posts/005_decov/" />
 
 
     <title>
@@ -24,17 +24,17 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/blog/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/blog/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/blog/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/blog/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/blog/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/blog/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/blog/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -44,7 +44,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
 <meta itemprop="description" content="arXiv: 1511.06068
 The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks."><meta itemprop="datePublished" content="2022-10-29T17:39:54+09:00" />
 <meta itemprop="dateModified" content="2022-10-29T17:39:54+09:00" />
-<meta itemprop="wordCount" content="1694"><meta itemprop="image" content="https://axect.github.io/blog"/>
+<meta itemprop="wordCount" content="1694"><meta itemprop="image" content="https://axect.github.io"/>
 <meta itemprop="keywords" content="machine-learning,decorrelation,pytorch,paper-review," />
 
 
@@ -66,7 +66,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/blog/en" style="text-decoration: none;">
+        <a href="https://axect.github.io/en" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -85,14 +85,14 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/blog/en/about">About</a></li><li><a href="https://axect.github.io/blog/en/posts">Blog</a></li><li><a href="https://axect.github.io/blog/en/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="https://axect.github.io/en/about">About</a></li><li><a href="https://axect.github.io/en/posts">Blog</a></li><li><a href="https://axect.github.io/en/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
                 <div class="dropdown-content">
                     
                         
-                            <a title="kr" href="https://axect.github.io/blog/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
+                            <a title="kr" href="https://axect.github.io/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
                         
                     
                 </div>
@@ -179,7 +179,7 @@ if (!doNotTrack) {
 
          | 한글로 보기 :
           
-              <a href="https://axect.github.io/blog/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
+              <a href="https://axect.github.io/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
           
         
       </p>
@@ -187,7 +187,7 @@ if (!doNotTrack) {
 
     <article>
       <h1 class="post-title">
-        <a href="https://axect.github.io/blog/en/posts/005_decov/">💔 Decorrelation + Deep learning = Generalization</a>
+        <a href="https://axect.github.io/en/posts/005_decov/">💔 Decorrelation + Deep learning = Generalization</a>
       </h1>
 
       
@@ -216,7 +216,7 @@ if (!doNotTrack) {
 
       <div class="post-content">
         <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_01_paper.png"
+    <img src="https://axect.github.io/posts/images/005_01_paper.png"
          alt="arXiv: 1511.06068"/> <figcaption style="text-align:center">
             <p><a href="https://arxiv.org/abs/1511.06068">arXiv: 1511.06068</a></p>
         </figcaption>
@@ -225,7 +225,7 @@ if (!doNotTrack) {
     <b>Overfitting</b>
 </span>. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_02_overfitting.png"
+    <img src="https://axect.github.io/posts/images/005_02_overfitting.png"
          alt="Bejani, M.M., Ghatee, M. A systematic review on overfitting control in shallow and deep neural networks. Artif Intell Rev 54, 6391-6438 (2021)"/> <figcaption style="text-align:center">
             <p>Bejani, M.M., Ghatee, M. <em>A systematic review on overfitting control in shallow and deep neural networks.</em> Artif Intell Rev 54, 6391-6438 (2021)</p>
         </figcaption>
@@ -276,7 +276,7 @@ $$</p>
 <p>  The discussion of correlation in the realm of deep learning arises from the issue that significant correlation among variables, or features, can be detrimental to a model&rsquo;s performance. Deep neural networks refine their learning by adjusting weights assigned to each feature; however, when two features yield identical information (high correlation), it creates redundancy. This redundancy can cause a form of degeneracy where altering the weights of either feature doesn&rsquo;t uniquely contribute to the learning process, which in turn can impede accurate learning and introduce bias into the neural network. The aforementioned paper posits that this redundancy is a contributing factor to overfitting.</p>
 <p>In fact, the study demonstrates that by defining the extent of overfitting as the discrepancy between training and validation accuracy and quantifying the level of decorrelation with a metric termed <code>DeCov</code>, a notable pattern emerges:</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_03_decov.png"
+    <img src="https://axect.github.io/posts/images/005_03_decov.png"
          alt="Correlation between Overfitting and Covariance"/> <figcaption style="text-align:center">
             <p>Correlation between Overfitting and Covariance</p>
         </figcaption>
@@ -306,7 +306,7 @@ $$</p>
 <h2 id="3-apply-to-regression">3. Apply to Regression</h2>
 <p>  In the original study, the authors applied their decorrelation technique to various sets of image data. However, to more clearly demonstrate its effectiveness, we&rsquo;ll apply it to a simple regression problem. Below is the dataset that will be used to train the neural network:</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_04_data.png"
+    <img src="https://axect.github.io/posts/images/005_04_data.png"
          alt="Nonlinear data [Note: Peroxide_Gallery]"/> <figcaption style="text-align:center">
             <p>Nonlinear data [Note: <a href="https://github.com/Axect/Peroxide_Gallery/tree/master/Machine_Learning/linear_reg_ridge">Peroxide_Gallery</a>]</p>
         </figcaption>
@@ -361,27 +361,27 @@ $$</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
 </span></span></code></pre></div><p>Upon closer examination, we observe that <code>loss_0</code> is defined as the loss after the initial layer <code>fc_init</code>, and <code>loss_1</code> as the loss after the subsequent three layers <code>fc_mid</code>. These losses are then integrated into the mean squared error (MSE) loss as regularization terms. Before delving into the outcomes, it&rsquo;s insightful to examine the training dynamics of <code>SimpleMLP</code> and <code>DeCovMLP</code>.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_07_SimpleMLP.png"
+    <img src="https://axect.github.io/posts/images/005_07_SimpleMLP.png"
          alt="SimpleMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
             <p>SimpleMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/2dx8i9b7?workspace=user-axect">wandb.ai</a>)</p>
         </figcaption>
 </figure>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_08_DeCovMLP.png"
+    <img src="https://axect.github.io/posts/images/005_08_DeCovMLP.png"
          alt="DeCovMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
             <p>DeCovMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/22ggcfkd?workspace=user-axect">wandb.ai</a>)</p>
         </figcaption>
 </figure>
 <p>In the <code>SimpleMLP</code> model, <code>decov_1</code> initially increases during training iterations and then plateaus, indicating no further decrease. Contrastingly, within the <code>DeCovMLP</code> model, <code>decov_1</code> consistently decreases, aligning with the paper&rsquo;s hypothesis: as overfitting intensifies, so does the correlation between features. Now, let&rsquo;s consider the results.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_05_total.png"
+    <img src="https://axect.github.io/posts/images/005_05_total.png"
          alt="Results!"/> <figcaption style="text-align:center">
             <p>Results!</p>
         </figcaption>
 </figure>
 <p>The red line represents the <code>SimpleMLP</code> outcome, while the blue line depicts <code>DeCovMLP</code>. Noticeably, the red line exhibits overfitting with erratic fluctuations, whereas the blue line maintains closer alignment with the <code>true</code> data and exhibits less jitter. This demonstrates a remarkable improvement, and further extrapolation yields even more compelling insights.</p>
 <figure>
-    <img src="https://axect.github.io/blog/posts/images/005_06_extrapolate.png"
+    <img src="https://axect.github.io/posts/images/005_06_extrapolate.png"
          alt="Extrapolate!"/> <figcaption style="text-align:center">
             <p>Extrapolate!</p>
         </figcaption>
@@ -411,10 +411,10 @@ $$</p>
     <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
 
-        <span class="tag"><a href="https://axect.github.io/blog/en/tags/machine-learning/">machine-learning</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/en/tags/decorrelation/">decorrelation</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/en/tags/pytorch/">pytorch</a></span>
-        <span class="tag"><a href="https://axect.github.io/blog/en/tags/paper-review/">paper-review</a></span>
+        <span class="tag"><a href="https://axect.github.io/en/tags/machine-learning/">machine-learning</a></span>
+        <span class="tag"><a href="https://axect.github.io/en/tags/decorrelation/">decorrelation</a></span>
+        <span class="tag"><a href="https://axect.github.io/en/tags/pytorch/">pytorch</a></span>
+        <span class="tag"><a href="https://axect.github.io/en/tags/paper-review/">paper-review</a></span>
         
     </p>
 
@@ -463,7 +463,7 @@ $$</p>
 </style>
 
 
-<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
     </div>
@@ -471,7 +471,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
   <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
@@ -480,7 +480,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;caption=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;caption=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
   <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
     <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
@@ -489,7 +489,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;body=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;body=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
   <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
     </div>
@@ -497,7 +497,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;summary=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;source=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;summary=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;source=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
   <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
     </div>
@@ -505,7 +505,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f&amp;resubmit=true&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f&amp;resubmit=true&amp;title=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
   <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
     </div>
@@ -513,7 +513,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization%20https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization%20https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
   <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </div>
@@ -521,7 +521,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f&amp;t=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f&amp;t=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
   <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
     </div>
@@ -529,7 +529,7 @@ $$</p>
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;url=https%3a%2f%2faxect.github.io%2fblog%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%92%94%20Decorrelation%20%2b%20Deep%20learning%20%3d%20Generalization&amp;url=https%3a%2f%2faxect.github.io%2fen%2fposts%2f005_decov%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
   <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
     </div>
@@ -550,7 +550,7 @@ $$</p>
         <div class="pagination__buttons">
             
             <span class="button previous">
-                <a href="https://axect.github.io/blog/en/posts/006_prs/">
+                <a href="https://axect.github.io/en/posts/006_prs/">
                     <span class="button__icon">←</span>
                     <span class="button__text">📊 Piecewise Rejection Sampling</span>
                 </a>
@@ -577,9 +577,9 @@ $$</p>
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2023</span>
-            <span><a href="https://axect.github.io/blog">Axect</a></span>
+            <span><a href="https://axect.github.io">Axect</a></span>
             <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
-            <span><a href="https://axect.github.io/blog/en/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            <span><a href="https://axect.github.io/en/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
             
         </div>
     </div>
@@ -601,7 +601,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="https://axect.github.io/blog/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
+<script type="text/javascript" src="https://axect.github.io/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
     
 <script type="application/javascript">
 var doNotTrack = false;
