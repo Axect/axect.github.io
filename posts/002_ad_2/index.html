@@ -46,7 +46,7 @@
 💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
 # Python def differentiation(f, x, h=1e-06): return (f(x &#43; h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다."><meta itemprop="datePublished" content="2020-10-03T03:36:49+09:00" />
 <meta itemprop="dateModified" content="2020-10-03T03:36:49+09:00" />
-<meta itemprop="wordCount" content="1069"><meta itemprop="image" content="https://axect.github.io"/>
+<meta itemprop="wordCount" content="1069"><meta itemprop="image" content="https://axect.github.io/" />
 <meta itemprop="keywords" content="numerical,symbolic,rust,sage," />
 
 
@@ -150,7 +150,7 @@
 </script>
 
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -230,7 +230,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (f(x <span style="color:#f92672">+</span> h) <span style="color:#f92672">-</span> f(x)) <span style="color:#f92672">/</span> h
 </span></span></code></pre></div><p>나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다. 이렇게 수치적 미분 방법은 굉장히 간단한 구현과 엄청 빠른 계산속도를 가져서 누구나 쉽게 미분을 할 수 있게 해주었습니다만, 오차가 필연적으로 발생하게 되는 단점이 있었습니다. 따라서 오차에 크게 민감하지 않은 문제나, Step 수가 적어서 오차가 크게 쌓이지 않는 미분방정식을 푸는 경우엔 충분하지만, 오차에 민감하거나 Step 수가 많아서 오차가 쌓여 유의미한 차이를 보여주는 미분방정식의 경우엔 큰 문제를 야기할 수 있습니다. 대표적인 예시로 &ldquo;로렌즈의 나비&quot;가 있습니다.</p>
 <h3 id="-로렌즈의-나비">🦋 로렌즈의 나비</h3>
-<p><img src="https://axect.github.io/posts/images/euler.png" alt="Lorenz Butterfly"></p>
+<p><img alt="Lorenz Butterfly" src="https://axect.github.io/posts/images/euler.png"></p>
 <p>에드워드 로렌즈는 걸출한 수학자로, 특히 카오스 이론의 선구자로 유명하신 분입니다. 그는 1963년에 대기 대류의 간단한 수학적 모형을 만들었는데, 이 모델은 다음의 3개의 상미분방정식으로 이루어져 있습니다.</p>
 <p>$$
 \begin{align}
@@ -240,7 +240,7 @@ if (!doNotTrack) {
 \end{align}
 $$</p>
 <p>분명 아주 간단한 미분방정식인데, 놀랍게도 아주 복잡한 형태의 해가 도출됩니다. 이때의 대표적인 해의 형태가 위에서 첨부한 그림입니다. 이 시스템은 굉장히 예민한데, 매개변수의 값을 조금 바꾸거나 혹은 Step size를 조금만 바꿔도 해의 형태는 예측할 수 없는 형태로, 그것도 굉장히 파격적으로 변형됩니다. 예를 들어 위의 그림은 <strong>오일러</strong>(Euler) 방법이라는 수치적 미분방정식 해법 중 하나로 풀었는데, 위와 모든 조건을 동일하게 놓고 방법만 <strong>룽게-쿠타</strong>(Runge-Kutta 4th order) 방법으로 바꾸면 다음의 그림이 나옵니다.</p>
-<p><img src="https://axect.github.io/posts/images/rk4.png" alt="Lorenz Butterfly (RK4)"></p>
+<p><img alt="Lorenz Butterfly (RK4)" src="https://axect.github.io/posts/images/rk4.png"></p>
 <p>오로지 방법만 바꾸었을 뿐인데 결과가 상당히 많이 다른 것을 볼 수 있습니다. 물론 이 경우에는 전체적인 형태는 바뀌지 않지만, 특정 매개변수 주변에서는 아예 형태 전체가 급격하게 변형되는 경우도 발생합니다. 이러한 경우에는 오차가 필연적으로 발생하는 수치적 미분 방법이 적합하지 않습니다. 그렇다면 이런 경우에는 어떻게 풀어야 할까요?</p>
 <hr>
 <h2 id="-기호적-미분-symbolic-differentiation">🇬🇷 기호적 미분 (Symbolic Differentiation)</h2>
@@ -606,7 +606,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
     <div class="footer__inner">
         <div class="footer__content">
             <span>&copy; 2023</span>
-            <span><a href="https://axect.github.io">Axect</a></span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
             <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
             <span><a href="https://axect.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
             
@@ -630,9 +630,9 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.59faf49a034aba9bcb5a61f340d0b6f6af26a5f810bb92274776d8221efa5b6b8cc37669c618ed670bd4b3ac4c96dad2dcd0f09bab2399c2ac7c65da0ba9314b.js" integrity="sha512-Wfr0mgNKupvLWmHzQNC29q8mpfgQu5InR3bYIh76W2uMw3ZpxhjtZwvUs6xMltrS3NDwm6sjmcKsfGXaC6kxSw=="></script>
+<script type="text/javascript" src="https://axect.github.io/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
     
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

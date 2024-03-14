@@ -22,7 +22,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/006_01_test_dist.png"
          alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
-            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="#footnotes">${}^{[1]}$</a></p>
+            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="/en/#footnotes">${}^{[1]}$</a></p>
         </figcaption>
 </figure>
 <p>Suppose you&rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?</p>
@@ -31,7 +31,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
 <li><a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">Inverse Transform Sampling</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Rejection_sampling">Rejection Sampling</a></li>
 </ol>
-<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
+<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="/en/posts/006_prs/#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
 <hr>
 <h2 id="1-rejection-sampling">1. Rejection Sampling</h2>
 <p>  <span style="background-color: rgba(255, 255, 0, 0.534);">
