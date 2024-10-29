@@ -15,9 +15,36 @@
             <pubDate>Mon, 04 Dec 2023 15:38:04 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/007_ad_3/</guid>
-            <description>🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
-net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.</description>
+            <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;🔖 Automatic Differentiation Series&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_1&#34;&gt;💻 Numerical Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_2&#34;&gt;🖊️ Symbolic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../007_ad_3&#34;&gt;🤖 Automatic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요?
+물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다.
+이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;net &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Sequential(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Sigmoid()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# x = ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# y = ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# criterion = ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;opt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; optim&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SGD(net&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parameters(), lr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0.01&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;opt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zero_grad()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;loss &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; criterion(net(x), y)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;loss&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;backward()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;opt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;step()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다.
+일단 엄밀하게 같은 구현은 아니지만 &lt;code&gt;Linear&lt;/code&gt;와 &lt;code&gt;Sigmoid&lt;/code&gt; 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 &lt;code&gt;net(x)&lt;/code&gt;를 만드는 것은 어렵지 않습니다.
+다음으로 여기선 &lt;code&gt;criterion&lt;/code&gt;이 무엇인지 명시하지는 않았지만 가장 기본적인 &lt;code&gt;MSE&lt;/code&gt;를 사용한다면 이 역시 간단합니다.
+문제는 &lt;code&gt;opt&lt;/code&gt;부터 시작됩니다.
+&lt;code&gt;SGD&lt;/code&gt;를 구현하려면, 어떤 &lt;code&gt;criterion&lt;/code&gt;이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<blockquote>
 <p><strong>🔖 Automatic Differentiation Series</strong></p>
 <ol>
@@ -410,10 +437,20 @@ $$</p>
             <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/006_prs/</guid>
-            <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
-누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
-일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
-Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.</description>
+            <description>&lt;figure&gt;
+    &lt;img src=&#34;https://axect.github.io/posts/images/006_01_test_dist.png&#34;
+         alt=&#34;Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
+            &lt;p&gt;Differential energy spectrum of ALPs from primordial black hole (PBH)&lt;a href=&#34;https://axect.github.io/#footnotes&#34;&gt;${}^{[1]}$&lt;/a&gt;&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;  누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다.
+그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?&lt;/p&gt;
+&lt;p&gt;일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Inverse_transform_sampling&#34;&gt;Inverse Transform Sampling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Rejection_sampling&#34;&gt;Rejection Sampling&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.&lt;a href=&#34;https://axect.github.io/posts/006_prs/#footnotes&#34;&gt;${}^{[2]}$&lt;/a&gt; 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/006_01_test_dist.png"
          alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
@@ -740,8 +777,16 @@ $$</p>
             <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/005_decov/</guid>
-            <description>arXiv: 1511.06068
-딥러닝에서 가장 빈번하게 일어나는 문제로 Overfitting (과적합) 이 있습니다. 이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다.</description>
+            <description>&lt;figure&gt;
+    &lt;img src=&#34;https://axect.github.io/posts/images/005_01_paper.png&#34;
+         alt=&#34;arXiv: 1511.06068&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
+            &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1511.06068&#34;&gt;arXiv: 1511.06068&lt;/a&gt;&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;  딥러닝에서 가장 빈번하게 일어나는 문제로 &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;
+    &lt;b&gt;Overfitting (과적합)&lt;/b&gt;
+&lt;/span&gt;이 있습니다.
+이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/005_01_paper.png"
          alt="arXiv: 1511.06068"/> <figcaption style="text-align:center">
@@ -938,9 +983,18 @@ $$</p>
             <pubDate>Fri, 01 Jul 2022 11:56:41 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/004_rust_1.62.0/</guid>
-            <description>Ferris the crab
-Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.
-업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다.</description>
+            <description>&lt;figure&gt;
+    &lt;img src=&#34;https://axect.github.io/posts/images/rustacean.svg&#34;
+         alt=&#34;Ferris the crab&#34; width=&#34;2000&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
+            &lt;p&gt;&lt;a href=&#34;https://rustacean.net/&#34;&gt;Ferris the crab&lt;/a&gt;&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;  Rust 언어는 2015년 1.0 버전이 출시된 이래로 &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;
+    &lt;b&gt;Stable, Beta, Nightly&lt;/b&gt;
+&lt;/span&gt; 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.&lt;/p&gt;
+&lt;p&gt;업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다. 어떤 업데이트는 넓고 잔잔한 호수에 작은 돌멩이 하나를 던진 것과 같은 작은 파문과 같다면, 어떤 업데이트는 사람들이 오랫동안 기다리던 커다란 댐의 수문 개방과 같은 시원함을 주기도 합니다. 그리고 이번 2022년 6월 30일에 발표된 &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;
+    &lt;b&gt;1.62.0&lt;/b&gt;
+&lt;/span&gt; 업데이트는 명백히 후자였습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/rustacean.svg"
          alt="Ferris the crab" width="2000"/> <figcaption style="text-align:center">
@@ -1087,14 +1141,28 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
             <pubDate>Tue, 09 Mar 2021 22:01:39 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/003_highschool_linreg/</guid>
-            <description>2016 Breakthrough of the year
-세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
-1. 중력파 발견
-2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견
-3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결
-4. 세포 노화 및 회춘 연구
-5. 유인원의 마음 읽기 능력 연구
-6. 단백질 구조설계 기술</description>
+            <description>&lt;figure&gt;
+    &lt;img src=&#34;https://axect.github.io/posts/images/breakthrough2016.gif&#34;
+         alt=&#34;2016 Breakthrough of the year&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
+            &lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=2ncTCM7t79o&#34;&gt;2016 Breakthrough of the year&lt;/a&gt;&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;  세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;
+    &lt;b&gt;2016 Breakthrough of the year&lt;/b&gt;
+&lt;/span&gt; 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$&lt;/p&gt;
+&lt;center&gt;
+&lt;div class=&#34;animated-border-quote&#34;&gt;
+    &lt;blockquote&gt;
+        &lt;p style=&#34;text-align:left&#34;&gt;&lt;strong&gt;1. 중력파 발견&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;4. 세포 노화 및 회춘 연구&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;5. 유인원의 마음 읽기 능력 연구&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;6. 단백질 구조설계 기술&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;7. 배아줄기세포로 만든 인공난자&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;8. 초기 인류의 확산 경로 연구&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;9. 휴대용 DNA 분석기&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;10. 초박막 메타렌즈 기술&lt;/strong&gt;&lt;/p&gt;</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/breakthrough2016.gif"
          alt="2016 Breakthrough of the year"/> <figcaption style="text-align:center">
@@ -1139,50 +1207,50 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
     <b>Bishop의 PRML(Pattern Recognition and Machine Learning; 패턴인식과 머신러닝)에서 사용하는 표기법</b>
 </span>을 사용하겠습니다. 대부분 고등학교 표기방식과 동일합니다만, 조금의 차이가 있습니다. 저희가 사용할 표기법은 다음과 같습니다.</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">개념</th>
-<th style="text-align:center">표기법</th>
-<th style="text-align:center">고교 표기</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">단일 스칼라 확률변수</td>
-<td style="text-align:center">$x \in \mathbb{R}$</td>
-<td style="text-align:center">집합 $X$</td>
-</tr>
-<tr>
-<td style="text-align:center">확률분포함수</td>
-<td style="text-align:center">$p(x) \geq 0$</td>
-<td style="text-align:center">$P(X=x) \geq 0$</td>
-</tr>
-<tr>
-<td style="text-align:center">결합확률분포</td>
-<td style="text-align:center">$p(x,y)$</td>
-<td style="text-align:center">&ndash;</td>
-</tr>
-<tr>
-<td style="text-align:center">조건부확률분포</td>
-<td style="text-align:center">$p(x | y)$</td>
-<td style="text-align:center">&ndash;</td>
-</tr>
-<tr>
-<td style="text-align:center">균등분포</td>
-<td style="text-align:center">$\text{Unif}(x|a,b)$</td>
-<td style="text-align:center">&ndash;</td>
-</tr>
-<tr>
-<td style="text-align:center">이항분포</td>
-<td style="text-align:center">$\text{Bin}(x|N, \mu)$</td>
-<td style="text-align:center">$B(n, p)$</td>
-</tr>
-<tr>
-<td style="text-align:center">정규분포</td>
-<td style="text-align:center">$\mathcal{N}(x|\mu,\sigma^2)$</td>
-<td style="text-align:center">$N(m,\sigma^2)$</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">개념</th>
+          <th style="text-align: center">표기법</th>
+          <th style="text-align: center">고교 표기</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">단일 스칼라 확률변수</td>
+          <td style="text-align: center">$x \in \mathbb{R}$</td>
+          <td style="text-align: center">집합 $X$</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">확률분포함수</td>
+          <td style="text-align: center">$p(x) \geq 0$</td>
+          <td style="text-align: center">$P(X=x) \geq 0$</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">결합확률분포</td>
+          <td style="text-align: center">$p(x,y)$</td>
+          <td style="text-align: center">&ndash;</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">조건부확률분포</td>
+          <td style="text-align: center">$p(x | y)$</td>
+          <td style="text-align: center">&ndash;</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">균등분포</td>
+          <td style="text-align: center">$\text{Unif}(x|a,b)$</td>
+          <td style="text-align: center">&ndash;</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">이항분포</td>
+          <td style="text-align: center">$\text{Bin}(x|N, \mu)$</td>
+          <td style="text-align: center">$B(n, p)$</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">정규분포</td>
+          <td style="text-align: center">$\mathcal{N}(x|\mu,\sigma^2)$</td>
+          <td style="text-align: center">$N(m,\sigma^2)$</td>
+      </tr>
+  </tbody>
 </table>
 <p>위에서 보면 알겠지만, 고등학교에서 다룬 확률분포함수는 오로지 단일 확률분포일뿐, 결합이나 조건부 등의 변수가 2개 이상인 확률분포함수는 다루지 않았습니다. 다만, 그에 상응하는 확률인 곱사건의 확률($P(A\cap B)$이나 조건부확률($P(A|B)$) 자체는 다루었으니 비슷한 맥락으로 접근하면 쉽게 이해할 수 있습니다. 예를 들어, 조건부확률분포와 결합확률분포 사이에는 다음의 관계식이 성립합니다.</p>
 <p>$$
@@ -1220,28 +1288,28 @@ $$p(x \geq 300) = p(z \geq \frac{140 - 120}{10}) = p(z \geq 2)$$
     <blockquote>
         <p style="text-align:left"><p>Q. 주사위를 120번 던지는 시행을 6번 반복하여 1의 눈이 나온 데이터는 다음과 같다.</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">시행</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">횟수</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">23</td>
-<td style="text-align:center">18</td>
-<td style="text-align:center">15</td>
-<td style="text-align:center">26</td>
-<td style="text-align:center">21</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">시행</th>
+          <th style="text-align: center">1</th>
+          <th style="text-align: center">2</th>
+          <th style="text-align: center">3</th>
+          <th style="text-align: center">4</th>
+          <th style="text-align: center">5</th>
+          <th style="text-align: center">6</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">횟수</td>
+          <td style="text-align: center">10</td>
+          <td style="text-align: center">23</td>
+          <td style="text-align: center">18</td>
+          <td style="text-align: center">15</td>
+          <td style="text-align: center">26</td>
+          <td style="text-align: center">21</td>
+      </tr>
+  </tbody>
 </table>
 <p>이를 이용하여 주사위를 720번 던졌을 때, 1의 눈이 140번 이상 나올 확률을 계산하시오.</p>
 </p>
@@ -1474,24 +1542,24 @@ $$
 </figure>
 <p>실제로 표본이 엄청나게 많은 수능 성적조차 정확히 정규분포를 따르지 않습니다. 위 문제처럼 등급컷을 추론해보아도 실제 등급컷과는 괴리를 보이죠. 2019년 11월 14일에 치뤄진 2020년 수능 국어에 대한 데이터는 다음과 같았습니다.${}^{[2]}$</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">시험</th>
-<th style="text-align:center">과목</th>
-<th style="text-align:center">평균</th>
-<th style="text-align:center">표준편차</th>
-<th style="text-align:center">1등급 컷</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2020 수능</td>
-<td style="text-align:center">국어</td>
-<td style="text-align:center">59.87</td>
-<td style="text-align:center">20.22</td>
-<td style="text-align:center">91</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">시험</th>
+          <th style="text-align: center">과목</th>
+          <th style="text-align: center">평균</th>
+          <th style="text-align: center">표준편차</th>
+          <th style="text-align: center">1등급 컷</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">2020 수능</td>
+          <td style="text-align: center">국어</td>
+          <td style="text-align: center">59.87</td>
+          <td style="text-align: center">20.22</td>
+          <td style="text-align: center">91</td>
+      </tr>
+  </tbody>
 </table>
 <p>이를 정규분포로 바꾸어 91점 이상인 학생들의 비율을 계산하면 $0.062$, 즉, 6.2%가 나옵니다. 95점 이상인 학생들의 비율을 계산해야 비로소 $0.0412$ 정도로 나오므로 만일, 2020 수능 국어가 정규분포를 따랐다면 95점이 1등급 컷 점수였어야 합니다. 사실 수능까지도 갈 필요가 없고 주사위를 던져서 1의 눈의 수를 확인한다고 해봐도 정확히 이항분포를 따르지 않는 것을 볼 수 있습니다. 이렇게 통계학에서는 실제 값과 이론 값은 딱히 다른 요인이 없어도 차이를 보이게 되는데, 이때의 차이를 <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>노이즈(Noise)</b>
@@ -1788,9 +1856,22 @@ $$</p>
             <pubDate>Sat, 03 Oct 2020 03:36:49 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/002_ad_2/</guid>
-            <description>🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.
-# Python def differentiation(f, x, h=1e-06): return (f(x + h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다.</description>
+            <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;🔖 Automatic Differentiation Series&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_1&#34;&gt;💻 Numerical Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_2&#34;&gt;🖊️ Symbolic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../007_ad_3&#34;&gt;🤖 Automatic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;-수치적-미분의-한계&#34;&gt;📉 수치적 미분의 한계&lt;/h2&gt;
+&lt;p&gt;저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요?
+아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다.
+저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;differentiation&lt;/span&gt;(f, x, h&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1e-06&lt;/span&gt;):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (f(x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; h) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; f(x)) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; h
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다. 이렇게 수치적 미분 방법은 굉장히 간단한 구현과 엄청 빠른 계산속도를 가져서 누구나 쉽게 미분을 할 수 있게 해주었습니다만, 오차가 필연적으로 발생하게 되는 단점이 있었습니다. 따라서 오차에 크게 민감하지 않은 문제나, Step 수가 적어서 오차가 크게 쌓이지 않는 미분방정식을 푸는 경우엔 충분하지만, 오차에 민감하거나 Step 수가 많아서 오차가 쌓여 유의미한 차이를 보여주는 미분방정식의 경우엔 큰 문제를 야기할 수 있습니다. 대표적인 예시로 &amp;ldquo;로렌즈의 나비&amp;quot;가 있습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<blockquote>
 <p><strong>🔖 Automatic Differentiation Series</strong></p>
 <ol>
@@ -2009,8 +2090,16 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
             <pubDate>Sun, 24 May 2020 02:44:11 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/002_ad_1/</guid>
-            <description>🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</description>
+            <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;🔖 Automatic Differentiation Series&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_1&#34;&gt;💻 Numerical Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../002_ad_2&#34;&gt;🖊️ Symbolic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../007_ad_3&#34;&gt;🤖 Automatic Differentiation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다.
+문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<blockquote>
 <p><strong>🔖 Automatic Differentiation Series</strong></p>
 <ol>
@@ -2163,10 +2252,10 @@ Rust의 Generic에는 크게 두 가지 방식이 존재합니다. 첫 번째는
             <pubDate>Fri, 22 May 2020 17:00:31 +0900</pubDate>
             
             <guid>https://axect.github.io/posts/001_gaussian/</guid>
-            <description>물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 가우스 적분(Gaussian Integral)입니다.
-$$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$
-이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.
-따라서 여기서는 가우스 적분과 가우시안 분포에 대한 아주 기본적인 성질들을 다시 상기시키고 이를 발판삼아 다변수 가우시안(Multivariate Gaussian)과 여러 활용들을 살펴보도록 하겠습니다.</description>
+            <description>&lt;p&gt;물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 &lt;strong&gt;가우스 적분&lt;/strong&gt;(Gaussian Integral)입니다.&lt;/p&gt;
+&lt;p&gt;$$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$&lt;/p&gt;
+&lt;p&gt;이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.&lt;/p&gt;
+&lt;p&gt;따라서 여기서는 가우스 적분과 가우시안 분포에 대한 아주 기본적인 성질들을 다시 상기시키고 이를 발판삼아 다변수 가우시안(Multivariate Gaussian)과 여러 활용들을 살펴보도록 하겠습니다.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 <strong>가우스 적분</strong>(Gaussian Integral)입니다.</p>
 <p>$$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$</p>
 <p>이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.</p>
