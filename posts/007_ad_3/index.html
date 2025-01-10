@@ -44,7 +44,7 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 
 
   <meta itemprop="name" content="🤖 Rust와 미분하기 03: 정방향 자동 미분">
-  <meta itemprop="description" content=" 🔖 Automatic Differentiation Series
+  <meta itemprop="description" content="🔖 Automatic Differentiation Series
 💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
 net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.backward() opt.step() 이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다. 일단 엄밀하게 같은 구현은 아니지만 Linear와 Sigmoid 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 net(x)를 만드는 것은 어렵지 않습니다. 다음으로 여기선 criterion이 무엇인지 명시하지는 않았지만 가장 기본적인 MSE를 사용한다면 이 역시 간단합니다. 문제는 opt부터 시작됩니다. SGD를 구현하려면, 어떤 criterion이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.">
   <meta itemprop="datePublished" content="2023-12-04T15:38:04+09:00">
