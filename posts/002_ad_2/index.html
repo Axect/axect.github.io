@@ -26,17 +26,17 @@
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -84,7 +84,7 @@
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/" style="text-decoration: none;">
+        <a href="/" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -103,7 +103,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/about">About</a></li><li><a href="https://axect.github.io/posts">Blog</a></li><li><a href="https://axect.github.io/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
@@ -222,8 +222,7 @@
 <li><a href="../002_ad_1">💻 Numerical Differentiation</a></li>
 <li><a href="../002_ad_2">🖊️ Symbolic Differentiation</a></li>
 <li><a href="../007_ad_3">🤖 Automatic Differentiation</a></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <h2 id="-수치적-미분의-한계">📉 수치적 미분의 한계</h2>
 <p>저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요?
 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다.
@@ -233,7 +232,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (f(x <span style="color:#f92672">+</span> h) <span style="color:#f92672">-</span> f(x)) <span style="color:#f92672">/</span> h
 </span></span></code></pre></div><p>나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다. 이렇게 수치적 미분 방법은 굉장히 간단한 구현과 엄청 빠른 계산속도를 가져서 누구나 쉽게 미분을 할 수 있게 해주었습니다만, 오차가 필연적으로 발생하게 되는 단점이 있었습니다. 따라서 오차에 크게 민감하지 않은 문제나, Step 수가 적어서 오차가 크게 쌓이지 않는 미분방정식을 푸는 경우엔 충분하지만, 오차에 민감하거나 Step 수가 많아서 오차가 쌓여 유의미한 차이를 보여주는 미분방정식의 경우엔 큰 문제를 야기할 수 있습니다. 대표적인 예시로 &ldquo;로렌즈의 나비&quot;가 있습니다.</p>
 <h3 id="-로렌즈의-나비">🦋 로렌즈의 나비</h3>
-<p><img src="https://axect.github.io/posts/images/euler.png" alt="Lorenz Butterfly"></p>
+<p><img src="/posts/images/euler.png" alt="Lorenz Butterfly"></p>
 <p>에드워드 로렌즈는 걸출한 수학자로, 특히 카오스 이론의 선구자로 유명하신 분입니다. 그는 1963년에 대기 대류의 간단한 수학적 모형을 만들었는데, 이 모델은 다음의 3개의 상미분방정식으로 이루어져 있습니다.</p>
 <p>$$
 \begin{align}
@@ -243,7 +242,7 @@
 \end{align}
 $$</p>
 <p>분명 아주 간단한 미분방정식인데, 놀랍게도 아주 복잡한 형태의 해가 도출됩니다. 이때의 대표적인 해의 형태가 위에서 첨부한 그림입니다. 이 시스템은 굉장히 예민한데, 매개변수의 값을 조금 바꾸거나 혹은 Step size를 조금만 바꿔도 해의 형태는 예측할 수 없는 형태로, 그것도 굉장히 파격적으로 변형됩니다. 예를 들어 위의 그림은 <strong>오일러</strong>(Euler) 방법이라는 수치적 미분방정식 해법 중 하나로 풀었는데, 위와 모든 조건을 동일하게 놓고 방법만 <strong>룽게-쿠타</strong>(Runge-Kutta 4th order) 방법으로 바꾸면 다음의 그림이 나옵니다.</p>
-<p><img src="https://axect.github.io/posts/images/rk4.png" alt="Lorenz Butterfly (RK4)"></p>
+<p><img src="/posts/images/rk4.png" alt="Lorenz Butterfly (RK4)"></p>
 <p>오로지 방법만 바꾸었을 뿐인데 결과가 상당히 많이 다른 것을 볼 수 있습니다. 물론 이 경우에는 전체적인 형태는 바뀌지 않지만, 특정 매개변수 주변에서는 아예 형태 전체가 급격하게 변형되는 경우도 발생합니다. 이러한 경우에는 오차가 필연적으로 발생하는 수치적 미분 방법이 적합하지 않습니다. 그렇다면 이런 경우에는 어떻게 풀어야 할까요?</p>
 <hr>
 <h2 id="-기호적-미분-symbolic-differentiation">🇬🇷 기호적 미분 (Symbolic Differentiation)</h2>
@@ -274,7 +273,7 @@ $$</p>
 <p>여기에 1을 대입하면 정확히 2가 나옵니다. 위에서 수치적 미분의 결과와 달리 오차는 포함되지 않았습니다.
 미분을 배운 사람일 경우, 위 풀이는 전혀 어려운 풀이가 아닙니다. 규칙만 잘 지킨다면 다른 함수들을 미분할 때에도 큰 어려움은 없을 겁니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/diff_table.gif"
+    <img src="/posts/images/diff_table.gif"
          alt="물론 규칙이 조금 많긴 합니다 ㅎㅎ.."/> <figcaption style="text-align:center">
             <p>물론 규칙이 조금 많긴 합니다 ㅎㅎ..</p>
         </figcaption>
@@ -284,7 +283,7 @@ $$</p>
 <p>대표적인 CAS로는 Mathematica, Matlab, Maple 등의 상업용 프로그램들과 Python으로 구현된 Sympy, Sagemath 등의 무료 프로그램 혹은 라이브러리가 있습니다.
 CAS는 실제로 인간이 하는 것처럼 미분, 적분, 대수 뿐 아니라 심지어 미분기하 등의 고급 수학 문제까지도 풀어낼 수 있습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/sage_manifolds.png"
+    <img src="/posts/images/sage_manifolds.png"
          alt="무려 이름도 SageManifolds 입니다."/> <figcaption style="text-align:center">
             <p>무려 이름도 SageManifolds 입니다.</p>
         </figcaption>
@@ -297,20 +296,20 @@ CAS는 실제로 인간이 하는 것처럼 미분, 적분, 대수 뿐 아니라
 </span></span></code></pre></div><p>정확할 뿐만 아니라 간단하기까지 하니 더 이상 수치적 미분을 고집할 이유는 없어보입니다. 하지만 이렇게 엄청난 CAS에도 치명적인 단점이 존재합니다. 바로 속도입니다.
 기호적 미분 자체는 계산 속도가 빠를 수 있지만 그것에 수치 값들을 대입할 때 현저하게 속도 저하가 일어납니다. 아래는 간단한 미분 계산에 크기가 큰 배열 값을 대입하여 성능을 측정한 결과입니다. Peroxide는 Rust의 수치계산 라이브러리 이름이며 후에 다룰 자동미분 알고리즘을 적용하여 계산을 수행하였고, numpy는 Python의 유명한 수치계산 라이브러리로 수치적 미분으로 계산하였습니다. 마지막으로 Sagemath는 기호적 미분으로 계산 후 수치 값을 대입하여 결과를 구했습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/plot.png"
+    <img src="/posts/images/plot.png"
          alt="Linear scale 그래프입니다."/> <figcaption style="text-align:center">
             <p>Linear scale 그래프입니다.</p>
         </figcaption>
 </figure>
 <figure>
-    <img src="https://axect.github.io/posts/images/logplot.png"
+    <img src="/posts/images/logplot.png"
          alt="Log scale 그래프입니다."/> <figcaption style="text-align:center">
             <p>Log scale 그래프입니다.</p>
         </figcaption>
 </figure>
 <p>물론 어떤 알고리즘을 사용했는지에 따라 실제 수치 계산에서의 결과는 조금 다를 수 있습니다. 다음은 Julia 언어 팀에서 실시한 Benchmark 결과입니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/benchmarks.svg"
+    <img src="/posts/images/benchmarks.svg"
          alt="Log scale임을 참고하여 보시기 바랍니다. (출처: https://julialang.org/benchmarks/)"/> <figcaption style="text-align:center">
             <p>Log scale임을 참고하여 보시기 바랍니다. (출처: <a href="https://julialang.org/benchmarks/">https://julialang.org/benchmarks/</a>)</p>
         </figcaption>
@@ -333,8 +332,8 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> init_state: <span style="color:#a6e22e">State</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> State::new(
 </span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0.0</span>,
-</span></span><span style="display:flex;"><span>        vec![<span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>],
-</span></span><span style="display:flex;"><span>        vec![<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>],
 </span></span><span style="display:flex;"><span>    );
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    ex_test
@@ -353,11 +352,11 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> results2 <span style="color:#f92672">=</span> ex_test2.integrate();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df_euler <span style="color:#f92672">=</span> DataFrame::from_matrix(results);
-</span></span><span style="display:flex;"><span>    df_euler.set_header(vec![<span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;y&#34;</span>, <span style="color:#e6db74">&#34;z&#34;</span>]);
+</span></span><span style="display:flex;"><span>    df_euler.set_header(<span style="color:#a6e22e">vec!</span>[<span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;y&#34;</span>, <span style="color:#e6db74">&#34;z&#34;</span>]);
 </span></span><span style="display:flex;"><span>    df_euler.print();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df_rk4 <span style="color:#f92672">=</span> DataFrame::from_matrix(results2);
-</span></span><span style="display:flex;"><span>    df_rk4.set_header(vec![<span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;y&#34;</span>, <span style="color:#e6db74">&#34;z&#34;</span>]);
+</span></span><span style="display:flex;"><span>    df_rk4.set_header(<span style="color:#a6e22e">vec!</span>[<span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;y&#34;</span>, <span style="color:#e6db74">&#34;z&#34;</span>]);
 </span></span><span style="display:flex;"><span>    df_rk4.print();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    df_euler.write_nc(<span style="color:#e6db74">&#34;data/euler.nc&#34;</span>)<span style="color:#f92672">?</span>;
@@ -633,7 +632,7 @@ Mathematica도 행렬 계산은 BLAS를 이용하고 갖가지 탁월한 수치 
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.f98cc661e951f8e5f4dea3d8882a9d0048fdf0dd72c078de6d84f9f9ecc59b82656c195b73890fc781534a4daa1d8233c5562f57ff95b6b7dad75ec86cdd5904.js" integrity="sha512-&#43;YzGYelR&#43;OX03qPYiCqdAEj98N1ywHjebYT5&#43;ezFm4JlbBlbc4kPx4FTSk2qHYIzxVYvV/&#43;Vtrfa117IbN1ZBA=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

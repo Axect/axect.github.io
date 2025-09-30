@@ -27,17 +27,17 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -86,7 +86,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/en" style="text-decoration: none;">
+        <a href="/en" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -105,7 +105,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/en/about">About</a></li><li><a href="https://axect.github.io/en/posts">Blog</a></li><li><a href="https://axect.github.io/en/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/en/about">About</a></li><li><a href="/en/posts">Blog</a></li><li><a href="/en/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
@@ -224,9 +224,9 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
 
       <div class="post-content">
         <figure>
-    <img src="https://axect.github.io/posts/images/006_01_test_dist.png"
+    <img src="/posts/images/006_01_test_dist.png"
          alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
-            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="https://axect.github.io/en/#footnotes">${}^{[1]}$</a></p>
+            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="/en/#footnotes">${}^{[1]}$</a></p>
         </figcaption>
 </figure>
 <p>Suppose you&rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?</p>
@@ -235,14 +235,14 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involve
 <li><a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">Inverse Transform Sampling</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Rejection_sampling">Rejection Sampling</a></li>
 </ol>
-<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="https://axect.github.io/en/posts/006_prs/#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
+<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="/en/posts/006_prs/#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
 <hr>
 <h2 id="1-rejection-sampling">1. Rejection Sampling</h2>
 <p>  <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Rejection sampling</b>
 </span>, a.k.a. the acceptance-rejection method, employs a straightforward algorithm. To describe it, let&rsquo;s represent the target probability density function as $f(x)$. When direct sampling from $f(x)$ is not feasible, we introduce an auxiliary function $g(x)$, which is easy to sample from. For a chosen positive constant $M$, it&rsquo;s required that $f(x) \leq M \cdot g(x)$ across the domain of $x$. This relationship is depicted in the figure below:</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/006_02_rejection.svg"
+    <img src="/posts/images/006_02_rejection.svg"
          alt="A graph commonly seen in particle physics" width="80%" class="center"/> <figcaption style="text-align:center">
             <p>A graph commonly seen in particle physics</p>
         </figcaption>
@@ -286,7 +286,7 @@ P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g
 &amp;= \frac{1}{M} \int_{-\infty}^x f(y) \, dy
 \end{aligned}
 $$
-<!-- raw HTML omitted -->
+<br/>
 Now let&rsquo;s find the denominator:
 $$
 \begin{aligned}
@@ -300,8 +300,7 @@ Finally, by dividing the numerator by the denominator, we get:
 $$
 P(X \leq x) = \int_{-\infty}^x f(y) \, dy
 $$
-This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p>
-</blockquote>
+This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p></blockquote>
 <p>Now that the mathematical proof is complete, let&rsquo;s write some code to see if this actually works well in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
@@ -315,7 +314,7 @@ This is the cumulative distribution function of $f(x)$. Thus, we can conclude th
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
@@ -338,7 +337,7 @@ This is the cumulative distribution function of $f(x)$. Thus, we can conclude th
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The algorithm itself is simple, so the code is very straightforward. However, despite that, the results are impressive.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/006_03_hist.png"
+    <img src="/posts/images/006_03_hist.png"
          alt="Result of rejection sampling" width="80%" class="center"/> <figcaption style="text-align:center">
             <p>Result of rejection sampling</p>
         </figcaption>
@@ -399,7 +398,7 @@ $$</p>
 <p>In essence, Max Pooling is a process that yields a simple function from measure theory, which is defined by distinct constant values on various intervals. Specifically, when applied to a function $f(x)$, Max Pooling divides the domain into $n$ bins and within each bin, it identifies the maximum value of $f(x)$. These maximum values are then used as the constant, representative values for their respective intervals, thereby transforming $f(x)$ into a simple function with a finite number of plateaus corresponding to the local maxima within each bin.
 When we apply this concept to our initial distribution, we can observe the following:</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/006_04_prs.svg"
+    <img src="/posts/images/006_04_prs.svg"
          alt="Max-pooling for Test Distribution" width="90%" class="center"/> <figcaption style="text-align:center">
             <p>Max-pooling for Test Distribution</p>
         </figcaption>
@@ -435,8 +434,7 @@ $$
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \cdot \Delta x_i \\
 &amp;= 1
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p>Sampling from a weighted uniform distribution is indeed straightforward, and the process is as follows:</p>
 <ol>
 <li>
@@ -480,8 +478,7 @@ $$
 P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \geq \frac{1}{M_\max \cdot \sum_{j} \Delta x_j}  = \frac{1}{M}
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p>The final part of the inequality references that the greatest value among the $M_i$ when multiplied by the total interval length is equal to $M$, aligning with the area under the curve of the original uniform distribution. This fact confirms that the acceptance rate for piecewise rejection sampling will always exceed that of a simple uniform distribution.</p>
 <p>To tackle the initial problem we introduced, we&rsquo;ll employ piecewise rejection sampling. The algorithm for this has been integrated into the Rust numerical library <a href="https://github.com/Axect/Peroxide">Peroxide</a>, which we will utilize for our solution. Using this library streamlines the process, allowing us to efficiently apply the piecewise rejection sampling method we&rsquo;ve outlined.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
@@ -506,7 +503,7 @@ $$</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);
 </span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
 </span></span><span style="display:flex;"><span>    df.write_parquet(
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
@@ -515,7 +512,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>If you plot the data in a histogram, it looks like this:</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/006_05_hist.png"
+    <img src="/posts/images/006_05_hist.png"
          alt="Finally, we get samples!"/> <figcaption style="text-align:center">
             <p>Finally, we get samples!</p>
         </figcaption>
@@ -736,7 +733,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.f98cc661e951f8e5f4dea3d8882a9d0048fdf0dd72c078de6d84f9f9ecc59b82656c195b73890fc781534a4daa1d8233c5562f57ff95b6b7dad75ec86cdd5904.js" integrity="sha512-&#43;YzGYelR&#43;OX03qPYiCqdAEj98N1ywHjebYT5&#43;ezFm4JlbBlbc4kPx4FTSk2qHYIzxVYvV/&#43;Vtrfa117IbN1ZBA=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

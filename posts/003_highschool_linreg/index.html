@@ -35,17 +35,17 @@
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -102,7 +102,7 @@
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/" style="text-decoration: none;">
+        <a href="/" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -121,7 +121,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/about">About</a></li><li><a href="https://axect.github.io/posts">Blog</a></li><li><a href="https://axect.github.io/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
@@ -255,7 +255,7 @@
 
       <div class="post-content">
         <figure>
-    <img src="https://axect.github.io/posts/images/breakthrough2016.gif"
+    <img src="/posts/images/breakthrough2016.gif"
          alt="2016 Breakthrough of the year"/> <figcaption style="text-align:center">
             <p><a href="https://www.youtube.com/watch?v=2ncTCM7t79o">2016 Breakthrough of the year</a></p>
         </figcaption>
@@ -291,8 +291,7 @@
 <p><strong>이해하기 위해 필요한 개념</strong></p>
 <ul>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <h3 id="11-기본-표기법">1.1. 기본 표기법</h3>
 <p>  MLE를 시작하기에 앞서 고등학교때 배운 확률과 통계를 이용하여 데이터를 표현하는 것부터 연습하겠습니다. 표기 방식은 아주 유명한 머신러닝 책인 <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Bishop의 PRML(Pattern Recognition and Machine Learning; 패턴인식과 머신러닝)에서 사용하는 표기법</b>
@@ -370,8 +369,7 @@ $$p(x) = \text{Bin}(x | 720,\frac{1}{6})$$
 $$p(x) \simeq \mathcal{N}(x | 120, 10^2)$$
 이때, 140번 이상 나올 확률을 나타내고, 표준화하는 과정은 다음과 같다.
 $$p(x \geq 300) = p(z \geq \frac{140 - 120}{10}) = p(z \geq 2)$$
-이를 표준정규분포표로 계산하면 $0.0228$이 나온다.</p>
-</blockquote>
+이를 표준정규분포표로 계산하면 $0.0228$이 나온다.</p></blockquote>
 <p>언뜻보면 위 문제는 720번의 시행이 전제되어있으므로 데이터를 다루는 것처럼 보입니다. 그리고 문제를 풀때에는 오로지 단일 확률변수만 사용하고 있습니다. 고교에서는 이런 문제들만 다루기에 데이터를 다루는데에 여러가지 확률변수가 필요하다는 것을 이해하기가 어렵습니다.
 하지만, 위 문제는 전혀 데이터를 다룬 문제가 아닙니다. 오로지 정규분포에 근거한 수학적 확률을 묻는 문제일 뿐입니다. 실제 데이터를 다룬 이항분포 문제는 다음과 같습니다.</p>
 <center>
@@ -469,8 +467,7 @@ $$</p>
 <p><strong>이해하기 위해 필요한 개념</strong></p>
 <ul>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <p>   지금까지 데이터를 확률화하는 방법에 대해 알아보았으니, 이제 임의의 데이터를 어떻게 선형으로 근사할 수 있을지에 대해 알아보려합니다. 그러기 위해서는 반드시 알아야할 두 가지 중요한 확률 법칙이 있는데, <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>전체 확률의 법칙(전확률 정리)과 베이즈 정리</b>
 </span>입니다.</p>
@@ -480,14 +477,14 @@ $$</p>
     <b>파티션(Partition)</b>
 </span>을 찾아야 한다는 것입니다. 파티션이라는 이름은 들어보신 분도 있을 텐데, 아마 제일 잘 알려진 파티션은 아래 사진일 겁니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/partition1.jpg"
+    <img src="/posts/images/partition1.jpg"
          alt="회사 칸막이 (출처: PIXNIO)"/> <figcaption style="text-align:center">
             <p>회사 칸막이 (<a href="https://pixnio.com/ko/%EA%B0%80%EA%B5%AC/%EC%82%AC%EB%AC%B4%EC%8B%A4-%ED%8C%8C%ED%8B%B0%EC%85%98-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%98-%EC%9E%90-%EB%B2%BD-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EC%82%AC%EB%AC%B4%EC%8B%A4-%EC%82%AC">출처: PIXNIO</a>)</p>
         </figcaption>
 </figure>
 <p>그 외에도 디스크 파티션이나 공간을 분할하는 장식장 역할을 하는 파티션 등 여러 파티션들이 있는데, 이들은 모두 공통적인 성질을 가집니다. 바로, 어떤 것을 분리하여 나눈다는 것입니다. 통계에서의 파티션은 표본 공간을 전부 겹치지 않게 분할하는 사건들의 집합을 의미합니다. 아래 그림에서는 $A_1,\,A_2,\,A_3,\,A_4$가 $S$의 파티션입니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/partition.png"
+    <img src="/posts/images/partition.png"
          alt="통계에서의 파티션"/> <figcaption style="text-align:center">
             <p>통계에서의 파티션</p>
         </figcaption>
@@ -551,8 +548,7 @@ p(B) &amp;= p(A_1 \cap B) + p(A_2\cap B) + p(A_3 \cap B) \\
 &amp;= p(B|A_1)p(A_1) + p(B|A_2)p(A_2) + p(B|A_3)p(A_3) \\
 &amp;= 0.4 \times 0.2 + 0.5 \times 0.4 + 0.6 \times 0.4  = 0.52
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p> </p>
 <h3 id="23-베이즈-정리">2.3. 베이즈 정리</h3>
 <p>베이즈 정리는 전체 확률의 법칙의 다음 단계로 볼 수 있습니다. 위 문제에서 봤다시피, 보통 우리는 파티션을 전제했을 때, 다른 사건의 확률이나 비율($p(B|A_i)$)의 정보를 갖고 다른 확률을 계산합니다. 전체 확률의 법칙은 해당 사건의 확률($p(B)$)을 구하려는 것이었다면, 베이즈 정리는 반대로 해당 사건을 전제하였을 때의 파티션의 확률($p(A_i|B)$)을 구하는 것이 목적입니다. 이는 조건부 확률의 정의와 전체확률의 법칙을 이용하면 간단히 구할 수 있습니다.</p>
@@ -601,8 +597,7 @@ $$</p>
 <ul>
 <li>고교 교과과정 - 미적분</li>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <h3 id="31-노이즈-noise">3.1 노이즈 (Noise)</h3>
 <p>이번에도 고등학교 확률과 통계 문제로 예를 들면서 시작해봅시다.</p>
 <center>
@@ -622,11 +617,10 @@ $$
 $$
 p(X \geq a) = p(Z \geq \frac{a - 60}{20}) = 0.04 = p(Z \geq 1.75)
 $$
-따라서 $a=95$이다.</p>
-</blockquote>
+따라서 $a=95$이다.</p></blockquote>
 <p>문제는 쉬웠지만, 이것이 실제로 가능한 문제일까요? 만일, 본인 반의 평균과 표준편차를 알고 있다면 본인의 등급을 추정할 수 있을까요? 결론부터 말하자면, 불가능합니다. 이유는 수학 성적이 아무리 정규분포와 비슷하게 나오더라도 정확히 정규분포일 확률은 아주 작기 때문입니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/math_hist.png"
+    <img src="/posts/images/math_hist.png"
          alt="정확히 정규분포인 성적은 잘 나오지 않습니다."/> <figcaption style="text-align:center">
             <p>정확히 정규분포인 성적은 잘 나오지 않습니다.</p>
         </figcaption>
@@ -665,7 +659,7 @@ y = ax + b
 $$</p>
 <p>예를 들어, 데이터가 $(1,3), (2,5), (3,7)$로 주어졌으면, 관계식은 $y=2x+1$이 됩니다. 하지만, 앞서 말했듯이 모든 데이터에는 노이즈가 존재합니다. 보통 다음과 같은 데이터가 주어진다고 보면 됩니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/linear.png"
+    <img src="/posts/images/linear.png"
          alt="$y=2x&#43;1$에 노이즈를 더한 데이터"/> <figcaption style="text-align:center">
             <p>$y=2x+1$에 노이즈를 더한 데이터</p>
         </figcaption>
@@ -725,8 +719,7 @@ $$</p>
 \\
 \Rightarrow~&amp;\therefore a = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2}
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p>위 결과를 요약하면 다음과 같습니다.</p>
 <div class="notepaper">
     <br/>
@@ -762,8 +755,7 @@ $$</p>
 </ul>
 </li>
 <li>libnetcdf</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <p>필요한 데이터는 위에서 선형 모델을 설명하기 위해 추출하였던 데이터를 사용하겠습니다. 데이터 추출 코드는 부록에 수록해놓았습니다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Julia</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># https://git.io/Jm2gf</span>
@@ -840,7 +832,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;linear_reg.png&#34;</span>, dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
 </span></span></code></pre></div><p>이렇게 나온 그림은 다음과 같습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/linear_reg.png"
+    <img src="/posts/images/linear_reg.png"
          alt="드디어 선형 회귀!"/> <figcaption style="text-align:center">
             <p>드디어 선형 회귀!</p>
         </figcaption>
@@ -863,7 +855,7 @@ $$</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .filter(<span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> <span style="color:#f92672">*</span>x <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">f64</span>) <span style="color:#75715e">// 100점 이하만 채택
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .collect();
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);  <span style="color:#75715e">// 데이터프레임 생성
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);  <span style="color:#75715e">// 데이터프레임 생성
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    df.push(<span style="color:#e6db74">&#34;y&#34;</span>, Series::new(y));         <span style="color:#75715e">// y 입력
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    df.print();
@@ -1144,7 +1136,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.f98cc661e951f8e5f4dea3d8882a9d0048fdf0dd72c078de6d84f9f9ecc59b82656c195b73890fc781534a4daa1d8233c5562f57ff95b6b7dad75ec86cdd5904.js" integrity="sha512-&#43;YzGYelR&#43;OX03qPYiCqdAEj98N1ywHjebYT5&#43;ezFm4JlbBlbc4kPx4FTSk2qHYIzxVYvV/&#43;Vtrfa117IbN1ZBA=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

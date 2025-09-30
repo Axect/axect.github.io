@@ -25,17 +25,17 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -82,7 +82,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/en" style="text-decoration: none;">
+        <a href="/en" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -101,7 +101,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/en/about">About</a></li><li><a href="https://axect.github.io/en/posts">Blog</a></li><li><a href="https://axect.github.io/en/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/en/about">About</a></li><li><a href="/en/posts">Blog</a></li><li><a href="/en/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
@@ -219,7 +219,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
 
       <div class="post-content">
         <figure>
-    <img src="https://axect.github.io/posts/images/005_01_paper.png"
+    <img src="/posts/images/005_01_paper.png"
          alt="arXiv: 1511.06068"/> <figcaption style="text-align:center">
             <p><a href="https://arxiv.org/abs/1511.06068">arXiv: 1511.06068</a></p>
         </figcaption>
@@ -228,7 +228,7 @@ The most pervasive challenge in deep learning is Overfitting . This occurs when 
     <b>Overfitting</b>
 </span>. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_02_overfitting.png"
+    <img src="/posts/images/005_02_overfitting.png"
          alt="Bejani, M.M., Ghatee, M. A systematic review on overfitting control in shallow and deep neural networks. Artif Intell Rev 54, 6391-6438 (2021)"/> <figcaption style="text-align:center">
             <p>Bejani, M.M., Ghatee, M. <em>A systematic review on overfitting control in shallow and deep neural networks.</em> Artif Intell Rev 54, 6391-6438 (2021)</p>
         </figcaption>
@@ -279,7 +279,7 @@ $$</p>
 <p>  The discussion of correlation in the realm of deep learning arises from the issue that significant correlation among variables, or features, can be detrimental to a model&rsquo;s performance. Deep neural networks refine their learning by adjusting weights assigned to each feature; however, when two features yield identical information (high correlation), it creates redundancy. This redundancy can cause a form of degeneracy where altering the weights of either feature doesn&rsquo;t uniquely contribute to the learning process, which in turn can impede accurate learning and introduce bias into the neural network. The aforementioned paper posits that this redundancy is a contributing factor to overfitting.</p>
 <p>In fact, the study demonstrates that by defining the extent of overfitting as the discrepancy between training and validation accuracy and quantifying the level of decorrelation with a metric termed <code>DeCov</code>, a notable pattern emerges:</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_03_decov.png"
+    <img src="/posts/images/005_03_decov.png"
          alt="Correlation between Overfitting and Covariance"/> <figcaption style="text-align:center">
             <p>Correlation between Overfitting and Covariance</p>
         </figcaption>
@@ -309,7 +309,7 @@ $$</p>
 <h2 id="3-apply-to-regression">3. Apply to Regression</h2>
 <p>  In the original study, the authors applied their decorrelation technique to various sets of image data. However, to more clearly demonstrate its effectiveness, we&rsquo;ll apply it to a simple regression problem. Below is the dataset that will be used to train the neural network:</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_04_data.png"
+    <img src="/posts/images/005_04_data.png"
          alt="Nonlinear data [Note: Peroxide_Gallery]"/> <figcaption style="text-align:center">
             <p>Nonlinear data [Note: <a href="https://github.com/Axect/Peroxide_Gallery/tree/master/Machine_Learning/linear_reg_ridge">Peroxide_Gallery</a>]</p>
         </figcaption>
@@ -321,7 +321,7 @@ $$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeCovMLP</span>(pl<span style="color:#f92672">.</span>LightningModule):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_init <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
@@ -364,27 +364,27 @@ $$</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
 </span></span></code></pre></div><p>Upon closer examination, we observe that <code>loss_0</code> is defined as the loss after the initial layer <code>fc_init</code>, and <code>loss_1</code> as the loss after the subsequent three layers <code>fc_mid</code>. These losses are then integrated into the mean squared error (MSE) loss as regularization terms. Before delving into the outcomes, it&rsquo;s insightful to examine the training dynamics of <code>SimpleMLP</code> and <code>DeCovMLP</code>.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_07_SimpleMLP.png"
+    <img src="/posts/images/005_07_SimpleMLP.png"
          alt="SimpleMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
             <p>SimpleMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/2dx8i9b7?workspace=user-axect">wandb.ai</a>)</p>
         </figcaption>
 </figure>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_08_DeCovMLP.png"
+    <img src="/posts/images/005_08_DeCovMLP.png"
          alt="DeCovMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
             <p>DeCovMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/22ggcfkd?workspace=user-axect">wandb.ai</a>)</p>
         </figcaption>
 </figure>
 <p>In the <code>SimpleMLP</code> model, <code>decov_1</code> initially increases during training iterations and then plateaus, indicating no further decrease. Contrastingly, within the <code>DeCovMLP</code> model, <code>decov_1</code> consistently decreases, aligning with the paper&rsquo;s hypothesis: as overfitting intensifies, so does the correlation between features. Now, let&rsquo;s consider the results.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_05_total.png"
+    <img src="/posts/images/005_05_total.png"
          alt="Results!"/> <figcaption style="text-align:center">
             <p>Results!</p>
         </figcaption>
 </figure>
 <p>The red line represents the <code>SimpleMLP</code> outcome, while the blue line depicts <code>DeCovMLP</code>. Noticeably, the red line exhibits overfitting with erratic fluctuations, whereas the blue line maintains closer alignment with the <code>true</code> data and exhibits less jitter. This demonstrates a remarkable improvement, and further extrapolation yields even more compelling insights.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/005_06_extrapolate.png"
+    <img src="/posts/images/005_06_extrapolate.png"
          alt="Extrapolate!"/> <figcaption style="text-align:center">
             <p>Extrapolate!</p>
         </figcaption>
@@ -401,8 +401,13 @@ $$</p>
     </blockquote>
 </div>
 </center>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<!-- Short Name | Description | Where | Reference
+:--------: | :---------: | :---: | :-------:
+Dropout | Drops random neurons | Internal | [JMLR 15, 1 (2014)](https://jmlr.org/papers/v15/srivastava14a.html)
+AutoAugment | Learns how to provide better data augmentation based on information from the training data set | Input | [arXiv: 1805.09501](https://arxiv.org/abs/1805.09501)
+DropBlock | Drops entire regions from a tensor | Internal | [arXiv: 1810.12890](https://arxiv.org/abs/1810.12890)
+Batch Augment | Increases the size of the mini-Batch | Input | [arXiv: 1901.09335](https://arxiv.org/abs/1901.09335)
+Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: ] -->
 
       </div>
     </article>
@@ -604,7 +609,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.f98cc661e951f8e5f4dea3d8882a9d0048fdf0dd72c078de6d84f9f9ecc59b82656c195b73890fc781534a4daa1d8233c5562f57ff95b6b7dad75ec86cdd5904.js" integrity="sha512-&#43;YzGYelR&#43;OX03qPYiCqdAEj98N1ywHjebYT5&#43;ezFm4JlbBlbc4kPx4FTSk2qHYIzxVYvV/&#43;Vtrfa117IbN1ZBA=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

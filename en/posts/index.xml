@@ -91,7 +91,7 @@ P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g
 &amp;= \frac{1}{M} \int_{-\infty}^x f(y) \, dy
 \end{aligned}
 $$
-<!-- raw HTML omitted -->
+<br/>
 Now let&rsquo;s find the denominator:
 $$
 \begin{aligned}
@@ -105,8 +105,7 @@ Finally, by dividing the numerator by the denominator, we get:
 $$
 P(X \leq x) = \int_{-\infty}^x f(y) \, dy
 $$
-This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p>
-</blockquote>
+This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p></blockquote>
 <p>Now that the mathematical proof is complete, let&rsquo;s write some code to see if this actually works well in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
@@ -120,7 +119,7 @@ This is the cumulative distribution function of $f(x)$. Thus, we can conclude th
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
@@ -240,8 +239,7 @@ $$
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \cdot \Delta x_i \\
 &amp;= 1
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p>Sampling from a weighted uniform distribution is indeed straightforward, and the process is as follows:</p>
 <ol>
 <li>
@@ -285,8 +283,7 @@ $$
 P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \geq \frac{1}{M_\max \cdot \sum_{j} \Delta x_j}  = \frac{1}{M}
 \end{aligned}
-$$</p>
-</blockquote>
+$$</p></blockquote>
 <p>The final part of the inequality references that the greatest value among the $M_i$ when multiplied by the total interval length is equal to $M$, aligning with the area under the curve of the original uniform distribution. This fact confirms that the acceptance rate for piecewise rejection sampling will always exceed that of a simple uniform distribution.</p>
 <p>To tackle the initial problem we introduced, we&rsquo;ll employ piecewise rejection sampling. The algorithm for this has been integrated into the Rust numerical library <a href="https://github.com/Axect/Peroxide">Peroxide</a>, which we will utilize for our solution. Using this library streamlines the process, allowing us to efficiently apply the piecewise rejection sampling method we&rsquo;ve outlined.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
@@ -311,7 +308,7 @@ $$</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);
 </span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
 </span></span><span style="display:flex;"><span>    df.write_parquet(
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
@@ -463,7 +460,7 @@ $$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeCovMLP</span>(pl<span style="color:#f92672">.</span>LightningModule):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_init <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
@@ -543,8 +540,13 @@ $$</p>
     </blockquote>
 </div>
 </center>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<!-- Short Name | Description | Where | Reference
+:--------: | :---------: | :---: | :-------:
+Dropout | Drops random neurons | Internal | [JMLR 15, 1 (2014)](https://jmlr.org/papers/v15/srivastava14a.html)
+AutoAugment | Learns how to provide better data augmentation based on information from the training data set | Input | [arXiv: 1805.09501](https://arxiv.org/abs/1805.09501)
+DropBlock | Drops entire regions from a tensor | Internal | [arXiv: 1810.12890](https://arxiv.org/abs/1810.12890)
+Batch Augment | Increases the size of the mini-Batch | Input | [arXiv: 1901.09335](https://arxiv.org/abs/1901.09335)
+Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: ] -->
 ]]></content>
         </item>
         

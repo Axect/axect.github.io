@@ -26,17 +26,17 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
 
 
 
-<link rel="stylesheet" href="https://axect.github.io/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
 
 
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://axect.github.io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://axect.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://axect.github.io/favicon-16x16.png">
-    <link rel="manifest" href="https://axect.github.io/site.webmanifest">
-    <link rel="mask-icon" href="https://axect.github.io/safari-pinned-tab.svg" color="#1b1c1d">
-    <link rel="shortcut icon" href="https://axect.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="msapplication-TileColor" content="#1b1c1d">
     <meta name="theme-color" content="#1b1c1d">
 
@@ -84,7 +84,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="https://axect.github.io/" style="text-decoration: none;">
+        <a href="/" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -103,7 +103,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://axect.github.io/about">About</a></li><li><a href="https://axect.github.io/posts">Blog</a></li><li><a href="https://axect.github.io/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
@@ -198,7 +198,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
           <nav id="TableOfContents">
   <ul>
     <li><a href="#1-cargo-add">1. <strong><code>cargo add</code></strong></a></li>
-    <li><a href="#2-default-enum">2. <strong><code>[default]</code> enum</strong></a></li>
+    <li><a href="#2-default">2. <strong><code>[default]</code> enum</strong></a></li>
     <li><a href="#3-total-order-for-floating-point-numbers">3. Total Order for Floating point numbers</a></li>
   </ul>
 </nav>
@@ -209,7 +209,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
 
       <div class="post-content">
         <figure>
-    <img src="https://axect.github.io/posts/images/rustacean.svg"
+    <img src="/posts/images/rustacean.svg"
          alt="Ferris the crab" width="2000"/> <figcaption style="text-align:center">
             <p><a href="https://rustacean.net/">Ferris the crab</a></p>
         </figcaption>
@@ -226,48 +226,48 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
     <b>cargo add</b>
 </span></code> 였습니다. 원래는 <code>Cargo.toml</code>에서 항상 직접 crate들을 손으로 추가해줬어야 하지만, 이제 Terminal에서 <code>cargo add CRATE_NAME</code>을 입력하면 crate들이 자동으로 추가가 됩니다. 이를 직접 해보기 위하여 다음과 같이 프로젝트를 하나 만들어봅시다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_01_terminal.png"
+    <img src="/posts/images/004_01_terminal.png"
          alt="crate 만들기"/> <figcaption style="text-align:center">
             <p>crate 만들기</p>
         </figcaption>
 </figure>
 <p>이렇게 하면 <code>rust_1_62_0</code>이라는 폴더가 생성되고 그 안에 <code>src/main.rs</code> 파일과 <code>Cargo.toml</code>이 생성됩니다. 이제 폴더에 들어가서 <code>Cargo.toml</code> 파일을 열어봅시다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_02_cargo.png"
+    <img src="/posts/images/004_02_cargo.png"
          alt="Cargo.toml"/> <figcaption style="text-align:center">
             <p>Cargo.toml</p>
         </figcaption>
 </figure>
 <p>아직 <code>[dependencies]</code>에 아무것도 추가가 되지 않은 상태인 것을 볼 수 있습니다. 원래는 다른 crate를 쓰기 위하여 여기에 직접 추가해줘야 했지만, 이제 <code>cargo add</code> 명령어로 간단히 추가할 수 있습니다. 여기서는 Rust 수치계산 라이브러리인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>를 추가해보겠습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_03_cargo_add.png"
+    <img src="/posts/images/004_03_cargo_add.png"
          alt="cargo add peroxide"/> <figcaption style="text-align:center">
             <p>cargo add peroxide</p>
         </figcaption>
 </figure>
 <p>이제 <code>Cargo.toml</code>을 다시 살펴보면 다음과 같이 추가되어 있는 것을 볼 수 있습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_04_cargo_after_add.png"
+    <img src="/posts/images/004_04_cargo_after_add.png"
          alt="Revisit Cargo.toml"/> <figcaption style="text-align:center">
             <p>Revisit Cargo.toml</p>
         </figcaption>
 </figure>
 <p>이 뿐만 아니라 <code>cargo add</code>는 crate를 불러올 때, 특정 <code>features</code>를 선택하여 불러올 수 있습니다. Peroxide를 추가하되, netcdf 형식 파일들의 I/O를 사용하게 해주는 <code>nc</code> feature를 선택하여 추가해봅시다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_05_cargo_add_features.png"
+    <img src="/posts/images/004_05_cargo_add_features.png"
          alt="cargo add peroxide &ndash;features nc"/> <figcaption style="text-align:center">
             <p>cargo add peroxide &ndash;features nc</p>
         </figcaption>
 </figure>
 <p>이제 다시 <code>Cargo.toml</code>를 보면 다음과 같이 바뀐 것을 볼 수 있습니다.</p>
 <figure>
-    <img src="https://axect.github.io/posts/images/004_06_cargo_after_add_features.png"
+    <img src="/posts/images/004_06_cargo_after_add_features.png"
          alt="Revisit Cargo.toml again"/> <figcaption style="text-align:center">
             <p>Revisit Cargo.toml again</p>
         </figcaption>
 </figure>
 <hr>
-<h2 id="2-default-enum">2. <strong><code>[default]</code> enum</strong></h2>
+<h2 id="2-default">2. <strong><code>[default]</code> enum</strong></h2>
 <p>  Rust에서 <code>#[derive(...)]</code> 구문은 <code>struct</code>에 <code>trait</code>을 코드없이 구현하게 해주는 아주 편리한 구문입니다. 예를 들어 이차원 벡터 구조체를 만든다면 다음과 같이 구현할 수 있습니다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Clone, Copy, Default)]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vec2D</span> {
@@ -277,7 +277,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
 </span></span></code></pre></div><p>이렇게 구현하면 <code>Vec2D</code> 구조체는 <code>.clone()</code>과 <code>::default()</code> method를 갖게 되고, 소유권 전달 없이 복사가 가능해집니다. 이것이 가능한 이유는 <code>x</code>와 <code>y</code> 둘 모두 이미 <code>Clone, Copy, Default</code>가 구현되어 있는 <code>f64</code>타입이기 때문입니다. 이제 다음 코드를 실행해보면 실제로 <code>default</code> method의 결과를 확인해볼 수 있습니다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> p <span style="color:#f92672">=</span> Vec2D::default();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{:?}</span><span style="color:#e6db74">&#34;</span>, p);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{:?}</span><span style="color:#e6db74">&#34;</span>, p);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: Vec2D { x: 0.0, y: 0.0 }
 </span></span></span></code></pre></div><p>그런데 그동안 Rust에서는 <code>Enum</code> 만큼은 <code>#[derive(Default)]</code>를 사용할 수 없었습니다. 따라서 <code>Enum</code>에서 <code>Default</code>를 구현할때에는 항상 다음과 같이 명시적으로 구현해주어야 했습니다.</p>
@@ -331,7 +331,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, <span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#f92672">-</span><span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">INFINITY</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NEG_INFINITY</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, <span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#f92672">-</span><span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NAN</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">INFINITY</span>, <span style="color:#66d9ef">f64</span>::<span style="color:#66d9ef">NEG_INFINITY</span>];
 </span></span><span style="display:flex;"><span>    x.sort_by(<span style="color:#f92672">|</span>a, b<span style="color:#f92672">|</span> a.total_cmp(b));
 </span></span><span style="display:flex;"><span>    x.print();
 </span></span><span style="display:flex;"><span>}
@@ -552,7 +552,7 @@ Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly �
 
 
 
-<script type="text/javascript" src="https://axect.github.io/bundle.min.f98cc661e951f8e5f4dea3d8882a9d0048fdf0dd72c078de6d84f9f9ecc59b82656c195b73890fc781534a4daa1d8233c5562f57ff95b6b7dad75ec86cdd5904.js" integrity="sha512-&#43;YzGYelR&#43;OX03qPYiCqdAEj98N1ywHjebYT5&#43;ezFm4JlbBlbc4kPx4FTSk2qHYIzxVYvV/&#43;Vtrfa117IbN1ZBA=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 
