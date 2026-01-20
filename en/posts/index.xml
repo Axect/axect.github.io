@@ -15,19 +15,10 @@
             <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
             
             <guid>https://axect.github.io/en/posts/006_prs/</guid>
-            <description>&lt;figure&gt;
-    &lt;img src=&#34;https://axect.github.io/posts/images/006_01_test_dist.png&#34;
-         alt=&#34;Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
-            &lt;p&gt;Differential energy spectrum of ALPs from primordial black hole (PBH)&lt;a href=&#34;https://axect.github.io/en/#footnotes&#34;&gt;${}^{[1]}$&lt;/a&gt;&lt;/p&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?&lt;/p&gt;
-&lt;p&gt;Here are the two most commonly used methods to sample data from an arbitrary probability density function:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Inverse_transform_sampling&#34;&gt;Inverse Transform Sampling&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Rejection_sampling&#34;&gt;Rejection Sampling&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply&lt;a href=&#34;https://axect.github.io/en/posts/006_prs/#footnotes&#34;&gt;${}^{[2]}$&lt;/a&gt;. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&amp;rsquo;s form. Therefore, we&amp;rsquo;ll begin with Rejection Sampling.&lt;/p&gt;</description>
+            <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
+Here are the two most commonly used methods to sample data from an arbitrary probability density function:
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/006_01_test_dist.png"
          alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
@@ -105,7 +96,8 @@ Finally, by dividing the numerator by the denominator, we get:
 $$
 P(X \leq x) = \int_{-\infty}^x f(y) \, dy
 $$
-This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p></blockquote>
+This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p>
+</blockquote>
 <p>Now that the mathematical proof is complete, let&rsquo;s write some code to see if this actually works well in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
@@ -119,7 +111,7 @@ This is the cumulative distribution function of $f(x)$. Thus, we can conclude th
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
@@ -239,7 +231,8 @@ $$
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \cdot \Delta x_i \\
 &amp;= 1
 \end{aligned}
-$$</p></blockquote>
+$$</p>
+</blockquote>
 <p>Sampling from a weighted uniform distribution is indeed straightforward, and the process is as follows:</p>
 <ol>
 <li>
@@ -283,7 +276,8 @@ $$
 P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \geq \frac{1}{M_\max \cdot \sum_{j} \Delta x_j}  = \frac{1}{M}
 \end{aligned}
-$$</p></blockquote>
+$$</p>
+</blockquote>
 <p>The final part of the inequality references that the greatest value among the $M_i$ when multiplied by the total interval length is equal to $M$, aligning with the area under the curve of the original uniform distribution. This fact confirms that the acceptance rate for piecewise rejection sampling will always exceed that of a simple uniform distribution.</p>
 <p>To tackle the initial problem we introduced, we&rsquo;ll employ piecewise rejection sampling. The algorithm for this has been integrated into the Rust numerical library <a href="https://github.com/Axect/Peroxide">Peroxide</a>, which we will utilize for our solution. Using this library streamlines the process, allowing us to efficiently apply the piecewise rejection sampling method we&rsquo;ve outlined.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
@@ -308,7 +302,7 @@ $$</p></blockquote>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
 </span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
 </span></span><span style="display:flex;"><span>    df.write_parquet(
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
@@ -348,15 +342,8 @@ $$</p></blockquote>
             <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
             
             <guid>https://axect.github.io/en/posts/005_decov/</guid>
-            <description>&lt;figure&gt;
-    &lt;img src=&#34;https://axect.github.io/posts/images/005_01_paper.png&#34;
-         alt=&#34;arXiv: 1511.06068&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;
-            &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1511.06068&#34;&gt;arXiv: 1511.06068&lt;/a&gt;&lt;/p&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;  The most pervasive challenge in deep learning is &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;
-    &lt;b&gt;Overfitting&lt;/b&gt;
-&lt;/span&gt;. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.&lt;/p&gt;</description>
+            <description>arXiv: 1511.06068
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
             <content type="html"><![CDATA[<figure>
     <img src="/posts/images/005_01_paper.png"
          alt="arXiv: 1511.06068"/> <figcaption style="text-align:center">
@@ -460,7 +447,7 @@ $$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeCovMLP</span>(pl<span style="color:#f92672">.</span>LightningModule):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, hparams<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fc_init <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(

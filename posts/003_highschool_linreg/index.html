@@ -5,19 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
-<meta name="description" content=" 2016 Breakthrough of the year
+<meta name="description" content="2016 Breakthrough of the year
 세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
 1. 중력파 발견
-2. 외계행성 &lsquo;프록시마b&rsquo; 발견
-3. 인공지능 &lsquo;알파고&rsquo;와 이세돌 9단의 대결
+2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견
+3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결
 4. 세포 노화 및 회춘 연구
 5. 유인원의 마음 읽기 능력 연구
-6. 단백질 구조설계 기술
-7. 배아줄기세포로 만든 인공난자
-8. 초기 인류의 확산 경로 연구
-9. 휴대용 DNA 분석기
-10. 초박막 메타렌즈 기술
-" />
+6. 단백질 구조설계 기술" />
 <meta name="keywords" content=", statistics, julia" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -51,30 +46,23 @@
 
 
 
-
-  <meta itemprop="name" content="🏫 고등학교 수학으로 이해하는 선형회귀">
-  <meta itemprop="description" content="2016 Breakthrough of the year
+<meta itemprop="name" content="🏫 고등학교 수학으로 이해하는 선형회귀">
+<meta itemprop="description" content="2016 Breakthrough of the year
 세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
 1. 중력파 발견
-2. 외계행성 ‘프록시마b’ 발견
-3. 인공지능 ‘알파고’와 이세돌 9단의 대결
+2. 외계행성 &lsquo;프록시마b&rsquo; 발견
+3. 인공지능 &lsquo;알파고&rsquo;와 이세돌 9단의 대결
 4. 세포 노화 및 회춘 연구
 5. 유인원의 마음 읽기 능력 연구
-6. 단백질 구조설계 기술
-7. 배아줄기세포로 만든 인공난자
-8. 초기 인류의 확산 경로 연구
-9. 휴대용 DNA 분석기
-10. 초박막 메타렌즈 기술">
-  <meta itemprop="datePublished" content="2021-03-09T22:01:39+09:00">
-  <meta itemprop="dateModified" content="2021-03-09T22:01:39+09:00">
-  <meta itemprop="wordCount" content="3116">
-  <meta itemprop="image" content="https://axect.github.io/">
-  <meta itemprop="keywords" content="Statistics,Julia">
+6. 단백질 구조설계 기술"><meta itemprop="datePublished" content="2021-03-09T22:01:39+09:00" />
+<meta itemprop="dateModified" content="2021-03-09T22:01:39+09:00" />
+<meta itemprop="wordCount" content="3116"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="statistics,julia," />
 
 
 
 
-    <meta property="article:published_time" content="2021-03-09 22:01:39 &#43;0900 KST" />
+    <meta property="article:published_time" content="2021-03-09 22:01:39 &#43;0900 JST" />
 
 
 
@@ -291,56 +279,57 @@
 <p><strong>이해하기 위해 필요한 개념</strong></p>
 <ul>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <h3 id="11-기본-표기법">1.1. 기본 표기법</h3>
 <p>  MLE를 시작하기에 앞서 고등학교때 배운 확률과 통계를 이용하여 데이터를 표현하는 것부터 연습하겠습니다. 표기 방식은 아주 유명한 머신러닝 책인 <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Bishop의 PRML(Pattern Recognition and Machine Learning; 패턴인식과 머신러닝)에서 사용하는 표기법</b>
 </span>을 사용하겠습니다. 대부분 고등학교 표기방식과 동일합니다만, 조금의 차이가 있습니다. 저희가 사용할 표기법은 다음과 같습니다.</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">개념</th>
-          <th style="text-align: center">표기법</th>
-          <th style="text-align: center">고교 표기</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">단일 스칼라 확률변수</td>
-          <td style="text-align: center">$x \in \mathbb{R}$</td>
-          <td style="text-align: center">집합 $X$</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">확률분포함수</td>
-          <td style="text-align: center">$p(x) \geq 0$</td>
-          <td style="text-align: center">$P(X=x) \geq 0$</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">결합확률분포</td>
-          <td style="text-align: center">$p(x,y)$</td>
-          <td style="text-align: center">&ndash;</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">조건부확률분포</td>
-          <td style="text-align: center">$p(x | y)$</td>
-          <td style="text-align: center">&ndash;</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">균등분포</td>
-          <td style="text-align: center">$\text{Unif}(x|a,b)$</td>
-          <td style="text-align: center">&ndash;</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">이항분포</td>
-          <td style="text-align: center">$\text{Bin}(x|N, \mu)$</td>
-          <td style="text-align: center">$B(n, p)$</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">정규분포</td>
-          <td style="text-align: center">$\mathcal{N}(x|\mu,\sigma^2)$</td>
-          <td style="text-align: center">$N(m,\sigma^2)$</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:center">개념</th>
+<th style="text-align:center">표기법</th>
+<th style="text-align:center">고교 표기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">단일 스칼라 확률변수</td>
+<td style="text-align:center">$x \in \mathbb{R}$</td>
+<td style="text-align:center">집합 $X$</td>
+</tr>
+<tr>
+<td style="text-align:center">확률분포함수</td>
+<td style="text-align:center">$p(x) \geq 0$</td>
+<td style="text-align:center">$P(X=x) \geq 0$</td>
+</tr>
+<tr>
+<td style="text-align:center">결합확률분포</td>
+<td style="text-align:center">$p(x,y)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">조건부확률분포</td>
+<td style="text-align:center">$p(x | y)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">균등분포</td>
+<td style="text-align:center">$\text{Unif}(x|a,b)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">이항분포</td>
+<td style="text-align:center">$\text{Bin}(x|N, \mu)$</td>
+<td style="text-align:center">$B(n, p)$</td>
+</tr>
+<tr>
+<td style="text-align:center">정규분포</td>
+<td style="text-align:center">$\mathcal{N}(x|\mu,\sigma^2)$</td>
+<td style="text-align:center">$N(m,\sigma^2)$</td>
+</tr>
+</tbody>
 </table>
 <p>위에서 보면 알겠지만, 고등학교에서 다룬 확률분포함수는 오로지 단일 확률분포일뿐, 결합이나 조건부 등의 변수가 2개 이상인 확률분포함수는 다루지 않았습니다. 다만, 그에 상응하는 확률인 곱사건의 확률($P(A\cap B)$이나 조건부확률($P(A|B)$) 자체는 다루었으니 비슷한 맥락으로 접근하면 쉽게 이해할 수 있습니다. 예를 들어, 조건부확률분포와 결합확률분포 사이에는 다음의 관계식이 성립합니다.</p>
 <p>$$
@@ -369,7 +358,8 @@ $$p(x) = \text{Bin}(x | 720,\frac{1}{6})$$
 $$p(x) \simeq \mathcal{N}(x | 120, 10^2)$$
 이때, 140번 이상 나올 확률을 나타내고, 표준화하는 과정은 다음과 같다.
 $$p(x \geq 300) = p(z \geq \frac{140 - 120}{10}) = p(z \geq 2)$$
-이를 표준정규분포표로 계산하면 $0.0228$이 나온다.</p></blockquote>
+이를 표준정규분포표로 계산하면 $0.0228$이 나온다.</p>
+</blockquote>
 <p>언뜻보면 위 문제는 720번의 시행이 전제되어있으므로 데이터를 다루는 것처럼 보입니다. 그리고 문제를 풀때에는 오로지 단일 확률변수만 사용하고 있습니다. 고교에서는 이런 문제들만 다루기에 데이터를 다루는데에 여러가지 확률변수가 필요하다는 것을 이해하기가 어렵습니다.
 하지만, 위 문제는 전혀 데이터를 다룬 문제가 아닙니다. 오로지 정규분포에 근거한 수학적 확률을 묻는 문제일 뿐입니다. 실제 데이터를 다룬 이항분포 문제는 다음과 같습니다.</p>
 <center>
@@ -377,28 +367,28 @@ $$p(x \geq 300) = p(z \geq \frac{140 - 120}{10}) = p(z \geq 2)$$
     <blockquote>
         <p style="text-align:left"><p>Q. 주사위를 120번 던지는 시행을 6번 반복하여 1의 눈이 나온 데이터는 다음과 같다.</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">시행</th>
-          <th style="text-align: center">1</th>
-          <th style="text-align: center">2</th>
-          <th style="text-align: center">3</th>
-          <th style="text-align: center">4</th>
-          <th style="text-align: center">5</th>
-          <th style="text-align: center">6</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">횟수</td>
-          <td style="text-align: center">10</td>
-          <td style="text-align: center">23</td>
-          <td style="text-align: center">18</td>
-          <td style="text-align: center">15</td>
-          <td style="text-align: center">26</td>
-          <td style="text-align: center">21</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:center">시행</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">횟수</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">21</td>
+</tr>
+</tbody>
 </table>
 <p>이를 이용하여 주사위를 720번 던졌을 때, 1의 눈이 140번 이상 나올 확률을 계산하시오.</p>
 </p>
@@ -467,7 +457,8 @@ $$</p>
 <p><strong>이해하기 위해 필요한 개념</strong></p>
 <ul>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>   지금까지 데이터를 확률화하는 방법에 대해 알아보았으니, 이제 임의의 데이터를 어떻게 선형으로 근사할 수 있을지에 대해 알아보려합니다. 그러기 위해서는 반드시 알아야할 두 가지 중요한 확률 법칙이 있는데, <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>전체 확률의 법칙(전확률 정리)과 베이즈 정리</b>
 </span>입니다.</p>
@@ -548,7 +539,8 @@ p(B) &amp;= p(A_1 \cap B) + p(A_2\cap B) + p(A_3 \cap B) \\
 &amp;= p(B|A_1)p(A_1) + p(B|A_2)p(A_2) + p(B|A_3)p(A_3) \\
 &amp;= 0.4 \times 0.2 + 0.5 \times 0.4 + 0.6 \times 0.4  = 0.52
 \end{aligned}
-$$</p></blockquote>
+$$</p>
+</blockquote>
 <p> </p>
 <h3 id="23-베이즈-정리">2.3. 베이즈 정리</h3>
 <p>베이즈 정리는 전체 확률의 법칙의 다음 단계로 볼 수 있습니다. 위 문제에서 봤다시피, 보통 우리는 파티션을 전제했을 때, 다른 사건의 확률이나 비율($p(B|A_i)$)의 정보를 갖고 다른 확률을 계산합니다. 전체 확률의 법칙은 해당 사건의 확률($p(B)$)을 구하려는 것이었다면, 베이즈 정리는 반대로 해당 사건을 전제하였을 때의 파티션의 확률($p(A_i|B)$)을 구하는 것이 목적입니다. 이는 조건부 확률의 정의와 전체확률의 법칙을 이용하면 간단히 구할 수 있습니다.</p>
@@ -597,7 +589,8 @@ $$</p>
 <ul>
 <li>고교 교과과정 - 미적분</li>
 <li>고교 교과과정 - 확률과 통계</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <h3 id="31-노이즈-noise">3.1 노이즈 (Noise)</h3>
 <p>이번에도 고등학교 확률과 통계 문제로 예를 들면서 시작해봅시다.</p>
 <center>
@@ -617,7 +610,8 @@ $$
 $$
 p(X \geq a) = p(Z \geq \frac{a - 60}{20}) = 0.04 = p(Z \geq 1.75)
 $$
-따라서 $a=95$이다.</p></blockquote>
+따라서 $a=95$이다.</p>
+</blockquote>
 <p>문제는 쉬웠지만, 이것이 실제로 가능한 문제일까요? 만일, 본인 반의 평균과 표준편차를 알고 있다면 본인의 등급을 추정할 수 있을까요? 결론부터 말하자면, 불가능합니다. 이유는 수학 성적이 아무리 정규분포와 비슷하게 나오더라도 정확히 정규분포일 확률은 아주 작기 때문입니다.</p>
 <figure>
     <img src="/posts/images/math_hist.png"
@@ -627,24 +621,24 @@ $$
 </figure>
 <p>실제로 표본이 엄청나게 많은 수능 성적조차 정확히 정규분포를 따르지 않습니다. 위 문제처럼 등급컷을 추론해보아도 실제 등급컷과는 괴리를 보이죠. 2019년 11월 14일에 치뤄진 2020년 수능 국어에 대한 데이터는 다음과 같았습니다.${}^{[2]}$</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">시험</th>
-          <th style="text-align: center">과목</th>
-          <th style="text-align: center">평균</th>
-          <th style="text-align: center">표준편차</th>
-          <th style="text-align: center">1등급 컷</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">2020 수능</td>
-          <td style="text-align: center">국어</td>
-          <td style="text-align: center">59.87</td>
-          <td style="text-align: center">20.22</td>
-          <td style="text-align: center">91</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:center">시험</th>
+<th style="text-align:center">과목</th>
+<th style="text-align:center">평균</th>
+<th style="text-align:center">표준편차</th>
+<th style="text-align:center">1등급 컷</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2020 수능</td>
+<td style="text-align:center">국어</td>
+<td style="text-align:center">59.87</td>
+<td style="text-align:center">20.22</td>
+<td style="text-align:center">91</td>
+</tr>
+</tbody>
 </table>
 <p>이를 정규분포로 바꾸어 91점 이상인 학생들의 비율을 계산하면 $0.062$, 즉, 6.2%가 나옵니다. 95점 이상인 학생들의 비율을 계산해야 비로소 $0.0412$ 정도로 나오므로 만일, 2020 수능 국어가 정규분포를 따랐다면 95점이 1등급 컷 점수였어야 합니다. 사실 수능까지도 갈 필요가 없고 주사위를 던져서 1의 눈의 수를 확인한다고 해봐도 정확히 이항분포를 따르지 않는 것을 볼 수 있습니다. 이렇게 통계학에서는 실제 값과 이론 값은 딱히 다른 요인이 없어도 차이를 보이게 되는데, 이때의 차이를 <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>노이즈(Noise)</b>
@@ -719,7 +713,8 @@ $$</p>
 \\
 \Rightarrow~&amp;\therefore a = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2}
 \end{aligned}
-$$</p></blockquote>
+$$</p>
+</blockquote>
 <p>위 결과를 요약하면 다음과 같습니다.</p>
 <div class="notepaper">
     <br/>
@@ -755,7 +750,8 @@ $$</p>
 </ul>
 </li>
 <li>libnetcdf</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>필요한 데이터는 위에서 선형 모델을 설명하기 위해 추출하였던 데이터를 사용하겠습니다. 데이터 추출 코드는 부록에 수록해놓았습니다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Julia</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># https://git.io/Jm2gf</span>
@@ -855,7 +851,7 @@ $$</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .filter(<span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> <span style="color:#f92672">*</span>x <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">f64</span>) <span style="color:#75715e">// 100점 이하만 채택
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .collect();
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);  <span style="color:#75715e">// 데이터프레임 생성
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);  <span style="color:#75715e">// 데이터프레임 생성
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    df.push(<span style="color:#e6db74">&#34;y&#34;</span>, Series::new(y));         <span style="color:#75715e">// y 입력
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    df.print();
@@ -925,7 +921,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>writenc(df, <span style="color:#e6db74">&#34;linear.nc&#34;</span>)
 </span></span></code></pre></div><hr>
 <h2 id="출처">출처</h2>
-<p>[1] : <a href="http://m.seoul.co.kr/news/newsView.php?cp=seoul&amp;id=20161223011007">서울신문 - 올해의 과학 성과 1위는 &lsquo;중력파&rsquo; 탐지</a></p>
+<p>[1] : <a href="http://m.seoul.co.kr/news/newsView.php?cp=seoul&id=20161223011007">서울신문 - 올해의 과학 성과 1위는 &lsquo;중력파&rsquo; 탐지</a></p>
 <p>[2] : <a href="https://www.megastudy.net/Entinfo/service_p/rank_cut/jungsi_real.asp">메가스터디 - 역대 등급컷 공개</a></p>
 <ul>
 <li>C. Bishop, <em>Pattern Recognition and Machine Learning (Information Science and Statistics)</em>, Springer-Verlag, 2006</li>
@@ -1136,7 +1132,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
 
 
 

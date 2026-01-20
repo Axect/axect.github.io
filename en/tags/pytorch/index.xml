@@ -4,7 +4,7 @@
     <title>Pytorch on Axect&#39;s Blog</title>
     <link>https://axect.github.io/en/tags/pytorch/</link>
     <description>Recent content in Pytorch on Axect&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 29 Oct 2022 17:39:54 +0900</lastBuildDate>
@@ -14,7 +14,7 @@
       <link>https://axect.github.io/en/posts/005_decov/</link>
       <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
       <guid>https://axect.github.io/en/posts/005_decov/</guid>
-      <description>&lt;figure&gt;&#xA;    &lt;img src=&#34;https://axect.github.io/posts/images/005_01_paper.png&#34;&#xA;         alt=&#34;arXiv: 1511.06068&#34;/&gt; &lt;figcaption style=&#34;text-align:center&#34;&gt;&#xA;            &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1511.06068&#34;&gt;arXiv: 1511.06068&lt;/a&gt;&lt;/p&gt;&#xA;        &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;  The most pervasive challenge in deep learning is &lt;span style=&#34;background-color: rgba(255, 255, 0, 0.534);&#34;&gt;&#xA;    &lt;b&gt;Overfitting&lt;/b&gt;&#xA;&lt;/span&gt;. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.&lt;/p&gt;</description>
+      <description>arXiv: 1511.06068&#xA;The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
     </item>
   </channel>
 </rss>
