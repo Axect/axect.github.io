@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
+일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다." />
+<meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust, statistics, piecewise rejection sampling" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/kr/posts/006_prs/" />
+
+
+    <title>
+        
+            📊 Piecewise Rejection Sampling :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="📊 Piecewise Rejection Sampling">
+<meta itemprop="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
+일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다."><meta itemprop="datePublished" content="2022-11-18T17:49:04+09:00" />
+<meta itemprop="dateModified" content="2022-11-18T17:49:04+09:00" />
+<meta itemprop="wordCount" content="1877"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="statistics,piecewise rejection sampling," />
+
+
+
+
+    <meta property="article:published_time" content="2022-11-18 17:49:04 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/kr/posts/006_prs/" />
+<meta property="og:title" content="📊 Piecewise Rejection Sampling | Axect&#39;s Blog" />
+<meta property="og:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
+일단, 임의의 확률밀도함 …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/kr/posts/006_prs/" />
+<meta name="twitter:title" content="📊 Piecewise Rejection Sampling" />
+<meta name="twitter:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
+일단, 임의의 확률밀도함 …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "📊 Piecewise Rejection Sampling",
+  "datePublished": "2022-11-18T17:49:04\u002b09:00",
+  "dateModified": "2022-11-18T17:49:04\u002b09:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim",
+    "url": "https:\/\/axect.github.io\/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim"
+  },
+  "description": "Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$\n누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?\n일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.\nInverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.",
+  "url": "https:\/\/axect.github.io\/kr\/posts\/006_prs\/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/axect.github.io\/kr\/posts\/006_prs\/"
+  },
+  "keywords": ["statistics", "piecewise rejection sampling"]
+}
+</script>
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+<meta name="citation_title" content="📊 Piecewise Rejection Sampling" />
+<meta name="citation_publication_date" content="2022/11/18" />
+<meta name="citation_online_date" content="2022/11/18" />
+
+
+
+
+
+
+
+        
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+        
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/kr/about">About</a></li><li><a href="/kr/posts">Blog</a></li><li><a href="/kr/research">Research</a></li><li><a href="/kr/software">Software</a></li><li><a href="/kr/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                            <a title="en" href="https://axect.github.io/posts/006_prs/"><span class="flag fi fi-gb"></span></a>
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        9 분
+
+         | In English :
+          
+              <a href="https://axect.github.io/posts/006_prs/"><span class="flag fi fi-gb"></span></a>
+          
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://axect.github.io/kr/posts/006_prs/">📊 Piecewise Rejection Sampling</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">목차</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-rejection-sampling">1. Rejection Sampling</a></li>
+    <li><a href="#2-piecewise-rejection-sampling">2. Piecewise Rejection Sampling</a>
+      <ul>
+        <li><a href="#21-max-pooling">2.1. Max-Pooling</a></li>
+        <li><a href="#22-weighted-uniform-distribution">2.2. Weighted Uniform Distribution</a></li>
+        <li><a href="#23-piecewise-rejection-sampling">2.3. Piecewise Rejection Sampling</a></li>
+      </ul>
+    </li>
+    <li><a href="#references">References</a></li>
+    <li><a href="#footnotes">A. Footnotes</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+
+      
+
+      <div class="post-content">
+        <figure>
+    <img src="/posts/images/006_01_test_dist.png"
+         alt="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$"/> <figcaption style="text-align:center">
+            <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="/kr/#footnotes">${}^{[1]}$</a></p>
+        </figcaption>
+</figure>
+<p>  누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다.
+그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?</p>
+<p>일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">Inverse Transform Sampling</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rejection_sampling">Rejection Sampling</a></li>
+</ol>
+<p>Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.<a href="/kr/posts/006_prs/#footnotes">${}^{[2]}$</a> 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.</p>
+<hr>
+<h2 id="1-rejection-sampling">1. Rejection Sampling</h2>
+<p>  <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Rejection sampling </b>
+</span>(혹은 Acceptance-rejection method)의 알고리즘은 매우 간단한 편입니다. 이를 설명하기 위해 저희가 sampling하고 싶은 확률분포의 확률밀도함수를 $f(x)$라 명명하겠습니다.
+하지만 우리는 $f(x)$로부터 바로 sampling하는 방법을 모르므로 sampling 할 수 있는 확률밀도함수인 $g(x)$를 도입합니다. 이때, $g(x)$는 특정한 양의 상수 $M$에 대하여 정의역의 모든 $x$에 대하여 $f(x) \leq M \cdot g(x)$ 조건이 성립해야합니다. 이를 그림으로 나타내보면 다음과 같습니다.</p>
+<figure>
+    <img src="/posts/images/006_02_rejection.svg"
+         alt="입자물리에서 자주 볼 수 있는 그래프" width="80%" class="center"/> <figcaption style="text-align:center">
+            <p>입자물리에서 자주 볼 수 있는 그래프</p>
+        </figcaption>
+</figure>
+<p>보통 sampling하기 가장 쉬운 확률분포는 Uniform distribution(균등분포)이므로 여기서는 $g(x)=\text{Unif}(x|0,10)$으로 정의하였습니다. 또한 $f(x)$의 최댓값이 1이므로 $M=10$으로 정하여 $M\times g(x)$가 항상 $f(x)$보다 크거나 같음을 보장하였습니다. 이제 이 그래프를 이용하여 sampling하는 방법을 알아보겠습니다.</p>
+<ol>
+<li>
+<p>$y$를 $g(x)$로 부터 sampling합니다. 이 경우엔 $y$는 $\text{Unif}(x|0,10)$로부터 sampling된 값이 됩니다.</p>
+</li>
+<li>
+<p>그렇게 추출된 $y$에 대하여 또 다른 균등분포인 $\text{Unif}(u|0,M\times g(y))$로부터 $u$를 sampling합니다. (이는 $g(x)$의 형태와 별개로 항상 균등분포를 사용합니다.)</p>
+</li>
+<li>
+<p>만약 $u \leq f(y)$이면 $y$를 우리가 sampling하고자 하는 확률분포 $f(x)$로부터 sampling된 값으로 간주합니다. 그렇지 않으면 다시 1번으로 돌아가서 $y$를 sampling합니다.</p>
+</li>
+</ol>
+<p>이 sampling 방법이 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Rejection sampling(기각 샘플링)</b>
+</span>입니다. 3번에서 보다시피 $u$가 $f(y)$보다 크다면 기각하기 때문에 붙여진 이름입니다. 이 간단한 알고리즘 만으로 완전히 새로운 확률분포인 $f(x)$를 효과적으로 근사할 수 있습니다. 이를 위해 누적확률분포함수(CDF)를 살펴보겠습니다.</p>
+<blockquote>
+<p>확률변수 $X$를 Rejection sampling으로 얻어진 확률변수라 하면, 다른 두 확률변수 $Y \sim g(y)$, $U \sim \text{Unif}(u|0, M\cdot g(y))$에 대하여  다음과 같은 관계를 얻을 수 있습니다.
+$$
+P(X \leq x) = P\left(Y \leq x \,|\, U &lt; f(Y)\right)
+$$
+우변의 조건부 확률은 $U$가 기각되지 않았을 때, $Y$가 $x$보다 작을 확률이며 이는 위의 알고리즘에서 3번과 같습니다.
+이를 조건부 확률의 정의를 이용하여 변형하면 다음과 같습니다.
+$$
+P(X \leq x) = \frac{P (Y \leq x,~U &lt; f(Y))}{P(U &lt; f(Y))}
+$$
+먼저 위 식의 분자를 확률밀도함수를 이용하여 전개해보겠습니다.
+$$
+\begin{aligned}
+P(Y \leq x,U &lt; f(Y)) &amp;= \int P(Y \leq x,U &lt; f(Y) | Y = y) \cdot g(y) \,dy \\
+&amp;= \int P(y \leq x,~U &lt; f(y)) \cdot g(y) \,dy \\
+&amp;= \int 𝟙_{y \leq x} \cdot P(U &lt; f(y))\cdot  g(y) \, dy \\
+&amp;= \int_{-\infty}^x P(U &lt; f(y)) \cdot g(y) \, dy
+\end{aligned}
+$$
+2번째 식에서 3번째로 넘어갈때는 $y \leq x$와 $U &lt; f(y)$는 독립이라는 조건을 사용하였습니다. 이제 $U \sim \text{Unif}(u|0,\,M\cdot g(y))$이므로 $\displaystyle P(U &lt; f(y)) = \frac{1}{M\cdot g(y)} \times (f(y) - 0)$을 대입하면 다음과 같습니다.
+$$
+\begin{aligned}
+P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g(y) \, dy \\
+&amp;= \frac{1}{M} \int_{-\infty}^x f(y) \, dy
+\end{aligned}
+$$
+<br/>
+이제 분모를 구해보겠습니다.
+$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \int P(U &lt; f(y)) \cdot g(y) \, dy \\
+&amp;= \int \frac{f(y)}{M\cdot g(y)} \cdot g(y) \, dy \\
+&amp;= \frac{1}{M} \int f(y) \, dy \\
+&amp;= \frac{1}{M}
+\end{aligned}
+$$
+마지막으로 분자와 분모를 나누면 다음과 같습니다.
+$$
+P(X \leq x) = \int_{-\infty}^x f(y) \, dy
+$$
+이는 $f(x)$의 누적분포함수와 같습니다. 따라서 Rejection sampling으로 얻어진 확률변수 $X$의 확률밀도함수는 $f(x)$라는 것을 얻을 수 있습니다.</p>
+</blockquote>
+<p>이제 수학적으로 증명을 마쳤으니, 이번에는 이것이 실제로 잘 작동하는지 코드를 작성해봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> M: <span style="color:#66d9ef">f64</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> N: <span style="color:#66d9ef">usize</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100_000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Create g(x)=Unif(x|0,10) &amp; h(y)=Unif(y|0,M)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> g <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">10.0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> h.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> y <span style="color:#f92672">&lt;=</span> f(x) {      <span style="color:#75715e">// Accept
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            x_vec[i] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>            i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {            <span style="color:#75715e">// Reject
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Test function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">f</span>(x: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> (x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>).sqrt() <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>(x<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#66d9ef">f64</span>).powi(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.2</span>).exp()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>알고리즘 자체가 간단하므로 코드 역시 굉장히 간단합니다. 하지만 그럼에도 결과는 뛰어납니다.</p>
+<figure>
+    <img src="/posts/images/006_03_hist.png"
+         alt="Result of rejection sampling" width="80%" class="center"/> <figcaption style="text-align:center">
+            <p>Result of rejection sampling</p>
+        </figcaption>
+</figure>
+<p>확률밀도함수의 형태에 구애받지 않으며 구현까지 쉬운 Rejection sampling이지만 치명적인 단점 역시 존재합니다. 바로 계산 효율이 굉장히 떨어진다는 것입니다. Rejection sampling에서 sample을 확보하려면 기각 조건에서 살아남아야 합니다. 이는 즉, $P(U &lt; f(Y))$가 높을 수록 빠르게 sample을 확보할 수 있다는 것이고 반대로 낮을 수록 충분한 수의 sample을 확보하기까지 오래 걸린다는 것입니다. 이를 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Acceptance rate</b>
+</span>(승인 비율)라고 하며 이는 이미 위의 증명에서 계산하였습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>Acceptance rate</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            Rejection의 Acceptace rate는 다음과 같이 정의된다.
+$$
+P(U &lt; f(Y)) = \int P(U &lt; f(y)) \cdot g(y) \, dy
+$$
+        </span>
+    </figure>
+</div>
+<p>저희가 사용한 알고리즘에서는 이는 $1/M$과 같고, 이는 $f(x)$가 차지하는 넓이를 $M \cdot g(x)$가 차지하는 전체 넓이로 나눈 것과 같습니다. 따라서 분포간의 차이가 크면 클수록 Acceptance rate가 낮아지고 그만큼 sample을 확보하는데 오랜 시간이 걸린다는 것입니다.
+그나마 저희가 사용한 예시는 $g(x)$와 $f(x)$의 차이가 큰 부분이 많지 않아서 비교적 괜찮습니다만, 시작할 때 제시하였던 확률분포처럼 0인 부분이 많은 경우에는 $g(x)$로 Uniform distribution을 사용한다면 대부분 기각되어버리기 때문에 시간이 오래걸릴뿐더러 거의 0 근처의 tail에 대해서는 sampling이 불가능한 지경에까지 이를 수 있습니다. 그렇다면 어떻게 이를 해결할 수 있을까요?</p>
+<hr>
+<h2 id="2-piecewise-rejection-sampling">2. Piecewise Rejection Sampling</h2>
+<p>  사실 이미 연구자들은 이런 경우를 위해 여러가지 방법을 고안해두었습니다. 대표적으로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Adaptive Rejection Sampling (ARS)</b>
+</span>와 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Adaptive Rejection Metropolis Sampling (ARMS)</b>
+</span>가 있습니다.
+전자의 경우는 효율적이지만 함수가 반드시 로그-오목(log-concave)하다는 보장이 있어야 하고 후자의 경우는 이를 해결하여 일반화했지만 구현이 상당히 어렵습니다. 물론 이미 잘 만들어진 <a href="https://cran.r-project.org/web/packages/armspp/vignettes/arms.html">R package</a> 등이 있으니 사용하는 것 자체는 어렵지 않습니다만, 여기서는 더 간단한 방법을 소개하고자 합니다. 바로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Piecewise Rejection Sampling (PRS)</b>
+</span>입니다. 이는 제가 물리학 연구를 수행하던 중에 처음에 제시한 문제를 해결하고자 만든 방법으로, 기본적인 토대는 Rejection sampling과 같지만 $g(x)$를 단순한 Uniform distribution이 아닌 $f(x)$에 최적화된 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Weighted uniform distribution</b>
+</span> (가중균등분포)로 상정하는 방법입니다. 이를 차근차근 설명해보겠습니다.</p>
+<h3 id="21-max-pooling">2.1. Max-Pooling</h3>
+<p>  아마 딥러닝에 관심있는 사람이라면 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Max Pooling</b>
+</span>이라는 개념을 익히 들어봤을겁니다. CNN에서 자주 사용되는 Max pooling은 사실 개념은 굉장히 간단합니다. 일단 Max pooling의 수학적 정의는 다음과 같습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>Max pooling</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>Let $f\,:\,[a,b]\to \mathbb{R}$ be a continuous function and consider the equidistant partition of the interval $[a,b]$
+$$
+a = x_0 &lt; x_1 &lt; \cdots &lt; x_{n-1} &lt; x_n = b
+$$
+The partitions size, $(b-a)/n$ is called <em>stride</em>. Denote by $\displaystyle M_i = \max_{[x_{i-1},x_i]}f(x)$ and consider
+the simple function</p>
+<p>$$
+S_n(x) = \sum_{i=1}^n M_i 𝟙_{[x_{i-1},x_i)}(x).
+$$</p>
+<p>The process of approximating the function $f(x)$ by the simple function $S_n(x)$ is called <em>max-pooling</em>.</p>
+
+        </span>
+    </figure>
+</div>
+<p>여기서 사용한 simple function이란 측도론(Measure theory)에서 등장하는 함수로 각 구간에서 서로 다른 상수를 가지는 함수를 말합니다. 자세한 정의는 <a href="https://axect.github.io/ML_with_Rust/measuretheory.html">Precise Machine Learning with Rust</a>의 Definition 10과 Property 1을 참고하시면 됩니다.</p>
+<p>결국 Max-pooling이란 간단히 말해 $f(x)$를 $n$개의 구간으로 나누고 각 구간에서 $f(x)$의 최대값을 구하여 이를 각 구간에서의 대푯값(Representative value)으로 갖는 simple function을 구하는 것입니다. 이를 처음 제시한 분포에 대해 적용해보면 다음과 같습니다.</p>
+<figure>
+    <img src="/posts/images/006_04_prs.svg"
+         alt="Max-pooling for Test Distribution" width="90%" class="center"/> <figcaption style="text-align:center">
+            <p>Max-pooling for Test Distribution</p>
+        </figcaption>
+</figure>
+<p>그림의 빨간색 실선을 $f(x)$라 하면 파란색 점선은 $f(x)$를 max-pooling한 결과입니다. 이쯤되면 이미 눈치챈 분들도 있을텐데, 저희는 이 파란색 점선을 Rejection sampling에서의 $M\cdot g(x)$로 사용할 것입니다. 이를 위해 우리는 각 구간별로는 균등분포의 형태를 갖지만 각각 다른 대푯값을 갖는 확률분포를 정의할 것입니다. 이것이 바로 위에서 언급했던 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Weighted uniform distribution</b>
+</span>(가중균등분포)입니다.</p>
+<h3 id="22-weighted-uniform-distribution">2.2. Weighted Uniform Distribution</h3>
+<div class="notepaper">
+    <br/>
+    <span><b>Weighted uniform distribution</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            Let $(S, \mathcal{F}, \mu)$ be a measure space. For a disjoint family $\mathcal{A} = \left\{A_i\right\}_{i=1}^n \in \mathcal{F}$ of measurable sets with non-zero measure and a family $\mathbf{M} = \{M_i\}_{i=1}^n$ of non-negative real numbers (but $\sum_i M_i &gt; 0$), define the weighted uniform distribution on $S$ by
+$$
+\text{WUnif}(x|\mathbf{M}, \mathcal{A}) = \frac{1}{\sum_{j}M_j \cdot \mu(A_j)}\sum_i M_i 𝟙_{A_i}(x)
+$$
+        </span>
+    </figure>
+</div>
+<p>정의는 뭔가 복잡해 보이지만, 이를 1차원 구간에 대해서 정의하면 굉장히 간단하다는 것을 알 수 있습니다.</p>
+<ul>
+<li>$S = [a,b]$</li>
+<li>$\mathcal{A} = \left\{[x_{i-1},x_i)\right\}_{i=1}^n$ and $\Delta x_i \equiv x_i - x_{i-1}$</li>
+<li>$\displaystyle \text{WUnif}(x|\mathbf{M}, \mathcal{A}) = \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i 𝟙_{A_i}(x)$</li>
+</ul>
+<p>여기서는 어차피 저희가 사용할 분포가 1차원 분포이므로 앞으로 이 정의를 이용하여 계산을 진행하겠습니다. 일단, 이 함수가 확률밀도함수임은 간단히 증명할 수 있습니다.</p>
+<blockquote>
+<p>$$
+\begin{aligned}
+\int_a^b \text{WUnif}(x|\mathbf{M}, \mathcal{A}) dx &amp;= \int_a^b \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i 𝟙_{A_i}(x) dx \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \int_{a}^{b} 𝟙_{A_i}(x) dx \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i \cdot \Delta x_i \\
+&amp;= 1
+\end{aligned}
+$$</p>
+</blockquote>
+<p>Weighted uniform distribution은 sampling하기도 쉽습니다. sampling 방법은 다음과 같습니다.</p>
+<ol>
+<li>
+<p>전체 $n$개의 구간 중에서 한 구간을 뽑습니다. 이때 각 구간의 확률은 $\displaystyle \frac{M_i \cdot \Delta x_i}{\sum_{j}M_j \cdot \Delta x_j}$입니다.</p>
+</li>
+<li>
+<p>각 구간은 Uniform distribution을 따르므로, 구간 내에서 Uniform distribution으로 하나의 샘플을 뽑습니다.</p>
+</li>
+</ol>
+<p>만일 max-pooling을 적용하여 $\mathbf{M}, \mathcal{A}$를 골랐다면, 각 구간의 길이가 모두 동일하므로 확률에서 구간의 길이 항이 사라집니다. 따라서 이 경우에 각 구간의 확률은 $M_i / \sum_{j}M_j$가 되어 굉장히 간단해집니다.</p>
+<h3 id="23-piecewise-rejection-sampling">2.3. Piecewise Rejection Sampling</h3>
+<p>  Weighted uniform distribution도 sampling방법을 알고 있는 엄연한 하나의 확률분포이므로, 이를 Rejection sampling에서의 $g(x)$로 사용할 수 있습니다. 다만, 항상 $f(x)$보다 커야된다는 조건을 만족시키기 위하여 임의의 $\mathbf{M}, \mathcal{A}$를 고르는 것이 아닌 max-pooling을 적용하여 $\mathbf{M}, \mathcal{A}$를 얻을 것입니다. 이 과정을 정리하면 다음과 같습니다.</p>
+<ol>
+<li>
+<p>전체 구간을 몇 개의 구간으로 나눌지 결정합니다. 이때, 구간의 개수를 $n$이라고 하고 각 구간의 길이를 동등하게 나누어 $\mathcal{A}$를 정의합니다.</p>
+</li>
+<li>
+<p>나눠진 구간에 대해 $f(x)$를 max-pooling하여 $\mathbf{M}$을 얻습니다.</p>
+</li>
+<li>
+<p>$\mathbf{M}, \mathcal{A}$를 이용하여 Weighted uniform distribution을 정의합니다.</p>
+</li>
+<li>
+<p>이렇게 정의된 Weighted uniform distribution을 Rejection sampling에서의 $g(x)$로 사용하여 sampling합니다.</p>
+</li>
+</ol>
+<p>이러한 sampling 방법은 마치 구간을 나누어 sampling하는 것과 같으므로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Piecewise Rejection Sampling</b>
+</span>으로 명명하겠습니다. 이 방법에서의 Acceptance rate를 구해보면 단순히 Uniform distribution을 사용하여 Rejection sampling을 할 때에 비해 Acceptance rate가 높아지는 것을 알 수 있습니다.</p>
+<blockquote>
+<p>$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \int_a^b P(U &lt; f(Y) | Y = y) \cdot g(y) \, dy \\
+&amp;= \int_a^b P(U &lt; f(y)) \cdot \text{WUnif}(y|\mathbf{M}, \mathcal{A}) \, dy \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i M_i \int_{A_i} P(U &lt; f(y)) dy
+\end{aligned}
+$$
+$U \sim \text{Unif}(u|0, M_i)$이고, $P(U &lt; f(y)) = f(y)/{M_i}$이므로 다음과 같이 정리할 수 있습니다.
+$$
+\begin{aligned}
+P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
+&amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \geq \frac{1}{M_\max \cdot \sum_{j} \Delta x_j}  = \frac{1}{M}
+\end{aligned}
+$$</p>
+</blockquote>
+<p>마지막 부등식은 $M_i$ 중에서 가장 큰 값에 전체 구간의 길이를 곱하면 원래 Uniform distribution을 사용할 때의 $M$과 같다는 것을 이용하여 정리한 것입니다. 이를 통해 Piecewise rejection sampling의 Acceptance rate는 Uniform distribution을 사용할 때의 Acceptance rate보다 항상 높다는 것을 알 수 있습니다.</p>
+<p>이제 마지막으로 처음에 제시했던 문제를 Piecewise rejection sampling을 이용하여 풀어보겠습니다. 위 알고리즘은 Rust numeric library인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>에 이미 구현이 되어 있으므로 이를 이용하겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// `cargo add peroxide --features parquet`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[allow(non_snake_case)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Read parquet data file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> DataFrame::read_parquet(<span style="color:#e6db74">&#34;data/test.parquet&#34;</span>).unwrap();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> E: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;E&#34;</span>].to_vec();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> dNdE: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;dNdE&#34;</span>].to_vec();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cubic hermite spline -&gt; Make continuous f(x)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> cs <span style="color:#f92672">=</span> cubic_hermite_spline(<span style="color:#f92672">&amp;</span>E, <span style="color:#f92672">&amp;</span>dNdE, Quadratic);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> <span style="color:#f92672">|</span>x: <span style="color:#66d9ef">f64</span><span style="color:#f92672">|</span> cs.eval(x);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Piecewise rejection sampling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # samples = 10000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # bins = 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * tolerance = 1e-6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
+</span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
+</span></span><span style="display:flex;"><span>    df.write_parquet(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
+</span></span><span style="display:flex;"><span>        CompressionOptions::Uncompressed
+</span></span><span style="display:flex;"><span>    ).unwrap();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>이렇게 만들어진 데이터를 히스토그램으로 그려보면 다음과 같습니다.</p>
+<figure>
+    <img src="/posts/images/006_05_hist.png"
+         alt="Finally, we get samples!"/> <figcaption style="text-align:center">
+            <p>Finally, we get samples!</p>
+        </figcaption>
+</figure>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><strong>Yen-Chi Chen</strong>, <em>Lecture 4: Importance Sampling and Rejection Sampling</em>, STAT/Q SCI 403: Introduction to Resampling Methods (2017)</p>
+</li>
+<li>
+<p><strong>Ovidiu Calin</strong>, <em>Deep Learning Architectures: A Mathematical Approach</em>, Springer (2020)</p>
+</li>
+<li>
+<p><strong>Tae-Geun Kim (<a href="https://github.com/Axect">Axect</a>)</strong>, <a href="https://axect.github.io/ML_with_Rust"><em>Precise Machine Learning with Rust</em></a> (2019)</p>
+</li>
+</ul>
+<hr>
+<h2 id="footnotes">A. Footnotes</h2>
+<p>[1]: 여기에 사용된 그림은 원시블랙홀(Primordial Black hole; PBH)로부터 특정시간에 방출된 액시온유사입자들(Axion Like Particles; ALPs)의 스펙트럼을 그린 그림입니다. 이 연구에 대한 자세한 내용은 <a href="https://arxiv.org/abs/2212.11977">arXiv:2212.11977</a>을 참고하시면 됩니다.</p>
+<p>[2]: 물론 이 경우에도, 노드들을 cubic spline 등의 방법으로 근사하고 수치적분이나 polynomial 적분을 이용하여 누적분포함수를 구한 후, 이를 다시 interpolation이나 spline등의 방법으로 fitting한 후 역함수를 구하는 방법을 사용할 수 있긴합니다. 하지만 이는 오차가 꽤 심하고 비효율적이라 추천하진 않습니다.</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://axect.github.io/kr/tags/statistics/">statistics</a></span>
+        <span class="tag"><a href="https://axect.github.io/kr/tags/piecewise-rejection-sampling/">piecewise rejection sampling</a></span>
+        
+    </p>
+
+
+      
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1877 단어
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2022-11-18 16:49 &#43;0800
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        <style>
+  .resp-sharing-button__link {
+    display: inline-block;  
+    margin-right: 10px;  
+  }
+   
+  .resp-sharing-button__link:last-child {
+    margin-right: 0;
+  }
+</style>
+
+
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;caption=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;body=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f&amp;title=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;summary=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;source=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f&amp;resubmit=true&amp;title=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling%20https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f&amp;t=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%93%8a%20Piecewise%20Rejection%20Sampling&amp;url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f006_prs%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">다른 글 읽기</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://axect.github.io/kr/posts/007_ad_3/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">🤖 Rust와 미분하기 03: 정방향 자동 미분</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://axect.github.io/kr/posts/005_decov/">
+                    <span class="button__text">💔 Decorrelation &#43; Deep learning = Generalization</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/kr/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+
+
+
+    </body>
+</html>

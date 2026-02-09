@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Update on Axect&#39;s Blog</title>
+    <link>https://axect.github.io/kr/tags/update/</link>
+    <description>Recent content in Update on Axect&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 01 Jul 2022 11:56:41 +0900</lastBuildDate>
+    <atom:link href="https://axect.github.io/kr/tags/update/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🦀 Rust 1.62.0 업데이트의 신기능 3가지</title>
+      <link>https://axect.github.io/kr/posts/004_rust_1.62.0/</link>
+      <pubDate>Fri, 01 Jul 2022 11:56:41 +0900</pubDate>
+      <guid>https://axect.github.io/kr/posts/004_rust_1.62.0/</guid>
+      <description>Ferris the crab&#xA;Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.&#xA;업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다.</description>
+    </item>
+  </channel>
+</rss>

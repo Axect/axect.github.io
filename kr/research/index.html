@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="연구 비전 제 연구는 암흑물질 현상론과 과학 머신러닝의 간극을 메워, 전통적인 분석 방법과 현대 AI 기술을 통해 기초 물리학을 이해하는 통합적 접근법을 만듭니다.
+저는 우주론적 관측, 천체물리학적 제약조건, 그리고 새로운 계산 방법을 결합하여 암흑물질 후보—특히 원시 블랙홀과 액시온 유사 입자—를 연구합니다. 동시에, AI가 단순히 데이터를 맞추는 것이 아니라 이러한 시스템을 지배하는 근본적인 물리 법칙을 진정으로 이해하고 모사할 수 있도록 하는 연산자 학습 프레임워크를 개발합니다.
+이러한 이중 전문성은 저를 입자우주론과 AI4Science의 교차점에 독특하게 위치시켜, 새로운 물리학을 발견하고 그것을 탐구하는 데 필요한 계산 도구를 만들 수 있게 합니다." />
+<meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/kr/research/" />
+
+
+    <title>
+        
+            Research :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="Research">
+<meta itemprop="description" content="연구 비전 제 연구는 암흑물질 현상론과 과학 머신러닝의 간극을 메워, 전통적인 분석 방법과 현대 AI 기술을 통해 기초 물리학을 이해하는 통합적 접근법을 만듭니다.
+저는 우주론적 관측, 천체물리학적 제약조건, 그리고 새로운 계산 방법을 결합하여 암흑물질 후보—특히 원시 블랙홀과 액시온 유사 입자—를 연구합니다. 동시에, AI가 단순히 데이터를 맞추는 것이 아니라 이러한 시스템을 지배하는 근본적인 물리 법칙을 진정으로 이해하고 모사할 수 있도록 하는 연산자 학습 프레임워크를 개발합니다.
+이러한 이중 전문성은 저를 입자우주론과 AI4Science의 교차점에 독특하게 위치시켜, 새로운 물리학을 발견하고 그것을 탐구하는 데 필요한 계산 도구를 만들 수 있게 합니다."><meta itemprop="datePublished" content="2026-02-09T17:00:00+09:00" />
+<meta itemprop="dateModified" content="2026-02-09T17:00:00+09:00" />
+<meta itemprop="wordCount" content="899"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="" />
+
+
+
+
+    <meta property="article:published_time" content="2026-02-09 17:00:00 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/kr/research/" />
+<meta property="og:title" content="Research | Axect&#39;s Blog" />
+<meta property="og:description" content="연구 비전 제 연구는 암흑물질 현상론과 과학 머신러닝의 간극을 메워, 전통적인 분석 방법과 현대 AI 기술을 통해 기초 물리학을 이해하는 통합적 접근법을 만듭니다.
+저는 우주론적 관측, 천체물리학적 제약조건, 그리고 새로운 계산 방법을 결합하여 암흑물질 후보—특히 원시 블랙홀과 액시온 유사 입자—를 연구합니다. 동시에, AI가 단순히 데이터를 맞추는 것이  …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/kr/research/" />
+<meta name="twitter:title" content="Research" />
+<meta name="twitter:description" content="연구 비전 제 연구는 암흑물질 현상론과 과학 머신러닝의 간극을 메워, 전통적인 분석 방법과 현대 AI 기술을 통해 기초 물리학을 이해하는 통합적 접근법을 만듭니다.
+저는 우주론적 관측, 천체물리학적 제약조건, 그리고 새로운 계산 방법을 결합하여 암흑물질 후보—특히 원시 블랙홀과 액시온 유사 입자—를 연구합니다. 동시에, AI가 단순히 데이터를 맞추는 것이  …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+
+
+
+
+
+
+        
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+        
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/kr/about">About</a></li><li><a href="/kr/posts">Blog</a></li><li><a href="/kr/research">Research</a></li><li><a href="/kr/software">Software</a></li><li><a href="/kr/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                            <a title="en" href="https://axect.github.io/research/"><span class="flag fi fi-gb"></span></a>
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+                In English :
+                
+                    <a href="https://axect.github.io/research/"><span class="flag fi fi-gb"></span></a>
+                
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://axect.github.io/kr/research/">Research</a></h2>
+                <hr />
+                <aside id="toc">
+                <div class="toc-title">목차</div>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#연구-비전">연구 비전</a></li>
+    <li><a href="#현재-연구-초점-및-미래-방향">현재 연구 초점 및 미래 방향</a>
+      <ul>
+        <li><a href="#우주론을-위한-물리학-기반-머신러닝">우주론을 위한 물리학 기반 머신러닝</a></li>
+        <li><a href="#암흑물질-현상론">암흑물질 현상론</a></li>
+        <li><a href="#학제간-ai-응용">학제간 AI 응용</a></li>
+      </ul>
+    </li>
+    <li><a href="#논문">논문</a>
+      <ul>
+        <li><a href="#2025">2025</a></li>
+        <li><a href="#2024">2024</a></li>
+        <li><a href="#2023">2023</a></li>
+      </ul>
+    </li>
+    <li><a href="#주요-발표">주요 발표</a>
+      <ul>
+        <li><a href="#2026">2026</a></li>
+        <li><a href="#2025-1">2025</a></li>
+        <li><a href="#2024-1">2024</a></li>
+        <li><a href="#2023-1">2023</a></li>
+        <li><a href="#2022">2022</a></li>
+        <li><a href="#2019">2019</a></li>
+      </ul>
+    </li>
+    <li><a href="#수상-및-펠로우십">수상 및 펠로우십</a></li>
+  </ul>
+</nav>
+                </aside>
+                <hr />
+
+            
+
+            <div class="post-content">
+                <h2 id="연구-비전">연구 비전</h2>
+<p>제 연구는 <strong>암흑물질 현상론</strong>과 <strong>과학 머신러닝</strong>의 간극을 메워, 전통적인 분석 방법과 현대 AI 기술을 통해 기초 물리학을 이해하는 통합적 접근법을 만듭니다.</p>
+<p>저는 우주론적 관측, 천체물리학적 제약조건, 그리고 새로운 계산 방법을 결합하여 암흑물질 후보—특히 원시 블랙홀과 액시온 유사 입자—를 연구합니다. 동시에, AI가 단순히 데이터를 맞추는 것이 아니라 이러한 시스템을 지배하는 근본적인 물리 법칙을 진정으로 이해하고 모사할 수 있도록 하는 <strong>연산자 학습 프레임워크</strong>를 개발합니다.</p>
+<p>이러한 이중 전문성은 저를 입자우주론과 AI4Science의 교차점에 독특하게 위치시켜, 새로운 물리학을 발견하고 그것을 탐구하는 데 필요한 계산 도구를 만들 수 있게 합니다.</p>
+<hr>
+<h2 id="현재-연구-초점-및-미래-방향">현재 연구 초점 및 미래 방향</h2>
+<h3 id="우주론을-위한-물리학-기반-머신러닝">우주론을 위한 물리학 기반 머신러닝</h3>
+<p>해밀토니안 역학을 학습하고 원시 블랙홀 물리학의 계산 비용이 많이 드는 현상론 계산을 가속화할 수 있는 신경 연산자(DeepONet, MambONet)를 개발합니다. 이 접근법은 AI가 물리적 해석 가능성을 유지하면서 전통적인 수치 솔버(RK4)를 능가할 수 있음을 보여주었습니다.</p>
+<p><strong>미래 방향</strong>: 연산자 학습을 암흑물질 탐지의 역문제로 확장하여 관측 데이터로부터 실시간 매개변수 추론을 가능하게 합니다.</p>
+<h3 id="암흑물질-현상론">암흑물질 현상론</h3>
+<p>보완적인 암흑물질 후보로서 원시 블랙홀과 액시온 유사 입자 간의 상호작용을 탐구합니다. 제 연구는 천체물리학적 프로브(감마선 관측, 중성미자 검출기)를 사용하여 새로운 제약조건을 확립하고, PBH 증발이 액시온 생성의 &ldquo;공장&rdquo; 역할을 할 수 있음을 보여줍니다.</p>
+<p><strong>미래 방향</strong>: 중력파, 전자기 신호, 입자 검출을 결합한 다중 메신저 신호를 조사하여 초기 우주를 탐사합니다.</p>
+<h3 id="학제간-ai-응용">학제간 AI 응용</h3>
+<p>각 도메인에 맞춤화된 딥러닝 기술을 적용합니다: 우주론에는 연산자 학습, 생의학 신호 처리에는 시퀀스-투-시퀀스 모델, 최적화에는 학습률 스케줄러. 도메인별 아키텍처를 개발하면서 도메인 간 지식 전이를 위한 전이 가능한 프레임워크를 구축합니다.</p>
+<p><strong>미래 방향</strong>: 각 도메인에 적절한 신경망 아키텍처를 적응시키는 통합 과학 ML 플랫폼 구축—양자장이론부터 실험 데이터 분석까지.</p>
+<hr>
+<h2 id="논문">논문</h2>
+<h3 id="2025">2025</h3>
+<p><strong>Learning Hamiltonian Dynamics with Bayesian Data Assimilation</strong>
+Taehyeun Kim, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Anouk Girard, Ilya Kolmanovsky
+<a href="https://arxiv.org/abs/2501.18808">📄 arXiv:2501.18808</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{kim2025learning,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{Learning Hamiltonian Dynamics with Bayesian Data Assimilation}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Kim, Taehyeun and Kim, Tae-Geun and Girard, Anouk and Kolmanovsky, Ilya}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{arXiv preprint arXiv:2501.18808}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2025}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<p><strong>Primordial Black Holes as a Factory of Axions: Extragalactic Photons from Axions</strong>
+<span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Jong-Chul Park, Seong Chan Park, Yeji Park
+<a href="https://doi.org/10.1093/ptep/ptag011">📄 PTEP ptag011</a> | <a href="https://arxiv.org/abs/2212.11977">📄 arXiv:2212.11977</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{kim2023primordial,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{Primordial Black Holes as a Factory of Axions: Extragalactic Photons from Axions}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Kim, Tae-Geun and Park, Jong-Chul and Park, Seong Chan and Park, Yeji}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{Progress of Theoretical and Experimental Physics}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">volume</span>=<span style="color:#e6db74">{2023}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">number</span>=<span style="color:#e6db74">{1}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pages</span>=<span style="color:#e6db74">{ptag011}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2023}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">doi</span>=<span style="color:#e6db74">{10.1093/ptep/ptag011}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<h3 id="2024">2024</h3>
+<p><strong>Neural Hamilton: Can A.I. Understand Hamiltonian Mechanics?</strong>
+<span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Seong Chan Park
+<a href="https://arxiv.org/abs/2410.20951">📄 arXiv:2410.20951</a> | <a href="https://github.com/Axect/Neural_Hamilton">💻 Code</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{kim2024neural,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{Neural Hamilton: Can A.I. Understand Hamiltonian Mechanics?}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Kim, Tae-Geun and Park, Seong Chan}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{arXiv preprint arXiv:2410.20951}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2024}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<p><strong>HyperbolicLR: Epoch insensitive learning rate scheduler</strong>
+<span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>
+<a href="https://arxiv.org/abs/2407.15200">📄 arXiv:2407.15200</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{kim2024hyperboliclr,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{HyperbolicLR: Epoch insensitive learning rate scheduler}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Kim, Tae-Geun}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{arXiv preprint arXiv:2407.15200}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2024}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<p><strong>Unsupervised sequence-to-sequence learning for automatic signal quality assessment</strong>
+Chang Min Hyun, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Kyounghun Lee
+<a href="https://doi.org/10.1016/j.cmpb.2024.108079">📄 CMPB 108079</a> | <a href="https://arxiv.org/abs/2305.09368">📄 arXiv:2305.09368</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{hyun2024unsupervised,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{Unsupervised sequence-to-sequence learning for automatic signal quality assessment in multi-channel electrical impedance-based hemodynamic monitoring}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Hyun, Chang Min and Kim, Tae-Geun and Lee, Kyounghun}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{Computer Methods and Programs in Biomedicine}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pages</span>=<span style="color:#e6db74">{108079}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2024}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">doi</span>=<span style="color:#e6db74">{10.1016/j.cmpb.2024.108079}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<h3 id="2023">2023</h3>
+<p><strong>DeeLeMa: Missing information search with Deep Learning for Mass estimation</strong>
+Kayoung Ban, Dong Woo Kang, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Seong Chan Park, Yeji Park
+<a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043186">📄 Phys. Rev. Research 5, 043186</a> | <a href="https://arxiv.org/abs/2212.12836">📄 arXiv:2212.12836</a> | <a href="https://github.com/Yonsei-HEP-COSMO/DeeLeMa">💻 Code</a></p>
+<details>
+<summary>📋 BibTeX</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bibtex" data-lang="bibtex"><span style="display:flex;"><span><span style="color:#a6e22e">@article</span>{ban2023deelema,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>=<span style="color:#e6db74">{DeeLeMa: Missing information search with Deep Learning for Mass estimation}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span>=<span style="color:#e6db74">{Ban, Kayoung and Kang, Dong Woo and Kim, Tae-Geun and Park, Seong Chan and Park, Yeji}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">journal</span>=<span style="color:#e6db74">{Physical Review Research}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">volume</span>=<span style="color:#e6db74">{5}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">number</span>=<span style="color:#e6db74">{4}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pages</span>=<span style="color:#e6db74">{043186}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>=<span style="color:#e6db74">{2023}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">doi</span>=<span style="color:#e6db74">{10.1103/PhysRevResearch.5.043186}</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></details>
+<hr>
+<h2 id="주요-발표">주요 발표</h2>
+<h3 id="2026">2026</h3>
+<p><strong>Accelerating PBH Phenomenology via Neural Operators</strong>
+<em>The 2nd AI+HEP in East Asia @ KEK</em>, Tsukuba, Japan [구두발표]</p>
+<h3 id="2025-1">2025</h3>
+<p><strong>From Primordial Black Holes to Nuclei: Solving Inverse Problems in Physics with Operator Learning</strong>
+<em>Nuclear Lunch Seminar @ Fudan University</em>, Shanghai, China [구두발표, 초청]</p>
+<p><a href="https://www.dropbox.com/scl/fi/ac1233d41f7amxstrvofv/main.pdf?rlkey=ma2pimb4xcyjl17zvy893bnr3&st=2f1yzz16&dl=0"><strong>Can AI Understand Hamiltonian Mechanics?</strong></a>
+<em>Summer Institute 2025</em>, Yeosu, Korea [구두발표] | <a href="https://www.dropbox.com/scl/fi/ac1233d41f7amxstrvofv/main.pdf?rlkey=ma2pimb4xcyjl17zvy893bnr3&st=2f1yzz16&dl=0">📊 슬라이드</a></p>
+<p><a href="https://www.dropbox.com/scl/fi/j5m29r4mfz92fqxvj2uuj/main.pdf?rlkey=cfjkz2h0a9de4iqbto12a49np&st=vl5967uy&dl=0"><strong>A Neural Operator for Primordial Black Hole Physics</strong></a>
+<em>The 4th workshop on Symmetry and Structure of the Universe</em>, Jeonju, Korea [구두발표] | <a href="https://www.dropbox.com/scl/fi/j5m29r4mfz92fqxvj2uuj/main.pdf?rlkey=cfjkz2h0a9de4iqbto12a49np&st=vl5967uy&dl=0">📊 슬라이드</a></p>
+<p><a href="https://www.dropbox.com/scl/fi/wxobs4uyd1d1otewfuq3q/main.pdf?rlkey=06ja38ckktp84mnachku21gjr&st=ghs0fl89&dl=0"><strong>PBH Phenomenology with Operator Learning</strong></a>
+<em>LSSU Seminar @ JBNU</em>, Jeonju, Korea [구두발표, 초청] | <a href="https://www.dropbox.com/scl/fi/wxobs4uyd1d1otewfuq3q/main.pdf?rlkey=06ja38ckktp84mnachku21gjr&st=ghs0fl89&dl=0">📊 슬라이드</a></p>
+<p><a href="https://www.dropbox.com/scl/fi/w4krmvnjfu60woevaibee/AI_with_Hamiltonian_AIHEP-EastAsia.pdf?rlkey=cp9ah1nlkz3x4rkic1ugb6sk2&st=tpaioyql&dl=0"><strong>AI with Hamiltonian Mechanics: From Predictions to Understanding</strong></a>
+<em>AI+HEP in East Asia 2025</em>, Daejeon, Korea [구두발표] | <a href="https://www.dropbox.com/scl/fi/w4krmvnjfu60woevaibee/AI_with_Hamiltonian_AIHEP-EastAsia.pdf?rlkey=cp9ah1nlkz3x4rkic1ugb6sk2&st=tpaioyql&dl=0">📊 슬라이드</a></p>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>RIKEN DEEP-IN Seminar</em>, Online [구두발표, 초청]</p>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>Dark Matter as a portal to New Physics 2025</em>, Pohang, Korea [구두발표, 초청]</p>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>Focused workshop on AI in High Energy Physics 2025</em>, Seoul, Korea [구두발표]</p>
+<h3 id="2024-1">2024</h3>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>2024 Korea-France STAR Workshop</em>, Seoul, Korea [구두발표]</p>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>Invited Seminar @ KIAS</em>, Seoul, Korea [구두발표, 초청]</p>
+<p><strong>Can A.I. Understand Hamiltonian Mechanics?</strong>
+<em>21st Saga-Yonsei Joint Workshop</em>, Seoul, Korea [구두발표]</p>
+<p><strong>Primordial Black Hole dominant Axion background</strong>
+<em>2024 KPS Fall Meeting</em>, Yeosu, Korea [구두발표]</p>
+<h3 id="2023-1">2023</h3>
+<p><a href="https://www.dropbox.com/scl/fi/q79z6wwwxrshj88gw5y3k/SI2023_TGKim.pdf?rlkey=jv0ypybbi8175rju495a1k0xt&dl=0"><strong>Exploration of Primordial Black Holes and Axion-Like Particles</strong></a>
+<em>27th International Summer Institute on Phenomenology</em>, Nantou, Taiwan [포스터] | <a href="https://www.dropbox.com/scl/fi/q79z6wwwxrshj88gw5y3k/SI2023_TGKim.pdf?rlkey=jv0ypybbi8175rju495a1k0xt&dl=0">📊 포스터</a></p>
+<h3 id="2022">2022</h3>
+<p><strong>Exploration of Primordial Black Holes and Axion-Like Particles</strong>
+<em>16th International Conference on Interconnections between Particle Physics and Cosmology</em>, Daejeon, Korea [구두발표]</p>
+<p><a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_WPDC.html"><strong>Constraining ALPs via PBH with time-varying decay process</strong></a>
+<em>Workshop on Physics of Dark Cosmos</em>, Busan, Korea [구두발표] | <a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_WPDC.html">📊 슬라이드</a></p>
+<p><a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_kps.html"><strong>Constraining ALPs via PBH with time-varying decay process Part.2</strong></a>
+<em>KPS 70th Anniversary and 2022 Fall Meeting</em>, Busan, Korea [구두발표] 🏆 <strong>최우수 구두발표상</strong> | <a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_kps.html">📊 슬라이드</a></p>
+<h3 id="2019">2019</h3>
+<p><a href="https://axect.github.io/Slides/PHY/NS/neutron-saga.html"><strong>Bird&rsquo;s eye view of Neutron star cooling</strong></a>
+<em>16th Saga-Yonsei Joint Workshop</em> [구두발표] | <a href="https://axect.github.io/Slides/PHY/NS/neutron-saga.html">📊 슬라이드</a></p>
+<hr>
+<h2 id="수상-및-펠로우십">수상 및 펠로우십</h2>
+<ul>
+<li><strong>상하이 슈퍼박사후연구원 펠로우십</strong>, 상하이시 정부 (2025-2027)</li>
+<li><strong>푸단 슈퍼박사후연구원 펠로우십</strong>, 푸단대학교 (2025-2027)</li>
+<li><strong>아카데미 연구 펠로우십</strong>, 연세대학교 (2022-2023)</li>
+<li><strong>최우수 구두발표상</strong>, KPS 70주년 및 2022 추계학술대회 (2022)</li>
+</ul>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/kr/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+
+
+
+    </body>
+</html>

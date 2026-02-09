@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
 <meta name="description" content="arXiv: 1511.06068
-딥러닝에서 가장 빈번하게 일어나는 문제로 Overfitting (과적합) 이 있습니다. 이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다." />
-<meta name="keywords" content=", machine-learning, decorrelation, pytorch, paper-review" />
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks." />
+<meta name="keywords" content="AI4Science, Operator Learning, Inverse Problems, Physics-Informed Machine Learning, Dark Matter Physics, Primordial Black Holes, Axions, Interdisciplinary AI, Scientific Computing, Rust, machine-learning, decorrelation, pytorch, paper-review" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://axect.github.io/posts/005_decov/" />
@@ -15,7 +15,7 @@
 
     <title>
         
-            💔 Decorrelation &#43; Deep learning = Generalization :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+            💔 Decorrelation &#43; Deep learning = Generalization :: Axect&#39;s Blog  — Mathematics, Physics and Computations
         
     </title>
 
@@ -42,9 +42,9 @@
 
 <meta itemprop="name" content="💔 Decorrelation &#43; Deep learning = Generalization">
 <meta itemprop="description" content="arXiv: 1511.06068
-딥러닝에서 가장 빈번하게 일어나는 문제로 Overfitting (과적합) 이 있습니다. 이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다."><meta itemprop="datePublished" content="2022-10-29T17:39:54+09:00" />
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks."><meta itemprop="datePublished" content="2022-10-29T17:39:54+09:00" />
 <meta itemprop="dateModified" content="2022-10-29T17:39:54+09:00" />
-<meta itemprop="wordCount" content="1211"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="wordCount" content="1694"><meta itemprop="image" content="https://axect.github.io/" />
 <meta itemprop="keywords" content="machine-learning,decorrelation,pytorch,paper-review," />
 
 
@@ -53,6 +53,71 @@
     <meta property="article:published_time" content="2022-10-29 17:39:54 &#43;0900 &#43;0900" />
 
 
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/posts/005_decov/" />
+<meta property="og:title" content="💔 Decorrelation &#43; Deep learning = Generalization | Axect&#39;s Blog" />
+<meta property="og:description" content="arXiv: 1511.06068
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/posts/005_decov/" />
+<meta name="twitter:title" content="💔 Decorrelation &#43; Deep learning = Generalization" />
+<meta name="twitter:description" content="arXiv: 1511.06068
+The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "💔 Decorrelation \u002b Deep learning = Generalization",
+  "datePublished": "2022-10-29T17:39:54\u002b09:00",
+  "dateModified": "2022-10-29T17:39:54\u002b09:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim",
+    "url": "https:\/\/axect.github.io\/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim"
+  },
+  "description": "arXiv: 1511.06068\nThe most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.",
+  "url": "https:\/\/axect.github.io\/posts\/005_decov\/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/axect.github.io\/posts\/005_decov\/"
+  },
+  "keywords": ["machine-learning", "decorrelation", "pytorch", "paper-review"]
+}
+</script>
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+<meta name="citation_title" content="💔 Decorrelation &#43; Deep learning = Generalization" />
+<meta name="citation_publication_date" content="2022/10/29" />
+<meta name="citation_online_date" content="2022/10/29" />
 
 
 
@@ -78,7 +143,7 @@
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="/" style="text-decoration: none;">
+        <a href="/en" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -97,14 +162,14 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/research">Research</a></li><li><a href="/software">Software</a></li><li><a href="/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
                 <div class="dropdown-content">
                     
                         
-                            <a title="en" href="https://axect.github.io/en/posts/005_decov/"><span class="flag fi fi-gb"></span></a>
+                            <a title="kr" href="https://axect.github.io/kr/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
                         
                     
                 </div>
@@ -174,11 +239,11 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        6 분
+        8 minutes
 
-         | In English :
+         | 한글로 보기 :
           
-              <a href="https://axect.github.io/en/posts/005_decov/"><span class="flag fi fi-gb"></span></a>
+              <a href="https://axect.github.io/kr/posts/005_decov/"><span class="flag fi fi-kr"></span></a>
           
         
       </p>
@@ -194,7 +259,7 @@
       
         <hr />
         <aside id="toc">
-          <div class="toc-title">목차</div>
+          <div class="toc-title">Table of Contents</div>
           <nav id="TableOfContents">
   <ul>
     <li><a href="#1-why-do-we-need-decorrelation">1. Why do we need decorrelation?</a>
@@ -220,82 +285,79 @@
             <p><a href="https://arxiv.org/abs/1511.06068">arXiv: 1511.06068</a></p>
         </figcaption>
 </figure>
-<p>  딥러닝에서 가장 빈번하게 일어나는 문제로 <span style="background-color: rgba(255, 255, 0, 0.534);">
-    <b>Overfitting (과적합)</b>
-</span>이 있습니다.
-이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다.</p>
+<p>  The most pervasive challenge in deep learning is <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Overfitting</b>
+</span>. This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks. These techniques encompass a range of methods.</p>
 <figure>
     <img src="/posts/images/005_02_overfitting.png"
-         alt="Bejani, M.M., Ghatee, M. A systematic review on overfitting control in shallow and deep neural networks. Artif Intell Rev 54, 6391–6438 (2021)"/> <figcaption style="text-align:center">
-            <p>Bejani, M.M., Ghatee, M. <em>A systematic review on overfitting control in shallow and deep neural networks.</em> Artif Intell Rev 54, 6391–6438 (2021)</p>
+         alt="Bejani, M.M., Ghatee, M. A systematic review on overfitting control in shallow and deep neural networks. Artif Intell Rev 54, 6391-6438 (2021)"/> <figcaption style="text-align:center">
+            <p>Bejani, M.M., Ghatee, M. <em>A systematic review on overfitting control in shallow and deep neural networks.</em> Artif Intell Rev 54, 6391-6438 (2021)</p>
         </figcaption>
 </figure>
-<p>특히 이 중에서 가장 유명하다고 할 수 있는 것은 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>Among these, <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Dropout</b>
-</span>인데, 이는 신경망의 뉴런들 중 일부를 제거함으로써 뉴런들의 중복활동을 억제하는 효과를 주는 것입니다.
-실제로 이는 Overfitting을 줄일 수 있는 굉장히 효과적인 방법이었고, 이제는 신경망 구성에 포함되는 것이 당연한 정도가 되었습니다. 다만 Dropout이 모든 경우에 효과적인 방법은 아닙니다. 훈련 데이터가 적거나 뉴런 수 자체가 적다면 임의의 뉴런을 제거하는 것이 신경망의 표현력을 제한할 수 있습니다. 또한 그 효과와는 별개로 Dropout은 특유의 간단한 구조와 개념 덕에 이론적인 즐거움은 반감되는 면이 있습니다. 여기서는 그 즐거움과 효과를 보완해주는 재미있는 논문을 소개하고자 합니다.</p>
+</span> is perhaps the most well-known, which involves omitting certain neurons in a neural network to prevent their co-adaptation. Practically, this has proven to be an exceedingly effective measure to mitigate overfitting, becoming a standard inclusion in neural network architectures. However, dropout is not universally applicable: with limited training data or few neurons, the random removal of neurons might impede the network&rsquo;s capacity to model complex relationships. Additionally, despite its practicality, dropout&rsquo;s straightforward architecture and the principle may seem less theoretically satisfying. In this context, I wish to present an intriguing paper that offers both theoretical enrichment and practical effectiveness.</p>
 <hr>
 <h2 id="1-why-do-we-need-decorrelation">1. Why do we need decorrelation?</h2>
 <h3 id="11-covariance--correlation">1.1. Covariance &amp; Correlation</h3>
-<p>  제가 리뷰할 논문은 표지에서 보셨다시피 2015년에 발표된 <em>Reducing Overfitting in Deep networks by Decorrelating Representations</em> 논문입니다. 이 논문은 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>  The paper under review, <em>Reducing Overfitting in Deep Networks by Decorrelating Representations</em> from 2015, introduces a method termed <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Decorrelation</b>
-</span>이라는 방법으로 Overfitting을 줄이는 것에 대해 다루었는데, 이것으로 Dropout의 성능을 한층 더 끌어올릴 수 있다는 결과를 도출하였습니다. 다만 Decorrelation이라는 것이 생소하기도 하고 큰 관심을 끌지 못하는 주제라 폭발적인 반응은 끌어내지 못하였습니다만, 그래도 꾸준히 인용되고 있는 좋은 논문입니다.</p>
-<p>Decorrelation을 이해하기 위해서는 먼저 Correlation에 대해 이해해야 합니다. Correlation은 두 데이터 간의 상관관계를 나타낸 것으로 이를 나타내는 방법에는 여러가지가 존재하는데, 가장 대표적인 방법으로는 Covariance(공분산)가 있습니다. 공분산의 정의는 2개의 확률변수의 선형 관계를 나타내는 것으로 다음과 같습니다.</p>
+</span>. The authors demonstrate how this technique can bolster the performance of Dropout in reducing overfitting. Despite its potential, Decorrelation did not surge in popularity, likely due to its novelty and relative complexity. Nevertheless, it remains a valuable and consistently cited work in the field.</p>
+<p>To grasp the concept of decorrelation, we must first understand what correlation entails. Correlation denotes the relationship between two sets of data, with covariance being a common measure of this relationship. Covariance is defined as the linear association between two random variables, expressed by the formula:</p>
 <p>$$
 \text{Cov}(X,\,Y) \equiv \mathbb{E}\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right]
 $$</p>
-<p>보통 공분산 값이 양수이면 두 변수는 비례 관계가 있으며 음수이면 반비례 관계가 있고, 0에 가까우면 관계가 없다고 여겨집니다. 이를 좀 더 정량화 한것으로는 Pearson correlation coefficient(피어슨 상관계수)가 있는데 이것의 정의는 다음과 같습니다.</p>
+<p>It is generally understood that a positive covariance indicates a direct proportional relationship between variables, a negative value suggests an inverse relationship, and a value near zero implies no apparent relationship. A more precise metric for this relationship is the Pearson correlation coefficient, defined as:</p>
 <p>$$
 \text{Corr}(X,\,Y) \equiv \frac{\text{Cov}(X,\,Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}}
 $$</p>
-<p>이렇게 정의하면 상관계수가 가질 수 있는 값의 범위가 -1에서 1까지로 한정되는데, 1에 가까울 수록 정비례 관계가 있고, -1에 가까울 수록 반비례 관계가 있으며 0에 가깝다면 상관관계가 존재하지 않는다는 것을 의미합니다.
-예를 들어 다음과 같은 데이터 2개를 생각해봅시다.</p>
+<p>This coefficient is constrained within a range from -1 to 1. A value closer to 1 indicates a strong direct relationship, closer to -1 indicates a strong inverse relationship, and a value near 0 suggests no correlation. Consider the following data as an illustration.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>])
 </span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>])
-</span></span></code></pre></div><p>이 2개의 변수에 대한 공분산은 다음과 같은 함수로 계산할 수 있습니다.</p>
+</span></span></code></pre></div><p>For these two variables, the covariance can be calculated using the following function in Python:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cov</span>(x, y):
 </span></span><span style="display:flex;"><span>    N <span style="color:#f92672">=</span> len(x)
 </span></span><span style="display:flex;"><span>    m_x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>mean()
 </span></span><span style="display:flex;"><span>    m_y <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>mean()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>dot((x <span style="color:#f92672">-</span> m_x), (y <span style="color:#f92672">-</span> m_y)) <span style="color:#f92672">/</span> (N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
-</span></span></code></pre></div><p>이를 이용하여 위의 <code>x</code>, <code>y</code>에 대한 공분산을 계산하면 <code>1.6666666666666667</code>이라는 값을 얻을 수 있는데, 양의 상관관계라는 것을 얻을 수는 있지만 값을 해석하는데는 어려움이 있습니다. 이를 깔끔히 해석하기 위하여 위에서 언급하였던 피어슨 상관계수를 정의하면 다음과 같습니다.</p>
+</span></span></code></pre></div><p>Using this function to compute the covariance for <code>x</code> and <code>y</code> above yields a value of <code>1.6666666666666667</code>. This indicates a positive correlation, but interpreting this raw number can be challenging. To facilitate a clearer interpretation, we employ the Pearson correlation coefficient, as previously mentioned, defined in Python as:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pearson_corr</span>(x, y):
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ddof=1 for sample variance</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cov(x, y) <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>sqrt(x<span style="color:#f92672">.</span>var(ddof<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> y<span style="color:#f92672">.</span>var(ddof<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
-</span></span></code></pre></div><p>이를 위 데이터에 적용하면 정확히 1의 값을 가지는 것을 볼 수 있습니다. 이는 두 변수가 완벽하게 선형적으로 정비례관계에 있기 때문입니다.</p>
-<p>여러 개의 feature들이 있다면 행렬을 만들어 이들의 공분산을 한 번에 나타낼 수 있을 것입니다.  이를 공분산행렬(Covariance matrix)이라고 부르며 다음과 같이 나타냅니다.</p>
+</span></span></code></pre></div><p>Applying this to the given data reveals a Pearson correlation coefficient of exactly 1, signifying that the two variables have a perfect linear relationship.</p>
+<p>When dealing with multiple features, it is possible to construct a matrix that represents the covariance among them all at once. This is known as the covariance matrix, and is denoted as follows:</p>
 <p>$$
 C_{ij} = \text{Cov}(x_i,\,x_j)
 $$</p>
-<p>따라서 공분산행렬은 feature의 개수와 같은 행과 열을 갖는 정사각행렬로 표현됩니다.</p>
+<p>Therefore, the covariance matrix is a square matrix with dimensions equal to the number of features, representing the covariance between each pair of features.</p>
 <p> </p>
 <h3 id="12-overfitting--decorrelation">1.2. Overfitting &amp; Decorrelation</h3>
-<p>  딥러닝에서 갑자기 상관관계를 설명하는 까닭은 두 변수 혹은 여러 변수가 서로 유의미한 상관관계를 갖고 있다면 이것이 모델에 악영향을 끼치기 때문입니다. 심층신경망은 각 feature들에 할당된 가중치를 업데이트하며 학습하게 되는데, 만일 두 feature가 정확히 같은 역할을 한다면 둘 중 어떤 가중치를 변경해도 같은 결과가 발생하는 일종의 degeneracy가 발생하게 됩니다. 이는 정확한 학습을 방해하고 신경망을 편향시키는데, 위 논문에서는 이것이 과적합을 발생시키는 원인으로 간주하였습니다. 실제로 논문에서는 과적합 정도를 훈련 정확도와 검증 정확도의 차이로 정의하고 Decorrelation 정도를 수치화한 것을 <code>DeCov</code>라는 변수로 둔다면 다음과 같은 결과를 얻을 수 있음을 보였습니다.</p>
+<p>  The discussion of correlation in the realm of deep learning arises from the issue that significant correlation among variables, or features, can be detrimental to a model&rsquo;s performance. Deep neural networks refine their learning by adjusting weights assigned to each feature; however, when two features yield identical information (high correlation), it creates redundancy. This redundancy can cause a form of degeneracy where altering the weights of either feature doesn&rsquo;t uniquely contribute to the learning process, which in turn can impede accurate learning and introduce bias into the neural network. The aforementioned paper posits that this redundancy is a contributing factor to overfitting.</p>
+<p>In fact, the study demonstrates that by defining the extent of overfitting as the discrepancy between training and validation accuracy and quantifying the level of decorrelation with a metric termed <code>DeCov</code>, a notable pattern emerges:</p>
 <figure>
     <img src="/posts/images/005_03_decov.png"
-         alt="Overfitting과 Covariance의 상관관계"/> <figcaption style="text-align:center">
-            <p>Overfitting과 Covariance의 상관관계</p>
+         alt="Correlation between Overfitting and Covariance"/> <figcaption style="text-align:center">
+            <p>Correlation between Overfitting and Covariance</p>
         </figcaption>
 </figure>
-<p>위 그림에서는 훈련 샘플을 늘리면서 Overfitting 정도가 작아질 때, Cross-Covariance 정도도 같이 줄어드는 것을 볼 수 있습니다. 이를 이용하면 Covariance를 줄인다면, 즉, Decorrelation을 한다면 Overfitting을 줄일 수 있을 것이라 생각할 수 있습니다.</p>
+<p>The graph above illustrates that with an increase in the number of training samples, the degree of overfitting diminishes, concurrently with a decrease in Cross-Covariance. This correlation suggests that by reducing covariance, or in other words, promoting decorrelation, one can potentially reduce the tendency of a model to overfit.</p>
 <hr>
 <h2 id="2-how-to-decorrelate">2. How to decorrelate?</h2>
-<p>  논문에서는 hidden layer의 output들을 activation한 값들을 decorrelate해야 한다고 생각하였습니다. 실제로 다음 weight들과 곱해지는 것은 이들이므로 합리적인 생각이라 할 수 있습니다.
-따라서 한 hidden layer의 activation 값들을 $h^n \in \mathbb{R}^d$라고 정의하면 다음과 같이 이들의 공분산행렬을 정의할 수 있습니다. ($n$은 batch index를 의미합니다.)</p>
+<p>  Within the paper, the authors propose that to combat overfitting, one should aim to decorrelate the activation outputs of the hidden layers. This approach is grounded in the logic that these activations are the actual values being multiplied by subsequent weights in the network. Let&rsquo;s consider the activation values of one hidden layer as $h^n \in \mathbb{R}^d$, where $n$ is the batch index. We can then define the covariance matrix of these activations as:</p>
 <p>$$
 C_{ij} = \frac{1}{N} \sum_n (h_i^n - \mu_i)(h_j^n - \mu_j)
 $$</p>
-<p>이제 이 값을 이용하여 서로의 공분산을 줄이기만 한다면 목적을 달성할 수 있습니다. 하지만, 이는 엄연히 행렬이므로 Loss 함수에 포함하려면 단순한 스칼라로 이를 표현해야할 필요가 있습니다. 논문에서는 이를 다음과 같은 Loss 함수로 표현하였습니다.</p>
+<p>By reducing the covariance of these activation values, we aim to achieve our objective of decorrelation. However, to integrate this concept into our Loss function, which requires a scalar value, the covariance matrix must be represented in a scalar form. The paper introduces the following Loss function for this purpose:</p>
 <p>$$
 \mathcal{L}_{\text{DeCov}} = \frac{1}{2}(\lVert C \rVert_F^2 - \lVert\text{diag}(C) \rVert_2^2)
 $$</p>
-<p>$\lVert \cdot \rVert_F$는 행렬의 Frobenius norm을 나타낸 것이며 $\lVert \cdot \rVert_2$는 $l^2$ norm을 나타낸 것입니다. 대각성분만 따로 분리하여 뺀 까닭은 공분산행렬의 대각성분은 단순히 각 feature의 분산을 나타내는 것이라, decorrelation과 관계가 없기 때문입니다. 그렇다면 이제 이 Loss 함수를 마치 regularization 항을 추가하듯이 저희의 Loss 함수에 추가하기만 하면 Decorrelation을 구현할 수 있습니다.</p>
-<p>그렇다면 이를 실제 딥러닝에서는 어떻게 구현할 수 있을까요? 언뜻 생각해보면 공분산행렬과 그에 따른 norm의 gradient 계산을 전부 구현하는 것은 굉장히 복잡해보이지만, 다행히 PyTorch에는 covariance matrix와 norm에 대한 자동미분이 전부 구현되어 있습니다. 따라서 다음과 같은 간단한 코드로 이를 구현할 수 있습니다.</p>
+<p>Here, $\lVert \cdot \rVert_F$ denotes the Frobenius norm of the matrix, and $\lVert \cdot \rVert_2$ denotes the $l^2$ norm. The subtraction of the diagonal components is deliberate since these represent the variance of individual features, which does not contribute to inter-feature correlation. By incorporating this DeCov Loss function into the overall loss, much like a regularization term, we can enforce decorrelation in the learning process.</p>
+<p>Implementing this decorrelation strategy in practical deep learning applications may initially appear daunting, given the complexity of gradient calculations for the covariance matrix and its norms. However, PyTorch simplifies the process considerably with its built-in automatic differentiation capabilities, which can handle gradients for the covariance matrix and norms with ease. Consequently, this DeCov loss function can be integrated into your model with just a few lines of Python code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
 </span></span><span style="display:flex;"><span>
@@ -303,16 +365,17 @@ $$</p>
 </span></span><span style="display:flex;"><span>    C <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cov(h)
 </span></span><span style="display:flex;"><span>    C_diag <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>diag(C, <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> (torch<span style="color:#f92672">.</span>norm(C, <span style="color:#e6db74">&#39;fro&#39;</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> torch<span style="color:#f92672">.</span>norm(C_diag, <span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)
-</span></span></code></pre></div><hr>
+</span></span></code></pre></div><p>By defining a function <code>decov</code>, we calculate the covariance matrix <code>C</code> of the activations <code>h</code>. The function then computes the DeCov loss by taking the Frobenius norm of the entire covariance matrix, squaring it, and subtracting the squared $l^2$ norm of the diagonal elements, which represent the variance of each feature. This DeCov loss can then be added to the primary loss function, thereby enabling the model to learn decorrelated features effectively.</p>
+<hr>
 <h2 id="3-apply-to-regression">3. Apply to Regression</h2>
-<p>  원 논문에서는 이를 여러가지 image 데이터들에 적용해보았지만, 여기서는 그 효과를 좀 더 쉽게 실감하기 위하여 간단한 회귀문제에 적용해보고자 합니다. 신경망에게 출제할 데이터는 다음과 같습니다.</p>
+<p>  In the original study, the authors applied their decorrelation technique to various sets of image data. However, to more clearly demonstrate its effectiveness, we&rsquo;ll apply it to a simple regression problem. Below is the dataset that will be used to train the neural network:</p>
 <figure>
     <img src="/posts/images/005_04_data.png"
-         alt="비선형 데이터 [참고: Peroxide_Gallery]"/> <figcaption style="text-align:center">
-            <p>비선형 데이터 [참고: <a href="https://github.com/Axect/Peroxide_Gallery/tree/master/Machine_Learning/linear_reg_ridge">Peroxide_Gallery</a>]</p>
+         alt="Nonlinear data [Note: Peroxide_Gallery]"/> <figcaption style="text-align:center">
+            <p>Nonlinear data [Note: <a href="https://github.com/Axect/Peroxide_Gallery/tree/master/Machine_Learning/linear_reg_ridge">Peroxide_Gallery</a>]</p>
         </figcaption>
 </figure>
-<p>이를 간단한 신경망과 <code>DeCov</code>를 구현한 신경망 각각에 대해 풀어보게 하였는데, <code>DeCov</code> 신경망의 구조는 다음과 같습니다.</p>
+<p>To illustrate the impact of the <code>DeCov</code> loss function, we will compare the performance of a standard neural network to one that implements the <code>DeCov</code> function. The architecture of the neural network utilizing <code>DeCov</code> is detailed below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pytorch_lightning <span style="color:#66d9ef">as</span> pl
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn.functional <span style="color:#66d9ef">as</span> F
@@ -360,7 +423,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> loss
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
-</span></span></code></pre></div><p>이를 간단히 살펴보면 <code>fc_init</code> 단일층을 지났을 때의 값을 이용하여 <code>loss_0</code>를 정의하였고, <code>fc_mid</code>라는 3개 층을 지났을 때의 값을 이용하여 <code>loss_1</code>을 정의하여 이를 MSE loss에 regularization 항처럼 적용한 것을 볼 수 있습니다. 결과를 보기 전에 <code>SimpleMLP</code>와 <code>DeCovMLP</code>의 훈련과정을 보면 재미있는 것을 관측할 수 있습니다.</p>
+</span></span></code></pre></div><p>Upon closer examination, we observe that <code>loss_0</code> is defined as the loss after the initial layer <code>fc_init</code>, and <code>loss_1</code> as the loss after the subsequent three layers <code>fc_mid</code>. These losses are then integrated into the mean squared error (MSE) loss as regularization terms. Before delving into the outcomes, it&rsquo;s insightful to examine the training dynamics of <code>SimpleMLP</code> and <code>DeCovMLP</code>.</p>
 <figure>
     <img src="/posts/images/005_07_SimpleMLP.png"
          alt="SimpleMLP losses (wandb.ai)"/> <figcaption style="text-align:center">
@@ -373,25 +436,25 @@ $$</p>
             <p>DeCovMLP losses (<a href="https://wandb.ai/axect/DeCov/runs/22ggcfkd?workspace=user-axect">wandb.ai</a>)</p>
         </figcaption>
 </figure>
-<p><code>SimpleMLP</code>에서는 훈련이 거듭될수록 <code>decov_1</code>이 증가하다 더 이상 줄어들지 않는 것을 볼 수 있습니다. 하지만 <code>DeCovMLP</code>에서는 <code>decov_1</code>의 값이 꾸준히 줄어드는 것을 볼 수 있습니다. 이는 논문에서 예상했던 것과 같이 overfitting 되면 feature 간의 correlation 역시 늘어나는 것과 같은 양상입니다. 그렇다면 이제 결과를 보도록 하겠습니다.</p>
+<p>In the <code>SimpleMLP</code> model, <code>decov_1</code> initially increases during training iterations and then plateaus, indicating no further decrease. Contrastingly, within the <code>DeCovMLP</code> model, <code>decov_1</code> consistently decreases, aligning with the paper&rsquo;s hypothesis: as overfitting intensifies, so does the correlation between features. Now, let&rsquo;s consider the results.</p>
 <figure>
     <img src="/posts/images/005_05_total.png"
          alt="Results!"/> <figcaption style="text-align:center">
             <p>Results!</p>
         </figcaption>
 </figure>
-<p>붉은 선은 <code>SimpleMLP</code>의 결과이고 파란 선은 <code>DeCovMLP</code>의 결과입니다. 붉은 선이 Overfit 되어 요동이 심한 것에 비해 파란 선은 <code>true</code>에서 별로 벗어나지 않고 요동도 심하지 않다는 것을 볼 수 있습니다. 여기까지만 해도 충분히 놀라운 결과이지만 조금만 extrapolate을 해보면 더 재미있는 결과를 얻을 수 있었습니다.</p>
+<p>The red line represents the <code>SimpleMLP</code> outcome, while the blue line depicts <code>DeCovMLP</code>. Noticeably, the red line exhibits overfitting with erratic fluctuations, whereas the blue line maintains closer alignment with the <code>true</code> data and exhibits less jitter. This demonstrates a remarkable improvement, and further extrapolation yields even more compelling insights.</p>
 <figure>
     <img src="/posts/images/005_06_extrapolate.png"
          alt="Extrapolate!"/> <figcaption style="text-align:center">
             <p>Extrapolate!</p>
         </figcaption>
 </figure>
-<p>훈련 데이터셋에 과적합된 붉은 선은 정의역이 조금만 벗어나도 완전히 어긋난 결과를 보여주는 반면 푸른 선은 크게 벗어나지 않는 양상을 보여줍니다. 확실히 <code>DeCovMLP</code>가 더 일반화 성능이 뛰어나다는 것을 그림으로부터 알 수 있습니다.</p>
+<p>When extrapolated, the red line — indicative of overfitting — diverges significantly from the expected trend even with minor deviations, leading to inaccurate predictions. Meanwhile, the blue line remains stable, displaying minimal deviation. This clearly demonstrates the superior generalization capability of the <code>DeCovMLP</code>.</p>
 <hr>
 <h2 id="4-further-more">4. Further more..</h2>
-<p>이 논문은 2015년에 발표된 논문으로 현재 2022년 기준으로 보면 상당히 오래된 논문입니다. 이후에도 Decorrelation에 대한 연구는 꾸준히 있어와서 최근에는 <a href="https://arxiv.org/abs/1804.08450">Decorrelated Batch Normalization</a> 등 다양한 연구들이 발표되고 있습니다. 특히 Decorrelation은 과거부터 통계학에서 많이 다뤄져와서 이론적 근거와 분석이 탄탄하기에 신경망의 결과를 좀 더 직관적으로 이해할 수 있는 것 같습니다.</p>
-<p>위 Regression 코드는 다음 링크에서 볼 수 있습니다.</p>
+<p>  The paper, &ldquo;<em>Reducing Overfitting in Deep Networks by Decorrelating Representations,</em>&rdquo; was published in 2015—a notable period ago, especially when considered within the fast-paced advancements of the field up to 2022. Since its publication, there has been a continuous outpouring of research on decorrelation techniques, with studies like <a href="https://arxiv.org/abs/1804.08450">Decorrelated Batch Normalization</a> emerging more recently. Decorrelation, having been extensively explored in the field of statistics, offers a robust theoretical foundation that can render the results of neural networks more intuitive and analytically solid for researchers and practitioners alike.</p>
+<p>For those interested in delving deeper, the regression code discussed earlier can be accessed at the provided link.</p>
 <center>
 <div class="animated-border-quote">
     <blockquote>
@@ -406,6 +469,7 @@ AutoAugment | Learns how to provide better data augmentation based on informatio
 DropBlock | Drops entire regions from a tensor | Internal | [arXiv: 1810.12890](https://arxiv.org/abs/1810.12890)
 Batch Augment | Increases the size of the mini-Batch | Input | [arXiv: 1901.09335](https://arxiv.org/abs/1901.09335)
 Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: ] -->
+
       </div>
     </article>
 
@@ -435,7 +499,7 @@ Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: 
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1211 단어
+        1694 Words
       </p>
 
       <p>
@@ -547,7 +611,7 @@ Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: 
     <div class="pagination">
         
         <div class="pagination__title">
-            <span class="pagination__title-h">다른 글 읽기</span>
+            <span class="pagination__title-h">Read other posts</span>
             <hr />
         </div>
         
@@ -562,13 +626,6 @@ Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: 
             </span>
             
 
-            
-            <span class="button next">
-                <a href="https://axect.github.io/posts/004_rust_1.62.0/">
-                    <span class="button__text">🦀 Rust 1.62.0 업데이트의 신기능 3가지</span>
-                    <span class="button__icon">→</span>
-                </a>
-            </span>
             
         </div>
     </div>

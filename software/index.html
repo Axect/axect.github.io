@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="Open-source software and research projects by Tae-Geun Kim (Axect).
+🚀 Active Projects Peroxide Rust numerical computing library Comprehensive numerical computing library for Rust, providing functionality comparable to NumPy/SciPy in Python. Core infrastructure for scientific computing research.
+Key Features:
+Linear algebra with BLAS/LAPACK integration Optimization algorithms (Gradient Descent, Levenberg-Marquardt, etc.) Numerical integration &amp;amp; ODE/PDE solvers Statistical distributions &amp;amp; special functions DataFrame with multiple I/O formats (CSV, NetCDF, JSON, Parquet) FFI support for C, Fortran, and Python Tech Stack: SIMD, BLAS, LAPACK, proc-macro metaprogramming" />
+<meta name="keywords" content="AI4Science, Operator Learning, Inverse Problems, Physics-Informed Machine Learning, Dark Matter Physics, Primordial Black Holes, Axions, Interdisciplinary AI, Scientific Computing, Rust" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/software/" />
+
+
+    <title>
+        
+            Software &amp; Projects :: Axect&#39;s Blog  — Mathematics, Physics and Computations
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="Software &amp; Projects">
+<meta itemprop="description" content="Open-source software and research projects by Tae-Geun Kim (Axect).
+🚀 Active Projects Peroxide Rust numerical computing library Comprehensive numerical computing library for Rust, providing functionality comparable to NumPy/SciPy in Python. Core infrastructure for scientific computing research.
+Key Features:
+Linear algebra with BLAS/LAPACK integration Optimization algorithms (Gradient Descent, Levenberg-Marquardt, etc.) Numerical integration &amp; ODE/PDE solvers Statistical distributions &amp; special functions DataFrame with multiple I/O formats (CSV, NetCDF, JSON, Parquet) FFI support for C, Fortran, and Python Tech Stack: SIMD, BLAS, LAPACK, proc-macro metaprogramming"><meta itemprop="datePublished" content="2026-02-09T15:20:00+09:00" />
+<meta itemprop="dateModified" content="2026-02-09T15:20:00+09:00" />
+<meta itemprop="wordCount" content="527"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="" />
+
+
+
+
+    <meta property="article:published_time" content="2026-02-09 15:20:00 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/software/" />
+<meta property="og:title" content="Software &amp; Projects | Axect&#39;s Blog" />
+<meta property="og:description" content="Open-source software and research projects by Tae-Geun Kim (Axect).
+🚀 Active Projects Peroxide Rust numerical computing library Comprehensive numerical computing library for Rust, providing …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/software/" />
+<meta name="twitter:title" content="Software &amp; Projects" />
+<meta name="twitter:description" content="Open-source software and research projects by Tae-Geun Kim (Axect).
+🚀 Active Projects Peroxide Rust numerical computing library Comprehensive numerical computing library for Rust, providing …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+
+
+
+
+
+
+        
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+        
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/en" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/research">Research</a></li><li><a href="/software">Software</a></li><li><a href="/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                            <a title="kr" href="https://axect.github.io/kr/software/"><span class="flag fi fi-kr"></span></a>
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+                한글로 보기 :
+                
+                    <a href="https://axect.github.io/kr/software/"><span class="flag fi fi-kr"></span></a>
+                
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://axect.github.io/software/">Software &amp; Projects</a></h2>
+
+            
+
+            <div class="post-content">
+                <p>Open-source software and research projects by Tae-Geun Kim (Axect).</p>
+<hr>
+<h2 id="-active-projects">🚀 Active Projects</h2>
+<h3 id="peroxide">Peroxide</h3>
+<center>
+<p style="text-align:center"><strong>Rust numerical computing library</strong>
+<img alt="Rust" src="https://img.shields.io/badge/Rust-DEA584?style=flat-square&logo=rust&logoColor=black"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/Peroxide?style=flat-square"> <img alt="Crates.io" src="https://img.shields.io/crates/v/peroxide?style=flat-square"> <img alt="Downloads" src="https://img.shields.io/crates/d/peroxide?style=flat-square"></p>
+</center>
+<p>Comprehensive numerical computing library for Rust, providing functionality comparable to NumPy/SciPy in Python. Core infrastructure for scientific computing research.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Linear algebra with BLAS/LAPACK integration</li>
+<li>Optimization algorithms (Gradient Descent, Levenberg-Marquardt, etc.)</li>
+<li>Numerical integration &amp; ODE/PDE solvers</li>
+<li>Statistical distributions &amp; special functions</li>
+<li>DataFrame with multiple I/O formats (CSV, NetCDF, JSON, Parquet)</li>
+<li>FFI support for C, Fortran, and Python</li>
+</ul>
+<p><strong>Tech Stack:</strong> SIMD, BLAS, LAPACK, proc-macro metaprogramming</p>
+<p><strong>Quick Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add peroxide
+</span></span></code></pre></div><p><strong>Links:</strong> <a href="https://github.com/Axect/Peroxide">GitHub</a> | <a href="https://crates.io/crates/peroxide">Crates.io</a> | <a href="https://peroxide.surge.sh">Documentation</a></p>
+<hr>
+<h3 id="radient">Radient</h3>
+<center>
+<p style="text-align:center"><strong>Rust automatic differentiation library</strong>
+<img alt="Rust" src="https://img.shields.io/badge/Rust-DEA584?style=flat-square&logo=rust&logoColor=black"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/Radient?style=flat-square"> <img alt="Version" src="https://img.shields.io/crates/v/radient?style=flat-square"> <img alt="Downloads" src="https://img.shields.io/crates/d/radient?style=flat-square"></p>
+</center>
+<p>Experimental reverse-mode automatic differentiation library with arena-based memory management for research and prototyping.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Efficient reverse-mode AD with tape-based gradient computation</li>
+<li>Arena allocation for memory safety and performance</li>
+<li>Integration with Peroxide for scientific computing workflows</li>
+</ul>
+<p><strong>Quick Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add radient
+</span></span></code></pre></div><p><strong>Links:</strong> <a href="https://github.com/Axect/Radient">GitHub</a> | <a href="https://crates.io/crates/radient">Crates.io</a> | <a href="https://docs.rs/radient">Documentation</a></p>
+<hr>
+<h3 id="deelema">DeeLeMa</h3>
+<center>
+<p style="text-align:center"><strong>Deep Learning for Mass Estimation</strong>
+<img alt="Python" src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logo=python&logoColor=white"> <img alt="Paper" src="https://img.shields.io/badge/PRR-Published-success?style=flat-square"></p>
+</center>
+<p>Deep learning framework for particle physics mass estimation using missing information search. Published in <strong>Physical Review Research</strong>.</p>
+<p><strong>Research Impact:</strong></p>
+<ul>
+<li>Paper: <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043186">Phys. Rev. Research <strong>5</strong>, 043186 (2023)</a></li>
+<li>Preprint: <a href="https://arxiv.org/abs/2212.12836">arXiv:2212.12836</a></li>
+</ul>
+<p><strong>Tech Stack:</strong> PyTorch, PyTorch Lightning, Wandb (hyperparameter tuning), Tensorboard</p>
+<p><strong>Links:</strong> <a href="https://github.com/Yonsei-HEP-COSMO/DeeLeMa">GitHub</a> | <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043186">Paper</a> | <a href="https://arxiv.org/abs/2212.12836">arXiv</a></p>
+<hr>
+<h3 id="neural-hamilton">Neural Hamilton</h3>
+<center>
+<p style="text-align:center"><strong>Can AI Understand Hamiltonian Mechanics?</strong>
+<img alt="Python" src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logo=python&logoColor=white"> <img alt="Rust" src="https://img.shields.io/badge/Rust-DEA584?style=flat-square&logo=rust&logoColor=black"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/Neural_Hamilton?style=flat-square"> <img alt="Paper" src="https://img.shields.io/badge/arXiv-2410.20951-b31b1b?style=flat-square"></p>
+</center>
+<p>Official implementation of operator learning for Hamiltonian mechanics. Explores whether AI can truly understand physical dynamics through four neural architectures (DeepONet, TraONet, VaRONet, MambONet).</p>
+<p><strong>Research Impact:</strong></p>
+<ul>
+<li>Paper: <a href="https://arxiv.org/abs/2410.20951">arXiv:2410.20951</a> - Tae-Geun Kim, Seong Chan Park (2024)</li>
+<li>MambONet consistently outperformed RK4 solvers and competing architectures</li>
+</ul>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Novel algorithm for generating physically plausible potentials using Gaussian Random Fields</li>
+<li>Four neural network architectures for operator learning</li>
+<li>Multi-language implementation (Python, Rust, Julia)</li>
+<li>CUDA-compatible for GPU acceleration</li>
+</ul>
+<p><strong>Tech Stack:</strong> PyTorch, CUDA, Rust (numerical backend), Julia (visualization)</p>
+<p><strong>Links:</strong> <a href="https://github.com/Axect/Neural_Hamilton">GitHub</a> | <a href="https://arxiv.org/abs/2410.20951">arXiv</a></p>
+<hr>
+<h3 id="pytorch-template">PyTorch Template</h3>
+<center>
+<p style="text-align:center"><strong>Flexible PyTorch template for ML experiments</strong>
+<img alt="Python" src="https://img.shields.io/badge/Python-3572A5?style=flat-square&logo=python&logoColor=white"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/pytorch_template?style=flat-square"></p>
+</center>
+<p>Modular PyTorch project template designed for reproducible machine learning experiments with YAML-based configuration.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>YAML-based experiment configuration for easy setup</li>
+<li>Multiple random seed support for robust experimentation</li>
+<li>Device selection (CPU/GPU) and learning rate scheduling</li>
+<li>Clean modular structure for extensibility</li>
+</ul>
+<p><strong>Links:</strong> <a href="https://github.com/Axect/pytorch_template">GitHub</a></p>
+<hr>
+<h3 id="quantum-algorithms">Quantum Algorithms</h3>
+<center>
+<p style="text-align:center"><strong>Quantum computing algorithm implementations</strong>
+<img alt="Quantum" src="https://img.shields.io/badge/Quantum-6929C4?style=flat-square&logo=qiskit&logoColor=white"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/QuantumAlgorithms?style=flat-square"></p>
+</center>
+<p>Comprehensive collection of quantum algorithms implemented in multiple frameworks (Pennylane, RustQIP, Qiskit, Cirq) with interactive Jupyter notebooks.</p>
+<p><strong>Tech Stack:</strong> Pennylane, RustQIP, Qiskit, Cirq, Jupyter</p>
+<p><strong>Links:</strong> <a href="https://github.com/Axect/QuantumAlgorithms">GitHub</a></p>
+<hr>
+<h3 id="puruspe">Puruspe</h3>
+<center>
+<p style="text-align:center"><strong>Pure Rust special functions library</strong>
+<img alt="Rust" src="https://img.shields.io/badge/Rust-DEA584?style=flat-square&logo=rust&logoColor=black"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/Puruspe?style=flat-square"> <img alt="Version" src="https://img.shields.io/crates/v/puruspe?style=flat-square"> <img alt="Downloads" src="https://img.shields.io/crates/d/puruspe?style=flat-square"></p>
+</center>
+<p>Pure Rust implementation of mathematical special functions (Bessel, Gamma, Error functions, etc.) for scientific computing.</p>
+<p><strong>Quick Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add puruspe
+</span></span></code></pre></div><p><strong>Links:</strong> <a href="https://github.com/Axect/Puruspe">GitHub</a> | <a href="https://crates.io/crates/puruspe">Crates.io</a> | <a href="https://docs.rs/puruspe">Documentation</a></p>
+<hr>
+<h3 id="forger">Forger</h3>
+<center>
+<p style="text-align:center"><strong>Rust reinforcement learning library</strong>
+<img alt="Rust" src="https://img.shields.io/badge/Rust-DEA584?style=flat-square&logo=rust&logoColor=black"> <img alt="Stars" src="https://img.shields.io/github/stars/Axect/Forger?style=flat-square"> <img alt="Version" src="https://img.shields.io/crates/v/forger?style=flat-square"> <img alt="Downloads" src="https://img.shields.io/crates/d/forger?style=flat-square"></p>
+</center>
+<p>Reinforcement learning algorithms implemented in Rust for research and education.</p>
+<p><strong>Algorithms:</strong> Monte Carlo, Temporal Difference, Q-Learning</p>
+<p><strong>Quick Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cargo add forger
+</span></span></code></pre></div><p><strong>Links:</strong> <a href="https://github.com/Axect/Forger">GitHub</a> | <a href="https://crates.io/crates/forger">Crates.io</a> | <a href="https://docs.rs/forger">Documentation</a></p>
+<hr>
+<h2 id="-archived-projects">📦 Archived Projects</h2>
+<details>
+<summary><strong>Click to expand archived/experimental projects</strong></summary>
+<h3 id="ncdataframejl">NCDataFrame.jl</h3>
+<p>Julia netCDF I/O with DataFrame integration (Archived).
+<strong>Links:</strong> <a href="https://github.com/Axect/NCDataFrame.jl">GitHub</a> | <a href="https://juliahub.com/ui/Packages/NCDataFrame/zhMPT/">JuliaHub</a></p>
+<h3 id="zellaygen">ZelLayGen</h3>
+<p>Zellij layout generator written in Rust.
+<strong>Links:</strong> <a href="https://github.com/Axect/Zellaygen">GitHub</a></p>
+<h3 id="puruda">Puruda</h3>
+<p>Pure Rust DataFrame library (superseded by Peroxide&rsquo;s DataFrame module).
+<strong>Links:</strong> <a href="https://github.com/Axect/Puruda">GitHub</a> | <a href="https://crates.io/crates/puruda">Crates.io</a></p>
+<h3 id="hnumeric">HNumeric</h3>
+<p>Numerical library for Haskell.
+<strong>Links:</strong> <a href="https://github.com/Axect/HNumeric">GitHub</a> | <a href="https://hackage.haskell.org/package/HNumeric">Hackage</a></p>
+<h3 id="dnumeric">DNumeric</h3>
+<p>Numerical library for D programming language.
+<strong>Links:</strong> <a href="https://github.com/Axect/DNumeric">GitHub</a> | <a href="https://code.dlang.org/packages/dnumeric">DUB</a></p>
+</details>
+<hr>
+<h2 id="-collaboration">💬 Collaboration</h2>
+<p>Interested in using these libraries or collaborating on research? Feel free to:</p>
+<ul>
+<li>Open issues or PRs on GitHub</li>
+<li>Reach out via <a href="mailto:axect.tg@proton.me">email</a></li>
+<li>Connect on <a href="https://www.linkedin.com/in/tae-geun-kim/">LinkedIn</a></li>
+</ul>
+<p>All active projects welcome contributions!</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+
+
+
+    </body>
+</html>

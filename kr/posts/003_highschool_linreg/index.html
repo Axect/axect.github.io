@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="2016 Breakthrough of the year
+세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
+1. 중력파 발견
+2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견
+3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결
+4. 세포 노화 및 회춘 연구
+5. 유인원의 마음 읽기 능력 연구
+6. 단백질 구조설계 기술" />
+<meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust, statistics, julia" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/kr/posts/003_highschool_linreg/" />
+
+
+    <title>
+        
+            🏫 고등학교 수학으로 이해하는 선형회귀 :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="🏫 고등학교 수학으로 이해하는 선형회귀">
+<meta itemprop="description" content="2016 Breakthrough of the year
+세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$
+1. 중력파 발견
+2. 외계행성 &lsquo;프록시마b&rsquo; 발견
+3. 인공지능 &lsquo;알파고&rsquo;와 이세돌 9단의 대결
+4. 세포 노화 및 회춘 연구
+5. 유인원의 마음 읽기 능력 연구
+6. 단백질 구조설계 기술"><meta itemprop="datePublished" content="2021-03-09T22:01:39+09:00" />
+<meta itemprop="dateModified" content="2021-03-09T22:01:39+09:00" />
+<meta itemprop="wordCount" content="3116"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="statistics,julia," />
+
+
+
+
+    <meta property="article:published_time" content="2021-03-09 22:01:39 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/kr/posts/003_highschool_linreg/" />
+<meta property="og:title" content="🏫 고등학교 수학으로 이해하는 선형회귀 | Axect&#39;s Blog" />
+<meta property="og:description" content="2016 Breakthrough of the year
+세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성 …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/kr/posts/003_highschool_linreg/" />
+<meta name="twitter:title" content="🏫 고등학교 수학으로 이해하는 선형회귀" />
+<meta name="twitter:description" content="2016 Breakthrough of the year
+세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성 …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "🏫 고등학교 수학으로 이해하는 선형회귀",
+  "datePublished": "2021-03-09T22:01:39\u002b09:00",
+  "dateModified": "2021-03-09T22:01:39\u002b09:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim",
+    "url": "https:\/\/axect.github.io\/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim"
+  },
+  "description": "2016 Breakthrough of the year\n세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$\n1. 중력파 발견\n2. 외계행성 \u0026lsquo;프록시마b\u0026rsquo; 발견\n3. 인공지능 \u0026lsquo;알파고\u0026rsquo;와 이세돌 9단의 대결\n4. 세포 노화 및 회춘 연구\n5. 유인원의 마음 읽기 능력 연구\n6. 단백질 구조설계 기술",
+  "url": "https:\/\/axect.github.io\/kr\/posts\/003_highschool_linreg\/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/axect.github.io\/kr\/posts\/003_highschool_linreg\/"
+  },
+  "keywords": ["statistics", "julia"]
+}
+</script>
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+<meta name="citation_title" content="🏫 고등학교 수학으로 이해하는 선형회귀" />
+<meta name="citation_publication_date" content="2021/03/09" />
+<meta name="citation_online_date" content="2021/03/09" />
+
+
+
+
+
+
+
+        
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+        
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/kr/about">About</a></li><li><a href="/kr/posts">Blog</a></li><li><a href="/kr/research">Research</a></li><li><a href="/kr/software">Software</a></li><li><a href="/kr/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        15 분
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://axect.github.io/kr/posts/003_highschool_linreg/">🏫 고등학교 수학으로 이해하는 선형회귀</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">목차</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-데이터의-확률화">1. 데이터의 확률화</a>
+      <ul>
+        <li><a href="#11-기본-표기법">1.1. 기본 표기법</a></li>
+        <li><a href="#12-확률-vs-확률분포">1.2. 확률 vs 확률분포</a></li>
+        <li><a href="#13-데이터의-확률분포">1.3. 데이터의 확률분포</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-전체-확률의-법칙과-베이즈-정리">2. 전체 확률의 법칙과 베이즈 정리</a>
+      <ul>
+        <li><a href="#21-파티션-partition">2.1. 파티션 (Partition)</a></li>
+        <li><a href="#22-전체-확률의-법칙">2.2. 전체 확률의 법칙</a></li>
+        <li><a href="#23-베이즈-정리">2.3. 베이즈 정리</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-선형회귀">3. 선형회귀</a>
+      <ul>
+        <li><a href="#31-노이즈-noise">3.1 노이즈 (Noise)</a></li>
+        <li><a href="#32-선형-모델">3.2. 선형 모델</a></li>
+        <li><a href="#33-최대-가능도-추정-mle">3.3 최대 가능도 추정 (MLE)</a></li>
+        <li><a href="#34-코드-구현">3.4. 코드 구현</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-마치며">4. 마치며</a></li>
+    <li><a href="#부록">부록</a>
+      <ul>
+        <li><a href="#1-수학-성적-히스토그램-코드">1. 수학 성적 히스토그램 코드</a></li>
+        <li><a href="#2-2020-수능-국어-등급컷-계산-코드">2. 2020 수능 국어 등급컷 계산 코드</a></li>
+        <li><a href="#3-선형-모델-데이터-코드">3. 선형 모델 데이터 코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#출처">출처</a></li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+
+      
+
+      <div class="post-content">
+        <figure>
+    <img src="/posts/images/breakthrough2016.gif"
+         alt="2016 Breakthrough of the year"/> <figcaption style="text-align:center">
+            <p><a href="https://www.youtube.com/watch?v=2ncTCM7t79o">2016 Breakthrough of the year</a></p>
+        </figcaption>
+</figure>
+<p>  세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>2016 Breakthrough of the year</b>
+</span> 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left"><strong>1. 중력파 발견</strong><br>
+<strong>2. 외계행성 &lsquo;프록시마b&rsquo; 발견</strong><br>
+<strong>3. 인공지능 &lsquo;알파고&rsquo;와 이세돌 9단의 대결</strong><br>
+<strong>4. 세포 노화 및 회춘 연구</strong><br>
+<strong>5. 유인원의 마음 읽기 능력 연구</strong><br>
+<strong>6. 단백질 구조설계 기술</strong><br>
+<strong>7. 배아줄기세포로 만든 인공난자</strong><br>
+<strong>8. 초기 인류의 확산 경로 연구</strong><br>
+<strong>9. 휴대용 DNA 분석기</strong><br>
+<strong>10. 초박막 메타렌즈 기술</strong></p>
+    </blockquote>
+</div>
+</center>
+<p>2016년에는 중력파 관측이라는 엄청난 업적이 있었습니다. 이는 아인슈타인이 1916년 일반상대성이론을 발표한 지 정확히 100년이 되는 해에 이룬, 인류의 물리학 역사에 길이 남을 업적이었고, 실제로 중력파 관측에 지대한 공을 세운 세 명의 과학자는 1년만에 2017년 노벨 물리학상을 수상하였습니다. 그에 걸맞게 여러 매체에서도 동시에 보도하여, 과학에 관심있는 사람이라면 2016년을 중력파의 해로 기억하고 있을 겁니다.</p>
+<p>하지만 여기서 말하고자 하는 것은 3번입니다. 아마도 대중에게는 1번보다 3번이 더 유명한 사건이었고, 특히 한국인들에게는 더더욱 잘 알려진 사건입니다. 중력파의 발견이 이후 천문학과 물리학의 새로운 연구방향을 제시했다면, 알파고의 바둑 정복은 이후 우리의 모든 삶에 머신러닝을 침투시키는 계기가 되었습니다. 이제는 어느 서비스에서나 머신러닝을 위시한 인공지능을 사용한다는 말이 들려오고, 대학들은 앞다투어 머신러닝 및 인공지능 관련 학과를 설치하고 있습니다. 이에 머신러닝을 공부해야겠다고 마음먹고 검색해보면, 여러 블로그에서 텐서플로우(Tensorflow), 파이토치(Pytorch), 케라스(Keras) 등으로 손글씨 인식하기 등의 머신러닝 응용에 대해서 다루는 것을 볼 수 있습니다. 하지만 <strong>왜 그렇게 되는 건지</strong>에 대해서 찾다보면 수 많은 논문들이 등장하며 여러 전문용어들이 쏟아져서 일반인들에게는 접근 자체가 어렵습니다. 따라서 이 게시물에서는 머신러닝의 가장 기본이 되는 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>MLE(Maximum Likelihood Estimation; 최대 가능도 추정)</b>
+</span>에 대해 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>고등학교 수준의 수학</b>
+</span>만 가지고 다뤄보려 합니다.</p>
+<hr>
+<h2 id="1-데이터의-확률화">1. 데이터의 확률화</h2>
+<blockquote>
+<p><strong>이해하기 위해 필요한 개념</strong></p>
+<ul>
+<li>고교 교과과정 - 확률과 통계</li>
+</ul>
+</blockquote>
+<h3 id="11-기본-표기법">1.1. 기본 표기법</h3>
+<p>  MLE를 시작하기에 앞서 고등학교때 배운 확률과 통계를 이용하여 데이터를 표현하는 것부터 연습하겠습니다. 표기 방식은 아주 유명한 머신러닝 책인 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Bishop의 PRML(Pattern Recognition and Machine Learning; 패턴인식과 머신러닝)에서 사용하는 표기법</b>
+</span>을 사용하겠습니다. 대부분 고등학교 표기방식과 동일합니다만, 조금의 차이가 있습니다. 저희가 사용할 표기법은 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">개념</th>
+<th style="text-align:center">표기법</th>
+<th style="text-align:center">고교 표기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">단일 스칼라 확률변수</td>
+<td style="text-align:center">$x \in \mathbb{R}$</td>
+<td style="text-align:center">집합 $X$</td>
+</tr>
+<tr>
+<td style="text-align:center">확률분포함수</td>
+<td style="text-align:center">$p(x) \geq 0$</td>
+<td style="text-align:center">$P(X=x) \geq 0$</td>
+</tr>
+<tr>
+<td style="text-align:center">결합확률분포</td>
+<td style="text-align:center">$p(x,y)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">조건부확률분포</td>
+<td style="text-align:center">$p(x | y)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">균등분포</td>
+<td style="text-align:center">$\text{Unif}(x|a,b)$</td>
+<td style="text-align:center">&ndash;</td>
+</tr>
+<tr>
+<td style="text-align:center">이항분포</td>
+<td style="text-align:center">$\text{Bin}(x|N, \mu)$</td>
+<td style="text-align:center">$B(n, p)$</td>
+</tr>
+<tr>
+<td style="text-align:center">정규분포</td>
+<td style="text-align:center">$\mathcal{N}(x|\mu,\sigma^2)$</td>
+<td style="text-align:center">$N(m,\sigma^2)$</td>
+</tr>
+</tbody>
+</table>
+<p>위에서 보면 알겠지만, 고등학교에서 다룬 확률분포함수는 오로지 단일 확률분포일뿐, 결합이나 조건부 등의 변수가 2개 이상인 확률분포함수는 다루지 않았습니다. 다만, 그에 상응하는 확률인 곱사건의 확률($P(A\cap B)$이나 조건부확률($P(A|B)$) 자체는 다루었으니 비슷한 맥락으로 접근하면 쉽게 이해할 수 있습니다. 예를 들어, 조건부확률분포와 결합확률분포 사이에는 다음의 관계식이 성립합니다.</p>
+<p>$$
+p(x|y) = \frac{p(x,y)}{p(y)}
+$$</p>
+<p>이는 고등학교에서 다루었던 조건부확률의 정의와 부합합니다.</p>
+<p>$$
+P(X | Y) = \frac{P(X\cap Y)}{P(Y)}
+$$</p>
+<p>이쯤에서 헷갈리기 시작합니다. 도대체, 확률분포와 확률의 차이는 뭘까요?</p>
+<p> </p>
+<h3 id="12-확률-vs-확률분포">1.2. 확률 vs 확률분포</h3>
+<p>다음 고등학교 문제를 봅시다.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left">Q. 주사위를 720번 던져서 1의 눈이 140번 이상 나올 확률은 얼마인가?</p>
+    </blockquote>
+</div>
+</center>
+<p>이 문제는 큰 수의 법칙을 다루는 전형적인 문제로 이항분포에서 평균과 표준편차를 구한 후 정규분포로 근사하여 푸는 문제입니다. 이 문제를 푸는 방법은 다음과 같습니다.</p>
+<blockquote>
+<p>주사위의 1의 눈이 나오는 횟수를 확률변수 $X$라 두자. 이때, 주사위를 던지는 것은 모두 독립시행이므로 이 확률변수는 이항분포를 따르게 된다.
+$$p(x) = \text{Bin}(x | 720,\frac{1}{6})$$
+이항분포 $\text{Bin}(x | n,p)$의 평균은 $np$이며 분산은 $npq$이므로, 평균은 $120$, 표준편차는 $10$이다. 이때, $720$은 충분히 큰 수이므로 확률분포가 다음의 정규분포를 따른다고 근사할 수 있다.
+$$p(x) \simeq \mathcal{N}(x | 120, 10^2)$$
+이때, 140번 이상 나올 확률을 나타내고, 표준화하는 과정은 다음과 같다.
+$$p(x \geq 300) = p(z \geq \frac{140 - 120}{10}) = p(z \geq 2)$$
+이를 표준정규분포표로 계산하면 $0.0228$이 나온다.</p>
+</blockquote>
+<p>언뜻보면 위 문제는 720번의 시행이 전제되어있으므로 데이터를 다루는 것처럼 보입니다. 그리고 문제를 풀때에는 오로지 단일 확률변수만 사용하고 있습니다. 고교에서는 이런 문제들만 다루기에 데이터를 다루는데에 여러가지 확률변수가 필요하다는 것을 이해하기가 어렵습니다.
+하지만, 위 문제는 전혀 데이터를 다룬 문제가 아닙니다. 오로지 정규분포에 근거한 수학적 확률을 묻는 문제일 뿐입니다. 실제 데이터를 다룬 이항분포 문제는 다음과 같습니다.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left"><p>Q. 주사위를 120번 던지는 시행을 6번 반복하여 1의 눈이 나온 데이터는 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">시행</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">횟수</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">21</td>
+</tr>
+</tbody>
+</table>
+<p>이를 이용하여 주사위를 720번 던졌을 때, 1의 눈이 140번 이상 나올 확률을 계산하시오.</p>
+</p>
+    </blockquote>
+</div>
+</center>
+<p>문제가 사뭇 달라졌습니다. 앞서서 풀었던 고교문제는 오로지 수학적 확률을 가정하여 주사위의 1의 눈이 나올 확률은 $1/6$으로 고정하고 이항분포로 풀었지만, 여기서는 실제 데이터로 이항분포를 추정하여 풀어야 합니다. 추정과정은 다음과 같습니다.</p>
+<ol>
+<li>각 시행 횟수를 확률변수 $x_1,,x_2,,\cdots,,x_6$으로 둔다.</li>
+<li>각 확률변수들은 모두 독립이라 가정하며 동일한 이항분포 $\text{Bin}(120,p)$를 따른다고 가정한다.</li>
+<li>최대가능도추정이나 베이즈 추론을 이용하여 $p$를 추정한다.</li>
+</ol>
+<p>여기서는 3번에서 최대가능도추정을 이용할텐데, 아직 최대가능도추정을 배우지 않았으니, 계산결과만 명시하면 $p$는 $113/720$이라는 결과가 나옵니다. 이를 이용하여 계산하면 평균과 분산이 이전과 달라집니다. 평균은 $113$으로 주어지고, 표준편차는 약 $9.76$정도로 주어집니다. 따라서 확률을 계산하면 다음과 같습니다.</p>
+<p>$$
+p(x \geq 140) = p(z \geq \frac{140 - 113}{9.76}) \simeq p(z \geq 2.77) \simeq 0.0028
+$$</p>
+<p>앞선 결과와 거의 10배에 해당하는 차이를 보입니다. 데이터가 6개 밖에 되지 않아 충분하지 않았기 때문입니다. 실제로 데이터를 10000개 정도로 늘린 후에 계산한 확률은 $0.0220$정도로 수학적 확률과 좀 더 비슷한 결과를 보입니다. 이 과정을 Julia 코드로 나타내면 다음과 같습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/Axect/Blog_Code</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Distributions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> Binomial(<span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6</span>);     <span style="color:#75715e"># 이항분포 선언</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> rand(b, <span style="color:#ae81ff">10000</span>);         <span style="color:#75715e"># 데이터 추출</span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> x <span style="color:#f92672">./</span> <span style="color:#ae81ff">120</span>;               <span style="color:#75715e"># 확률로 변환</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> mean(y);                <span style="color:#75715e"># 최대가능도추정으로 구한 p</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b2 <span style="color:#f92672">=</span> Binomial(<span style="color:#ae81ff">720</span>, p);      <span style="color:#75715e"># 구한 이항분포</span>
+</span></span><span style="display:flex;"><span>m <span style="color:#f92672">=</span> mean(b2);               <span style="color:#75715e"># 평균</span>
+</span></span><span style="display:flex;"><span>σ <span style="color:#f92672">=</span> std(b2);                <span style="color:#75715e"># 표준편차</span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> (<span style="color:#ae81ff">140</span> <span style="color:#f92672">-</span> m) <span style="color:#f92672">/</span> σ           <span style="color:#75715e"># 140의 표준화</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> Normal(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)             <span style="color:#75715e"># 표준정규분포</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> cdf(n, t)      <span style="color:#75715e"># 결과</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@show</span> result                <span style="color:#75715e"># 결과 출력</span>
+</span></span></code></pre></div><p>그럼 이제 본격적으로 데이터의 확률분포에 대해서 다뤄봅시다.</p>
+<p> </p>
+<h3 id="13-데이터의-확률분포">1.3. 데이터의 확률분포</h3>
+<p>앞서 봤다시피, 데이터는 여러 개의 확률변수들의 집합으로 나타낼 수 있습니다.</p>
+<p>$$
+\mathcal{D} = \left\{x_1,\,x_2,\,\cdots,\,x_n\right\}
+$$</p>
+<p>실제로 다룰때에는 집합보다는 벡터로 다루는 것이 더 효율적이므로 다음과 같이 벡터로 표기할 수 있습니다. (세로로 표기한 이유는 많은 수치 프로그램에서 열벡터 형식을 사용하기 때문인데, 그냥 벡터를 세로로 표기했다고 생각하면 됩니다.)</p>
+<p>$$
+\mathbf{x} = \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+$$</p>
+<p>일단, 여기서는 이해를 쉽게 하기 위하여 집합으로 설명하겠습니다. 데이터의 확률분포는 다음과 같이 여러 확률변수들의 결합분포로 나타낼 수 있습니다.</p>
+<p>$$
+p(\mathcal{D}) = p(x_1,\,x_2,\,\cdots,\,x_n)
+$$</p>
+<p>일반적인 경우에는 여러 임의의 확률변수들의 결합분포를 나타내는 것은 매우 어려운 일이므로 저희는 데이터에 아주 강력한 전제조건을 부여할 겁니다. 바로, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>i.i.d.(independent and identically distributed; 독립항등분포)</b>
+</span> 입니다.</p>
+<p>i.i.d는 모든 확률변수들이 독립이며, 동일한 분포를 따른다는 가정으로 굉장히 강력한 가정이지만 의외로 자연에서 볼 수 있는 대부분의 데이터에 대해서는 큰 문제가 없는 가정입니다. i.i.d를 가정하면 데이터의 확률분포를 아주 많이 개선시킬 수 있습니다.</p>
+<p>$$
+p(\mathcal{D}) = p(x_1)\times p(x_2)\times \cdots \times p(x_n) = \prod_{i=1}^n p(x_i)
+$$</p>
+<p>마지막에 있는 원주율 $\pi$의 대문자인 $\Pi$는 $i=1$부터 $i=n$까지의 곱을 의미합니다. 이제 저 확률변수들이 어떤 분포를 가지는지 알면 그의 곱으로 데이터의 확률분포를 표현할 수 있습니다.</p>
+<hr>
+<h2 id="2-전체-확률의-법칙과-베이즈-정리">2. 전체 확률의 법칙과 베이즈 정리</h2>
+<blockquote>
+<p><strong>이해하기 위해 필요한 개념</strong></p>
+<ul>
+<li>고교 교과과정 - 확률과 통계</li>
+</ul>
+</blockquote>
+<p>   지금까지 데이터를 확률화하는 방법에 대해 알아보았으니, 이제 임의의 데이터를 어떻게 선형으로 근사할 수 있을지에 대해 알아보려합니다. 그러기 위해서는 반드시 알아야할 두 가지 중요한 확률 법칙이 있는데, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>전체 확률의 법칙(전확률 정리)과 베이즈 정리</b>
+</span>입니다.</p>
+<p> </p>
+<h3 id="21-파티션-partition">2.1. 파티션 (Partition)</h3>
+<p>전체 확률의 법칙과 베이즈 정리에는 중요한 전제조건이 있는데, 바로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>파티션(Partition)</b>
+</span>을 찾아야 한다는 것입니다. 파티션이라는 이름은 들어보신 분도 있을 텐데, 아마 제일 잘 알려진 파티션은 아래 사진일 겁니다.</p>
+<figure>
+    <img src="/posts/images/partition1.jpg"
+         alt="회사 칸막이 (출처: PIXNIO)"/> <figcaption style="text-align:center">
+            <p>회사 칸막이 (<a href="https://pixnio.com/ko/%EA%B0%80%EA%B5%AC/%EC%82%AC%EB%AC%B4%EC%8B%A4-%ED%8C%8C%ED%8B%B0%EC%85%98-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%98-%EC%9E%90-%EB%B2%BD-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EC%82%AC%EB%AC%B4%EC%8B%A4-%EC%82%AC">출처: PIXNIO</a>)</p>
+        </figcaption>
+</figure>
+<p>그 외에도 디스크 파티션이나 공간을 분할하는 장식장 역할을 하는 파티션 등 여러 파티션들이 있는데, 이들은 모두 공통적인 성질을 가집니다. 바로, 어떤 것을 분리하여 나눈다는 것입니다. 통계에서의 파티션은 표본 공간을 전부 겹치지 않게 분할하는 사건들의 집합을 의미합니다. 아래 그림에서는 $A_1,\,A_2,\,A_3,\,A_4$가 $S$의 파티션입니다.</p>
+<figure>
+    <img src="/posts/images/partition.png"
+         alt="통계에서의 파티션"/> <figcaption style="text-align:center">
+            <p>통계에서의 파티션</p>
+        </figcaption>
+</figure>
+<p>이를 수학적으로 표현하면 다음과 같습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>파티션</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>표본 공간 $S$ 에 대하여 그 부분집합들의 수열 $\left\{A_i \right\}_{i=1}^n$이 다음 성질들을 만족하면 $S$의 파티션(Partition)이라 부른다.</p>
+<ol>
+<li>$A_i \cap A_j = \emptyset \quad (i,j=1,2,\cdots,n)$</li>
+<li>$A_1 \cup A_2 \cdots \cup A_n = S$</li>
+</ol>
+        </span>
+    </figure>
+</div>
+<p> </p>
+<h3 id="22-전체-확률의-법칙">2.2. 전체 확률의 법칙</h3>
+<p>전체 확률의 법칙은, 용어는 어려워보이지만 사실 아주 간단한 법칙입니다. 위 파티션 그림을 보면 $S$의 부분집합 $B$는 다음과 같이 표현할 수 있습니다.</p>
+<p>$$
+B = (A_1 \cap B) \cup (A_2 \cap B) \cup (A_3 \cap B) \cup (A_4 \cap B)
+$$</p>
+<p>이때, $A_1,A_2,A_3,A_4$는 모두 파티션이므로 교집합이 공집합이며 따라서 사건 $B$의 확률은 다음과 같이 나타낼 수 있습니다.</p>
+<p>$$
+p(B) = \sum_{i=1}^4 p(A_i \cap B)
+$$</p>
+<p>이를 확률의 곱셈정리를 이용하여 나타내면 다음과 같습니다.</p>
+<p>$$
+p(B) = \sum_{i=1}^4 p(A_i \cap B) = \sum_{i=1}^4 p(B | A_i)p(A_i)
+$$</p>
+<p>이것이 전체 확률의 법칙입니다. 즉, 요약하면 전체 확률의 법칙은 어떤 파티션이 정의된다면, 임의의 사건에 대해서 그 사건이 일어날 확률을 파티션과의 결합 확률의 합으로 나타낼 수 있다는 것입니다. 수학적으로 정의하면 다음과 같습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>전체 확률의 법칙</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>표본 공간 $S$에 대해, $\left\{A_i\right\}_{i=1}^n$이 $S$의 파티션이라면 임의의 사건 $B\subset S$의 확률은 항상 다음과 같이 나타낼 수 있다.</p>
+<p>$$
+p(B) = \sum_{i=1}^n p(A_i \cap B) = \sum_{i=1}^n p(B | A_i)p(A_i)
+$$</p>
+
+        </span>
+    </figure>
+</div>
+<p>전체 확률의 법칙은 실제로 고등학교 문제에도 자주 쓰입니다. 다음 문제를 봅시다.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left">Q. 깃헙고등학교는 1학년 20%, 2학년 40%, 3학년 40%로 이루어져 있다. 1학년 중 남학생의 비율은 40%, 2학년 중 남학생의 비율은 50%, 3학년 중 남학생의 비율은 60%라면, 전체 남학생의 비율은 얼마인가?</p>
+    </blockquote>
+</div>
+</center>
+<p>조건부 확률의 굉장히 전형적인 문제로, 쉽게 풀리는 문제입니다. 풀이는 다음과 같습니다.</p>
+<blockquote>
+<p>고1, 고2, 고3은 상호 배타적이고 모두 합치면 전체가 되므로 파티션의 성질을 만족한다. 이를 $A_1,\,A_2,\,A_3$라 하고, 남학생일 사건을 $B$라고 하자. 그렇다면 전체 확률의 법칙에 의해 남학생의 비율은 다음과 같다.
+$$
+\begin{aligned}
+p(B) &amp;= p(A_1 \cap B) + p(A_2\cap B) + p(A_3 \cap B) \\
+&amp;= p(B|A_1)p(A_1) + p(B|A_2)p(A_2) + p(B|A_3)p(A_3) \\
+&amp;= 0.4 \times 0.2 + 0.5 \times 0.4 + 0.6 \times 0.4  = 0.52
+\end{aligned}
+$$</p>
+</blockquote>
+<p> </p>
+<h3 id="23-베이즈-정리">2.3. 베이즈 정리</h3>
+<p>베이즈 정리는 전체 확률의 법칙의 다음 단계로 볼 수 있습니다. 위 문제에서 봤다시피, 보통 우리는 파티션을 전제했을 때, 다른 사건의 확률이나 비율($p(B|A_i)$)의 정보를 갖고 다른 확률을 계산합니다. 전체 확률의 법칙은 해당 사건의 확률($p(B)$)을 구하려는 것이었다면, 베이즈 정리는 반대로 해당 사건을 전제하였을 때의 파티션의 확률($p(A_i|B)$)을 구하는 것이 목적입니다. 이는 조건부 확률의 정의와 전체확률의 법칙을 이용하면 간단히 구할 수 있습니다.</p>
+<p>$$
+p(A_i | B) = \frac{p(A_i \cap B)}{p(B)} = \frac{p(B|A_i)p(A_i)}{\displaystyle \sum_{j=1}^n p(B|A_j)p(A_j)}
+$$</p>
+<p>좀 더 수학적으로 정의하면 다음과 같습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>베이즈 정리</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>표본 공간 $S$에 대해, $\{A_i\}_{i=1}^n$이 $S$의 파티션이라면 임의의 사건 $B \subset S$에 대해 다음의 등식이 성립한다.</p>
+<p>$$
+p(A_i|B) = \frac{p(B|A_i) p(A_i)}{\displaystyle \sum_{j=1}^n p(B|A_j)p(A_j)}
+$$</p>
+
+        </span>
+    </figure>
+</div>
+<p>베이즈 정리의 진가는 데이터와 결부되었을 때 나타납니다. $\{C_i\}_{i=1}^n$가 파티션이고, 데이터가 $\mathcal{D}$로 주어졌을 때, 이에 대한 베이즈 정리를 쓰면 다음과 같습니다.</p>
+<p>$$
+p(C_i | \mathcal{D}) \propto p(\mathcal{D} | C_i)p(C_i)
+$$</p>
+<p>이때, 분모를 생략한 까닭은 좌변은 $C_i$에 대한 확률인데, 분모는 $p(\mathcal{D})$이므로 $C_i$에 대한 의존성이 없습니다. 따라서 단순 상수 취급을 하여 위 비례식을 적을 수 있습니다. 위 식의 항들은 보통 다음과 같이 해석됩니다.</p>
+<ul>
+<li>$C_i$ : $i$번째 모델(범주)</li>
+<li>$\mathcal{D}$ : 데이터</li>
+<li>$p(C_i)$ : 모델의 사전 확률 (Prior probability)</li>
+<li>$p(\mathcal{D} | C_i)$ : 가능도 (Likelihood)</li>
+<li>$p(C_i | \mathcal{D})$ : 사후 확률 (Posterior probability)</li>
+</ul>
+<p>낯선 용어들이 많아 헷갈릴 수 있는데, 고양이와 개의 사진을 구분하는 작업을 예로 들어봅시다.</p>
+<ul>
+<li>$C_1$ = 개, $C_2$ = 고양이</li>
+<li>$\mathcal{D}$ : 개나 고양이 혹은 다른 것들이 섞인 사진들</li>
+<li>$p(C_i)$ : 테스트 데이터들의 개, 고양이 사진 비율에 대한 사전 지식</li>
+<li>$p(\mathcal{D} | C_i)$ : 개나 고양이를 전제했을 때의 데이터의 확률 분포 (개나 고양이일 가능성)</li>
+<li>$p(C_i | \mathcal{D})$ : 데이터가 개나 고양이일 확률</li>
+</ul>
+<p>위 예를 보면 알겠지만, 우리의 최종 목표는 사후 확률을 구하는 것입니다. 즉, 어떤 데이터를 보고 그 데이터가 어떤 범주에 속할 지 분류하거나 혹은 확률분포에 필요한 매개변수를 추정하는 것이 목표이죠. 위에서는 분류로 예를 들었지만, 여기서 해볼 것은 매개변수의 추정입니다.</p>
+<hr>
+<h2 id="3-선형회귀">3. 선형회귀</h2>
+<blockquote>
+<p><strong>이해하기 위해 필요한 개념</strong></p>
+<ul>
+<li>고교 교과과정 - 미적분</li>
+<li>고교 교과과정 - 확률과 통계</li>
+</ul>
+</blockquote>
+<h3 id="31-노이즈-noise">3.1 노이즈 (Noise)</h3>
+<p>이번에도 고등학교 확률과 통계 문제로 예를 들면서 시작해봅시다.</p>
+<center>
+<div class="animated-border-quote">
+    <blockquote>
+        <p style="text-align:left">Q. 어느 반의 수학성적이 평균이 60, 표준편차가 20인 정규분포를 따른다고 할 때, 1등급이 나오기 위해서는 최소 몇 점 이상을 받아야 하는가? (단, $p(0 \leq Z \leq 1.75)=0.46$)</p>
+    </blockquote>
+</div>
+</center>
+<p>풀이는 다음과 같습니다.</p>
+<blockquote>
+<p>1등급이 나오기 위한 최소 점수를 $a$라 하자. 그렇다면 다음 등식을 만족해야 한다.
+$$
+p(X \geq a) = 0.04
+$$
+이를 표준화하면 다음과 같다.
+$$
+p(X \geq a) = p(Z \geq \frac{a - 60}{20}) = 0.04 = p(Z \geq 1.75)
+$$
+따라서 $a=95$이다.</p>
+</blockquote>
+<p>문제는 쉬웠지만, 이것이 실제로 가능한 문제일까요? 만일, 본인 반의 평균과 표준편차를 알고 있다면 본인의 등급을 추정할 수 있을까요? 결론부터 말하자면, 불가능합니다. 이유는 수학 성적이 아무리 정규분포와 비슷하게 나오더라도 정확히 정규분포일 확률은 아주 작기 때문입니다.</p>
+<figure>
+    <img src="/posts/images/math_hist.png"
+         alt="정확히 정규분포인 성적은 잘 나오지 않습니다."/> <figcaption style="text-align:center">
+            <p>정확히 정규분포인 성적은 잘 나오지 않습니다.</p>
+        </figcaption>
+</figure>
+<p>실제로 표본이 엄청나게 많은 수능 성적조차 정확히 정규분포를 따르지 않습니다. 위 문제처럼 등급컷을 추론해보아도 실제 등급컷과는 괴리를 보이죠. 2019년 11월 14일에 치뤄진 2020년 수능 국어에 대한 데이터는 다음과 같았습니다.${}^{[2]}$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">시험</th>
+<th style="text-align:center">과목</th>
+<th style="text-align:center">평균</th>
+<th style="text-align:center">표준편차</th>
+<th style="text-align:center">1등급 컷</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2020 수능</td>
+<td style="text-align:center">국어</td>
+<td style="text-align:center">59.87</td>
+<td style="text-align:center">20.22</td>
+<td style="text-align:center">91</td>
+</tr>
+</tbody>
+</table>
+<p>이를 정규분포로 바꾸어 91점 이상인 학생들의 비율을 계산하면 $0.062$, 즉, 6.2%가 나옵니다. 95점 이상인 학생들의 비율을 계산해야 비로소 $0.0412$ 정도로 나오므로 만일, 2020 수능 국어가 정규분포를 따랐다면 95점이 1등급 컷 점수였어야 합니다. 사실 수능까지도 갈 필요가 없고 주사위를 던져서 1의 눈의 수를 확인한다고 해봐도 정확히 이항분포를 따르지 않는 것을 볼 수 있습니다. 이렇게 통계학에서는 실제 값과 이론 값은 딱히 다른 요인이 없어도 차이를 보이게 되는데, 이때의 차이를 <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>노이즈(Noise)</b>
+</span>라고 부릅니다.</p>
+<p>노이즈는 관측 기기나 실험에서 일어나는 오류와는 다르게, 자연에 항상 존재하는 것으로 더 정밀하게 측정하거나 실험 기법을 바꾼다고 해서 줄어들지 않습니다. 휴대폰 카메라 대신 더 화질 좋은 DSLR을 들고 온다 해도 관측한 1의 눈이 나온 횟수는 바뀌지 않죠.</p>
+<p>자연에서 발생하는 노이즈의 확률분포는 많은 경우에 정규분포를 따릅니다. 여러 분포들이 표본이 커지게 되면 정규분포로 근사되는 것과 정규분포 자체가 실험오차를 분석하는 것에서 유래했다는 것을 생각해보면 어느 정도 납득이 될 겁니다. 따라서 이 게시물에서 다룰 노이즈들은 모두 정규분포를 따른다고 가정할 것입니다.</p>
+<p> </p>
+<h3 id="32-선형-모델">3.2. 선형 모델</h3>
+<p>우리는 선형회귀를 하는 것이 목적이기에 $(x,y)$ 순서쌍으로 표기된 데이터가 주어졌을 때, 다음과 같은 관계식을 기대합니다.</p>
+<p>$$
+y = ax + b
+$$</p>
+<p>예를 들어, 데이터가 $(1,3), (2,5), (3,7)$로 주어졌으면, 관계식은 $y=2x+1$이 됩니다. 하지만, 앞서 말했듯이 모든 데이터에는 노이즈가 존재합니다. 보통 다음과 같은 데이터가 주어진다고 보면 됩니다.</p>
+<figure>
+    <img src="/posts/images/linear.png"
+         alt="$y=2x&#43;1$에 노이즈를 더한 데이터"/> <figcaption style="text-align:center">
+            <p>$y=2x+1$에 노이즈를 더한 데이터</p>
+        </figcaption>
+</figure>
+<p>즉, 다시 관계식을 나타내면 다음과 같습니다.</p>
+<p>$$
+y = ax + b + \epsilon
+$$</p>
+<p>여기서 중요한 것은 $\epsilon$은 확률변수라는 것입니다. 앞서 언급한대로 $\epsilon$의 확률분포는 정규분포로 가정할 것입니다. 노이즈의 평균은 당연하게도 $0$일 것이므로 이를 서술하면 다음과 같습니다.</p>
+<p>$$
+p(\epsilon) = \mathcal{N}(\epsilon | 0, \sigma^2)
+$$</p>
+<p>$a,b$는 아직 결정되지는 않았지만, 상수일 것이고 $x$는 단순히 입력값으로 간주할 것이므로 확률변수로 취급하지 않을 것입니다. 따라서 $y$는 다음의 확률분포를 따르게 됩니다.</p>
+<p>$$
+p(y) = \mathcal{N}(y| ax+b, \sigma^2)
+$$</p>
+<p> </p>
+<h3 id="33-최대-가능도-추정-mle">3.3 최대 가능도 추정 (MLE)</h3>
+<p>앞서 베이즈 정리 단원에서 언급했다시피, 우리의 목적은 주어진 데이터들의 분포로부터 사후확률분포를 구하는 것입니다. 이를 추정하는 방법은 크게 두 가지로 나눠집니다.</p>
+<ol>
+<li><span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>최대 가능도 추정 (Maximum Likelihood Estimation)</b>
+</span></li>
+<li><strong>베이즈 추론</strong> (Bayesian Inference)</li>
+</ol>
+<p>여기서는 1번의 방법을 따라 설명하겠습니다. 앞서 본 것처럼, 베이즈 정리를 이용하면 사후확률분포의 비례식을 작성할 수 있습니다.</p>
+<p>$$
+p(C_i | \mathcal{D}) \propto p(\mathcal{D} | C_i)p(C_i)
+$$</p>
+<p>이때, $p(C_i)$는 데이터와 상관없는 사전확률분포이므로 $p(\mathcal{D}|C_i)$를 최대화하면 $p(C_i|\mathcal{D})$ 역시 최대가 되지 않겠냐는 것이 최대 가능도 추정입니다. 따라서 이 경우엔 사후확률분포함수는 구할 수 없고 단순히 사후확률분포가 최대가 되는 지점만 구할 수 있습니다. 이에 대해서는 장단점이 있는데, 간단한 선형회귀에서는 이것으로도 충분합니다.</p>
+<p>앞서 세운 선형모델을 베이즈 정리로 적어보면, 가능도(likelihood)는 다음과 같습니다.</p>
+<p>$$
+p(\mathcal{D}|a,b) = p(\mathbf{y}|\mathbf{x},a,b)p(\mathbf{x}) = \left\{ \prod_{i=1}^n\mathcal{N}(y_i|ax_i+b,\sigma^2)\right\}  \times p(\mathbf{x})
+$$</p>
+<p>위 식에서 $\mathbf{x},~ \mathbf{y}$는 각각 $(x_1,\cdots,x_n),~(y_1,\cdots,y_n)$을 나타냅니다. 이제 이것을 최대로 만드는 $a,~b$를 찾기만 하면 되는데, 이는 고등학교 미적분 문제처럼 접근하면 됩니다. 극대, 극소를 먼저 찾고, 그것이 최대인지 최소인지 구분하면 되는 것이죠. 다만, 위 식처럼 $n$개의 곱으로 되어있는 경우에는 미분하기가 힘드므로 먼저 로그를 취한 후 미분하도록 하겠습니다.</p>
+<p>$$
+\begin{aligned}
+\ln p(\mathcal{D}|a,b) &amp;= \sum_{i=1}^n \ln \left\{\mathcal{N}(y_i|ax_i + b, \sigma^2)\right\} + \ln p(\mathbf{x}) \\
+&amp;= \sum_{i=1}^n \left\{- \ln(\sqrt{2\pi\sigma^2}) - \frac{(y_i - (ax_i+b))^2}{2\sigma^2} \right\} + \ln p(\mathbf{x})
+\end{aligned}
+$$</p>
+<p>곱이 합으로 바뀌었습니다. 이제 이를 $a,b$로 각각 미분하여 0이 되는 값을 구해볼 겁니다. 이때, 두 번째줄의 첫 항과 마지막 항은 $a,b$와 상관없으니 무시하고 계산합시다.</p>
+<blockquote>
+<p><strong>1) $b$로 미분</strong></p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial b} \ln p(\mathcal{D}|a,b) = -\frac{1}{\sigma^2}\sum_{i=1}^n (y_i - ax_i - b) = 0 \\
+\Rightarrow~&amp;\therefore b = \overline{y} - a\overline{x} \qquad (\overline{x} \equiv \frac{1}{n}\sum_{i=1}^n x_i,~\overline{y} = \frac{1}{n}\sum_{i=1}^n y_i)
+\end{aligned}
+$$</p>
+<p><strong>2) $a$로 미분</strong></p>
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial}{\partial a} \ln p(\mathcal{D}|a,b) = -\frac{1}{\sigma^2}\sum_{i=1}^n (ax_i + b - y_i) x_i = 0 \\
+\Rightarrow~&amp; a \sum_{i=1}^n x_i^2 + b \sum_{i=1}^n x_i - \sum_{i=1}^n x_iy_i = 0 \\
+\Rightarrow~&amp; a\overline{x^2} - (a\overline{x} - \overline{y}) \overline{x} - \overline{xy} = 0 \\
+\\
+\Rightarrow~&amp;\therefore a = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2}
+\end{aligned}
+$$</p>
+</blockquote>
+<p>위 결과를 요약하면 다음과 같습니다.</p>
+<div class="notepaper">
+    <br/>
+    <span><b>선형모델의 최대 가능도 추정</b></span>
+    <figure class="quote">
+        <span class="curly-quotes">
+            <p>데이터 $\mathcal{D} = \left\{(x_1,y_1),\,\cdots,\, (x_n,y_n)\right\}$으로 주어졌을때, 이를 최대 가능도 추정을 통해 선형모델 $y=ax+b+\epsilon$로 근사한다면 이에 대한 매개변수 $a,b$는 다음과 같이 구할 수 있다.</p>
+<p>$$
+a = \frac{\overline{xy} - \overline{x}\overline{y}}{\overline{x^2} - \overline{x}^2},\quad b = \overline{y} - a\overline{x}
+$$</p>
+
+        </span>
+    </figure>
+</div>
+<p>이제 이를 코드로 나타내봅시다.</p>
+<p> </p>
+<h3 id="34-코드-구현">3.4. 코드 구현</h3>
+<p>코드는 편의를 위해 Julia를 이용하겠습니다. 다음 코드를 위해 필요한 것은 다음과 같습니다.</p>
+<blockquote>
+<p><strong>Pre-requisites</strong></p>
+<ul>
+<li>Julia
+<ul>
+<li>NCDataFrame</li>
+<li>Statistics</li>
+<li>DataFrames</li>
+</ul>
+</li>
+<li>Python
+<ul>
+<li>NetCDF4</li>
+<li>matplotlib</li>
+</ul>
+</li>
+<li>libnetcdf</li>
+</ul>
+</blockquote>
+<p>필요한 데이터는 위에서 선형 모델을 설명하기 위해 추출하였던 데이터를 사용하겠습니다. 데이터 추출 코드는 부록에 수록해놓았습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Julia</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://git.io/Jm2gf</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> NCDataFrame, Statistics, DataFrames
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터 불러오기</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> readnc(<span style="color:#e6db74">&#34;linear.nc&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 표본평균 구하기</span>
+</span></span><span style="display:flex;"><span>x_bar <span style="color:#f92672">=</span> mean(df[<span style="color:#f92672">!</span>,<span style="color:#e6db74">:x</span>])
+</span></span><span style="display:flex;"><span>y_bar <span style="color:#f92672">=</span> mean(df[<span style="color:#f92672">!</span>,<span style="color:#e6db74">:y</span>])
+</span></span><span style="display:flex;"><span>x²_bar <span style="color:#f92672">=</span> mean(df[<span style="color:#f92672">!</span>,<span style="color:#e6db74">:x</span>] <span style="color:#f92672">.^</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>xy_bar <span style="color:#f92672">=</span> mean(df[<span style="color:#f92672">!</span>,<span style="color:#e6db74">:x</span>] <span style="color:#f92672">.*</span> df[<span style="color:#f92672">!</span>,<span style="color:#e6db74">:y</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최대가능도추정</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> (xy_bar <span style="color:#f92672">-</span> x_bar <span style="color:#f92672">*</span> y_bar) <span style="color:#f92672">/</span> (x²_bar <span style="color:#f92672">-</span> x_bar<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> y_bar <span style="color:#f92672">-</span> a <span style="color:#f92672">*</span> x_bar
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># a,b 출력</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@show</span> a
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@show</span> b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 그림 그릴 준비</span>
+</span></span><span style="display:flex;"><span>x_plot <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0.01</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>y_plot <span style="color:#f92672">=</span> a <span style="color:#f92672">.*</span> x_plot <span style="color:#f92672">.+</span> b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터 쓰기</span>
+</span></span><span style="display:flex;"><span>dg <span style="color:#f92672">=</span> DataFrame(x<span style="color:#f92672">=</span>x_plot, y<span style="color:#f92672">=</span>y_plot)
+</span></span><span style="display:flex;"><span>writenc(dg, <span style="color:#e6db74">&#34;linear_plot.nc&#34;</span>)
+</span></span></code></pre></div><p>이렇게 나온 데이터를 갖고 그림을 그리는 코드는 다음과 같습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://git.io/Jm2gs</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> netCDF4 <span style="color:#f92672">import</span> Dataset
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Import netCDF file</span>
+</span></span><span style="display:flex;"><span>ncfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./linear.nc&#39;</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> Dataset(ncfile)
+</span></span><span style="display:flex;"><span>var <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>variables
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare Data to Plot</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;x&#39;</span>][:]
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;y&#39;</span>][:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Import netCDF file</span>
+</span></span><span style="display:flex;"><span>ncfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./linear_plot.nc&#39;</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> Dataset(ncfile)
+</span></span><span style="display:flex;"><span>var <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>variables
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare Data to Plot</span>
+</span></span><span style="display:flex;"><span>x_reg <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;x&#39;</span>][:]
+</span></span><span style="display:flex;"><span>y_reg <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;y&#39;</span>][:]
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;a&#39;</span>][:][<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;b&#39;</span>][:][<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use latex</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rc(<span style="color:#e6db74">&#39;text&#39;</span>, usetex<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rc(<span style="color:#e6db74">&#39;font&#39;</span>, family<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;serif&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare Plot</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">6</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;Linear Regression&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$y$&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot with Legends</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter(x, y, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$y=2x+1+\epsilon$&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x_reg, y_reg, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$y=</span><span style="color:#e6db74">{:.2f}</span><span style="color:#e6db74">x+</span><span style="color:#e6db74">{:.2f}</span><span style="color:#e6db74">$&#39;</span><span style="color:#f92672">.</span>format(a, b))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Other options</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;linear_reg.png&#34;</span>, dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
+</span></span></code></pre></div><p>이렇게 나온 그림은 다음과 같습니다.</p>
+<figure>
+    <img src="/posts/images/linear_reg.png"
+         alt="드디어 선형 회귀!"/> <figcaption style="text-align:center">
+            <p>드디어 선형 회귀!</p>
+        </figcaption>
+</figure>
+<h2 id="4-마치며">4. 마치며</h2>
+<p>최대한 간결하게 적으려 했는데, 내용이 내용이다보니 말이 많이 길어졌네요. 고등학교 과정에 국한해서 적다보니 빠진 내용들도 꽤 많은데, 혹시나 좀 더 공부하고 싶은 분들은 Bishop의 PRML을 보시는 것을 추천드립니다.</p>
+<hr>
+<h2 id="부록">부록</h2>
+<h3 id="1-수학-성적-히스토그램-코드">1. 수학 성적 히스토그램 코드</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// 1. Rust로 Data 생성하기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// https://git.io/JqXQb
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">crate</span> peroxide;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> n <span style="color:#f92672">=</span> Normal(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">20</span>);     <span style="color:#75715e">// 정규분포 생성
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> n.sample(<span style="color:#ae81ff">40</span>)        <span style="color:#75715e">// 40개의 샘플 생성
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .iter()
+</span></span><span style="display:flex;"><span>      .map(<span style="color:#f92672">|</span>t<span style="color:#f92672">|</span> t.round())       <span style="color:#75715e">// 반올림 (점수는 정수)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .filter(<span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> <span style="color:#f92672">*</span>x <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">f64</span>) <span style="color:#75715e">// 100점 이하만 채택
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .collect();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);  <span style="color:#75715e">// 데이터프레임 생성
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    df.push(<span style="color:#e6db74">&#34;y&#34;</span>, Series::new(y));         <span style="color:#75715e">// y 입력
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    df.print();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df.write_nc(<span style="color:#e6db74">&#34;data.nc&#34;</span>)      <span style="color:#75715e">// netcdf 파일포맷으로 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      .expect(<span style="color:#e6db74">&#34;Can&#39;t write nc&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 2. Python으로 히스토그램 그리기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://git.io/JqX7Z</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> netCDF4 <span style="color:#f92672">import</span> Dataset
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Import netCDF file</span>
+</span></span><span style="display:flex;"><span>ncfile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./data.nc&#39;</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> Dataset(ncfile)
+</span></span><span style="display:flex;"><span>var <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>variables
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use latex</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rc(<span style="color:#e6db74">&#39;text&#39;</span>, usetex<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rc(<span style="color:#e6db74">&#39;font&#39;</span>, family<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;serif&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare Histogram</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">6</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;Math Score&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Score&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Density&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prepare Data to Plot</span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> var[<span style="color:#e6db74">&#39;y&#39;</span>][:]  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Draw Histogram</span>
+</span></span><span style="display:flex;"><span>sns<span style="color:#f92672">.</span>distplot(y, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;Score&#34;</span>, bins<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Other options</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;hist.png&#34;</span>, dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
+</span></span></code></pre></div><p> </p>
+<h3 id="2-2020-수능-국어-등급컷-계산-코드">2. 2020 수능 국어 등급컷 계산 코드</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// https://git.io/JqXHi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">crate</span> peroxide;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> n <span style="color:#f92672">=</span> Normal(<span style="color:#ae81ff">59.87</span>, <span style="color:#ae81ff">20.22</span>); <span style="color:#75715e">// 정규분포 생성
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    (<span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">-</span> n.cdf(<span style="color:#ae81ff">91</span>)).print();   <span style="color:#75715e">// p(X &gt;= 91) 계산
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    (<span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">-</span> n.cdf(<span style="color:#ae81ff">95</span>)).print();   <span style="color:#75715e">// p(X &gt;= 95) 계산
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p> </p>
+<h3 id="3-선형-모델-데이터-코드">3. 선형 모델 데이터 코드</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Julia</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> NCDataFrame, DataFrames;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> f(x<span style="color:#f92672">::</span><span style="color:#66d9ef">S</span>) <span style="color:#66d9ef">where</span> {<span style="color:#66d9ef">T</span> <span style="color:#f92672">&lt;:</span> <span style="color:#66d9ef">Number</span>, <span style="color:#66d9ef">S</span> <span style="color:#f92672">&lt;:</span> <span style="color:#66d9ef">AbstractVector</span>{<span style="color:#66d9ef">T</span>}}
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">2</span>x <span style="color:#f92672">.+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0.01</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1.0</span>;
+</span></span><span style="display:flex;"><span>ϵ <span style="color:#f92672">=</span> randn(length(x));
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> f(x) <span style="color:#f92672">+</span> ϵ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> DataFrame(x<span style="color:#f92672">=</span>x, y<span style="color:#f92672">=</span>y);
+</span></span><span style="display:flex;"><span>writenc(df, <span style="color:#e6db74">&#34;linear.nc&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="출처">출처</h2>
+<p>[1] : <a href="http://m.seoul.co.kr/news/newsView.php?cp=seoul&id=20161223011007">서울신문 - 올해의 과학 성과 1위는 &lsquo;중력파&rsquo; 탐지</a></p>
+<p>[2] : <a href="https://www.megastudy.net/Entinfo/service_p/rank_cut/jungsi_real.asp">메가스터디 - 역대 등급컷 공개</a></p>
+<ul>
+<li>C. Bishop, <em>Pattern Recognition and Machine Learning (Information Science and Statistics)</em>, Springer-Verlag, 2006</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://axect.github.io/kr/tags/statistics/">statistics</a></span>
+        <span class="tag"><a href="https://axect.github.io/kr/tags/julia/">julia</a></span>
+        
+    </p>
+
+
+      
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        3116 단어
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-03-09 21:01 &#43;0800
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        <style>
+  .resp-sharing-button__link {
+    display: inline-block;  
+    margin-right: 10px;  
+  }
+   
+  .resp-sharing-button__link:last-child {
+    margin-right: 0;
+  }
+</style>
+
+
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;caption=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;canonicalUrl=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;body=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f&amp;title=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;summary=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;source=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f&amp;resubmit=true&amp;title=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80%20https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f&amp;t=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%f0%9f%8f%ab%20%ea%b3%a0%eb%93%b1%ed%95%99%ea%b5%90%20%ec%88%98%ed%95%99%ec%9c%bc%eb%a1%9c%20%ec%9d%b4%ed%95%b4%ed%95%98%eb%8a%94%20%ec%84%a0%ed%98%95%ed%9a%8c%ea%b7%80&amp;url=https%3a%2f%2faxect.github.io%2fkr%2fposts%2f003_highschool_linreg%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">다른 글 읽기</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+            <span class="button previous">
+                <a href="https://axect.github.io/kr/posts/004_rust_1.62.0/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">🦀 Rust 1.62.0 업데이트의 신기능 3가지</span>
+                </a>
+            </span>
+            
+
+            
+            <span class="button next">
+                <a href="https://axect.github.io/kr/posts/002_ad_2/">
+                    <span class="button__text">🖊️ Rust와 미분하기 02: 기호 미분</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/kr/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+
+
+
+    </body>
+</html>

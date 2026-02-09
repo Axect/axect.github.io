@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
 <meta name="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
-누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
-일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
-Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다." />
-<meta name="keywords" content=", statistics, piecewise rejection sampling" />
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
+Here are the two most commonly used methods to sample data from an arbitrary probability density function:
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points." />
+<meta name="keywords" content="AI4Science, Operator Learning, Inverse Problems, Physics-Informed Machine Learning, Dark Matter Physics, Primordial Black Holes, Axions, Interdisciplinary AI, Scientific Computing, Rust, statistics, piecewise rejection sampling" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://axect.github.io/posts/006_prs/" />
@@ -17,7 +17,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
 
     <title>
         
-            📊 Piecewise Rejection Sampling :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+            📊 Piecewise Rejection Sampling :: Axect&#39;s Blog  — Mathematics, Physics and Computations
         
     </title>
 
@@ -44,11 +44,11 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
 
 <meta itemprop="name" content="📊 Piecewise Rejection Sampling">
 <meta itemprop="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
-누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
-일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
-Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다."><meta itemprop="datePublished" content="2022-11-18T17:49:04+09:00" />
+Suppose you&rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?
+Here are the two most commonly used methods to sample data from an arbitrary probability density function:
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points."><meta itemprop="datePublished" content="2022-11-18T17:49:04+09:00" />
 <meta itemprop="dateModified" content="2022-11-18T17:49:04+09:00" />
-<meta itemprop="wordCount" content="1877"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="wordCount" content="2561"><meta itemprop="image" content="https://axect.github.io/" />
 <meta itemprop="keywords" content="statistics,piecewise rejection sampling," />
 
 
@@ -57,6 +57,71 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
     <meta property="article:published_time" content="2022-11-18 17:49:04 &#43;0900 &#43;0900" />
 
 
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/posts/006_prs/" />
+<meta property="og:title" content="📊 Piecewise Rejection Sampling | Axect&#39;s Blog" />
+<meta property="og:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/posts/006_prs/" />
+<meta name="twitter:title" content="📊 Piecewise Rejection Sampling" />
+<meta name="twitter:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "📊 Piecewise Rejection Sampling",
+  "datePublished": "2022-11-18T17:49:04\u002b09:00",
+  "dateModified": "2022-11-18T17:49:04\u002b09:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim",
+    "url": "https:\/\/axect.github.io\/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Tae-Geun Kim"
+  },
+  "description": "Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$\nSuppose you\u0026rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you\u0026rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?\nHere are the two most commonly used methods to sample data from an arbitrary probability density function:\nInverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.",
+  "url": "https:\/\/axect.github.io\/posts\/006_prs\/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/axect.github.io\/posts\/006_prs\/"
+  },
+  "keywords": ["statistics", "piecewise rejection sampling"]
+}
+</script>
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+<meta name="citation_title" content="📊 Piecewise Rejection Sampling" />
+<meta name="citation_publication_date" content="2022/11/18" />
+<meta name="citation_online_date" content="2022/11/18" />
 
 
 
@@ -82,7 +147,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
         <div class="container">
             <header class="header">
     <span class="header__inner">
-        <a href="/" style="text-decoration: none;">
+        <a href="/en" style="text-decoration: none;">
     <div class="logo">
         
             <span class="logo__mark">></span>
@@ -101,14 +166,14 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/research">Research</a></li><li><a href="/software">Software</a></li><li><a href="/tags">Tags</a></li>
         <div class="submenu">
             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-gb"></span></a>
                 <div class="dropdown-content">
                     
                         
-                            <a title="en" href="https://axect.github.io/en/posts/006_prs/"><span class="flag fi fi-gb"></span></a>
+                            <a title="kr" href="https://axect.github.io/kr/posts/006_prs/"><span class="flag fi fi-kr"></span></a>
                         
                     
                 </div>
@@ -178,11 +243,11 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        9 분
+        13 minutes
 
-         | In English :
+         | 한글로 보기 :
           
-              <a href="https://axect.github.io/en/posts/006_prs/"><span class="flag fi fi-gb"></span></a>
+              <a href="https://axect.github.io/kr/posts/006_prs/"><span class="flag fi fi-kr"></span></a>
           
         
       </p>
@@ -198,7 +263,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
       
         <hr />
         <aside id="toc">
-          <div class="toc-title">목차</div>
+          <div class="toc-title">Table of Contents</div>
           <nav id="TableOfContents">
   <ul>
     <li><a href="#1-rejection-sampling">1. Rejection Sampling</a></li>
@@ -225,52 +290,48 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
             <p>Differential energy spectrum of ALPs from primordial black hole (PBH)<a href="/#footnotes">${}^{[1]}$</a></p>
         </figcaption>
 </figure>
-<p>  누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다.
-그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?</p>
-<p>일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.</p>
+<p>Suppose you&rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?</p>
+<p>Here are the two most commonly used methods to sample data from an arbitrary probability density function:</p>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">Inverse Transform Sampling</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Rejection_sampling">Rejection Sampling</a></li>
 </ol>
-<p>Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.<a href="/posts/006_prs/#footnotes">${}^{[2]}$</a> 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.</p>
+<p>Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points. This method can be quite efficient, but if the exact form of the probability density function is unknown—as in our case—it becomes challenging to apply<a href="/posts/006_prs/#footnotes">${}^{[2]}$</a>. On the other hand, Rejection Sampling is versatile and can be utilized regardless of the probability density function&rsquo;s form. Therefore, we&rsquo;ll begin with Rejection Sampling.</p>
 <hr>
 <h2 id="1-rejection-sampling">1. Rejection Sampling</h2>
 <p>  <span style="background-color: rgba(255, 255, 0, 0.534);">
-    <b>Rejection sampling </b>
-</span>(혹은 Acceptance-rejection method)의 알고리즘은 매우 간단한 편입니다. 이를 설명하기 위해 저희가 sampling하고 싶은 확률분포의 확률밀도함수를 $f(x)$라 명명하겠습니다.
-하지만 우리는 $f(x)$로부터 바로 sampling하는 방법을 모르므로 sampling 할 수 있는 확률밀도함수인 $g(x)$를 도입합니다. 이때, $g(x)$는 특정한 양의 상수 $M$에 대하여 정의역의 모든 $x$에 대하여 $f(x) \leq M \cdot g(x)$ 조건이 성립해야합니다. 이를 그림으로 나타내보면 다음과 같습니다.</p>
+    <b>Rejection sampling</b>
+</span>, a.k.a. the acceptance-rejection method, employs a straightforward algorithm. To describe it, let&rsquo;s represent the target probability density function as $f(x)$. When direct sampling from $f(x)$ is not feasible, we introduce an auxiliary function $g(x)$, which is easy to sample from. For a chosen positive constant $M$, it&rsquo;s required that $f(x) \leq M \cdot g(x)$ across the domain of $x$. This relationship is depicted in the figure below:</p>
 <figure>
     <img src="/posts/images/006_02_rejection.svg"
-         alt="입자물리에서 자주 볼 수 있는 그래프" width="80%" class="center"/> <figcaption style="text-align:center">
-            <p>입자물리에서 자주 볼 수 있는 그래프</p>
+         alt="A graph commonly seen in particle physics" width="80%" class="center"/> <figcaption style="text-align:center">
+            <p>A graph commonly seen in particle physics</p>
         </figcaption>
 </figure>
-<p>보통 sampling하기 가장 쉬운 확률분포는 Uniform distribution(균등분포)이므로 여기서는 $g(x)=\text{Unif}(x|0,10)$으로 정의하였습니다. 또한 $f(x)$의 최댓값이 1이므로 $M=10$으로 정하여 $M\times g(x)$가 항상 $f(x)$보다 크거나 같음을 보장하였습니다. 이제 이 그래프를 이용하여 sampling하는 방법을 알아보겠습니다.</p>
+<p>Typically, the uniform distribution is the simplest to sample from, so we define $g(x)$ as $\text{Unif}(x|0,10)$. Given that the peak value of $f(x)$ is 1, we select $M=10$ to ensure that $M \times g(x)$ consistently surpasses or meets $f(x)$. The sampling process using this graph is as follows:</p>
 <ol>
 <li>
-<p>$y$를 $g(x)$로 부터 sampling합니다. 이 경우엔 $y$는 $\text{Unif}(x|0,10)$로부터 sampling된 값이 됩니다.</p>
+<p>Draw a sample $y$ from $g(x)$, which in our case would be a value from $\text{Unif}(x|0,10)$.</p>
 </li>
 <li>
-<p>그렇게 추출된 $y$에 대하여 또 다른 균등분포인 $\text{Unif}(u|0,M\times g(y))$로부터 $u$를 sampling합니다. (이는 $g(x)$의 형태와 별개로 항상 균등분포를 사용합니다.)</p>
+<p>For the chosen $y$, draw a sample $u$ from $\text{Unif}(u|0,M \cdot g(y))$. This step always utilizes a uniform distribution, regardless of $g(x)$&rsquo;s configuration.</p>
 </li>
 <li>
-<p>만약 $u \leq f(y)$이면 $y$를 우리가 sampling하고자 하는 확률분포 $f(x)$로부터 sampling된 값으로 간주합니다. 그렇지 않으면 다시 1번으로 돌아가서 $y$를 sampling합니다.</p>
+<p>If $u$ is less than or equal to $f(y)$, then $y$ is accepted as a sampled value from the desired distribution $f(x)$. If not, the process is repeated from step 1.</p>
 </li>
 </ol>
-<p>이 sampling 방법이 <span style="background-color: rgba(255, 255, 0, 0.534);">
-    <b>Rejection sampling(기각 샘플링)</b>
-</span>입니다. 3번에서 보다시피 $u$가 $f(y)$보다 크다면 기각하기 때문에 붙여진 이름입니다. 이 간단한 알고리즘 만으로 완전히 새로운 확률분포인 $f(x)$를 효과적으로 근사할 수 있습니다. 이를 위해 누적확률분포함수(CDF)를 살펴보겠습니다.</p>
+<p>This method is named &lsquo;rejection sampling&rsquo; because samples where $u &gt; f(y)$ are discarded. By following this algorithm, we can simulate sampling from the desired probability distribution $f(x)$. To implement this, we will explore the cumulative probability distribution function (CDF).</p>
 <blockquote>
-<p>확률변수 $X$를 Rejection sampling으로 얻어진 확률변수라 하면, 다른 두 확률변수 $Y \sim g(y)$, $U \sim \text{Unif}(u|0, M\cdot g(y))$에 대하여  다음과 같은 관계를 얻을 수 있습니다.
+<p>If we denote the random variable $X$ obtained by Rejection sampling, we can establish the following relationship for two other random variables $Y \sim g(y)$, $U \sim \text{Unif}(u|0, M\cdot g(y))$:
 $$
 P(X \leq x) = P\left(Y \leq x \,|\, U &lt; f(Y)\right)
 $$
-우변의 조건부 확률은 $U$가 기각되지 않았을 때, $Y$가 $x$보다 작을 확률이며 이는 위의 알고리즘에서 3번과 같습니다.
-이를 조건부 확률의 정의를 이용하여 변형하면 다음과 같습니다.
+The conditional probability on the right-hand side represents the probability that $Y$ is less than $x$ when $U$ is not rejected, which is like step 3 in the algorithm above.
+Using the definition of conditional probability, we can transform this into:
 $$
 P(X \leq x) = \frac{P (Y \leq x,~U &lt; f(Y))}{P(U &lt; f(Y))}
 $$
-먼저 위 식의 분자를 확률밀도함수를 이용하여 전개해보겠습니다.
+First, let&rsquo;s expand the numerator using the probability density function:
 $$
 \begin{aligned}
 P(Y \leq x,U &lt; f(Y)) &amp;= \int P(Y \leq x,U &lt; f(Y) | Y = y) \cdot g(y) \,dy \\
@@ -279,7 +340,7 @@ P(Y \leq x,U &lt; f(Y)) &amp;= \int P(Y \leq x,U &lt; f(Y) | Y = y) \cdot g(y) \
 &amp;= \int_{-\infty}^x P(U &lt; f(y)) \cdot g(y) \, dy
 \end{aligned}
 $$
-2번째 식에서 3번째로 넘어갈때는 $y \leq x$와 $U &lt; f(y)$는 독립이라는 조건을 사용하였습니다. 이제 $U \sim \text{Unif}(u|0,\,M\cdot g(y))$이므로 $\displaystyle P(U &lt; f(y)) = \frac{1}{M\cdot g(y)} \times (f(y) - 0)$을 대입하면 다음과 같습니다.
+When moving from the second to the third equation, we use the condition that $y \leq x$ and $U &lt; f(y)$ are independent. Now, since $U \sim \text{Unif}(u|0,,M\cdot g(y))$, by substituting $\displaystyle P(U &lt; f(y)) = \frac{1}{M\cdot g(y)} \times (f(y) - 0)$ we get:
 $$
 \begin{aligned}
 P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g(y) \, dy \\
@@ -287,7 +348,7 @@ P(Y \leq x,~U &lt; f(Y)) &amp;= \int_{-\infty}^x \frac{f(y)}{M\cdot g(y)}\cdot g
 \end{aligned}
 $$
 <br/>
-이제 분모를 구해보겠습니다.
+Now let&rsquo;s find the denominator:
 $$
 \begin{aligned}
 P(U &lt; f(Y)) &amp;= \int P(U &lt; f(y)) \cdot g(y) \, dy \\
@@ -296,13 +357,13 @@ P(U &lt; f(Y)) &amp;= \int P(U &lt; f(y)) \cdot g(y) \, dy \\
 &amp;= \frac{1}{M}
 \end{aligned}
 $$
-마지막으로 분자와 분모를 나누면 다음과 같습니다.
+Finally, by dividing the numerator by the denominator, we get:
 $$
 P(X \leq x) = \int_{-\infty}^x f(y) \, dy
 $$
-이는 $f(x)$의 누적분포함수와 같습니다. 따라서 Rejection sampling으로 얻어진 확률변수 $X$의 확률밀도함수는 $f(x)$라는 것을 얻을 수 있습니다.</p>
+This is the cumulative distribution function of $f(x)$. Thus, we can conclude that the probability density function of the random variable $X$ obtained by Rejection sampling is $f(x)$.</p>
 </blockquote>
-<p>이제 수학적으로 증명을 마쳤으니, 이번에는 이것이 실제로 잘 작동하는지 코드를 작성해봅시다.</p>
+<p>Now that the mathematical proof is complete, let&rsquo;s write some code to see if this actually works well in practice.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
 </span></span><span style="display:flex;"><span>
@@ -336,46 +397,46 @@ $$
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">f</span>(x: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> (x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>).sqrt() <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>(x<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#66d9ef">f64</span>).powi(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.2</span>).exp()
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>알고리즘 자체가 간단하므로 코드 역시 굉장히 간단합니다. 하지만 그럼에도 결과는 뛰어납니다.</p>
+</span></span></code></pre></div><p>The algorithm itself is simple, so the code is very straightforward. However, despite that, the results are impressive.</p>
 <figure>
     <img src="/posts/images/006_03_hist.png"
          alt="Result of rejection sampling" width="80%" class="center"/> <figcaption style="text-align:center">
             <p>Result of rejection sampling</p>
         </figcaption>
 </figure>
-<p>확률밀도함수의 형태에 구애받지 않으며 구현까지 쉬운 Rejection sampling이지만 치명적인 단점 역시 존재합니다. 바로 계산 효율이 굉장히 떨어진다는 것입니다. Rejection sampling에서 sample을 확보하려면 기각 조건에서 살아남아야 합니다. 이는 즉, $P(U &lt; f(Y))$가 높을 수록 빠르게 sample을 확보할 수 있다는 것이고 반대로 낮을 수록 충분한 수의 sample을 확보하기까지 오래 걸린다는 것입니다. 이를 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>Rejection sampling is not limited by the form of the probability density function and is easy to implement, but it has a critical downside: computational inefficiency. To secure a sample in Rejection sampling, it must survive the rejection condition. This means that the higher the $P(U &lt; f(Y))$, the faster samples can be obtained, and conversely, the lower it is, the longer it takes to secure a sufficient number of samples. This is known as the <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Acceptance rate</b>
-</span>(승인 비율)라고 하며 이는 이미 위의 증명에서 계산하였습니다.</p>
+</span>, which we already calculated in the proof above.</p>
 <div class="notepaper">
     <br/>
     <span><b>Acceptance rate</b></span>
     <figure class="quote">
         <span class="curly-quotes">
-            Rejection의 Acceptace rate는 다음과 같이 정의된다.
+            The Acceptance rate of Rejection is defined as follows:
 $$
 P(U &lt; f(Y)) = \int P(U &lt; f(y)) \cdot g(y) \, dy
 $$
         </span>
     </figure>
 </div>
-<p>저희가 사용한 알고리즘에서는 이는 $1/M$과 같고, 이는 $f(x)$가 차지하는 넓이를 $M \cdot g(x)$가 차지하는 전체 넓이로 나눈 것과 같습니다. 따라서 분포간의 차이가 크면 클수록 Acceptance rate가 낮아지고 그만큼 sample을 확보하는데 오랜 시간이 걸린다는 것입니다.
-그나마 저희가 사용한 예시는 $g(x)$와 $f(x)$의 차이가 큰 부분이 많지 않아서 비교적 괜찮습니다만, 시작할 때 제시하였던 확률분포처럼 0인 부분이 많은 경우에는 $g(x)$로 Uniform distribution을 사용한다면 대부분 기각되어버리기 때문에 시간이 오래걸릴뿐더러 거의 0 근처의 tail에 대해서는 sampling이 불가능한 지경에까지 이를 수 있습니다. 그렇다면 어떻게 이를 해결할 수 있을까요?</p>
+<p>In the algorithm we used, this is equivalent to $1/M$, which is like dividing the area occupied by $f(x)$ by the total area occupied by $M \cdot g(x)$. Therefore, the larger the difference between the distributions, the lower the Acceptance rate, and the longer it takes to secure samples.
+Our example exhibits a minor discrepancy between $g(x)$ and $f(x)$, which is manageable. However if the probability distribution has a significant number of zeroes, as we gave at the beginning, and we use a uniform distribution for $g(x)$, the majority of samples will be rejected. This not only increases the time required for sampling but may also render it virtually impossible to sample effectively from areas where the probability density is close to zero, such as the distribution&rsquo;s tails. To circumvent this issue, we must seek more efficient methods that can improve the acceptance rate for distributions with extensive zero-value regions.</p>
 <hr>
 <h2 id="2-piecewise-rejection-sampling">2. Piecewise Rejection Sampling</h2>
-<p>  사실 이미 연구자들은 이런 경우를 위해 여러가지 방법을 고안해두었습니다. 대표적으로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>  Indeed, the scientific community has developed several techniques to improve upon the basic rejection sampling method. Among these, <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Adaptive Rejection Sampling (ARS)</b>
-</span>와 <span style="background-color: rgba(255, 255, 0, 0.534);">
+</span> stands out for its efficiency, though it operates under the assumption that the target function is log-concave. On the other hand, <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Adaptive Rejection Metropolis Sampling (ARMS)</b>
-</span>가 있습니다.
-전자의 경우는 효율적이지만 함수가 반드시 로그-오목(log-concave)하다는 보장이 있어야 하고 후자의 경우는 이를 해결하여 일반화했지만 구현이 상당히 어렵습니다. 물론 이미 잘 만들어진 <a href="https://cran.r-project.org/web/packages/armspp/vignettes/arms.html">R package</a> 등이 있으니 사용하는 것 자체는 어렵지 않습니다만, 여기서는 더 간단한 방법을 소개하고자 합니다. 바로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+</span> addresses the limitations of ARS by not requiring the log-concavity condition, making it more generalizable, but at the cost of being more complex to implement. While there are comprehensive <a href="https://cran.r-project.org/web/packages/armspp/vignettes/arms.html">R packages</a> available that facilitate the use of these methods, there is a simpler alternative that I would like to present: <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Piecewise Rejection Sampling (PRS)</b>
-</span>입니다. 이는 제가 물리학 연구를 수행하던 중에 처음에 제시한 문제를 해결하고자 만든 방법으로, 기본적인 토대는 Rejection sampling과 같지만 $g(x)$를 단순한 Uniform distribution이 아닌 $f(x)$에 최적화된 <span style="background-color: rgba(255, 255, 0, 0.534);">
+</span>.</p>
+<p>PRS was developed as a direct response to a challenge I faced during my physics research. It retains the core principles of rejection sampling but proposes a more tailored approach for the auxiliary function $g(x)$. Rather than employing a simple uniform distribution, PRS uses a <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Weighted uniform distribution</b>
-</span> (가중균등분포)로 상정하는 방법입니다. 이를 차근차근 설명해보겠습니다.</p>
+</span> that is specifically optimized for $f(x)$. Let&rsquo;s delve into this method step by step.</p>
 <h3 id="21-max-pooling">2.1. Max-Pooling</h3>
-<p>  아마 딥러닝에 관심있는 사람이라면 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>  If you have an interest in deep learning, you might already be acquainted with the term <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Max Pooling</b>
-</span>이라는 개념을 익히 들어봤을겁니다. CNN에서 자주 사용되는 Max pooling은 사실 개념은 굉장히 간단합니다. 일단 Max pooling의 수학적 정의는 다음과 같습니다.</p>
+</span>. Max Pooling is a common operation in Convolutional Neural Networks (CNNs), and it is conceptually straightforward. Let&rsquo;s proceed to the mathematical definition of Max Pooling to understand how it works.</p>
 <div class="notepaper">
     <br/>
     <span><b>Max pooling</b></span>
@@ -395,17 +456,18 @@ $$</p>
         </span>
     </figure>
 </div>
-<p>여기서 사용한 simple function이란 측도론(Measure theory)에서 등장하는 함수로 각 구간에서 서로 다른 상수를 가지는 함수를 말합니다. 자세한 정의는 <a href="https://axect.github.io/ML_with_Rust/measuretheory.html">Precise Machine Learning with Rust</a>의 Definition 10과 Property 1을 참고하시면 됩니다.</p>
-<p>결국 Max-pooling이란 간단히 말해 $f(x)$를 $n$개의 구간으로 나누고 각 구간에서 $f(x)$의 최대값을 구하여 이를 각 구간에서의 대푯값(Representative value)으로 갖는 simple function을 구하는 것입니다. 이를 처음 제시한 분포에 대해 적용해보면 다음과 같습니다.</p>
+<p>A simple function, in the context of measure theory, is one that assumes a finite number of constant values, each within a specific interval. For an in-depth explanation, you can refer to Definition 10 and Property 1 in the resource <a href="https://axect.github.io/ML_with_Rust/measuretheory.html">Precise Machine Learning with Rust</a>.</p>
+<p>In essence, Max Pooling is a process that yields a simple function from measure theory, which is defined by distinct constant values on various intervals. Specifically, when applied to a function $f(x)$, Max Pooling divides the domain into $n$ bins and within each bin, it identifies the maximum value of $f(x)$. These maximum values are then used as the constant, representative values for their respective intervals, thereby transforming $f(x)$ into a simple function with a finite number of plateaus corresponding to the local maxima within each bin.
+When we apply this concept to our initial distribution, we can observe the following:</p>
 <figure>
     <img src="/posts/images/006_04_prs.svg"
          alt="Max-pooling for Test Distribution" width="90%" class="center"/> <figcaption style="text-align:center">
             <p>Max-pooling for Test Distribution</p>
         </figcaption>
 </figure>
-<p>그림의 빨간색 실선을 $f(x)$라 하면 파란색 점선은 $f(x)$를 max-pooling한 결과입니다. 이쯤되면 이미 눈치챈 분들도 있을텐데, 저희는 이 파란색 점선을 Rejection sampling에서의 $M\cdot g(x)$로 사용할 것입니다. 이를 위해 우리는 각 구간별로는 균등분포의 형태를 갖지만 각각 다른 대푯값을 갖는 확률분포를 정의할 것입니다. 이것이 바로 위에서 언급했던 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>The solid red line depicted in the figure represents the function $f(x)$, and the dashed blue line illustrates the outcome of applying Max Pooling to $f(x)$. Astute observers might have realized by now that this blue line will serve as $M\cdot g(x)$ in our rejection sampling process. To implement this, we will establish a probability distribution that resembles a uniform distribution within each interval but differs in terms of the representative values. This forms the basis for the <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Weighted uniform distribution</b>
-</span>(가중균등분포)입니다.</p>
+</span>—the optimized $g(x)$ that we&rsquo;ve referenced earlier—which adapts the uniformity concept to accommodate varying weights across different intervals.</p>
 <h3 id="22-weighted-uniform-distribution">2.2. Weighted Uniform Distribution</h3>
 <div class="notepaper">
     <br/>
@@ -419,13 +481,13 @@ $$
         </span>
     </figure>
 </div>
-<p>정의는 뭔가 복잡해 보이지만, 이를 1차원 구간에 대해서 정의하면 굉장히 간단하다는 것을 알 수 있습니다.</p>
+<p>The definition sounds complicated, but when you define it for a one-dimensional interval, you realize that it&rsquo;s really quite simple.</p>
 <ul>
 <li>$S = [a,b]$</li>
 <li>$\mathcal{A} = \left\{[x_{i-1},x_i)\right\}_{i=1}^n$ and $\Delta x_i \equiv x_i - x_{i-1}$</li>
 <li>$\displaystyle \text{WUnif}(x|\mathbf{M}, \mathcal{A}) = \frac{1}{\sum_{j}M_j \cdot \Delta x_j}\sum_i M_i 𝟙_{A_i}(x)$</li>
 </ul>
-<p>여기서는 어차피 저희가 사용할 분포가 1차원 분포이므로 앞으로 이 정의를 이용하여 계산을 진행하겠습니다. 일단, 이 함수가 확률밀도함수임은 간단히 증명할 수 있습니다.</p>
+<p>Moving forward with our one-dimensional context, we&rsquo;ll utilize this straightforward definition for our calculations. To begin, we can swiftly demonstrate that this function qualifies as a probability density function.</p>
 <blockquote>
 <p>$$
 \begin{aligned}
@@ -436,35 +498,35 @@ $$
 \end{aligned}
 $$</p>
 </blockquote>
-<p>Weighted uniform distribution은 sampling하기도 쉽습니다. sampling 방법은 다음과 같습니다.</p>
+<p>Sampling from a weighted uniform distribution is indeed straightforward, and the process is as follows:</p>
 <ol>
 <li>
-<p>전체 $n$개의 구간 중에서 한 구간을 뽑습니다. 이때 각 구간의 확률은 $\displaystyle \frac{M_i \cdot \Delta x_i}{\sum_{j}M_j \cdot \Delta x_j}$입니다.</p>
+<p>Choose one of the $n$ bins, where the probability of selecting a particular bin is proportional to its area, calculated as $\displaystyle \frac{M_i \cdot \Delta x_i}{\sum_{j}M_j \cdot \Delta x_j}$.</p>
 </li>
 <li>
-<p>각 구간은 Uniform distribution을 따르므로, 구간 내에서 Uniform distribution으로 하나의 샘플을 뽑습니다.</p>
+<p>Once a bin is selected, generate a sample from the uniform distribution within that bin.</p>
 </li>
 </ol>
-<p>만일 max-pooling을 적용하여 $\mathbf{M}, \mathcal{A}$를 골랐다면, 각 구간의 길이가 모두 동일하므로 확률에서 구간의 길이 항이 사라집니다. 따라서 이 경우에 각 구간의 확률은 $M_i / \sum_{j}M_j$가 되어 굉장히 간단해집니다.</p>
+<p>When Max Pooling is applied to determine the weights $\mathbf{M}$ and the set $\mathcal{A}$ (which includes the bins), and if the bin lengths are equal, the term $\Delta x_i$ cancels out. This simplifies the probability of choosing any bin to $M_i / \sum_{j}M_j$. This simplicity is a significant advantage when implementing the sampling algorithm, making the process computationally efficient.</p>
 <h3 id="23-piecewise-rejection-sampling">2.3. Piecewise Rejection Sampling</h3>
-<p>  Weighted uniform distribution도 sampling방법을 알고 있는 엄연한 하나의 확률분포이므로, 이를 Rejection sampling에서의 $g(x)$로 사용할 수 있습니다. 다만, 항상 $f(x)$보다 커야된다는 조건을 만족시키기 위하여 임의의 $\mathbf{M}, \mathcal{A}$를 고르는 것이 아닌 max-pooling을 적용하여 $\mathbf{M}, \mathcal{A}$를 얻을 것입니다. 이 과정을 정리하면 다음과 같습니다.</p>
+<p>  The weighted uniform distribution, which we can readily sample from, is a viable choice for $g(x)$ in rejection sampling. But instead of selecting random weights and bin lengths, we will use Max Pooling to derive $\mathbf{M}$ and $\mathcal{A}$, ensuring that our $g(x)$ always remains above $f(x)$. This procedure is outlined in the following steps:</p>
 <ol>
 <li>
-<p>전체 구간을 몇 개의 구간으로 나눌지 결정합니다. 이때, 구간의 개수를 $n$이라고 하고 각 구간의 길이를 동등하게 나누어 $\mathcal{A}$를 정의합니다.</p>
+<p>Determine the number of bins to segment the entire range into, denoted as $n$. Define $\mathcal{A}$ by splitting the interval into $n$ equal-length sections.</p>
 </li>
 <li>
-<p>나눠진 구간에 대해 $f(x)$를 max-pooling하여 $\mathbf{M}$을 얻습니다.</p>
+<p>Perform Max Pooling on $f(x)$ across the established bins to ascertain $\mathbf{M}$, the set of maximum values within each bin.</p>
 </li>
 <li>
-<p>$\mathbf{M}, \mathcal{A}$를 이용하여 Weighted uniform distribution을 정의합니다.</p>
+<p>Utilize $\mathbf{M}$ and $\mathcal{A}$ to construct a weighted uniform distribution.</p>
 </li>
 <li>
-<p>이렇게 정의된 Weighted uniform distribution을 Rejection sampling에서의 $g(x)$로 사용하여 sampling합니다.</p>
+<p>Implement rejection sampling using this specifically defined weighted uniform distribution as $g(x)$.</p>
 </li>
 </ol>
-<p>이러한 sampling 방법은 마치 구간을 나누어 sampling하는 것과 같으므로 <span style="background-color: rgba(255, 255, 0, 0.534);">
+<p>This approach is aptly named <span style="background-color: rgba(255, 255, 0, 0.534);">
     <b>Piecewise Rejection Sampling</b>
-</span>으로 명명하겠습니다. 이 방법에서의 Acceptance rate를 구해보면 단순히 Uniform distribution을 사용하여 Rejection sampling을 할 때에 비해 Acceptance rate가 높아지는 것을 알 수 있습니다.</p>
+</span> because it involves sampling within discrete bins. When you compute the acceptance rate for this method, it becomes clear that it can substantially improve the acceptance rate over using a simple uniform distribution for rejection sampling.</p>
 <blockquote>
 <p>$$
 \begin{aligned}
@@ -473,7 +535,7 @@ P(U &lt; f(Y)) &amp;= \int_a^b P(U &lt; f(Y) | Y = y) \cdot g(y) \, dy \\
 &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i M_i \int_{A_i} P(U &lt; f(y)) dy
 \end{aligned}
 $$
-$U \sim \text{Unif}(u|0, M_i)$이고, $P(U &lt; f(y)) = f(y)/{M_i}$이므로 다음과 같이 정리할 수 있습니다.
+Since $U \sim \text{Unif}(u|0, M_i)$ and $P(U &lt; f(y)) = f(y)/{M_i}$, it can be simplified to:
 $$
 \begin{aligned}
 P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f(y)\, dy \\
@@ -481,8 +543,8 @@ P(U &lt; f(Y)) &amp;= \frac{1}{\sum_{j}M_j \cdot \Delta x_j} \sum_i \int_{A_i} f
 \end{aligned}
 $$</p>
 </blockquote>
-<p>마지막 부등식은 $M_i$ 중에서 가장 큰 값에 전체 구간의 길이를 곱하면 원래 Uniform distribution을 사용할 때의 $M$과 같다는 것을 이용하여 정리한 것입니다. 이를 통해 Piecewise rejection sampling의 Acceptance rate는 Uniform distribution을 사용할 때의 Acceptance rate보다 항상 높다는 것을 알 수 있습니다.</p>
-<p>이제 마지막으로 처음에 제시했던 문제를 Piecewise rejection sampling을 이용하여 풀어보겠습니다. 위 알고리즘은 Rust numeric library인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>에 이미 구현이 되어 있으므로 이를 이용하겠습니다.</p>
+<p>The final part of the inequality references that the greatest value among the $M_i$ when multiplied by the total interval length is equal to $M$, aligning with the area under the curve of the original uniform distribution. This fact confirms that the acceptance rate for piecewise rejection sampling will always exceed that of a simple uniform distribution.</p>
+<p>To tackle the initial problem we introduced, we&rsquo;ll employ piecewise rejection sampling. The algorithm for this has been integrated into the Rust numerical library <a href="https://github.com/Axect/Peroxide">Peroxide</a>, which we will utilize for our solution. Using this library streamlines the process, allowing us to efficiently apply the piecewise rejection sampling method we&rsquo;ve outlined.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// `cargo add peroxide --features parquet`
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
@@ -512,7 +574,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>        CompressionOptions::Uncompressed
 </span></span><span style="display:flex;"><span>    ).unwrap();
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>이렇게 만들어진 데이터를 히스토그램으로 그려보면 다음과 같습니다.</p>
+</span></span></code></pre></div><p>If you plot the data in a histogram, it looks like this:</p>
 <figure>
     <img src="/posts/images/006_05_hist.png"
          alt="Finally, we get samples!"/> <figcaption style="text-align:center">
@@ -534,8 +596,8 @@ $$</p>
 </ul>
 <hr>
 <h2 id="footnotes">A. Footnotes</h2>
-<p>[1]: 여기에 사용된 그림은 원시블랙홀(Primordial Black hole; PBH)로부터 특정시간에 방출된 액시온유사입자들(Axion Like Particles; ALPs)의 스펙트럼을 그린 그림입니다. 이 연구에 대한 자세한 내용은 <a href="https://arxiv.org/abs/2212.11977">arXiv:2212.11977</a>을 참고하시면 됩니다.</p>
-<p>[2]: 물론 이 경우에도, 노드들을 cubic spline 등의 방법으로 근사하고 수치적분이나 polynomial 적분을 이용하여 누적분포함수를 구한 후, 이를 다시 interpolation이나 spline등의 방법으로 fitting한 후 역함수를 구하는 방법을 사용할 수 있긴합니다. 하지만 이는 오차가 꽤 심하고 비효율적이라 추천하진 않습니다.</p>
+<p>[1]: The figure used here depicts the spectrum of Axion Like Particles (ALPs) emitted at a specific time from a Primordial Black Hole (PBH). You can find more details about this in <a href="https://arxiv.org/abs/2212.11977">this paper</a>.</p>
+<p>[2]: In this scenario, one could approximate the distribution&rsquo;s nodes using cubic spline interpolation, calculate the cumulative distribution function via numerical or polynomial integration, and then obtain the inverse function through further interpolation. However, this method may yield inaccurate and inefficient results, which is why it&rsquo;s not the recommended approach.</p>
 
       </div>
     </article>
@@ -564,7 +626,7 @@ $$</p>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1877 단어
+        2561 Words
       </p>
 
       <p>
@@ -676,19 +738,12 @@ $$</p>
     <div class="pagination">
         
         <div class="pagination__title">
-            <span class="pagination__title-h">다른 글 읽기</span>
+            <span class="pagination__title-h">Read other posts</span>
             <hr />
         </div>
         
 
         <div class="pagination__buttons">
-            
-            <span class="button previous">
-                <a href="https://axect.github.io/posts/007_ad_3/">
-                    <span class="button__icon">←</span>
-                    <span class="button__text">🤖 Rust와 미분하기 03: 정방향 자동 미분</span>
-                </a>
-            </span>
             
 
             

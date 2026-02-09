@@ -5,7 +5,7 @@
     <link>https://axect.github.io/tags/statistics/</link>
     <description>Recent content in Statistics on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>kr</language>
+    <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 18 Nov 2022 17:49:04 +0900</lastBuildDate>
     <atom:link href="https://axect.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
@@ -14,21 +14,7 @@
       <link>https://axect.github.io/posts/006_prs/</link>
       <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
       <guid>https://axect.github.io/posts/006_prs/</guid>
-      <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#xA;누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?&#xA;일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.&#xA;Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.</description>
-    </item>
-    <item>
-      <title>🏫 고등학교 수학으로 이해하는 선형회귀</title>
-      <link>https://axect.github.io/posts/003_highschool_linreg/</link>
-      <pubDate>Tue, 09 Mar 2021 22:01:39 +0900</pubDate>
-      <guid>https://axect.github.io/posts/003_highschool_linreg/</guid>
-      <description>2016 Breakthrough of the year&#xA;세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$&#xA;1. 중력파 발견&#xA;2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견&#xA;3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결&#xA;4. 세포 노화 및 회춘 연구&#xA;5. 유인원의 마음 읽기 능력 연구&#xA;6. 단백질 구조설계 기술</description>
-    </item>
-    <item>
-      <title>🐪 가우시안 정복하기 01: 단일변수</title>
-      <link>https://axect.github.io/posts/001_gaussian/</link>
-      <pubDate>Fri, 22 May 2020 17:00:31 +0900</pubDate>
-      <guid>https://axect.github.io/posts/001_gaussian/</guid>
-      <description>물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 가우스 적분(Gaussian Integral)입니다.&#xA;$$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$&#xA;이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.&#xA;따라서 여기서는 가우스 적분과 가우시안 분포에 대한 아주 기본적인 성질들을 다시 상기시키고 이를 발판삼아 다변수 가우시안(Multivariate Gaussian)과 여러 활용들을 살펴보도록 하겠습니다.</description>
+      <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#xA;Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?&#xA;Here are the two most commonly used methods to sample data from an arbitrary probability density function:&#xA;Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.</description>
     </item>
   </channel>
 </rss>

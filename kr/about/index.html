@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Axect ">
+<meta name="description" content="김태근 (Axect)을 소개합니다.
+저는 수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.
+경력 Joint Postdoc: Institute of Modern Physics, Fudan University &amp;amp; RIKEN iTHEMS (2025.10 ~ ) 학력 Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08) B.S.: 연세대학교 천문우주학과 (2012.03 ~ 2017.02) 연구 관심사 제 연구는 암흑물질 현상론과 AI4Science를 연결하여, 원시 블랙홀, 액시온 유사 입자를 탐구하고 물리학을 위한 연산자 학습 프레임워크를 개발합니다. 자세한 연구 비전과 출판물은 Research 페이지를 참고해주세요.
+학문 및 기술 수학 함수해석학 수치해석학 유한차분법 유한요소법 미분기하학 위상수학 물리학 천체입자물리학 일반상대성이론 양자장이론 수리물리학 기계학습 통계적 기계학습 선형회귀 (LASSO, Ridge) 로지스틱 회귀 선형분류 Kernel Based Methods Kernel Smoothing Kernel Density Estimation 인공신경망 MLP, CNN, RNN (LSTM, GRU), Transformer, Mamba Operator learning &amp;amp; Nerual ODE Bayesian Neural Network 프로그래밍 주 언어 Rust, Julia, Python 보조 언어 C/C&#43;&#43;, Haskell 프레임워크 및 라이브러리 수치 계산 peroxide, BLAS, LAPACK, numpy, scipy 시각화 matplotlib, vegas, ggplot2, plotly 웹 Django, Vue, Firebase, Surge, Hugo, Zola 머신러닝 PyTorch, JAX, Optax, Equinox, Wandb, Optuna, Candle, Tensorflow, Norse 오픈소스 프로젝트 오픈소스 프로젝트의 전체 목록은 Software 페이지를 참고해주세요." />
+<meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://axect.github.io/kr/about/" />
+
+
+    <title>
+        
+            About :: Axect&#39;s Blog  — 수학, 물리 그리고 계산
+        
+    </title>
+
+
+
+
+
+
+<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1b1c1d">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#1b1c1d">
+    <meta name="theme-color" content="#1b1c1d">
+
+
+
+<meta itemprop="name" content="About">
+<meta itemprop="description" content="김태근 (Axect)을 소개합니다.
+저는 수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.
+경력 Joint Postdoc: Institute of Modern Physics, Fudan University &amp; RIKEN iTHEMS (2025.10 ~ ) 학력 Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08) B.S.: 연세대학교 천문우주학과 (2012.03 ~ 2017.02) 연구 관심사 제 연구는 암흑물질 현상론과 AI4Science를 연결하여, 원시 블랙홀, 액시온 유사 입자를 탐구하고 물리학을 위한 연산자 학습 프레임워크를 개발합니다. 자세한 연구 비전과 출판물은 Research 페이지를 참고해주세요.
+학문 및 기술 수학 함수해석학 수치해석학 유한차분법 유한요소법 미분기하학 위상수학 물리학 천체입자물리학 일반상대성이론 양자장이론 수리물리학 기계학습 통계적 기계학습 선형회귀 (LASSO, Ridge) 로지스틱 회귀 선형분류 Kernel Based Methods Kernel Smoothing Kernel Density Estimation 인공신경망 MLP, CNN, RNN (LSTM, GRU), Transformer, Mamba Operator learning &amp; Nerual ODE Bayesian Neural Network 프로그래밍 주 언어 Rust, Julia, Python 보조 언어 C/C&#43;&#43;, Haskell 프레임워크 및 라이브러리 수치 계산 peroxide, BLAS, LAPACK, numpy, scipy 시각화 matplotlib, vegas, ggplot2, plotly 웹 Django, Vue, Firebase, Surge, Hugo, Zola 머신러닝 PyTorch, JAX, Optax, Equinox, Wandb, Optuna, Candle, Tensorflow, Norse 오픈소스 프로젝트 오픈소스 프로젝트의 전체 목록은 Software 페이지를 참고해주세요."><meta itemprop="datePublished" content="2023-11-06T19:03:00+09:00" />
+<meta itemprop="dateModified" content="2023-11-06T19:03:00+09:00" />
+<meta itemprop="wordCount" content="1096"><meta itemprop="image" content="https://axect.github.io/" />
+<meta itemprop="keywords" content="" />
+
+
+
+
+    <meta property="article:published_time" content="2023-11-06 19:03:00 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axect.github.io/kr/about/" />
+<meta property="og:title" content="About | Axect&#39;s Blog" />
+<meta property="og:description" content="김태근 (Axect)을 소개합니다.
+저는 수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.
+경력 Joint Postdoc: Institute of Modern Physics, Fudan University &amp;amp; RIKEN iTHEMS (2025.10 ~ ) 학력 Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08) …" />
+
+<meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://axect.github.io/kr/about/" />
+<meta name="twitter:title" content="About" />
+<meta name="twitter:description" content="김태근 (Axect)을 소개합니다.
+저는 수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.
+경력 Joint Postdoc: Institute of Modern Physics, Fudan University &amp;amp; RIKEN iTHEMS (2025.10 ~ ) 학력 Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08) …" />
+
+<meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
+
+
+
+
+
+
+
+
+
+
+<meta name="citation_author" content="Kim, Tae-Geun" />
+
+
+
+
+
+
+
+        
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+        
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/axect/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/kr/about">About</a></li><li><a href="/kr/posts">Blog</a></li><li><a href="/kr/research">Research</a></li><li><a href="/kr/software">Software</a></li><li><a href="/kr/tags">Tags</a></li>
+        <div class="submenu">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><span class="flag fi fi-kr"></span></a>
+                <div class="dropdown-content">
+                    
+                        
+                            <a title="en" href="https://axect.github.io/about/"><span class="flag fi fi-gb"></span></a>
+                        
+                    
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+
+    <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  },
+  "HTML-CSS": { scale: 90, linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } },
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+                In English :
+                
+                    <a href="https://axect.github.io/about/"><span class="flag fi fi-gb"></span></a>
+                
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://axect.github.io/kr/about/">About</a></h2>
+
+            
+
+            <div class="post-content">
+                <p><a href="https://github.com/Axect"><strong>김태근 (Axect)</strong></a>을 소개합니다.</p>
+<hr>
+<h2 id="저는">저는</h2>
+<p>수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.</p>
+<hr>
+<h2 id="경력">경력</h2>
+<ul>
+<li>Joint Postdoc: Institute of Modern Physics, Fudan University &amp; RIKEN iTHEMS (2025.10 ~ )</li>
+</ul>
+<hr>
+<h2 id="학력">학력</h2>
+<ul>
+<li>Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08)</li>
+<li>B.S.: 연세대학교 천문우주학과 (2012.03 ~ 2017.02)</li>
+</ul>
+<hr>
+<h2 id="연구-관심사">연구 관심사</h2>
+<p>제 연구는 <strong>암흑물질 현상론</strong>과 <strong>AI4Science</strong>를 연결하여, 원시 블랙홀, 액시온 유사 입자를 탐구하고 물리학을 위한 연산자 학습 프레임워크를 개발합니다. 자세한 연구 비전과 출판물은 <a href="/kr/research/">Research</a> 페이지를 참고해주세요.</p>
+<hr>
+<h2 id="학문-및-기술">학문 및 기술</h2>
+<h3 id="수학">수학</h3>
+<ul>
+<li>함수해석학</li>
+<li>수치해석학
+<ul>
+<li>유한차분법</li>
+<li>유한요소법</li>
+</ul>
+</li>
+<li>미분기하학</li>
+<li>위상수학</li>
+</ul>
+<h3 id="물리학">물리학</h3>
+<ul>
+<li>천체입자물리학</li>
+<li>일반상대성이론</li>
+<li>양자장이론</li>
+<li>수리물리학</li>
+</ul>
+<h3 id="기계학습">기계학습</h3>
+<ul>
+<li>통계적 기계학습
+<ul>
+<li>선형회귀 (LASSO, Ridge)</li>
+<li>로지스틱 회귀</li>
+<li>선형분류</li>
+<li>Kernel Based Methods
+<ul>
+<li>Kernel Smoothing</li>
+<li>Kernel Density Estimation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>인공신경망
+<ul>
+<li>MLP, CNN, RNN (LSTM, GRU), Transformer, Mamba</li>
+<li>Operator learning &amp; Nerual ODE</li>
+<li>Bayesian Neural Network</li>
+</ul>
+</li>
+</ul>
+<h3 id="프로그래밍">프로그래밍</h3>
+<ul>
+<li>주 언어
+<ul>
+<li>Rust, Julia, Python</li>
+</ul>
+</li>
+<li>보조 언어
+<ul>
+<li>C/C++, Haskell</li>
+</ul>
+</li>
+<li>프레임워크 및 라이브러리
+<ul>
+<li>수치 계산
+<ul>
+<li>peroxide, BLAS, LAPACK, numpy, scipy</li>
+</ul>
+</li>
+<li>시각화
+<ul>
+<li>matplotlib, vegas, ggplot2, plotly</li>
+</ul>
+</li>
+<li>웹
+<ul>
+<li>Django, Vue, Firebase, Surge, Hugo, Zola</li>
+</ul>
+</li>
+<li>머신러닝
+<ul>
+<li>PyTorch, JAX, Optax, Equinox, Wandb, Optuna, Candle, Tensorflow, Norse</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="오픈소스-프로젝트">오픈소스 프로젝트</h2>
+<p>오픈소스 프로젝트의 전체 목록은 <a href="/kr/software/">Software</a> 페이지를 참고해주세요.</p>
+<p>주요 프로젝트:</p>
+<ul>
+<li><strong>Peroxide</strong> - 선형대수, ODE 솔버, 최적화 도구를 제공하는 종합 과학계산 Rust 라이브러리 (1M+ 다운로드, 500+ stars)</li>
+<li><strong>DeeLeMa</strong> - 암흑물질 질량 추정을 위한 PyTorch 기반 프레임워크, <em>Physical Review Research</em> 게재 (2023)</li>
+<li><strong>Neural Hamilton</strong> - 데이터로부터 해밀토니안 역학을 재구성하는 연산자 학습 및 Neural ODE 현재 연구, 전통적인 RK4 솔버와 벤치마킹 (arXiv 2024)</li>
+</ul>
+<hr>
+<h2 id="학술활동">학술활동</h2>
+<h3 id="논문">논문</h3>
+<ul>
+<li>
+<p>Taehyeun Kim, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Anouk Girard and Ilya Kolmanovsky, <em>Learning Hamiltonian Dynamics with Bayesian Data Assimilation</em>, <a href="https://arxiv.org/abs/2501.18808">arXiv:2501.18808</a> (2025)</p>
+</li>
+<li>
+<p><span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span> and Seong Chan Park, <em>Neural Hamilton: Can A.I. Understand Hamiltonian Mechanics?</em>, <a href="https://arxiv.org/abs/2410.20951">arXiv:2410.20951</a> (2024)</p>
+</li>
+<li>
+<p><span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, <em>HyperbolicLR: Epoch insensitive learning rate scheduler</em>, <a href="https://arxiv.org/abs/2407.15200">arXiv:2407.15200</a> (2024)</p>
+</li>
+<li>
+<p>Chang Min Hyun, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, and Kyounghun Lee, <em>Unsupervised sequence-to-sequence learning for automatic signal quality assessment in multi-channel electrical impedance-based hemodynamic monitoring</em>, <a href="https://doi.org/10.1016/j.cmpb.2024.108079">CMPB 108079</a>, <a href="https://arxiv.org/abs/2305.09368">arXiv:2305.09368</a> (2023)</p>
+</li>
+<li>
+<p>Kayoung Ban, Dong Woo Kang, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Seong Chan Park and Yeji Park, <em>DeeLeMa : Missing information search with Deep Learning for Mass estimation</em>, <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043186">Phys. Rev. Research <strong>5</strong>, 043186</a>, <a href="https://arxiv.org/abs/2212.12836">arXiv:2212.12836</a>  (2022)</p>
+</li>
+<li>
+<p>Yongsoo Jho, <span style="background-color: rgba(255, 255, 0, 0.534);">
+    <b>Tae-Geun Kim</b>
+</span>, Jong-Chul Park, Seong Chan Park and Yeji Park, <em>Axions from Primordial Black Holes</em>, <a href="https://doi.org/10.1093/ptep/ptag011">PTEP ptag011</a>, <a href="https://arxiv.org/abs/2212.11977">arXiv:2212.11977</a> (2022)</p>
+</li>
+</ul>
+<h3 id="발표">발표</h3>
+<ul>
+<li>
+<p><em>Accelerating PBH Phenomenology via Neural Operators</em>, The 2nd AI+HEP in East Asia @ KEK (2026) [Oral]</p>
+</li>
+<li>
+<p><em>From Primordial Black Holes to Nuclei: Solving Inverse Problems in Physics with Operator Learning</em>, Nuclear Lunch Seminar @ Fudan University (2025) [Oral, Invited]</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/scl/fi/ac1233d41f7amxstrvofv/main.pdf?rlkey=ma2pimb4xcyjl17zvy893bnr3&st=2f1yzz16&dl=0"><em>Can AI Understand Hamiltonian Mechanics?</em></a>, Summer Institute 2025 (2025) [Oral]</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/scl/fi/j5m29r4mfz92fqxvj2uuj/main.pdf?rlkey=cfjkz2h0a9de4iqbto12a49np&st=vl5967uy&dl=0"><em>A Neural Operator for Primordial Black Hole Physics</em></a>, The 4th workshop on Symmetry and Structure of the Universe (2025) [Oral]</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/scl/fi/wxobs4uyd1d1otewfuq3q/main.pdf?rlkey=06ja38ckktp84mnachku21gjr&st=ghs0fl89&dl=0"><em>PBH Phenomenology with Operator Learning</em></a>, LSSU Seminar @ JBNU (2025) [Oral, Invited]</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/scl/fi/w4krmvnjfu60woevaibee/AI_with_Hamiltonian_AIHEP-EastAsia.pdf?rlkey=cp9ah1nlkz3x4rkic1ugb6sk2&st=tpaioyql&dl=0"><em>AI with Hamiltonian Mechanics: From Predictions to Understanding</em></a>, AI+HEP in East Asia (2025) [Oral]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, RIKEN DEEP-IN Seminar (2025) [Oral, Invited]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, Dark Matter as a portal to New Physics 2025 (2025) [Oral, Invited]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, Focused workshop on AI in High Energy Physics (2025) [Oral]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, 2024 Korea-France STAR Workshop [Oral]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, Invited Seminar @ KIAS (2024) [Oral, Invited]</p>
+</li>
+<li>
+<p><em>Can A.I. Understand Hamiltonian Mechanics?</em>, 21st Saga-Yonsei Joint Workshop (2024) [Oral]</p>
+</li>
+<li>
+<p><em>Primordial Black Hole dominant Axion background</em>, 2024 KPS Fall Meeting (2024) [Oral]</p>
+</li>
+<li>
+<p><a href="https://www.dropbox.com/scl/fi/q79z6wwwxrshj88gw5y3k/SI2023_TGKim.pdf?rlkey=jv0ypybbi8175rju495a1k0xt&dl=0"><em>Exploration of Primordial Black Holes and Axion-Like Particles through a novel decay model on cosmological scale</em></a>, 27th International Summer Institute on Phenomenology of Elementary Particle Physics and Cosmology (2023) [Poster]</p>
+</li>
+<li>
+<p><em>Exploration of Primordial Black Holes and Axion-Like Particles through a novel decay model on cosmological scale</em>, 16th International Conference on Interconnections between Particle Physics and Cosmology (2022) [Oral]</p>
+</li>
+<li>
+<p><a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_WPDC.html"><em>Constraining ALPs via PBH with time-varying decay process</em></a>, Workshop on Physics of Dark Cosmos: dark matter, dark energy, and all (2022) [Oral]</p>
+</li>
+<li>
+<p><a href="https://axect.github.io/Slides/PHY/PBH_ALP/20221021_kps.html"><em>Constraining ALPs via PBH with time-varying decay process Part.2</em></a>, 2022년 한국물리학회 창립 70주년 가을 학술논문발표회 (2022) [Oral] [Best Oral Award]</p>
+</li>
+<li>
+<p><a href="https://axect.github.io/Slides/PHY/NS/neutron-saga.html"><em>Bird&rsquo;s eye view of Neutron star cooling</em></a>, 16th Saga-Yonsei Joint Workshop (2019) [Oral]</p>
+</li>
+</ul>
+<hr>
+<h2 id="읽은-책들">읽은 책들</h2>
+<h3 id="수학-1">수학</h3>
+<ul>
+<li>선형대수학
+<ul>
+<li>Mark S, Gockenbach, <em>Finite-Dimensional Linear Algebra</em>. 1st ed., CRC Press (2010)</li>
+</ul>
+</li>
+<li>해석학
+<ul>
+<li>Walter Rudin, <em>Principles of Mathematical Analysis</em>. 3rd ed., McGraw Hill (1976)</li>
+<li>Elias M. Stein, Rami Shakarchi, <em>Fourier Analysis: An Introduction</em>. Illustrated ed., Princeton University Press (2003)</li>
+<li>Elias M. Stein, Rami Shakarchi, <em>Real Analysis: Measure Theory, Integration, and Hilbert Spaces</em>. 1st ed., Princeton University Press (2005)</li>
+</ul>
+</li>
+<li>미분기하학
+<ul>
+<li>William M. Boothby, <em>An Introduction to Differentiable Manifolds and Riemannian Geometry</em>. Revised 2nd ed., Academic Press (2002)</li>
+<li>Barrett O&rsquo;Neill, <em>Elementary Differential Geometry</em>. Revised 2nd ed., Academic Press (2006)</li>
+</ul>
+</li>
+<li>위상수학
+<ul>
+<li>James R. Munkres, <em>Topology</em>. 2nd ed., Pearson College Div (2000)</li>
+<li>Werner Ballmann, <em>Introduction to Geometry and Topology</em>. 1st ed., Birkhäuser (2018)</li>
+</ul>
+</li>
+</ul>
+<h3 id="물리학-1">물리학</h3>
+<ul>
+<li><strong>고전역학</strong>
+<ul>
+<li>L. D. Landau, E. M. Lifshitz, <em>Mechanics: Volume 1</em>. 3rd ed., Butterworth-Heinemann (1976)</li>
+<li>Herbert Goldstein, <em>Classical Mechanics</em>. 3rd ed., Pearson (2001)</li>
+</ul>
+</li>
+<li><strong>양자역학</strong>
+<ul>
+<li>Ashok Das, <em>Lectures on Quantum Mechanics</em>. 2nd ed., World Scientific Publishing Company (2012)</li>
+<li>J. J. Sakurai, Jim J. Napolitano, <em>Modern Quantum Mechanics</em>. 2nd ed., Pearson (2010)</li>
+</ul>
+</li>
+<li><strong>일반상대성이론</strong>
+<ul>
+<li>Harvey Reall, <em>Part 3 General Relativity</em>, University of Cambridge 65 (2013)</li>
+<li>M. P. Hobson et al., <em>General Relativity: An Introduction for Physicists</em>. Illustrated ed., Cambridge University Press (2006)</li>
+<li>F. de Felice, C. J. S. Clarke, <em>Relativity on Curved Manifolds</em>, Cambridge University Press (1992)</li>
+</ul>
+</li>
+<li><strong>양자장이론</strong>
+<ul>
+<li>Lewis H. Ryder, <em>Quantum Field Theory</em>. 2nd ed., Cambridge University Press (1996)</li>
+<li>Michael E. Peskin, Daniel V. Schroeder, <em>An Introduction to Quantum Field Theory, Student Economy Edition</em>. 1st ed., Westview Press (2015)</li>
+<li>Michele Maggiore, <em>A Modern Introduction to Quantum Field Theory</em>, Oxford University Press (2005)</li>
+<li>Ashok Das, <em>Field Theory: A Path Integral Approach</em>. 3rd ed., World Scientific (2006)</li>
+</ul>
+</li>
+</ul>
+<h3 id="기계학습-1">기계학습</h3>
+<ul>
+<li><strong>통계적 기계학습</strong>
+<ul>
+<li>Masashi Sugiyama, <em>Introduction to Statistical Machine Learning</em>. 1st ed., Morgan Kaufmann (2015)</li>
+<li>Christopher M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer (2006)</li>
+<li>Gareth James et al., <em>An Introduction to Statistical Learning: with Applications in R</em>. 1st ed., Springer (2013)</li>
+<li>Trevor Hastie et al., <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2nd ed., Springer (2016)</li>
+<li>Yaser S. Abu-Mostafa et al., <em>Learning from Data</em>, AMLBook (2012)</li>
+</ul>
+</li>
+<li><strong>심층학습</strong>
+<ul>
+<li>Zhang et al., <em>Dive into Deep Learning</em>. 1.0.0-alpha0. (2022)</li>
+<li>Eli Stevens et al., <em>Deep Learning with PyTorch</em>, Manning (2020)</li>
+<li>오가와 유타로, <em>만들면서 배우는 파이토치 딥러닝: 12가지 모델로 알아보는 딥러닝 응용법</em>, 한빛미디어 (2021)</li>
+</ul>
+</li>
+<li><strong>강화학습</strong>
+<ul>
+<li>Laura Graesser and Wah Loon Keng, <em>Foundations of Deep Reinforcement Learning: Theory and Practice in Python</em>. 1st ed., Addison-Wesley Professional (2020)</li>
+<li>Csaba Szepesvári, <em>Algorithms for Reinforcement Learning</em>. 1st ed., Morgan &amp; Claypool Publishers (2009)</li>
+</ul>
+</li>
+</ul>
+<h3 id="기타">기타</h3>
+<ul>
+<li><strong>알고리즘</strong>
+<ul>
+<li>Tim Roughgarden, <em>Algorithms Illuminated: Part1: The Basics</em>. Illustrated ed., Soundlikeyourself Publishing (2017)</li>
+</ul>
+</li>
+<li><strong>Rust</strong>
+<ul>
+<li>Steve Klabnik, Carol Nichols, <em>The Rust Programming Language</em>. 1st ed., No Starch Press (2018)</li>
+<li>Jim Blandy, Jason Orendorff, <em>Programming Rust: Fast, Safe, Systems Development</em>. 1st ed., O&rsquo;Reilly Media (2018)</li>
+<li>Tim McNamara, <em>Rust in Action</em>, Manning (2021)</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            <span><a href="https://axect.github.io/">Axect</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://axect.github.io/kr/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+
+
+
+    </body>
+</html>

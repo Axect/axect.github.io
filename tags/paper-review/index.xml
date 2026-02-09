@@ -5,7 +5,7 @@
     <link>https://axect.github.io/tags/paper-review/</link>
     <description>Recent content in Paper-Review on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>kr</language>
+    <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 29 Oct 2022 17:39:54 +0900</lastBuildDate>
     <atom:link href="https://axect.github.io/tags/paper-review/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,7 @@
       <link>https://axect.github.io/posts/005_decov/</link>
       <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
       <guid>https://axect.github.io/posts/005_decov/</guid>
-      <description>arXiv: 1511.06068&#xA;딥러닝에서 가장 빈번하게 일어나는 문제로 Overfitting (과적합) 이 있습니다. 이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다.</description>
+      <description>arXiv: 1511.06068&#xA;The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
     </item>
   </channel>
 </rss>

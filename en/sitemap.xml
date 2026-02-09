@@ -2,184 +2,210 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://axect.github.io/en/about/</loc>
-    <lastmod>2023-11-06T19:03:00+09:00</lastmod>
+    <loc>https://axect.github.io/</loc>
+    <lastmod>2026-02-09T17:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://axect.github.io/about/"
+                href="https://axect.github.io/kr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/en/about/"
-                />
-  </url><url>
-    <loc>https://axect.github.io/en/</loc>
-    <lastmod>2023-11-06T19:03:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
                 href="https://axect.github.io/"
                 />
+  </url><url>
+    <loc>https://axect.github.io/research/</loc>
+    <lastmod>2026-02-09T17:00:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/kr/research/"
+                />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/en/"
+                href="https://axect.github.io/research/"
                 />
   </url><url>
-    <loc>https://axect.github.io/en/posts/006_prs/</loc>
+    <loc>https://axect.github.io/software/</loc>
+    <lastmod>2026-02-09T15:20:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/kr/software/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/software/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/about/</loc>
+    <lastmod>2023-11-06T19:03:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/kr/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/about/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/posts/006_prs/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/posts/006_prs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/posts/006_prs/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/posts/006_prs/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/piecewise-rejection-sampling/</loc>
+    <loc>https://axect.github.io/tags/piecewise-rejection-sampling/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/piecewise-rejection-sampling/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/piecewise-rejection-sampling/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/piecewise-rejection-sampling/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/posts/</loc>
+    <loc>https://axect.github.io/posts/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/posts/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/posts/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/statistics/</loc>
+    <loc>https://axect.github.io/tags/statistics/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/statistics/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/statistics/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/statistics/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/</loc>
+    <loc>https://axect.github.io/tags/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/posts/005_decov/</loc>
+    <loc>https://axect.github.io/posts/005_decov/</loc>
     <lastmod>2022-10-29T17:39:54+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/posts/005_decov/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/posts/005_decov/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/posts/005_decov/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/decorrelation/</loc>
+    <loc>https://axect.github.io/tags/decorrelation/</loc>
     <lastmod>2022-10-29T17:39:54+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/decorrelation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/decorrelation/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/decorrelation/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/machine-learning/</loc>
+    <loc>https://axect.github.io/tags/machine-learning/</loc>
     <lastmod>2022-10-29T17:39:54+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/machine-learning/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/machine-learning/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/machine-learning/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/paper-review/</loc>
+    <loc>https://axect.github.io/tags/paper-review/</loc>
     <lastmod>2022-10-29T17:39:54+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/paper-review/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/paper-review/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/paper-review/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/tags/pytorch/</loc>
+    <loc>https://axect.github.io/tags/pytorch/</loc>
     <lastmod>2022-10-29T17:39:54+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/tags/pytorch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/tags/pytorch/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/tags/pytorch/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/blog/</loc>
+    <loc>https://axect.github.io/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
+                href="https://axect.github.io/kr/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
                 href="https://axect.github.io/blog/"
                 />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/en/blog/"
-                />
   </url><url>
-    <loc>https://axect.github.io/en/series/</loc>
+    <loc>https://axect.github.io/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://axect.github.io/series/"
+                href="https://axect.github.io/kr/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://axect.github.io/en/series/"
+                href="https://axect.github.io/series/"
                 />
   </url>
 </urlset>

@@ -5,72 +5,44 @@
     <link>https://axect.github.io/</link>
     <description>Recent content on Axect&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>kr</language>
+    <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 04 Dec 2023 15:38:04 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Feb 2026 17:00:00 +0900</lastBuildDate>
     <atom:link href="https://axect.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>🤖 Rust와 미분하기 03: 정방향 자동 미분</title>
-      <link>https://axect.github.io/posts/007_ad_3/</link>
-      <pubDate>Mon, 04 Dec 2023 15:38:04 +0900</pubDate>
-      <guid>https://axect.github.io/posts/007_ad_3/</guid>
-      <description>🔖 Automatic Differentiation Series&#xA;💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.&#xA;net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.</description>
+      <title>Research</title>
+      <link>https://axect.github.io/research/</link>
+      <pubDate>Mon, 09 Feb 2026 17:00:00 +0900</pubDate>
+      <guid>https://axect.github.io/research/</guid>
+      <description>Research Vision My research bridges the gap between dark matter phenomenology and scientific machine learning, creating a unified approach to understanding fundamental physics through both traditional analytical methods and modern AI techniques.&#xA;I investigate dark matter candidates—particularly primordial black holes and axion-like particles—using a combination of cosmological observations, astrophysical constraints, and novel computational methods. Simultaneously, I develop operator learning frameworks that enable AI to not merely fit data, but to genuinely understand and emulate the underlying physical laws governing these systems.</description>
+    </item>
+    <item>
+      <title>Software &amp; Projects</title>
+      <link>https://axect.github.io/software/</link>
+      <pubDate>Mon, 09 Feb 2026 15:20:00 +0900</pubDate>
+      <guid>https://axect.github.io/software/</guid>
+      <description>Open-source software and research projects by Tae-Geun Kim (Axect).&#xA;🚀 Active Projects Peroxide Rust numerical computing library Comprehensive numerical computing library for Rust, providing functionality comparable to NumPy/SciPy in Python. Core infrastructure for scientific computing research.&#xA;Key Features:&#xA;Linear algebra with BLAS/LAPACK integration Optimization algorithms (Gradient Descent, Levenberg-Marquardt, etc.) Numerical integration &amp;amp; ODE/PDE solvers Statistical distributions &amp;amp; special functions DataFrame with multiple I/O formats (CSV, NetCDF, JSON, Parquet) FFI support for C, Fortran, and Python Tech Stack: SIMD, BLAS, LAPACK, proc-macro metaprogramming</description>
     </item>
     <item>
       <title>About</title>
       <link>https://axect.github.io/about/</link>
       <pubDate>Mon, 06 Nov 2023 19:03:00 +0900</pubDate>
       <guid>https://axect.github.io/about/</guid>
-      <description>김태근 (Axect)을 소개합니다.&#xA;저는 수학, 물리학 그리고 프로그래밍을 좋아하는 연구자입니다.&#xA;경력 Joint Postdoc: Institute of Modern Physics, Fudan University &amp;amp; RIKEN iTHEMS (2025.10 ~ ) 학력 Ph.D.: 연세대학교 대학원 물리학과 (2017.03 ~ 2025.08) B.S.: 연세대학교 천문우주학과 (2012.03 ~ 2017.02) 연구분야 입자우주론 원시 블랙홀 (Primordial Black Holes) 액시온 및 액시온 유사 입자 (Axions &amp;amp; ALPs) AI4Science Physics-Inspired Machine Learning (HNN) 신경 연산자 학습 (Neural Operator Learning) 베이지안 데이터 동화 (Bayesian Data Assimilation) 과학계산 자동미분 (Automatic Differentiation) 수치해석 및 고성능 계산 학문 및 기술 수학 함수해석학 수치해석학 유한차분법 유한요소법 미분기하학 위상수학 물리학 천체입자물리학 일반상대성이론 양자장이론 수리물리학 기계학습 통계적 기계학습 선형회귀 (LASSO, Ridge) 로지스틱 회귀 선형분류 Kernel Based Methods Kernel Smoothing Kernel Density Estimation 인공신경망 MLP, CNN, RNN (LSTM, GRU), Transformer, Mamba Operator learning &amp;amp; Nerual ODE Bayesian Neural Network 프로그래밍 주 언어 Rust, Julia, Python 보조 언어 C/C++, Haskell 프레임워크 및 라이브러리 수치 계산 peroxide, BLAS, LAPACK, numpy, scipy 시각화 matplotlib, vegas, ggplot2, plotly 웹 Django, Vue, Firebase, Surge, Hugo, Zola 머신러닝 PyTorch, JAX, Optax, Equinox, Wandb, Optuna, Candle, Tensorflow, Norse 프로젝트 Peroxide: Rust 수치 계산 라이브러리 (Maintainer)</description>
+      <description>About Tae Geun Kim (Axect)&#xA;I am Researcher &amp;amp; Rustacean&#xA;Experience Joint Postdoc: Institute of Modern Physics, Fudan University &amp;amp; RIKEN iTHEMS (2025.10 ~ ) Education Ph.D.: Department of Physics, Yonsei University (2017.03 ~ 2025.08) B.S.: Department of Astronomy, Yonsei University (2012.03 ~ 2017.02) Research Interests My research bridges dark matter phenomenology and AI4Science, exploring primordial black holes, axion-like particles, and developing operator learning frameworks for physics. For detailed research vision and publications, please visit the Research page.</description>
     </item>
     <item>
       <title>📊 Piecewise Rejection Sampling</title>
       <link>https://axect.github.io/posts/006_prs/</link>
       <pubDate>Fri, 18 Nov 2022 17:49:04 +0900</pubDate>
       <guid>https://axect.github.io/posts/006_prs/</guid>
-      <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#xA;누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?&#xA;일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.&#xA;Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.</description>
+      <description>Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$&#xA;Suppose you&amp;rsquo;re presented with an unnormalized probability density function graph such as the one shown. If you&amp;rsquo;re tasked with generating 10,000 data points that conform to this distribution, what would be your approach?&#xA;Here are the two most commonly used methods to sample data from an arbitrary probability density function:&#xA;Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling involves generating data points by calculating the cumulative distribution function (CDF) of the probability density function, deriving its inverse function, and then using this inverse function to produce data points.</description>
     </item>
     <item>
       <title>💔 Decorrelation &#43; Deep learning = Generalization</title>
       <link>https://axect.github.io/posts/005_decov/</link>
       <pubDate>Sat, 29 Oct 2022 17:39:54 +0900</pubDate>
       <guid>https://axect.github.io/posts/005_decov/</guid>
-      <description>arXiv: 1511.06068&#xA;딥러닝에서 가장 빈번하게 일어나는 문제로 Overfitting (과적합) 이 있습니다. 이는 데이터가 많지 않을 때, 학습을 많이 할 수록 잘 발생하는 문제이며 이로 인하여 훈련 데이터셋에 대해서는 성능이 좋더라도 검증 데이터셋이나 실제 데이터셋에 대해서는 성능이 안 나오는 문제가 발생합니다. 이를 해결하기 위하여 사람들은 여러 방법을 고안했는데, 통계학에서는 일찌감치 Ridge나 LASSO와 같은 regularization 방법을 사용하였으며 딥러닝에서도 마찬가지로 weight을 regularize하거나 신경망에 여러 기술을 적용하는 것들을 도입하였습니다. 이러한 기술로는 다음과 같은 방법들이 있습니다.</description>
-    </item>
-    <item>
-      <title>🦀 Rust 1.62.0 업데이트의 신기능 3가지</title>
-      <link>https://axect.github.io/posts/004_rust_1.62.0/</link>
-      <pubDate>Fri, 01 Jul 2022 11:56:41 +0900</pubDate>
-      <guid>https://axect.github.io/posts/004_rust_1.62.0/</guid>
-      <description>Ferris the crab&#xA;Rust 언어는 2015년 1.0 버전이 출시된 이래로 Stable, Beta, Nightly 세가지 채널로 나누어 꾸준히 업데이트 중입니다. 미리 새로운 기능을 써보고 싶은 개발자들은 Beta와 Nightly를 써볼 수 있지만, 라이브러리를 개발하여 배포하거나, 실제 제품을 만들어야 할 때에는 Stable을 선택할 수 밖에 없습니다. 따라서 Stable 채널의 업데이트는 Rust 환경 전반의 업데이트와 같다고 할 수 있고, 새로운 버전이 출시될때마다 Rust 개발자들의 이목이 집중됩니다.&#xA;업데이트에는 사소한 버그 수정도 있고, Beta와 Nightly에서 사용되었던 기능들의 안정화도 포함될 수 있으며 꼭 언어와 직접적으로 관련이 없더라도 빌드에 사용되는 도구들의 업데이트도 포함될 수 있습니다.</description>
-    </item>
-    <item>
-      <title>🏫 고등학교 수학으로 이해하는 선형회귀</title>
-      <link>https://axect.github.io/posts/003_highschool_linreg/</link>
-      <pubDate>Tue, 09 Mar 2021 22:01:39 +0900</pubDate>
-      <guid>https://axect.github.io/posts/003_highschool_linreg/</guid>
-      <description>2016 Breakthrough of the year&#xA;세계에서 가장 유명하고 권위있는 과학저널인 사이언스(Science)에서는 매년 그 해의 가장 성공적이었다고 여겨지는 과학성과를 발표합니다. 2016년 12월 22일에도 2016 Breakthrough of the year 를 발표하면서 2016년에 있었던 과학 성과 중 가장 눈여겨봐야 할 10개의 과학성과를 발표했습니다. 순위는 다음과 같습니다.${}^{[1]}$&#xA;1. 중력파 발견&#xA;2. 외계행성 &amp;lsquo;프록시마b&amp;rsquo; 발견&#xA;3. 인공지능 &amp;lsquo;알파고&amp;rsquo;와 이세돌 9단의 대결&#xA;4. 세포 노화 및 회춘 연구&#xA;5. 유인원의 마음 읽기 능력 연구&#xA;6. 단백질 구조설계 기술</description>
-    </item>
-    <item>
-      <title>🖊️ Rust와 미분하기 02: 기호 미분</title>
-      <link>https://axect.github.io/posts/002_ad_2/</link>
-      <pubDate>Sat, 03 Oct 2020 03:36:49 +0900</pubDate>
-      <guid>https://axect.github.io/posts/002_ad_2/</guid>
-      <description>🔖 Automatic Differentiation Series&#xA;💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 📉 수치적 미분의 한계 저번 포스트에서 수치적 미분을 여러가지 방법으로 구현하는 것을 다뤄보았는데, 어떠셨나요? 아마, 코딩에 대한 조금의 지식만 있으면 오히려 고등학교때의 미분보다 훨씬 쉽게 느껴지셨을 겁니다. 저희가 사용한 것이라고는 그저 도함수의 정의에 따라 함수에 각 구간 값을 대입한 것이 전부였는데, 이를 코드로 나타내면 결국 다음의 코드에 지나지 않습니다.&#xA;# Python def differentiation(f, x, h=1e-06): return (f(x + h) - f(x)) / h 나머지는 이를 객체지향적으로 구현하거나, 함수형 프로그래밍으로 구현하거나 제너릭 프로그래밍을 도입하는 등의 구현방법의 차이일 뿐이었습니다.</description>
-    </item>
-    <item>
-      <title>🧙 Rust와 미분하기 01: 수치적 미분</title>
-      <link>https://axect.github.io/posts/002_ad_1/</link>
-      <pubDate>Sun, 24 May 2020 02:44:11 +0900</pubDate>
-      <guid>https://axect.github.io/posts/002_ad_1/</guid>
-      <description>🔖 Automatic Differentiation Series&#xA;💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 미분은 희대의 천재였던 아이작 뉴턴이래로 없어서는 안 될 중요한 개념이 되었습니다. 문과나 이과 모두 구분없이 고등학교때 적어도 다항함수의 미분법은 배우며 이공계는 거의 모든 학과에서 미분방정식을 다룹니다. 물리학과의 경우는 좀 더 미분 의존도가 심한데, 당장 물리의 시작이라고 할 수 있는 고전역학부터 오일러-라그랑주 방정식(Euler-Lagrange equation)에 의존하며 물리학과의 핵심이라 할 수 있는 전자기학, 양자역학은 거의 모든 수식에 미분이 빠지지 않습니다.</description>
-    </item>
-    <item>
-      <title>🐪 가우시안 정복하기 01: 단일변수</title>
-      <link>https://axect.github.io/posts/001_gaussian/</link>
-      <pubDate>Fri, 22 May 2020 17:00:31 +0900</pubDate>
-      <guid>https://axect.github.io/posts/001_gaussian/</guid>
-      <description>물리학이나 통계학 등을 하다보면 항상 마주치는 원수 같은 존재가 있습니다. 별로 어렵지는 않은데 마주칠 때마다 헷갈리는 그 존재는 바로 가우스 적분(Gaussian Integral)입니다.&#xA;$$\int_{-\infty}^\infty e^{-\alpha x^2} dx$$&#xA;이공계 대학생이라면 1학년 미적분학 시간에 극좌표계(Polar coordinate)를 이용한 이중적분을 다룰 때 나오는 가장 기본문제로 가우스 적분을 기억할겁니다. 그러나 항상 거의 모두가 그렇듯이 시간이 지나면 지날 수록 기억은 풍화되고 거의 망각의 단계에 이르렀을 때에 갑자기 튀어나오는 낯선 형태의 가우스 적분들은 대처하기가 난감합니다.&#xA;따라서 여기서는 가우스 적분과 가우시안 분포에 대한 아주 기본적인 성질들을 다시 상기시키고 이를 발판삼아 다변수 가우시안(Multivariate Gaussian)과 여러 활용들을 살펴보도록 하겠습니다.</description>
+      <description>arXiv: 1511.06068&#xA;The most pervasive challenge in deep learning is Overfitting . This occurs when the dataset is small, and extensive training leads to a model that excels on training datasets but fails to generalize to validation datasets or real-world scenarios. To address this issue, various strategies have been developed. Historically, in statistics, regularization methods like Ridge and LASSO were employed, while deep learning has adopted approaches such as regularizing weights or applying different techniques to neural networks.</description>
     </item>
   </channel>
 </rss>
