@@ -5,10 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
-<meta name="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+<meta name="description" content=" Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
 일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
-Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다." />
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.${}^{[2]}$ 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.
+" />
 <meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust, statistics, piecewise rejection sampling" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -42,19 +43,22 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
 
 
 
-<meta itemprop="name" content="📊 Piecewise Rejection Sampling">
-<meta itemprop="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+
+  <meta itemprop="name" content="📊 Piecewise Rejection Sampling">
+  <meta itemprop="description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
 일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.
-Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다."><meta itemprop="datePublished" content="2022-11-18T17:49:04+09:00" />
-<meta itemprop="dateModified" content="2022-11-18T17:49:04+09:00" />
-<meta itemprop="wordCount" content="1877"><meta itemprop="image" content="https://axect.github.io/" />
-<meta itemprop="keywords" content="statistics,piecewise rejection sampling," />
+Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.${}^{[2]}$ 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.">
+  <meta itemprop="datePublished" content="2022-11-18T17:49:04+09:00">
+  <meta itemprop="dateModified" content="2022-11-18T17:49:04+09:00">
+  <meta itemprop="wordCount" content="1877">
+  <meta itemprop="image" content="https://axect.github.io/">
+  <meta itemprop="keywords" content="Statistics,Piecewise Rejection Sampling">
 
 
 
 
-    <meta property="article:published_time" content="2022-11-18 17:49:04 &#43;0900 KST" />
+    <meta property="article:published_time" content="2022-11-18 17:49:04 &#43;0900 &#43;0900" />
 
 
 
@@ -65,9 +69,9 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axect.github.io/kr/posts/006_prs/" />
 <meta property="og:title" content="📊 Piecewise Rejection Sampling | Axect&#39;s Blog" />
-<meta property="og:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+<meta property="og:description" content=" Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
-일단, 임의의 확률밀도함 …" />
+일단, 임의의 확률밀도 …" />
 
 <meta property="og:image" content="https://axect.github.io/images/og-default.png" />
 
@@ -78,9 +82,9 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content="https://axect.github.io/kr/posts/006_prs/" />
 <meta name="twitter:title" content="📊 Piecewise Rejection Sampling" />
-<meta name="twitter:description" content="Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
+<meta name="twitter:description" content=" Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$
 누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?
-일단, 임의의 확률밀도함 …" />
+일단, 임의의 확률밀도 …" />
 
 <meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
 
@@ -105,7 +109,7 @@ Inverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확�
     "@type": "Person",
     "name": "Tae-Geun Kim"
   },
-  "description": "Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$\n누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?\n일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.\nInverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.",
+  "description": " Differential energy spectrum of ALPs from primordial black hole (PBH)${}^{[1]}$\n누군가 위와 같이 정규화 되지 않은 확률밀도함수 그래프를 가져왔다고 가정해봅시다. 그러고서는 당신에게 이러한 확률분포를 갖는 데이터 10000개를 만들어달라고 부탁한다면, 어떻게 해야할까요?\n일단, 임의의 확률밀도함수로부터 데이터를 샘플링 하는 방법에 대해 가장 잘 알려진 방법으로는 다음의 2가지가 있습니다.\nInverse Transform Sampling Rejection Sampling Inverse Transform Sampling은 확률밀도함수의 누적분포함수를 구하고, 그 누적분포함수의 역함수를 구한 뒤, 그 역함수를 이용하여 데이터를 생성하는 방법입니다. 이 방법은 효율적이지만, 확률밀도함수가 어떤 형태를 갖느냐에 따라서 구하는 방법이 달라지기 때문에, 지금의 경우처럼 확률밀도함수의 정확한 꼴을 모를 때는 사용하기가 어렵습니다.${}^{[2]}$ 그러나, Rejection Sampling은 확률밀도함수가 어떤 형태를 갖느냐에 상관없이 적용할 수 있는데, 따라서 우리는 이 방법으로 시작해보겠습니다.\n",
   "url": "https:\/\/axect.github.io\/kr\/posts\/006_prs\/",
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -370,37 +374,37 @@ $$
 이는 $f(x)$의 누적분포함수와 같습니다. 따라서 Rejection sampling으로 얻어진 확률변수 $X$의 확률밀도함수는 $f(x)$라는 것을 얻을 수 있습니다.</p>
 </blockquote>
 <p>이제 수학적으로 증명을 마쳤으니, 이번에는 이것이 실제로 잘 작동하는지 코드를 작성해봅시다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Rust
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> M: <span style="color:#66d9ef">f64</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> N: <span style="color:#66d9ef">usize</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100_000</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Create g(x)=Unif(x|0,10) &amp; h(y)=Unif(y|0,M)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> g <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">10.0</span>);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> g <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">10.0</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> h <span style="color:#f92672">=</span> Uniform(<span style="color:#ae81ff">0.0</span>, M);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rejection sampling
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> vec![<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x_vec <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec!</span>[<span style="color:#ae81ff">0</span><span style="color:#66d9ef">f64</span>; N];
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">usize</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> N {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> g.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> h.sample(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> y <span style="color:#f92672">&lt;=</span> f(x) {      <span style="color:#75715e">// Accept
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            x_vec[i] <span style="color:#f92672">=</span> x;
+</span></span></span><span style="display:flex;"><span>            x_vec[i] <span style="color:#f92672">=</span> x;
 </span></span><span style="display:flex;"><span>            i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {            <span style="color:#75715e">// Reject
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">continue</span>;
+</span></span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Test function
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">f</span>(x: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">f</span>(x: <span style="color:#66d9ef">f64</span>) -&gt; <span style="color:#66d9ef">f64</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> <span style="color:#f92672">/</span> (x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>).sqrt() <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>(x<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#66d9ef">f64</span>).powi(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">0.2</span>).exp()
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>알고리즘 자체가 간단하므로 코드 역시 굉장히 간단합니다. 하지만 그럼에도 결과는 뛰어납니다.</p>
@@ -550,29 +554,29 @@ $$</p>
 </blockquote>
 <p>마지막 부등식은 $M_i$ 중에서 가장 큰 값에 전체 구간의 길이를 곱하면 원래 Uniform distribution을 사용할 때의 $M$과 같다는 것을 이용하여 정리한 것입니다. 이를 통해 Piecewise rejection sampling의 Acceptance rate는 Uniform distribution을 사용할 때의 Acceptance rate보다 항상 높다는 것을 알 수 있습니다.</p>
 <p>이제 마지막으로 처음에 제시했던 문제를 Piecewise rejection sampling을 이용하여 풀어보겠습니다. 위 알고리즘은 Rust numeric library인 <a href="https://github.com/Axect/Peroxide">Peroxide</a>에 이미 구현이 되어 있으므로 이를 이용하겠습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// Before running this code, you need to add peroxide in Cargo.toml
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// `cargo add peroxide --features parquet`
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> peroxide::fuga::<span style="color:#f92672">*</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#[allow(non_snake_case)]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Read parquet data file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> DataFrame::read_parquet(<span style="color:#e6db74">&#34;data/test.parquet&#34;</span>).unwrap();
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> df <span style="color:#f92672">=</span> DataFrame::read_parquet(<span style="color:#e6db74">&#34;data/test.parquet&#34;</span>).unwrap();
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> E: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;E&#34;</span>].to_vec();
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> dNdE: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#34;dNdE&#34;</span>].to_vec();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cubic hermite spline -&gt; Make continuous f(x)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> cs <span style="color:#f92672">=</span> cubic_hermite_spline(<span style="color:#f92672">&amp;</span>E, <span style="color:#f92672">&amp;</span>dNdE, Quadratic);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> cs <span style="color:#f92672">=</span> cubic_hermite_spline(<span style="color:#f92672">&amp;</span>E, <span style="color:#f92672">&amp;</span>dNdE, Quadratic);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> <span style="color:#f92672">|</span>x: <span style="color:#66d9ef">f64</span><span style="color:#f92672">|</span> cs.eval(x);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Piecewise rejection sampling
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # samples = 10000
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * # bins = 100
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// * tolerance = 1e-6
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// * # samples = 10000
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// * # bins = 100
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// * tolerance = 1e-6
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> E_sample <span style="color:#f92672">=</span> prs(f, <span style="color:#ae81ff">10000</span>, (E[<span style="color:#ae81ff">0</span>], E[E.len()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]), <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1e-6</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Write parquet data file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(vec![]);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> df <span style="color:#f92672">=</span> DataFrame::new(<span style="color:#a6e22e">vec!</span>[]);
 </span></span><span style="display:flex;"><span>    df.push(<span style="color:#e6db74">&#34;E&#34;</span>, Series::new(E_sample));
 </span></span><span style="display:flex;"><span>    df.write_parquet(
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;data/prs.parquet&#34;</span>, 
@@ -642,7 +646,7 @@ $$</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2022-11-18 17:49 &#43;0900
+          2022-11-18 16:49 &#43;0800
         
 
          
@@ -809,7 +813,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

@@ -5,9 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Axect ">
-<meta name="description" content="🔖 Automatic Differentiation Series
+<meta name="description" content=" 🔖 Automatic Differentiation Series
 💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
-net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss." />
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.backward() opt.step() 이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다. 일단 엄밀하게 같은 구현은 아니지만 Linear와 Sigmoid 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 net(x)를 만드는 것은 어렵지 않습니다. 다음으로 여기선 criterion이 무엇인지 명시하지는 않았지만 가장 기본적인 MSE를 사용한다면 이 역시 간단합니다. 문제는 opt부터 시작됩니다. SGD를 구현하려면, 어떤 criterion이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.
+" />
 <meta name="keywords" content="AI4Science, 연산자 학습, 역문제, 물리기반 머신러닝, 암흑물질 물리학, 원시블랙홀, 액시온, 학제간 AI, 과학계산, Rust, automatic-differentiation, forward-mode, rust" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -41,18 +42,21 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 
 
 
-<meta itemprop="name" content="🤖 Rust와 미분하기 03: 정방향 자동 미분">
-<meta itemprop="description" content="🔖 Automatic Differentiation Series
+
+  <meta itemprop="name" content="🤖 Rust와 미분하기 03: 정방향 자동 미분">
+  <meta itemprop="description" content="🔖 Automatic Differentiation Series
 💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.
-net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss."><meta itemprop="datePublished" content="2023-12-04T15:38:04+09:00" />
-<meta itemprop="dateModified" content="2023-12-04T15:38:04+09:00" />
-<meta itemprop="wordCount" content="1864"><meta itemprop="image" content="https://axect.github.io/" />
-<meta itemprop="keywords" content="automatic-differentiation,forward-mode,rust," />
+net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.backward() opt.step() 이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다. 일단 엄밀하게 같은 구현은 아니지만 Linear와 Sigmoid 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 net(x)를 만드는 것은 어렵지 않습니다. 다음으로 여기선 criterion이 무엇인지 명시하지는 않았지만 가장 기본적인 MSE를 사용한다면 이 역시 간단합니다. 문제는 opt부터 시작됩니다. SGD를 구현하려면, 어떤 criterion이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.">
+  <meta itemprop="datePublished" content="2023-12-04T15:38:04+09:00">
+  <meta itemprop="dateModified" content="2023-12-04T15:38:04+09:00">
+  <meta itemprop="wordCount" content="1864">
+  <meta itemprop="image" content="https://axect.github.io/">
+  <meta itemprop="keywords" content="Automatic-Differentiation,Forward-Mode,Rust">
 
 
 
 
-    <meta property="article:published_time" content="2023-12-04 15:38:04 &#43;0900 KST" />
+    <meta property="article:published_time" content="2023-12-04 15:38:04 &#43;0900 &#43;0900" />
 
 
 
@@ -63,8 +67,8 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axect.github.io/kr/posts/007_ad_3/" />
 <meta property="og:title" content="🤖 Rust와 미분하기 03: 정방향 자동 미분 | Axect&#39;s Blog" />
-<meta property="og:description" content="🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히  …" />
+<meta property="og:description" content=" 🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 …" />
 
 <meta property="og:image" content="https://axect.github.io/images/og-default.png" />
 
@@ -75,8 +79,8 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content="https://axect.github.io/kr/posts/007_ad_3/" />
 <meta name="twitter:title" content="🤖 Rust와 미분하기 03: 정방향 자동 미분" />
-<meta name="twitter:description" content="🔖 Automatic Differentiation Series
-💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히  …" />
+<meta name="twitter:description" content=" 🔖 Automatic Differentiation Series
+💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 …" />
 
 <meta name="twitter:image" content="https://axect.github.io/images/og-default.png" />
 
@@ -101,7 +105,7 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
     "@type": "Person",
     "name": "Tae-Geun Kim"
   },
-  "description": "🔖 Automatic Differentiation Series\n💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.\nnet = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.",
+  "description": " 🔖 Automatic Differentiation Series\n💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.\nnet = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.backward() opt.step() 이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다. 일단 엄밀하게 같은 구현은 아니지만 Linear와 Sigmoid 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 net(x)를 만드는 것은 어렵지 않습니다. 다음으로 여기선 criterion이 무엇인지 명시하지는 않았지만 가장 기본적인 MSE를 사용한다면 이 역시 간단합니다. 문제는 opt부터 시작됩니다. SGD를 구현하려면, 어떤 criterion이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.\n",
   "url": "https:\/\/axect.github.io\/kr\/posts\/007_ad_3\/",
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -291,7 +295,7 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 <p>딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요?
 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다.
 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
 </span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
 </span></span><span style="display:flex;"><span>  nn<span style="color:#f92672">.</span>Sigmoid()
 </span></span><span style="display:flex;"><span>)
@@ -392,7 +396,7 @@ $$</p>
 이는 우리가 흔히 사용하는 연쇄 법칙(Chain rule)과 일맥상통하므로 올바른 계산임을 알 수 있습니다.
 하지만, 언뜻 보면 $\sin u$의 도함수를 $\cos u$로 알려 준 다음 계산을 한 셈이니 기호미분과 무엇이 다른지 의아할 수 있습니다.
 이는 직접 코드를 작성해보면 이해할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Copy, Clone)]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Copy, Clone)]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Dual</span> {
 </span></span><span style="display:flex;"><span>    x: <span style="color:#66d9ef">f64</span>,
 </span></span><span style="display:flex;"><span>    dx: <span style="color:#66d9ef">f64</span>,
@@ -419,16 +423,16 @@ $$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> u.sin_();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> u.sin_();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(1) = 0.8414..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// sin&#39;(x) = cos(x) = cos(1) = 0.5403..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin&#39;(x) = cos(x) = cos(1) = 0.5403..
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> v.sin_();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;v: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dv: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, v.x, v.dx);
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sin(sin(1)) = 0.7456..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// (sin(sin(x)))&#39; = cos(sin(1)) * cos(1) = 0.3600..
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// (sin(sin(x)))&#39; = cos(sin(1)) * cos(1) = 0.3600..
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Rust를 이용하여 간단히 이원수 구조체를 구현하고 실수와 이원수 모두에 적용되는 <code>Sin</code>이라는 <code>trait</code>를 작성하여 Method overloading을 이용하여 자동미분을 구현해보았습니다.
 <code>main</code>함수의 첫번째 예시를 보면 $u = 1 \mathrel{\rhd} 1$로 정의된 것을 볼 수 있는데, 이는 값이 1이고 도함수가 1이라는 의미이므로 $x$를 표현한 것으로 볼 수 있습니다.
 이원수의 <code>sin_</code>함수 자체에 도함수 계산이 포함되어있으므로 <code>let v = u.sin_();</code>라는 식 만으로 이미 함숫값과 도함숫값이 계산되고 이는 <code>v.x</code>와 <code>v.dx</code>로 저장됩니다.
@@ -466,7 +470,7 @@ w \mathrel{\rhd} \overline{w} &amp;= (u \mathrel{\rhd} \overline{u}) \times (v \
 $$</p>
 <p>위 두 결과는 각각 우리가 익히 알고있는 미분의 선형성과 라이프니츠 규칙과 정확히 들어맞습니다.
 이를 위에서 정의한 <code>Dual</code> 구조체에 적용해봅시다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::ops::{Add, Sub, Mul};
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::ops::{Add, Sub, Mul};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Add <span style="color:#66d9ef">for</span> Dual {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">=</span> Self;
@@ -503,17 +507,17 @@ $$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// x at x=1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// 2x^2 at x=1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> v <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">f64</span>, dx: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">f64</span> }; <span style="color:#75715e">// 2x^2 at x=1
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">+</span> v;
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w: 3, dw: 5
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> w <span style="color:#f92672">=</span> u <span style="color:#f92672">*</span> v;
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;w: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dw: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, w.x, w.dx);
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// w = 2x^3 at x=1 = 2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// dw = 6x^2 at x=1 = 6
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// dw = 6x^2 at x=1 = 6
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p> </p>
 <h3 id="22-지수-로그-다항-함수">2.2. 지수, 로그, 다항 함수</h3>
 <p>다음으로는 지수 로그 함수의 대표적인 함수들인 $y=e^x,\,y=\ln x$와 다항함수인 $y=x^n$에 대해서 자동미분을 수행해봅시다.</p>
@@ -556,7 +560,7 @@ $$</p>
 </li>
 </ol>
 <p>앞서 구현한 <code>sin</code>함수와 같이 다른 삼각함수들도 모두 구현하여 하나의 <code>trait</code>을 선언하면 다음과 같습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Ops {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">exp</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">ln</span>(self) -&gt; <span style="color:#a6e22e">Self</span>;
@@ -613,7 +617,7 @@ $$</p>
 </span></span></code></pre></div><p> </p>
 <h3 id="23-시그모이드-함수">2.3. 시그모이드 함수</h3>
 <p>위에 있는 함수들에 몇 가지 연산 구현을 더하면 별도로 시그모이드 함수의 전파방법을 구현하지 않더라도 시그모이드 함수에 대한 자동미분을 계산할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sigmoid: Sized 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">trait</span> Sigmoid: Sized 
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Ops
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Neg<span style="color:#f92672">&lt;</span>Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> Add<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">f64</span>, Output<span style="color:#f92672">=</span>Self<span style="color:#f92672">&gt;</span> 
@@ -628,10 +632,10 @@ $$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> u <span style="color:#f92672">=</span> Dual { x: <span style="color:#ae81ff">1.0</span>, dx: <span style="color:#ae81ff">1.0</span> }; <span style="color:#75715e">// x at x=1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> u.sigmoid();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;z: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dz: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, z.x, z.dx);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> z <span style="color:#f92672">=</span> u.sigmoid();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">println!</span>(<span style="color:#e6db74">&#34;z: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, dz: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span>, z.x, z.dx);
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sigmoid(1), sigmoid&#39;(x) = sigmoid(1) * (1 - sigmoid(1))
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
 <p><em>주의: 위에 상기한 코드외에도 <code>f64</code>와의 연산이 추가적으로 정의되어야 작동하는 코드입니다. 실제로 이 코드를 실행하고 싶다면 다음 링크를 참고하세요.</em></p>
 <p><a href="https://github.com/Axect/dual">github.com/Axect/dual</a></p>
@@ -703,7 +707,7 @@ $$</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2023-12-04 15:38 &#43;0900
+          2023-12-04 14:38 &#43;0800
         
 
          
@@ -863,7 +867,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="/bundle.min.26db4c0c4875d30c5b87dfe5d4e6dca835010a2e05640cb5c1bb9d17dd28dfd6ccb26f0ac0bf28ddffef647cdf7e6c284d2218821385b442df1d1034f3e49061.js" integrity="sha512-JttMDEh10wxbh9/l1ObcqDUBCi4FZAy1wbudF90o39bMsm8KwL8o3f/vZHzffmwoTSIYghOFtELfHRA08&#43;SQYQ=="></script>
+<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
 
 
 

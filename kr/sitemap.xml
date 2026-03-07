@@ -49,16 +49,6 @@
   </url><url>
     <loc>https://axect.github.io/kr/posts/</loc>
     <lastmod>2023-12-04T15:38:04+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/kr/posts/"
-                />
   </url><url>
     <loc>https://axect.github.io/kr/tags/rust/</loc>
     <lastmod>2023-12-04T15:38:04+09:00</lastmod>
