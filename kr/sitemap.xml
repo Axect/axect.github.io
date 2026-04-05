@@ -49,6 +49,16 @@
   </url><url>
     <loc>https://axect.github.io/kr/posts/</loc>
     <lastmod>2023-12-04T15:38:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/kr/posts/"
+                />
   </url><url>
     <loc>https://axect.github.io/kr/tags/rust/</loc>
     <lastmod>2023-12-04T15:38:04+09:00</lastmod>
@@ -68,19 +78,6 @@
   </url><url>
     <loc>https://axect.github.io/kr/posts/007_ad_3/</loc>
     <lastmod>2023-12-04T15:38:04+09:00</lastmod>
-  </url><url>
-    <loc>https://axect.github.io/kr/about/</loc>
-    <lastmod>2023-11-06T19:03:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/kr/about/"
-                />
   </url><url>
     <loc>https://axect.github.io/kr/posts/006_prs/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>

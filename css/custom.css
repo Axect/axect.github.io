@@ -1,0 +1,501 @@
+/* === Hahmlet Font Override === */
+body,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Hahmlet', serif;
+}
+
+/* === Homepage Profile === */
+.profile-header {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-header .name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.profile-header .role {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.profile-header .affiliation {
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.profile-header .divider {
+  width: 40px;
+  height: 2px;
+  background: #333;
+  margin: 0 auto 1rem;
+}
+
+.profile-header .desc {
+  font-size: 0.875rem;
+  color: #555;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 1.5rem;
+}
+
+.profile-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+}
+
+.profile-links a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.profile-links a:hover {
+  color: #333;
+}
+
+/* === Stats Bar === */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat .num {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.stat .label {
+  font-size: 0.6875rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.25rem;
+}
+
+/* === Section Titles === */
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* === Cards === */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.card .title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.card .year {
+  font-size: 0.8125rem;
+  color: #999;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.card .journal {
+  font-size: 0.8125rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0.375rem;
+}
+
+.card .authors {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 0.625rem;
+}
+
+.card .tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.6875rem;
+  background: #f0f0f0;
+  color: #555;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 12px;
+  font-weight: 400;
+}
+
+.card .citations,
+.card .meta-info {
+  font-size: 0.6875rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+/* === Accordion Expand === */
+.card-expand {
+  display: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  font-size: 0.8125rem;
+  color: #444;
+  line-height: 1.8;
+}
+
+.card-expand.open {
+  display: block;
+  text-align: left;
+}
+
+.card-expand ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.card-expand .bibtex {
+  background: #f5f5f5;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.6875rem;
+  margin-top: 0.75rem;
+  white-space: pre-wrap;
+  color: #555;
+  overflow-x: auto;
+}
+
+.card-expand .links {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8125rem;
+}
+
+.card-expand .links a {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* === Tab UI === */
+.tab-container {
+  margin-bottom: 2rem;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e8e8e8;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Hahmlet', serif;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-btn:hover {
+  color: #333;
+}
+
+.tab-btn.active {
+  color: #333;
+  border-bottom-color: #333;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* === Software Badges === */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge-lang {
+  background: #e8e8e8;
+  color: #555;
+}
+
+.badge-lang.rust {
+  background: #DEA584;
+  color: #000;
+}
+
+.badge-lang.python {
+  background: #3572A5;
+  color: #fff;
+}
+
+.badge-stars {
+  background: #fff8e1;
+  color: #f57f17;
+}
+
+.badge-downloads {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.card .badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.card .software-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.card .software-links a {
+  color: #666;
+  text-decoration: none;
+}
+
+.card .software-links a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* === Presentation Type Badges === */
+.badge-type {
+  font-size: 0.625rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-type.oral {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.badge-type.invited {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.badge-type.poster {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.badge-award {
+  background: #fff8e1;
+  color: #f57f17;
+  font-size: 0.625rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* === Dark Mode === */
+body.dark-theme .profile-header {
+  border-bottom-color: #333;
+}
+
+body.dark-theme .profile-header .name {
+  color: #e0e0e0;
+}
+
+body.dark-theme .profile-header .role {
+  color: #999;
+}
+
+body.dark-theme .profile-header .affiliation {
+  color: #777;
+}
+
+body.dark-theme .profile-header .divider {
+  background: #888;
+}
+
+body.dark-theme .profile-header .desc {
+  color: #aaa;
+}
+
+body.dark-theme .profile-links a {
+  color: #777;
+}
+
+body.dark-theme .profile-links a:hover {
+  color: #e0e0e0;
+}
+
+body.dark-theme .stat .num {
+  color: #e0e0e0;
+}
+
+body.dark-theme .stat .label {
+  color: #777;
+}
+
+body.dark-theme .card {
+  background: #252525;
+  border-color: #333;
+}
+
+body.dark-theme .card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .card .title {
+  color: #e0e0e0;
+}
+
+body.dark-theme .card .journal {
+  color: #999;
+}
+
+body.dark-theme .card .authors {
+  color: #777;
+}
+
+body.dark-theme .tag {
+  background: #333;
+  color: #ccc;
+}
+
+body.dark-theme .card .citations,
+body.dark-theme .card .meta-info {
+  color: #777;
+}
+
+body.dark-theme .card-expand {
+  border-top-color: #333;
+  color: #bbb;
+}
+
+body.dark-theme .card-expand .bibtex {
+  background: #1a1a1a;
+  color: #aaa;
+}
+
+body.dark-theme .tab-buttons {
+  border-bottom-color: #333;
+}
+
+body.dark-theme .tab-btn {
+  color: #777;
+}
+
+body.dark-theme .tab-btn:hover {
+  color: #e0e0e0;
+}
+
+body.dark-theme .tab-btn.active {
+  color: #e0e0e0;
+  border-bottom-color: #e0e0e0;
+}
+
+body.dark-theme .badge-lang {
+  background: #333;
+  color: #ccc;
+}
+
+body.dark-theme .badge-stars {
+  background: #3e3200;
+  color: #ffd54f;
+}
+
+body.dark-theme .badge-downloads {
+  background: #1b3e1f;
+  color: #81c784;
+}
+
+/* === Responsive === */
+@media (max-width: 684px) {
+  .profile-header .name {
+    font-size: 1.75rem;
+  }
+
+  .stats-bar {
+    gap: 1.5rem;
+  }
+
+  .stat .num {
+    font-size: 1.25rem;
+  }
+
+  .card-top {
+    flex-direction: column;
+  }
+
+  .card .year {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+
+  .tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+}

@@ -41,19 +41,6 @@
                 href="https://axect.github.io/software/"
                 />
   </url><url>
-    <loc>https://axect.github.io/about/</loc>
-    <lastmod>2023-11-06T19:03:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://axect.github.io/kr/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://axect.github.io/about/"
-                />
-  </url><url>
     <loc>https://axect.github.io/posts/006_prs/</loc>
     <lastmod>2022-11-18T17:49:04+09:00</lastmod>
     <xhtml:link
@@ -78,6 +65,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://axect.github.io/tags/piecewise-rejection-sampling/"
+                />
+  </url><url>
+    <loc>https://axect.github.io/posts/</loc>
+    <lastmod>2022-11-18T17:49:04+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://axect.github.io/kr/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://axect.github.io/posts/"
                 />
   </url><url>
     <loc>https://axect.github.io/tags/statistics/</loc>
