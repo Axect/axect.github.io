@@ -4,6 +4,21 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Hahmlet', serif;
 }
 
+/* === Homepage main container === */
+main[aria-role="main"] {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 684px) {
+  main[aria-role="main"] {
+    padding: 0 12px;
+  }
+}
+
 /* === Homepage Profile === */
 .profile-header {
   text-align: center;
@@ -479,10 +494,15 @@ body.dark-theme .badge-downloads {
 
   .stats-bar {
     gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
   .stat .num {
     font-size: 1.25rem;
+  }
+
+  .card {
+    padding: 1rem;
   }
 
   .card-top {
