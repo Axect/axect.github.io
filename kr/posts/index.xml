@@ -1058,7 +1058,7 @@ Local Drop | Dropout and DropBlock based on the Radamacher complexity | [arXiv: 
         </figcaption>
 </figure>
 <hr>
-<h2 id="2-default">2. <strong><code>[default]</code> enum</strong></h2>
+<h2 id="2-default-enum">2. <strong><code>[default]</code> enum</strong></h2>
 <p>  Rust에서 <code>#[derive(...)]</code> 구문은 <code>struct</code>에 <code>trait</code>을 코드없이 구현하게 해주는 아주 편리한 구문입니다. 예를 들어 이차원 벡터 구조체를 만든다면 다음과 같이 구현할 수 있습니다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Clone, Copy, Default)]</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vec2D</span> {

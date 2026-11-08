@@ -107,12 +107,12 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
   "dateModified": "2023-12-04T15:38:04\u002b09:00",
   "author": {
     "@type": "Person",
-    "name": "Tae-Geun Kim",
+    "name": "Tae-Geun Kim-Morgen",
     "url": "https:\/\/axect.github.io\/"
   },
   "publisher": {
     "@type": "Person",
-    "name": "Tae-Geun Kim"
+    "name": "Tae-Geun Kim-Morgen"
   },
   "description": " 🔖 Automatic Differentiation Series\n💻 Numerical Differentiation 🖊️ Symbolic Differentiation 🤖 Automatic Differentiation 딥러닝을 구현함에 있어서 가장 중요한 요소가 뭘까요? 물론 많은 학문으로 구성된 딥러닝의 특성상 모든 요소들이 다 중요하지만, 그 중에서도 특히 신경써야하는 요소가 있습니다. 이를 찾아내기 위해서 다음의 PyTorch 코드를 살펴봅시다.\nnet = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # criterion = ... opt = optim.SGD(net.parameters(), lr=0.01) opt.zero_grad() loss = criterion(net(x), y) loss.backward() opt.step() 이를 아무런 딥러닝 프레임워크를 쓰지 않고 구현한다고 생각해봅시다. 일단 엄밀하게 같은 구현은 아니지만 Linear와 Sigmoid 함수 자체의 구현은 단순히 행렬곱과 벡터화된 sigmoid 함수를 사용하여 구현할 수 있으므로 net(x)를 만드는 것은 어렵지 않습니다. 다음으로 여기선 criterion이 무엇인지 명시하지는 않았지만 가장 기본적인 MSE를 사용한다면 이 역시 간단합니다. 문제는 opt부터 시작됩니다. SGD를 구현하려면, 어떤 criterion이나 신경망 구조에서도 gradient 즉, 도함수를 구할 수 있어야 합니다.\n",
   "url": "https:\/\/axect.github.io\/kr\/posts\/007_ad_3\/",
@@ -128,7 +128,7 @@ net = nn.Sequential( nn.Linear(2, 1), nn.Sigmoid() ) # x = ... # y = ... # crite
 
 
 
-<meta name="citation_author" content="Kim, Tae-Geun" />
+<meta name="citation_author" content="Kim-Morgen, Tae-Geun" />
 
 <meta name="citation_title" content="🤖 Rust와 미분하기 03: 정방향 자동 미분" />
 <meta name="citation_publication_date" content="2023/12/04" />
@@ -876,7 +876,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="/bundle.min.f0a83284a6a9c303ebdedda40cff4fae081def9d6a9799f08d51f2779bc03f8a9c5b606d59895c8c0cd5297ce84850caae34b98aace4b455e992310ed26193ba.js" integrity="sha512-8KgyhKapwwPr3t2kDP9Prggd751ql5nwjVHyd5vAP4qcW2BtWYlcjAzVKXzoSFDKrjS5iqzktFXpkjEO0mGTug=="></script>
+<script type="text/javascript" src="/bundle.min.203b95266d65b5b388e9c41bf956de29c754fc0c99efd048513ec0dd53b835b89b18e7952c70a5411360ea3d860ba5988105f487b28f2eb5d95a13ea0f5c2fb5.js" integrity="sha512-IDuVJm1ltbOI6cQb&#43;VbeKcdU/AyZ79BIUT7A3VO4NbibGOeVLHClQRNg6j2GC6WYgQX0h7KPLrXZWhPqD1wvtQ=="></script>
 
 
 
