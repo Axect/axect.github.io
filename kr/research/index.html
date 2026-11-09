@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
     <head>
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,7 +23,7 @@
 
 
 
-<link rel="stylesheet" href="/main.9f7060ba16184573f84af53f6b117c56c62c7a60e871aa799814164c9dbab12c.css">
+<link rel="stylesheet" href="/main.22631cd2649692729d4b83e51a85bbd981f02c7bb511d039bc3af089c4df87e4.css">
 
 
     
@@ -72,9 +72,21 @@
 <meta property="og:description" content="" />
 
 <meta property="og:image" content="https://axect.github.io/images/og-default.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content="Axect&#39;s Blog" />
+
+
+
+
+<link rel="alternate" hreflang="en" href="https://axect.github.io/research/" />
+
+<link rel="alternate" hreflang="ko" href="https://axect.github.io/kr/research/" />
+
+<link rel="alternate" hreflang="x-default" href="https://axect.github.io/research/" />
+
 
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -162,7 +174,7 @@
                 <div class="dropdown-content">
                     
                         
-                            <a title="en" href="https://axect.github.io/research/"><span class="flag fi fi-gb"></span></a>
+                            <a title="English" href="https://axect.github.io/research/"><span class="flag fi fi-gb"></span></a>
                         
                     
                 </div>
@@ -252,7 +264,7 @@
             <span class="tag">Scientific Computing</span><span class="tag">Rust</span><span class="tag">Open Source Software</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> Peroxide is a numerical computing library for Rust that provides linear algebra with BLAS/LAPACK backends, statistical distributions and special functions, numerical integration, ODE solvers, optimization, and a DataFrame with multiple I/O formats behind a single dependency.</p>
+            <p><strong>Abstract:</strong> Peroxide is a Rust numerical computing library that integrates eight domains in one crate: linear algebra, ordinary differential equation (ODE) solving, adaptive quadrature, spline interpolation with exact polynomial calculus, root-finding, forward-mode automatic differentiation (AD), statistics, and multi-format DataFrame I/O. We designed Peroxide for applied scientists, engineers, and students who need a cohesive numerical environment in Rust without assembling a multi-crate dependency graph.</p>
             <div class="bibtex">@article{kim2026peroxide,
   title={Peroxide: A Batteries-Included Numerical Computing Library for Rust},
   author={Kim, Tae-Geun and Comitini, Giorgio and Grage, Jonas and Joens, Benjamin and Schreiber, Marc and Sen, Soumya and Senthamarai, Russell R P and S{\&#34;o}rng{\aa}rd, Johanna},
@@ -283,7 +295,7 @@
             <span class="tag">Dark Matter</span><span class="tag">PBH</span><span class="tag">Axion</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> We investigate the extragalactic photon signals produced by axion-like particles emitted from primordial black holes via Hawking radiation.</p>
+            <p><strong>Abstract:</strong> Primordial black holes (PBHs) are significant sources of axions and axion-like particles, provided their Hawking temperature exceeds the particles’ masses. Given the predominant decay of axions into photons, the enhanced photon spectrum they generate can be feasibly detected using sensitive detectors. This paper introduces a novel methodology that elucidates the decay process by which particles traverse and decay over cosmological timescales.</p>
             <div class="bibtex">@article{jho2026primordial,
   title={Primordial Black Holes as a Factory of Axions: Extragalactic Photons from Axions},
   author={Jho, Yongsoo and Kim, Tae-Geun and Park, Jong-Chul and Park, Seong Chan and Park, Yeji},
@@ -314,7 +326,7 @@
             <span class="tag">Machine Learning</span><span class="tag">Hamiltonian</span><span class="tag">Bayesian</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> Earlier version on arXiv as &#34;Learning Hamiltonian Dynamics with Bayesian Data Assimilation&#34;. We propose a framework combining Hamiltonian neural networks with Bayesian data assimilation for learning dynamical systems.</p>
+            <p><strong>Abstract:</strong> Earlier version on arXiv as &#34;Learning Hamiltonian Dynamics with Bayesian Data Assimilation&#34;: In this paper, we develop a neural network-based approach for time-series prediction in unknown Hamiltonian dynamical systems. Our approach leverages a surrogate model and learns the system dynamics using generalized coordinates (positions) and their conjugate momenta while preserving a constant Hamiltonian. Additionally, we employ Bayesian data assimilation to refine predictions in real-time using online measurement data.</p>
             <div class="bibtex">@article{kim2025learning,
   title={Learning Hamiltonian Dynamics with Bayesian Data Assimilation},
   author={Kim, Taehyeun and Kim, Tae-Geun and Girard, Anouck and Kolmanovsky, Ilya},
@@ -341,7 +353,7 @@
             <span class="tag">Machine Learning</span><span class="tag">Operator Learning</span><span class="tag">Hamiltonian</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> We investigate whether neural network architectures can learn Hamiltonian dynamics directly from the Hamiltonian function using operator learning.</p>
+            <p><strong>Abstract:</strong> We propose a novel framework based on neural network that reformulates classical mechanics as an operator learning problem. A machine directly maps a potential function to its corresponding trajectory in phase space without solving the Hamilton equations. Most notably, while conventional methods tend to accumulate errors over time through iterative time integration, our approach prevents error propagation.</p>
             <div class="bibtex">@article{kim2024neural,
   title={Neural Hamilton: Can A.I. Understand Hamiltonian Mechanics?},
   author={Kim, Tae-Geun and Park, Seong Chan},
@@ -368,7 +380,7 @@
             <span class="tag">Machine Learning</span><span class="tag">Optimization</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> We propose HyperbolicLR, a learning rate scheduler that is insensitive to the total number of training epochs.</p>
+            <p><strong>Abstract:</strong> This study proposes two novel learning rate schedulers, Hyperbolic Learning Rate Scheduler (HyperbolicLR) and Exponential Hyperbolic Learning Rate Scheduler (ExpHyperbolicLR), to address the epoch sensitivity problem that often causes inconsistent learning curves in conventional methods. By leveraging the asymptotic behavior of hyperbolic curves, the proposed schedulers maintain more stable learning curves across varying epoch settings.</p>
             <div class="bibtex">@article{kim2024hyperboliclr,
   title={HyperbolicLR: Epoch insensitive learning rate scheduler},
   author={Kim, Tae-Geun},
@@ -395,7 +407,7 @@
             <span class="tag">Machine Learning</span><span class="tag">Biomedical</span><span class="tag">Signal Processing</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> We propose an unsupervised sequence-to-sequence learning framework for automatic signal quality assessment in multi-channel EIT-based hemodynamic monitoring.</p>
+            <p><strong>Abstract:</strong> This study proposes an unsupervised sequence-to-sequence learning approach that automatically assesses the motion-induced reliability degradation of the cardiac volume signal (CVS) in multi-channel electrical impedance-based hemodynamic monitoring. By utilizing long-short term memory and variational auto-encoder structures, an encoder-decoder model is trained not only to self-reproduce an input sequence of the CVS but also to extrapolate the future in a parallel fashion.</p>
             <div class="bibtex">@article{hyun2024unsupervised,
   title={Unsupervised sequence-to-sequence learning for automatic signal quality assessment in multi-channel electrical impedance-based hemodynamic monitoring},
   author={Hyun, Chang Min and Kim, Tae-Geun and Lee, Kyounghun},
@@ -424,7 +436,7 @@
             <span class="tag">Machine Learning</span><span class="tag">Particle Physics</span><span class="tag">Mass Estimation</span>
           </div>
           <div class="card-expand">
-            <p><strong>Abstract:</strong> We propose DeeLeMa, a deep learning framework for mass estimation using missing information search in particle physics events.</p>
+            <p><strong>Abstract:</strong> We introduce DeeLeMa, a deep learning-based network for the analysis of energy and momentum in high-energy particle collisions. This novel approach is specifically designed to address the challenge of analyzing collision events with multiple invisible particles, which are prevalent in many high-energy physics experiments. We show that DeeLeMa can robustly estimate mass distribution even in the presence of combinatorial uncertainties and detector smearing effects.</p>
             <div class="bibtex">@article{ban2023deelema,
   title={DeeLeMa: Missing information search with Deep Learning for Mass estimation},
   author={Ban, Kayoung and Kang, Dong Woo and Kim, Tae-Geun and Park, Seong Chan and Park, Yeji},
@@ -983,7 +995,7 @@
     
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2023</span>
+            <span>&copy; 2023–2026</span>
             <span><a href="https://axect.github.io/">Axect</a></span>
             <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
             <span><a href="https://axect.github.io/kr/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
