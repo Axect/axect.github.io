@@ -147,8 +147,7 @@
     "https://orcid.org/0009-0000-4229-2935",
     "https://scholar.google.com/citations?user=Gnat36QAAAAJ",
     "https://www.researchgate.net/profile/Tae-Geun-Kim-3",
-    "https://www.linkedin.com/in/tae-geun-kim/",
-    "https://github.com/Axect/cv_typst/blob/main/cv.pdf"
+    "https://www.linkedin.com/in/tae-geun-kim/"
   ]
 }
 </script>
@@ -278,6 +277,8 @@
   
   
   
+  
+  
 
   
   <div class="profile-header">
@@ -300,7 +301,7 @@
       <a href="https://github.com/Axect" target="_blank">GitHub</a>
       <a href="https://scholar.google.com/citations?user=Gnat36QAAAAJ" target="_blank">Scholar</a>
       <a href="https://orcid.org/0009-0000-4229-2935" target="_blank">ORCID</a>
-      <a href="https://github.com/Axect/cv_typst/blob/main/cv.pdf" target="_blank">CV</a>
+      <a href="/cv.pdf" target="_blank">CV</a>
       <a href="https://www.linkedin.com/in/tae-geun-kim/" target="_blank">LinkedIn</a>
       <a href="mailto:tgkim@fudan.edu.cn">Email</a>
     </div>
@@ -323,7 +324,50 @@
   </div>
 
   
-  <div class="section-title">Recent Publications</div>
+  <div class="section-title">Research</div>
+  <div class="research-list">
+    
+    <div class="research-item">
+      <div class="research-title">신뢰할 수 있는 신경망 샘플러</div>
+      <div class="research-text">자기회귀 신경망 샘플러는 격자 스핀계에서 언제 믿을 수 있을까? 상호작용 그래프의 구조에 비해 샘플러가 얼마나 넓은 문맥을 봐야 하는지, 그리고 정확한 기준값 없이 실패를 어떻게 진단할지를 연구합니다.</div>
+    </div>
+    
+    <div class="research-item">
+      <div class="research-title">역문제와 축퇴</div>
+      <div class="research-text">데이터는 물리 모형의 어디까지 결정할 수 있을까? 신경 연산자와 식별 가능성 분석으로, 감마선 스펙트럼이 원시블랙홀 질량분포에 대해 무엇을 알려 주는지, SMEFT 계수가 어떤 자외선 결합상수를 결정하는지를 연구합니다.</div>
+    </div>
+    
+    <div class="research-item">
+      <div class="research-title">과학적 머신러닝과 오픈소스 도구</div>
+      <div class="research-text">해밀턴 역학을 위한 연산자 학습, 학습 예산이 바뀌어도 안정적인 학습률 스케줄러, 그리고 Rust 수치계산 라이브러리 Peroxide를 비롯한 물리학자를 위한 수치계산 소프트웨어를 만듭니다.</div>
+    </div>
+    
+  </div>
+
+  
+  <div class="section-title" style="margin-top: 2.5rem;">News</div>
+  <ul class="news-list">
+    
+    <li><span class="news-date">2026.09</span><span class="news-text">ECT* 워크숍(Trento) 발표</span></li>
+    
+    <li><span class="news-date">2026.09</span><span class="news-text">Bielefeld 대학교 초청 세미나</span></li>
+    
+    <li><span class="news-date">2026.08</span><span class="news-text">Heidelberg 대학교 ITP 초청 세미나, EuCAIFCon 2026 발표 및 포스터</span></li>
+    
+    <li><span class="news-date">2026.08</span><span class="news-text">CCP2026(서울) 초청 발표, APS DCOMP Travel/Registration Award 수상</span></li>
+    
+    <li><span class="news-date">2026.08</span><span class="news-text">Peroxide 논문 Journal of Open Source Software 출판</span></li>
+    
+    <li><span class="news-date">2026.07</span><span class="news-text">KIAS, IBS PARTIQAL 초청 세미나</span></li>
+    
+    <li><span class="news-date">2026.01</span><span class="news-text">원시블랙홀 액시온 논문 Progress of Theoretical and Experimental Physics 출판</span></li>
+    
+    <li><span class="news-date">2025.11</span><span class="news-text">Fudan 대학교와 RIKEN iTHEMS 공동 박사후연구원 부임</span></li>
+    
+  </ul>
+
+  
+  <div class="section-title" style="margin-top: 2.5rem;">Recent Publications</div>
   <div class="card-list">
     
     <div class="card" onclick="this.querySelector('.card-expand').classList.toggle('open')">
@@ -332,7 +376,7 @@
         <div class="year">2026</div>
       </div>
       <div class="journal">J. Open Source Softw.</div>
-      <div class="authors">Tae-Geun Kim, Giorgio Comitini, Jonas Grage, Benjamin Joens, Marc Schreiber, Soumya Sen, Russell R P Senthamarai, Johanna Sörngård</div>
+      <div class="authors"><strong>Tae-Geun Kim</strong>, Giorgio Comitini, Jonas Grage, Benjamin Joens, Marc Schreiber, Soumya Sen, Russell R P Senthamarai, Johanna Sörngård</div>
       <div class="tags">
         <span class="tag">Scientific Computing</span><span class="tag">Rust</span><span class="tag">Open Source Software</span>
       </div>
@@ -363,7 +407,7 @@
         <div class="year">2026</div>
       </div>
       <div class="journal">Prog. Theor. Exp. Phys.</div>
-      <div class="authors">Yongsoo Jho, Tae-Geun Kim, Jong-Chul Park, Seong Chan Park, Yeji Park</div>
+      <div class="authors">Yongsoo Jho<sup>*</sup>, <strong>Tae-Geun Kim</strong><sup>*</sup>, Jong-Chul Park<sup>*</sup>, Seong Chan Park<sup>*</sup>, Yeji Park<sup>*</sup></div>
       <div class="tags">
         <span class="tag">Dark Matter</span><span class="tag">PBH</span><span class="tag">Axion</span>
       </div>
@@ -394,7 +438,7 @@
         <div class="year">2025</div>
       </div>
       <div class="journal">Under review at IEEE TAES</div>
-      <div class="authors">Taehyeun Kim, Tae-Geun Kim, Anouck Girard, Ilya Kolmanovsky</div>
+      <div class="authors">Taehyeun Kim<sup>*</sup>, <strong>Tae-Geun Kim</strong><sup>*</sup>, Anouck Girard, Ilya Kolmanovsky</div>
       <div class="tags">
         <span class="tag">Machine Learning</span><span class="tag">Hamiltonian</span><span class="tag">Bayesian</span>
       </div>
@@ -416,6 +460,50 @@
     </div>
     
   </div>
+  <div class="footnote"><sup>*</sup> Co-first authors &middot; <a href="/kr/research/">All publications</a></div>
+
+  
+  <div class="section-title" style="margin-top: 2.5rem;">Recent Talks</div>
+  <div class="card-list">
+    
+    <div class="card card-static">
+      <div class="card-top">
+        <div class="title">Trustworthy Neural Sampler</div>
+        <div class="year">2026</div>
+      </div>
+      <div class="journal">ECT* Workshop</div>
+      <div class="authors">Trento, Italy</div>
+    </div>
+    
+    <div class="card card-static">
+      <div class="card-top">
+        <div class="title">Can one see the mass of a PBH?</div>
+        <div class="year">2026</div>
+      </div>
+      <div class="journal">Seminar @ Bielefeld University &middot; Invited</div>
+      <div class="authors">Bielefeld, Germany</div>
+    </div>
+    
+    <div class="card card-static">
+      <div class="card-top">
+        <div class="title">Can you trust your neural sampler?</div>
+        <div class="year">2026</div>
+      </div>
+      <div class="journal">ITP Seminar @ Heidelberg University &middot; Invited</div>
+      <div class="authors">Heidelberg, Germany</div>
+    </div>
+    
+    <div class="card card-static">
+      <div class="card-top">
+        <div class="title">A graph-bandwidth law for context windows in autoregressive samplers</div>
+        <div class="year">2026</div>
+      </div>
+      <div class="journal">EuCAIFCon 2026 (parallel talk and poster)</div>
+      <div class="authors">Heidelberg, Germany</div>
+    </div>
+    
+  </div>
+  <div class="footnote"><a href="/kr/research/">All talks</a></div>
 
   
   

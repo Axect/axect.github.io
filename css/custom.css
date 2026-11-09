@@ -115,6 +115,68 @@ main[aria-role="main"] {
   letter-spacing: 0.5px;
 }
 
+/* === Research Themes === */
+.research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.research-item {
+  border-left: 2px solid #ddd;
+  padding-left: 1rem;
+}
+
+.research-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.research-text {
+  font-size: 0.8125rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* === News === */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-list li {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  padding: 0.375rem 0;
+  border-bottom: 1px dashed #e8e8e8;
+}
+
+.news-date {
+  flex: 0 0 4.5rem;
+  color: #999;
+  font-variant-numeric: tabular-nums;
+}
+
+.news-text {
+  color: #444;
+}
+
+/* === Footnotes under lists === */
+.footnote {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.75rem;
+}
+
+.footnote a {
+  color: inherit;
+}
+
 /* === Cards === */
 .card-list {
   display: flex;
@@ -440,6 +502,19 @@ body.dark-theme .card .authors {
 
 body.dark-theme .tag {
   background: #333;
+  color: #ccc;
+}
+
+body.dark-theme .research-text,
+body.dark-theme .news-text {
+  color: #bbb;
+}
+
+body.dark-theme .news-list li {
+  border-bottom-color: #333;
+}
+
+body.dark-theme .card .authors strong {
   color: #ccc;
 }
 
